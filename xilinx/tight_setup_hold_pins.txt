@@ -1,0 +1,7 @@
++====================+===================+=========================================================================+
+| Launch Setup Clock | Launch Hold Clock | Pin                                                                     |
++====================+===================+=========================================================================+
+| daqclk0            | daqclk0           | core_inst/st40_sender_inst/FSM_sequential_state_reg[1]/D                |
+| ep_clk62p5         | ep_clk62p5        | endpoint_inst/pdts_endpoint_inst/pdts_endpoint_inst/txmod/cctr_reg[0]/S |
+| ep_clk62p5         | ep_clk62p5        | endpoint_inst/pdts_endpoint_inst/pdts_endpoint_inst/txmod/cctr_reg[1]/S |
++--------------------+-------------------+-------------------------------------------------------------------------+

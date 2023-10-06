@@ -1,4 +1,62 @@
+# DAPHNE V1 constraints
+# Edgar Rincon Gil <edgar.rincon.g@gmail.com>
 
+create_clock -name adn2814_clk  -period 16.000  [get_ports adn2814_data_p]
+create_clock -name sysclk       -period 10.000  [get_ports sysclk_p]
+create_clock -name gbe_refclk   -period 8.000   [get_ports gbe_refclk_p]
+create_clock -name daq_refclk   -period 8.317   [get_ports daq_refclk_p]
+
+# rename the auto-generated clocks...
+
+create_generated_clock -name local_clk62p5  [get_pins endpoint_inst/mmcm0_inst/CLKOUT0]
+create_generated_clock -name sclk200        [get_pins endpoint_inst/mmcm0_inst/CLKOUT1]
+create_generated_clock -name sclk100        [get_pins endpoint_inst/mmcm0_inst/CLKOUT2]
+create_generated_clock -name mmcm0_clkfbout [get_pins endpoint_inst/mmcm0_inst/CLKFBOUT]
+
+create_generated_clock -name ep_clk62p5      [get_pins endpoint_inst/pdts_endpoint_inst/pdts_endpoint_inst/rxcdr/mmcm/CLKOUT0]
+create_generated_clock -name ep_clk4x        [get_pins endpoint_inst/pdts_endpoint_inst/pdts_endpoint_inst/rxcdr/mmcm/CLKOUT1]
+create_generated_clock -name ep_clk2x        [get_pins endpoint_inst/pdts_endpoint_inst/pdts_endpoint_inst/rxcdr/mmcm/CLKOUT1]
+create_generated_clock -name ep_clkfbout     [get_pins endpoint_inst/pdts_endpoint_inst/pdts_endpoint_inst/rxcdr/mmcm/CLKFBOUT] 
+
+create_generated_clock -name oeiclk [get_pins phy_inst/U0/core_clocking_i/mmcm_adv_inst/CLKOUT0] 
+create_generated_clock -name oeihclk [get_pins phy_inst/U0/core_clocking_i/mmcm_adv_inst/CLKOUT1]
+create_generated_clock -name oei_clkfbout [get_pins phy_inst/U0/core_clocking_i/mmcm_adv_inst/CLKFBOUT]
+
+create_generated_clock -name daqclk0      [get_pins core_inst/core_mgt4_inst/daq_quad_inst/U0/gt_usrclk_source/txoutclk_mmcm0_i/mmcm_adv_inst/CLKOUT0]
+create_generated_clock -name daqclk1      [get_pins core_inst/core_mgt4_inst/daq_quad_inst/U0/gt_usrclk_source/txoutclk_mmcm0_i/mmcm_adv_inst/CLKOUT1]
+create_generated_clock -name daq_clkfbout [get_pins core_inst/core_mgt4_inst/daq_quad_inst/U0/gt_usrclk_source/txoutclk_mmcm0_i/mmcm_adv_inst/CLKFBOUT]
+
+create_generated_clock -name fclk0           -master_clock ep_clk62p5 [get_pins endpoint_inst/mmcm1_inst/CLKOUT0]
+create_generated_clock -name mclk0           -master_clock ep_clk62p5 [get_pins endpoint_inst/mmcm1_inst/CLKOUT1]
+create_generated_clock -name mmcm1_clkfbout0 -master_clock ep_clk62p5 [get_pins endpoint_inst/mmcm1_inst/CLKFBOUT]
+create_generated_clock -name fclk1           -master_clock local_clk62p5 [get_pins endpoint_inst/mmcm1_inst/CLKOUT0]
+create_generated_clock -name mclk1           -master_clock local_clk62p5 [get_pins endpoint_inst/mmcm1_inst/CLKOUT1]
+create_generated_clock -name mmcm1_clkfbout1 -master_clock local_clk62p5 [get_pins endpoint_inst/mmcm1_inst/CLKFBOUT]
+
+set_clock_groups -name async_groups -asynchronous \
+-group {sysclk sclk100 mmcm0_clkfbout} -group {sclk200} -group {local_clk62p5} \
+-group {mclk0 fclk0 mmcm1_clkfbout0} -group {mclk1 fclk1 mmcm1_clkfbout1} \
+-group {oeiclk oeihclk oei_clkfbout} -group {daqclk0 daqclk1 daq_clkfbout} \
+-group {ep_clk62p5 ep_clk4x ep_clk2x ep_clkfbout} -group {adn2814_clk} 
+
+# tell vivado about places where signals cross clock domains so timing can be ignored here...
+
+#set_false_path -from [get_pins fe_inst/gen_afe[*].afe_inst/auto_fsm_inst/done_reg_reg/C]      
+#set_false_path -from [get_pins fe_inst/gen_afe[*].afe_inst/auto_fsm_inst/warn_reg_reg/C]      
+#set_false_path -from [get_pins fe_inst/gen_afe[*].afe_inst/auto_fsm_inst/errcnt_reg_reg[*]/C] 
+set_false_path -from [get_pins trig_gbe*_reg_reg/C] -to [get_pins trig_sync_reg/D]
+set_false_path -to [get_pins led0_reg_reg[*]/C]
+set_false_path -from [get_pins test_reg_reg[*]/C]
+set_false_path -from [get_ports gbe_sfp_??s]
+set_false_path -from [get_ports cdr_sfp_??s]
+set_false_path -from [get_ports daq?_sfp_??s]
+set_false_path -from [get_pins st_enable_reg_reg[*]/C]
+set_false_path -from [get_pins outmode_reg_reg[*]/C]
+set_false_path -from [get_pins threshold_reg_reg[*]/C]
+set_false_path -from [get_pins daq_out_param_reg_reg[*]/C]
+set_false_path -from [get_pins core_inst/input_inst/*select_reg_reg*/C]
+
+set_property CLOCK_DEDICATED_ROUTE BACKBONE [get_nets endpoint_inst/sysclk_ibuf]
 
 # SYSCLK is LVDS 100MHz comes in on bank 33, VCCO=2.5V.
 # Use internal LVDS 100 ohm termination. On schematic this is FPGA_MCLK1.
@@ -182,7 +240,7 @@ set_property IOSTANDARD LVTTL [get_ports {spi_*}]
 
 ### DAQ link 1, channel 1 Quad 213, X0Y5
 
-#set_property LOC GTPE2_CHANNEL_X0Y5 [get_cells core_inst/daq_quad_inst/U0/daphne2_daq_txonly_init_i/daphne2_daq_txonly_i/gt1_daphne2_daq_txonly_i/gtpe2_i]
+set_property LOC GTPE2_CHANNEL_X0Y5 [get_cells core_inst/daq_quad_inst/U0/daphne2_daq_txonly_init_i/daphne2_daq_txonly_i/gt1_daphne2_daq_txonly_i/gtpe2_i]
 
 set_property PACKAGE_PIN H6[get_ports {daq1_sfp_los}]
 set_property PACKAGE_PIN J6 [get_ports {daq1_sfp_abs}]
@@ -193,7 +251,7 @@ set_property IOSTANDARD LVTTL [get_ports {daq1_sfp_*}]
 
 ### DAQ link 0, channel 0 Quad 213, X0Y4
 
-#set_property LOC GTPE2_CHANNEL_X0Y4 [get_cells core_inst/daq_quad_inst/U0/daphne2_daq_txonly_init_i/daphne2_daq_txonly_i/gt0_daphne2_daq_txonly_i/gtpe2_i]
+set_property LOC GTPE2_CHANNEL_X0Y4 [get_cells core_inst/daq_quad_inst/U0/daphne2_daq_txonly_init_i/daphne2_daq_txonly_i/gt0_daphne2_daq_txonly_i/gtpe2_i]
 
 set_property PACKAGE_PIN L8[get_ports {daq0_sfp_los}]
 set_property PACKAGE_PIN K7[get_ports {daq0_sfp_abs}]
@@ -206,6 +264,25 @@ set_property IOSTANDARD LVTTL [get_ports {daq0_sfp_*}]
 
 set_property LOC E11 [get_ports daq_refclk_n] 
 set_property LOC F11 [get_ports daq_refclk_p]
+
+
+# All 6 user LEDS are in bank 35, VCCO=3.3V, all LEDs Active High
+
+# Assign LED7 to debug header pin 1
+# set_property PACKAGE_PIN C3 [get_ports {led[7]}]
+
+# Assign LED6 to debug header pin 2
+# set_property PACKAGE_PIN F3 [get_ports {led[6]}]
+
+# LED[5..0] map to user StatLED[5..0] on DAPHNE
+set_property PACKAGE_PIN D3 [get_ports {led[5]}]
+set_property PACKAGE_PIN A4 [get_ports {led[4]}]
+set_property PACKAGE_PIN B4 [get_ports {led[3]}]
+set_property PACKAGE_PIN A5 [get_ports {led[2]}]
+set_property PACKAGE_PIN B5 [get_ports {led[1]}]
+set_property PACKAGE_PIN C4 [get_ports {led[0]}]
+set_property IOSTANDARD LVTTL [get_ports {led[?]}]
+
 
 # #############################################################################
 # General bitstream constraints...
