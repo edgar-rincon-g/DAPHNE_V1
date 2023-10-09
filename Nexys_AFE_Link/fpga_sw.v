@@ -616,21 +616,6 @@ udp_payload_rx_fifo (
     .status_good_frame()
 );
 
-// Data Sender/Message Generator
-//message_sender
-//mes_send_inst (
-//    .clk(clk),
-//    .rst(rst),
-//    // Manual Input
-//    .btn(btnc),
-//    // AXI Signals
-//    .ready(s_axis_tready_messager),
-//    .valid(s_axis_tvalid_messager),
-//    .last(s_axis_tlast_messager),
-//    .user(s_axis_tuser_messager),
-//    .data(s_axis_tdata_messager)
-//);
-
 // Transmitting AXIs FIFO
 axis_fifo #(
     .DEPTH(8192),
@@ -671,23 +656,6 @@ udp_payload_tx_fifo (
     .status_bad_frame(),
     .status_good_frame()
 );
-
-// Create the input data to be stored by the FIFO
-//wire [13:0] d_cnt;
-//wire start_cnt;
-
-//assign start_cnt = sw[7];
-
-//// 14 bit Module Counter
-//counter # (
-//    .DATA_WIDTH(14)
-//) 
-//counter_inst (
-//    .CLK(clk),
-//    .RST(rst),
-//    .STR(start_cnt),
-//    .CNT_VAL(d_cnt)
-//);
 
 // AFE's Data Flags
 wire [13:0] d_afe; // Create the input data to be stored by the FIFO
@@ -741,7 +709,6 @@ wire afe_fifo_wr_err;
 wire afe_fifo_rd_err;
 wire wr_enable_signal;
 wire rd_enable_signal;
-//wire state_val;
 wire fifo_rd_out;
 assign wr_enable_signal = sw[7];
 assign rd_enable_signal = sw[6];
@@ -778,110 +745,6 @@ self_trig_inst (
     .axi_user(afe_axis_tuser_messager)
 );
 
-// Self Trigger signals
-//wire [13:0] d_filt;
-//wire self_trig;
-//wire d_afe_reg;
-
-//// Self Trigger Component
-//selfTrigger_Module #(
-//    // High Pass Filter parameters
-//    .DATA_SIZE(14),
-//    .COEFF_RES(17),
-//    // Self Trigger parameters
-//    .g_INPUT_WIDTH(14),
-//    .g_SUM_WIDTH(14),
-//    .g_MULT_WIDTH(28)
-//)
-//self_trig_inst (
-//    // Module Inputs
-//    .CLK(afe_clk_div),
-//    .RST(rst),
-//    .D_IN(d_afe),
-//    // Module Outputs
-//    .TRIG(self_trig),
-//    .D_OUT_FILT(d_filt),
-//    .O_DATA(d_afe_reg)
-//);
-
-// FSM Self Trigger Control signals
-//wire trig;
-//wire read;
-//wire rd_ctrl;
-
-//assign rd_ctrl = sw[2]; // Define the control of the read operation
-// when set to 1, the system will read after a write operation has ocurred
-// when set to 0, the system will wait for the internal read signal to generate the read operation
-
-// Self Trigger control FSM
-//trigSaveFSM # (
-//    .WR_CLK_FREQ(40.0),
-//    .RD_CLK_FREQ(62.5)
-//)
-//trig_ctrl_fsm_inst (
-//    .WR_CLK(afe_clk_div),
-//    .RD_CLK(clk50),
-//    .SYS_CLK(clk),
-//    .RST(rst),
-//    .TRIG_IN(self_trig),
-//    .READ_IN(1'b0), // 1 to read data Or 0 to stop it, whenever its possible
-//    .FIFO_FULL(afe_fifo_a_full),
-//    .FIFO_EMPTY(afe_fifo_empty),
-//    .RD_AFTER(rd_ctrl), // Read inmediately after the FIFO was filled with data
-//    .WR_AFTER(1'b0), // Write inmediately after the FIFO was emptied of its data
-//    .TRIG_OUT(trig),
-//    .READ_OUT(read)
-//);
-
-// AFE's FIFO Flags
-//wire afe_fifo_a_empty;
-//wire afe_fifo_a_full;
-//wire afe_fifo_empty;
-//wire afe_fifo_full;
-//wire afe_fifo_wr_err;
-//wire afe_fifo_rd_err;
-//wire wr_enable_signal;
-//wire rd_enable_signal;
-//wire fifo_trig; // Self trigger signal
-//wire fifo_rd; // Self generating read signal
-
-//assign wr_enable_signal = sw[7];
-//assign rd_enable_signal = sw[6];
-//assign fifo_trig = wr_enable_signal || trig; // Self trigger is asserted byt he system or by external force
-//assign fifo_rd = rd_enable_signal || read; // Read the FIFO whenever external action or the system pre defines
-
-// AFE Module FIFO
-//AXI_FIFO_Adapter #(
-//    .WR_CLK_FREQ(40.0),
-//    .RD_CLK_FREQ(62.5),
-//    .AEMPTY_OFF(4'h6),
-//    .AFULL_OFF(12'h590)
-//)
-//afe_axi_fifo (
-//    .d_i(d_afe),//d_filt),//d_afe),//d_cnt),
-//    .dt_rdy(dt_rdy),
-//    .wr_enable(fifo_trig),//wr_enable_signal),//btnu),
-//    .rd_enable(fifo_rd),//rd_enable_signal),//btnd),
-//    .full_read(1'b1),
-//    .wr_clk(afe_clk_div),
-//    .rd_clk(clk50),
-//    .m_axi_clk(clk),
-//    .rst(rst),
-//    .a_empty(afe_fifo_a_empty),
-//    .a_full(afe_fifo_a_full),
-//    .empty(afe_fifo_empty),
-//    .full(afe_fifo_full),
-//    .wr_err(afe_fifo_wr_err),
-//    .rd_err(afe_fifo_rd_err),
-//    .wr_count(),
-//    .rd_count(),
-//    .m_axi_fifo_tdata(afe_axis_tdata_messager),
-//    .m_axi_fifo_tvalid(afe_axis_tvalid_messager),
-//    .m_axi_fifo_tready(afe_axis_tready_messager),
-//    .m_axi_fifo_tlast(afe_axis_tlast_messager),
-//    .m_axi_fifo_tuser(afe_axis_tuser_messager)
-//);
-
 reg [7:0] led_reg = 0;
 wire [1:0] sw_led;
 assign sw_led = sw[1:0];
@@ -891,15 +754,9 @@ always @(sw_led, udp_tx_busy, ip_tx_error_payload_early_termination, ip_tx_error
          ph_sel, d_afe, tx_udp_payload_axis_tready, tx_eth_payload_axis_tready, tx_axis_tready) begin
     case(sw_led)
         8'b00 : led_reg = {4'b0000, udp_tx_busy, ip_tx_error_payload_early_termination, ip_tx_error_arp_failed, udp_tx_error_payload_early_termination};
-//        8'b00 : led_reg = {4'b0000, fifo_rd_out, state_val};
         8'b01 : led_reg = {2'b00, afe_fifo_rd_err, afe_fifo_a_full, afe_fifo_full, afe_fifo_wr_err, afe_fifo_a_empty, afe_fifo_empty}; // AFE FIFO's Flags
         8'b10 : led_reg = {5'b00000, tx_udp_payload_axis_tready, tx_eth_payload_axis_tready, tx_axis_tready}; // AFE Data Acquisition Flags
         8'b11 : led_reg = {3'b000, dt_rdy, bitslip_actv, ph_ovfl, ph_sel};
-//        8'b100 : led_reg = d_afe[7:0];
-//        8'b101 : led_reg = {2'b00, d_afe[13:8]};
-//        8'b110 : led_reg = afe_axis_tdata_messager;
-//        8'b111 : led_reg = {2'b00, d_afe[13:8]};
-//        8'b00110100 : led_reg = ;
         default     : led_reg = {4'b0000, udp_tx_busy, ip_tx_error_payload_early_termination, ip_tx_error_arp_failed, udp_tx_error_payload_early_termination};
     endcase
 end
