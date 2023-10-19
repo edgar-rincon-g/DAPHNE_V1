@@ -90,7 +90,144 @@ end daphne1_arch;
 
 architecture Behavioral of daphne1_arch is
 
+-- Overall System Auxiliary Signals Declaration
+---------------------------------------------------------------------------------------------------------------------
+signal async_rst    :   std_logic;
+signal sys_clk100   :   std_logic;
+signal sys_clk62_5  :   std_logic;
+
+-- AFE5808A Auxiliary Signals Declaration
+---------------------------------------------------------------------------------------------------------------------
+signal afe_data     :   std_logic_vector(13 downto 0);
+signal afe_se_clk   :   std_logic;
+signal data_rdy     :   std_logic := '0';
+
+
+-- Components Declaration
+---------------------------------------------------------------------------------------------------------------------
+-- Acquisition Module
+component AcquisitionManager 
+    Generic (
+        n_ch : integer := 1
+    );
+    Port ( 
+        in_P_clk_dt_ports : in std_logic;
+        in_N_clk_dt_ports : in std_logic;
+        in_P_clk_fr_ports : in std_logic;
+        in_N_clk_fr_ports : in std_logic;
+        in_P_data_ports : in std_logic;
+        in_N_data_ports : in std_logic;
+        sys_clk : in std_logic;
+        glob_rst : in std_logic;
+        alignment_mode : in std_logic;
+        train_pat_act : in std_logic;
+        custom_pat_act : in std_logic;
+        ----------------------------------------------------------------------------
+        phase_selected : out std_logic_vector(1 downto 0);
+        ph_overflow : out std_logic;
+        bistlip_on : out std_logic;       
+        dt_rdy : out std_logic;
+        clk_div : out std_logic;
+        data_output : out std_logic_vector(13 downto 0) -- Was 5 downto 0, used to show only some outputs of the Iserdese
+    );
+end component AcquisitionManager;
+
+-- Self Trigger Module
+component selfTrigger_Module is
+    Port ( 
+        afe_data : in std_logic_vector(13 downto 0);
+        dt_rdy : in std_logic;
+        rst : in std_logic;
+        clk : in std_logic;
+        rd_clk : in std_logic;
+        sys_clk : in std_logic;
+        rd_ctrl : in std_logic;
+        wr_enable_signal : in std_logic;
+        rd_enable_signal : in std_logic;
+        filt_out : out std_logic_vector(13 downto 0);
+        xcorr_out : out std_logic_vector(47 downto 0);
+        xcorr_data_out : out std_logic_vector(13 downto 0);
+        trigger : out std_logic;
+--        state_val : out std_logic_vector(2 downto 0);
+        fifo_rd_out : out std_logic;
+        fifo_o : out std_logic_vector(13 downto 0);
+        fifo_a_empty : out std_logic;
+        fifo_a_full : out std_logic;
+        fifo_empty : out std_logic;
+        fifo_full : out std_logic;
+        fifo_wr_err : out std_logic;
+        fifo_rd_err : out std_logic;
+        axi_data : out std_logic_vector(7 downto 0);
+        axi_valid : out std_logic;
+        axi_ready : in std_logic;
+        axi_last : out std_logic;
+        axi_user : out std_logic
+    );
+end component selfTrigger_Module;
+
 begin
 
-
+    -- AFE5808A - 0, Channel 0
+--------------------------------------------------------------------------------------------------------------------------------
+    AFE0_CH_0 : AcquisitionManager 
+        generic map (
+            n_ch => 1
+        )
+        port map ( 
+            in_P_clk_dt_ports => afe_dclk_p(0),
+            in_N_clk_dt_ports => afe_dclk_n(0),
+            in_P_clk_fr_ports => afe_fclk_p(0),
+            in_N_clk_fr_ports => afe_fclk_n(0),
+            in_P_data_ports => afe_p(0)(0),
+            in_N_data_ports => afe_n(0)(0),
+            sys_clk => sys_clk100,
+            glob_rst => async_rst,
+            alignment_mode => '0',
+            train_pat_act => '0',
+            custom_pat_act => '0',
+            ----------------------------------------------------------------------------
+            phase_selected => open,
+            ph_overflow => open,
+            bistlip_on => open,     
+            dt_rdy => data_rdy,
+            clk_div => afe_se_clk,
+            data_output => afe_data
+        );
+        
+    -- AFE5808A - 0, Self Trigger 0
+--------------------------------------------------------------------------------------------------------------------------------
+    AFE0_ST_0 : selfTrigger_Module 
+        port map ( 
+            afe_data => afe_data,
+            dt_rdy => data_rdy,
+            rst => rst,
+            clk => afe_se_clk,
+            rd_clk => sys_clk62_5,
+            sys_clk => sys_clk100,
+            rd_ctrl => '1',
+            wr_enable_signal => '0',
+            rd_enable_signal => '0',
+            filt_out => open,
+            xcorr_out => open,
+            xcorr_data_out => open,
+            trigger => open,
+            fifo_rd_out => open,
+            fifo_o => open,
+            fifo_a_empty => open,
+            fifo_a_full => led(1),
+            fifo_empty => led(2),
+            fifo_full => open,
+            fifo_wr_err => led(3),
+            fifo_rd_err => led(4),
+            axi_data : out std_logic_vector(7 downto 0);
+            axi_valid : out std_logic;
+            axi_ready : in std_logic;
+            axi_last : out std_logic;
+            axi_user : out std_logic
+        );
+        
+        -- Board Misc Output
+--------------------------------------------------------------------------------------------------------------------------------
+    led(0) <= data_rdy;  
+        
 end Behavioral;
