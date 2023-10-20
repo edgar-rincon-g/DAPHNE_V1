@@ -332,7 +332,7 @@ signal xcorr_data_out_aux : std_logic_vector(13 downto 0);
 
 begin
 
-    filter : highPass_FirstOrder     
+    FILTER_COM : highPass_FirstOrder     
     port map (
         rst => rst,
         clk => clk,
@@ -340,7 +340,7 @@ begin
         y_out => data_aux 
     );
     
-    self_trigger_top : self_trigger
+    SELF_TRIGGER_TOP_COM : self_trigger
     port map (
         clk => clk,
         rst => rst,
@@ -378,7 +378,7 @@ begin
 ----        state_val => state_val
 --    );
     
-    fsm_control : trigSaveReadFSM
+    FSM_CTRL_COM : trigSaveReadFSM
     port map (
         WR_CLK => clk,
         RD_CLK => rd_clk,
@@ -397,7 +397,7 @@ begin
 --    fifo_trig <= wr_enable_signal;-- OR write; -- Self trigger is asserted byt he system or by external force
 --    fifo_rd <= rd_enable_signal;-- OR read;
     
-    fifo_inst : AXI_FIFO_Adapter
+    FIFO_INST_COM : AXI_FIFO_Adapter
     generic map (
         -- Frequency of the Write Clock (MHz)
         WR_CLK_FREQ => 40.0,
