@@ -1,68 +1,160 @@
 # DAPHNE V1 constraints
 # Edgar Rincon Gil <edgar.rincon.g@gmail.com>
 
-#create_clock -name adn2814_clk  -period 16.000  [get_ports adn2814_data_p]                      # Good
-#create_clock -name sysclk       -period 10.000  [get_ports sysclk_p]                            # Good
-#create_clock -name gbe_refclk   -period 8.000   [get_ports gbe_refclk_p]                       # Supposed unused
-#create_clock -name daq_refclk   -period 8.317   [get_ports daq_refclk_p]                        # Good
+####################################################################################
+# Constraints from file : 'axis_async_fifo.tcl'
+####################################################################################
+
+# Copyright (c) 2019 Alex Forencich
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+
+# AXI stream asynchronous FIFO timing constraints
+
+set_property ASYNC_REG true [get_cells -quiet -hier -regexp {.*/s_rst_sync[23]_reg_reg} -filter {PARENT == core_inst/eth_mac_inst/rx_fifo/fifo_inst}]
+set_max_delay -datapath_only -from [get_cells -of_objects [get_pins -of_objects [get_nets -segments -of_objects [get_pins -of_objects [get_cells core_inst/eth_mac_inst/rx_fifo/fifo_inst/s_rst_sync2_reg_reg] -filter {REF_PIN_NAME == D}]] -filter {IS_LEAF && DIRECTION == OUT}]] -to [get_cells core_inst/eth_mac_inst/rx_fifo/fifo_inst/s_rst_sync2_reg_reg] 8.000
+set_property ASYNC_REG true [get_cells -quiet -hier -regexp {.*/m_rst_sync[23]_reg_reg} -filter {PARENT == core_inst/eth_mac_inst/rx_fifo/fifo_inst}]
+set_max_delay -datapath_only -from [get_cells -of_objects [get_pins -of_objects [get_nets -segments -of_objects [get_pins -of_objects [get_cells core_inst/eth_mac_inst/rx_fifo/fifo_inst/m_rst_sync2_reg_reg] -filter {REF_PIN_NAME == D}]] -filter {IS_LEAF && DIRECTION == OUT}]] -to [get_cells core_inst/eth_mac_inst/rx_fifo/fifo_inst/m_rst_sync2_reg_reg] 8.000
+set_property ASYNC_REG true [get_cells -quiet -hier -regexp {.*/rd_ptr_gray_sync[12]_reg_reg\[\d+\]} -filter {PARENT == core_inst/eth_mac_inst/rx_fifo/fifo_inst}]
+set_max_delay -datapath_only -from [get_cells {{core_inst/eth_mac_inst/rx_fifo/fifo_inst/rd_ptr_reg_reg[*]} {core_inst/eth_mac_inst/rx_fifo/fifo_inst/rd_ptr_gray_reg_reg[*]}}] -to [get_cells {core_inst/eth_mac_inst/rx_fifo/fifo_inst/rd_ptr_gray_sync1_reg_reg[*]}] 8.000
+set_bus_skew -from [get_cells {{core_inst/eth_mac_inst/rx_fifo/fifo_inst/rd_ptr_reg_reg[*]} {core_inst/eth_mac_inst/rx_fifo/fifo_inst/rd_ptr_gray_reg_reg[*]}}] -to [get_cells {core_inst/eth_mac_inst/rx_fifo/fifo_inst/rd_ptr_gray_sync1_reg_reg[*]}] 8.000
+set_property ASYNC_REG true [get_cells -quiet -hier -regexp {.*/wr_ptr_gray_sync[12]_reg_reg\[\d+\]} -filter {PARENT == core_inst/eth_mac_inst/rx_fifo/fifo_inst}]
+set_max_delay -datapath_only -from [get_cells -quiet {{core_inst/eth_mac_inst/rx_fifo/fifo_inst/wr_ptr_reg_reg[*]} {core_inst/eth_mac_inst/rx_fifo/fifo_inst/wr_ptr_gray_reg_reg[*]} {core_inst/eth_mac_inst/rx_fifo/fifo_inst/wr_ptr_sync_gray_reg_reg[*]}}] -to [get_cells {core_inst/eth_mac_inst/rx_fifo/fifo_inst/wr_ptr_gray_sync1_reg_reg[*]}] 8.000
+set_bus_skew -from [get_cells -quiet {{core_inst/eth_mac_inst/rx_fifo/fifo_inst/wr_ptr_reg_reg[*]} {core_inst/eth_mac_inst/rx_fifo/fifo_inst/wr_ptr_gray_reg_reg[*]} {core_inst/eth_mac_inst/rx_fifo/fifo_inst/wr_ptr_sync_gray_reg_reg[*]}}] -to [get_cells {core_inst/eth_mac_inst/rx_fifo/fifo_inst/wr_ptr_gray_sync1_reg_reg[*]}] 8.000
+set_property ASYNC_REG true [get_cells -quiet -hier -regexp {.*/wr_ptr_update(_ack)?_sync[123]_reg_reg} -filter {PARENT == core_inst/eth_mac_inst/rx_fifo/fifo_inst}]
+set_max_delay -datapath_only -from [get_cells core_inst/eth_mac_inst/rx_fifo/fifo_inst/wr_ptr_update_reg_reg] -to [get_cells core_inst/eth_mac_inst/rx_fifo/fifo_inst/wr_ptr_update_sync1_reg_reg] 8.000
+set_max_delay -datapath_only -from [get_cells core_inst/eth_mac_inst/rx_fifo/fifo_inst/wr_ptr_update_sync3_reg_reg] -to [get_cells core_inst/eth_mac_inst/rx_fifo/fifo_inst/wr_ptr_update_ack_sync1_reg_reg] 8.000
+set_property ASYNC_REG true [get_cells -quiet -hier -regexp {.*/s_rst_sync[23]_reg_reg} -filter {PARENT == core_inst/eth_mac_inst/tx_fifo/fifo_inst}]
+set_max_delay -datapath_only -from [get_cells -of_objects [get_pins -of_objects [get_nets -segments -of_objects [get_pins -of_objects [get_cells core_inst/eth_mac_inst/tx_fifo/fifo_inst/s_rst_sync2_reg_reg] -filter {REF_PIN_NAME == D}]] -filter {IS_LEAF && DIRECTION == OUT}]] -to [get_cells core_inst/eth_mac_inst/tx_fifo/fifo_inst/s_rst_sync2_reg_reg] 8.000
+set_property ASYNC_REG true [get_cells -quiet -hier -regexp {.*/m_rst_sync[23]_reg_reg} -filter {PARENT == core_inst/eth_mac_inst/tx_fifo/fifo_inst}]
+set_max_delay -datapath_only -from [get_cells -of_objects [get_pins -of_objects [get_nets -segments -of_objects [get_pins -of_objects [get_cells core_inst/eth_mac_inst/tx_fifo/fifo_inst/m_rst_sync2_reg_reg] -filter {REF_PIN_NAME == D}]] -filter {IS_LEAF && DIRECTION == OUT}]] -to [get_cells core_inst/eth_mac_inst/tx_fifo/fifo_inst/m_rst_sync2_reg_reg] 8.000
+set_property ASYNC_REG true [get_cells -quiet -hier -regexp {.*/rd_ptr_gray_sync[12]_reg_reg\[\d+\]} -filter {PARENT == core_inst/eth_mac_inst/tx_fifo/fifo_inst}]
+set_max_delay -datapath_only -from [get_cells {{core_inst/eth_mac_inst/tx_fifo/fifo_inst/rd_ptr_reg_reg[*]} {core_inst/eth_mac_inst/tx_fifo/fifo_inst/rd_ptr_gray_reg_reg[*]}}] -to [get_cells {core_inst/eth_mac_inst/tx_fifo/fifo_inst/rd_ptr_gray_sync1_reg_reg[*]}] 8.000
+set_bus_skew -from [get_cells {{core_inst/eth_mac_inst/tx_fifo/fifo_inst/rd_ptr_reg_reg[*]} {core_inst/eth_mac_inst/tx_fifo/fifo_inst/rd_ptr_gray_reg_reg[*]}}] -to [get_cells {core_inst/eth_mac_inst/tx_fifo/fifo_inst/rd_ptr_gray_sync1_reg_reg[*]}] 8.000
+set_property ASYNC_REG true [get_cells -quiet -hier -regexp {.*/wr_ptr_gray_sync[12]_reg_reg\[\d+\]} -filter {PARENT == core_inst/eth_mac_inst/tx_fifo/fifo_inst}]
+set_max_delay -datapath_only -from [get_cells -quiet {{core_inst/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_reg_reg[*]} {core_inst/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_gray_reg_reg[*]} {core_inst/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_sync_gray_reg_reg[*]}}] -to [get_cells {core_inst/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_gray_sync1_reg_reg[*]}] 8.000
+set_bus_skew -from [get_cells -quiet {{core_inst/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_reg_reg[*]} {core_inst/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_gray_reg_reg[*]} {core_inst/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_sync_gray_reg_reg[*]}}] -to [get_cells {core_inst/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_gray_sync1_reg_reg[*]}] 8.000
+set_property ASYNC_REG true [get_cells -quiet -hier -regexp {.*/wr_ptr_update(_ack)?_sync[123]_reg_reg} -filter {PARENT == core_inst/eth_mac_inst/tx_fifo/fifo_inst}]
+set_max_delay -datapath_only -from [get_cells core_inst/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_update_reg_reg] -to [get_cells core_inst/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_update_sync1_reg_reg] 8.000
+set_max_delay -datapath_only -from [get_cells core_inst/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_update_sync3_reg_reg] -to [get_cells core_inst/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_update_ack_sync1_reg_reg] 8.000
+
+####################################################################################
+# Constraints from file : 'daphne1.vhd'
+####################################################################################
 
 ###########################################################################################################################################
 # Input Clocks to DAPHNE Domains
-create_clock -name cdr_data_p   -period 16.000  [get_ports cdr_data_p]
-create_clock -name daq_refclk   -period 8.317   [get_ports daq_refclk_p]
-create_clock -name sys_clk      -period 10.000  [get_ports sys_clk_p]
-create_clock -name afe_dclk     -period 16.000  [get_ports afe_dclk_p]
+create_clock -name cdr_data_p   -period 16.000      [get_ports cdr_data_p]
+create_clock -name daq_refclk   -period 8.317       [get_ports daq_refclk_p]
+create_clock -name sys_clk      -period 10.000      [get_ports sys_clk_p]
+create_clock -name afe_dclk     -period 2.286       [get_ports afe_dclk_p]
 
-# Rename the auto-generated clocks...
-create_generated_clock -name local_clk62p5  [get_pins endpoint_inst/mmcm0_inst/CLKOUT0]
-create_generated_clock -name sclk200        [get_pins endpoint_inst/mmcm0_inst/CLKOUT1]
-create_generated_clock -name sclk100        [get_pins endpoint_inst/mmcm0_inst/CLKOUT2]
-create_generated_clock -name mmcm0_clkfbout [get_pins endpoint_inst/mmcm0_inst/CLKFBOUT]
+###########################################################################################################################################
+# Rename The Auto-Generated Clocks...
+create_generated_clock -name sclk100                [get_pins SYS_TIMING_EPNT/mmcm0_inst/CLKOUT2]
+create_generated_clock -name sclk125                [get_pins SYS_TIMING_EPNT/mmcm0_inst/CLKOUT3]
+create_generated_clock -name sclk200                [get_pins SYS_TIMING_EPNT/mmcm0_inst/CLKOUT1]
+create_generated_clock -name sclk62_5               [get_pins SYS_TIMING_EPNT/mmcm0_inst/CLKOUT0]
+create_generated_clock -name mmcm0_clkfbout         [get_pins SYS_TIMING_EPNT/mmcm0_inst/CLKFBOUT]
 
-create_generated_clock -name ep_clk62p5      [get_pins endpoint_inst/pdts_endpoint_inst/pdts_endpoint_inst/rxcdr/mmcm/CLKOUT0]
-create_generated_clock -name ep_clk4x        [get_pins endpoint_inst/pdts_endpoint_inst/pdts_endpoint_inst/rxcdr/mmcm/CLKOUT1]
-create_generated_clock -name ep_clk2x        [get_pins endpoint_inst/pdts_endpoint_inst/pdts_endpoint_inst/rxcdr/mmcm/CLKOUT1]
-create_generated_clock -name ep_clkfbout     [get_pins endpoint_inst/pdts_endpoint_inst/pdts_endpoint_inst/rxcdr/mmcm/CLKFBOUT] 
+create_generated_clock -name afe0_pll_dig0          [get_pins AFE0_CH_0/CLK_COM/PLL_COM/PLLE2_BASE_inst/CLKOUT0]
+create_generated_clock -name afe0_pll_dig1          [get_pins AFE0_CH_0/CLK_COM/PLL_COM/PLLE2_BASE_inst/CLKOUT1]
+create_generated_clock -name afe0_pll_dig2          [get_pins AFE0_CH_0/CLK_COM/PLL_COM/PLLE2_BASE_inst/CLKOUT2]
+create_generated_clock -name afe0_pll_dig_div0      [get_pins AFE0_CH_0/CLK_COM/PLL_COM/PLLE2_BASE_inst/CLKOUT3]
+create_generated_clock -name afe0_pll_dig_div1      [get_pins AFE0_CH_0/CLK_COM/PLL_COM/PLLE2_BASE_inst/CLKOUT4]
+create_generated_clock -name afe0_pll_dig_div2      [get_pins AFE0_CH_0/CLK_COM/PLL_COM/PLLE2_BASE_inst/CLKOUT5]
+create_generated_clock -name afe0_pll_clkfbout      [get_pins AFE0_CH_0/CLK_COM/PLL_COM/PLLE2_BASE_inst/CLKFBOUT]
 
-create_generated_clock -name oeiclk [get_pins phy_inst/U0/core_clocking_i/mmcm_adv_inst/CLKOUT0] 
-create_generated_clock -name oeihclk [get_pins phy_inst/U0/core_clocking_i/mmcm_adv_inst/CLKOUT1]
-create_generated_clock -name oei_clkfbout [get_pins phy_inst/U0/core_clocking_i/mmcm_adv_inst/CLKFBOUT]
+create_generated_clock -name oeiclk                 [get_pins ETH0/ETH_PHY_COM/U0/core_clocking_i/mmcm_adv_inst/CLKOUT0] 
+create_generated_clock -name oeihclk                [get_pins ETH0/ETH_PHY_COM/U0/core_clocking_i/mmcm_adv_inst/CLKOUT1]
+create_generated_clock -name oei_clkfbout           [get_pins ETH0/ETH_PHY_COM/U0/core_clocking_i/mmcm_adv_inst/CLKFBOUT]
 
-create_generated_clock -name daqclk0      [get_pins core_inst/core_mgt4_inst/daq_quad_inst/U0/gt_usrclk_source/txoutclk_mmcm0_i/mmcm_adv_inst/CLKOUT0]
-create_generated_clock -name daqclk1      [get_pins core_inst/core_mgt4_inst/daq_quad_inst/U0/gt_usrclk_source/txoutclk_mmcm0_i/mmcm_adv_inst/CLKOUT1]
-create_generated_clock -name daq_clkfbout [get_pins core_inst/core_mgt4_inst/daq_quad_inst/U0/gt_usrclk_source/txoutclk_mmcm0_i/mmcm_adv_inst/CLKFBOUT]
+###########################################################################################################################################
+# Setting Groups Of Clocks And Their Interactions
+set_clock_groups -name mux_groups       -logically_exclusive -group afe0_pll_dig0 -group afe0_pll_dig1 -group afe0_pll_dig2
+set_clock_groups -name mux_div_groups   -logically_exclusive -group afe0_pll_dig_div0 -group afe0_pll_dig_div1 -group afe0_pll_dig_div2
+# Asynchronous Clock Groups    
+set_clock_groups -name async_groups     -asynchronous -group {sys_clk_p sclk100 mmcm0_clkfbout} \
+-group {afe_dclk_p afe0_pll_clkfbout afe0_pll_dig0 afe0_pll_dig1 afe0_pll_dig2 afe0_pll_dig_div0 afe0_pll_dig_div1 afe0_pll_dig_div2} \
+-group {sclk125} -group {sclk200} -group {sclk62_5} -group {oeiclk oeihclk oei_clkfbout}
 
-create_generated_clock -name fclk0           -master_clock ep_clk62p5 [get_pins endpoint_inst/mmcm1_inst/CLKOUT0]
-create_generated_clock -name mclk0           -master_clock ep_clk62p5 [get_pins endpoint_inst/mmcm1_inst/CLKOUT1]
-create_generated_clock -name mmcm1_clkfbout0 -master_clock ep_clk62p5 [get_pins endpoint_inst/mmcm1_inst/CLKFBOUT]
-create_generated_clock -name fclk1           -master_clock local_clk62p5 [get_pins endpoint_inst/mmcm1_inst/CLKOUT0]
-create_generated_clock -name mclk1           -master_clock local_clk62p5 [get_pins endpoint_inst/mmcm1_inst/CLKOUT1]
-create_generated_clock -name mmcm1_clkfbout1 -master_clock local_clk62p5 [get_pins endpoint_inst/mmcm1_inst/CLKFBOUT]
+###########################################################################################################################################
+# Creating False Paths So Timing Analysis Is Ignored (Refer to https://docs.xilinx.com/r/en-US/ug903-vivado-using-constraints/False-Paths)
+set_false_path -through                             [get_pins AFE0_CH_0/CLK_COM/MUX_CLK_COM/MUX_In/BUFGMUX_CTRL_inst/S0]
+set_false_path -through                             [get_pins AFE0_CH_0/CLK_COM/MUX_CLK_COM/MUX_In/BUFGMUX_CTRL_inst/S1]
+set_false_path -through                             [get_pins AFE0_CH_0/CLK_COM/MUX_CLK_COM/MUX_Out/BUFGMUX_CTRL_inst/S0]
+set_false_path -through                             [get_pins AFE0_CH_0/CLK_COM/MUX_CLK_COM/MUX_Out/BUFGMUX_CTRL_inst/S1]
+# Comment The Following Lines If There Are No Synchronizers Used
+set_false_path -through                             [get_pins AFE0_CH_0/CLK_COM/MUX_CLK_DIV_COM/MUX_In/BUFGMUX_CTRL_inst/S0]
+set_false_path -through                             [get_pins AFE0_CH_0/CLK_COM/MUX_CLK_DIV_COM/MUX_In/BUFGMUX_CTRL_inst/S1]
+set_false_path -through                             [get_pins AFE0_CH_0/CLK_COM/MUX_CLK_DIV_COM/MUX_Out/BUFGMUX_CTRL_inst/S0]
+set_false_path -through                             [get_pins AFE0_CH_0/CLK_COM/MUX_CLK_DIV_COM/MUX_Out/BUFGMUX_CTRL_inst/S1]
+# Synchronizer false paths 
+## ACQUISITION
+set_false_path -through                             [get_pins AFE0_CH_0/SYNCH_COM_0/FLIP_FLOP_CHAIN[0].FIRST_FF.FIRST_FLIP_FLOP/FDRE_inst/D]
+set_false_path -through                             [get_pins AFE0_CH_0/SYNCH_COM_1/FLIP_FLOP_CHAIN[0].FIRST_FF.FIRST_FLIP_FLOP/FDRE_inst/D]
+# Synchronizers for the Read and Write flags/operations on the FIFO
+## FIFO MEMORY
+#set_false_path -through                             [get_pins AFE0_ST_0/FIFO_INST_COM/MEMORY_CTRL_COM/RESET_COM/RST_GEN_RD.SYNCH_COM/FLIP_FLOP_CHAIN[0].FIRST_FF.FIRST_FLIP_FLOP/FDRE_inst/D]
 
-set_clock_groups -name async_groups -asynchronous \
--group {sysclk sclk100 mmcm0_clkfbout} -group {sclk200} -group {local_clk62p5} \
--group {mclk0 fclk0 mmcm1_clkfbout0} -group {mclk1 fclk1 mmcm1_clkfbout1} \
--group {oeiclk oeihclk oei_clkfbout} -group {daqclk0 daqclk1 daq_clkfbout} \
--group {ep_clk62p5 ep_clk4x ep_clk2x ep_clkfbout} -group {adn2814_clk} 
+# Input Delay Constraint
+set_input_delay -clock clk_dig -max 0.773           [get_ports afe_p[0][0]];
+set_input_delay -clock clk_dig -min 0.380           [get_ports afe_p[0][0]];
+set_input_delay -clock clk_dig -max 0.773           [get_ports afe_p[0][0]] -clock_fall -add_delay;
+set_input_delay -clock clk_dig -min 0.380           [get_ports afe_p[0][0]] -clock_fall -add_delay;
+set_input_delay -clock clk_dig -max 0.773           [get_ports afe_n[0][0]];
+set_input_delay -clock clk_dig -min 0.380           [get_ports afe_n[0][0]];
+set_input_delay -clock clk_dig -max 0.773           [get_ports afe_n[0][0]] -clock_fall -add_delay;
+set_input_delay -clock clk_dig -min 0.380           [get_ports afe_n[0][0]] -clock_fall -add_delay;
+set_input_delay -clock clk_dig -max 0.773           [get_ports afe_fclk_p[0]];
+set_input_delay -clock clk_dig -min 0.380           [get_ports afe_fclk_p[0]];
+set_input_delay -clock clk_dig -max 0.773           [get_ports afe_fclk_p[0]] -clock_fall -add_delay;
+set_input_delay -clock clk_dig -min 0.380           [get_ports afe_fclk_p[0]] -clock_fall -add_delay;
+set_input_delay -clock clk_dig -max 0.773           [get_ports afe_fclk_n[0]];
+set_input_delay -clock clk_dig -min 0.380           [get_ports afe_fclk_n[0]];
+set_input_delay -clock clk_dig -max 0.773           [get_ports afe_fclk_n[0]] -clock_fall -add_delay; 
+set_input_delay -clock clk_dig -min 0.380           [get_ports afe_fclk_n[0]] -clock_fall -add_delay;
+
+# False Paths related to Input Delay definition
+set_false_path -from [get_ports afe_fclk_p[0]]
+set_false_path -from [get_ports afe_fclk_n[0]]
+set_false_path -from [get_ports afe_p[0][0]]
+set_false_path -from [get_ports afe_n[0][0]]
 
 # tell vivado about places where signals cross clock domains so timing can be ignored here...
 
 #set_false_path -from [get_pins fe_inst/gen_afe[*].afe_inst/auto_fsm_inst/done_reg_reg/C]      
 #set_false_path -from [get_pins fe_inst/gen_afe[*].afe_inst/auto_fsm_inst/warn_reg_reg/C]      
 #set_false_path -from [get_pins fe_inst/gen_afe[*].afe_inst/auto_fsm_inst/errcnt_reg_reg[*]/C] 
-set_false_path -from [get_pins trig_gbe*_reg_reg/C] -to [get_pins trig_sync_reg/D]
-set_false_path -to [get_pins led0_reg_reg[*]/C]
-set_false_path -from [get_pins test_reg_reg[*]/C]
-set_false_path -from [get_ports gbe_sfp_??s]
+#set_false_path -from [get_pins trig_gbe*_reg_reg/C] -to [get_pins trig_sync_reg/D]
+#set_false_path -to [get_pins led0_reg_reg[*]/C]
+#set_false_path -from [get_pins test_reg_reg[*]/C]
+#set_false_path -from [get_ports gbe_sfp_??s]
 set_false_path -from [get_ports cdr_sfp_??s]
 set_false_path -from [get_ports daq?_sfp_??s]
-set_false_path -from [get_pins st_enable_reg_reg[*]/C]
-set_false_path -from [get_pins outmode_reg_reg[*]/C]
-set_false_path -from [get_pins threshold_reg_reg[*]/C]
-set_false_path -from [get_pins daq_out_param_reg_reg[*]/C]
-set_false_path -from [get_pins core_inst/input_inst/*select_reg_reg*/C]
+#set_false_path -from [get_pins st_enable_reg_reg[*]/C]
+#set_false_path -from [get_pins outmode_reg_reg[*]/C]
+#set_false_path -from [get_pins threshold_reg_reg[*]/C]
+#set_false_path -from [get_pins daq_out_param_reg_reg[*]/C]
+#set_false_path -from [get_pins core_inst/input_inst/*select_reg_reg*/C]
 
-set_property CLOCK_DEDICATED_ROUTE BACKBONE [get_nets endpoint_inst/sysclk_ibuf]
+set_property CLOCK_DEDICATED_ROUTE BACKBONE [get_nets SYS_TIMING_EPNT/sysclk_ibuf]
 
 # SYSCLK is LVDS 100MHz comes in on bank 33, VCCO=2.5V.
 # Use internal LVDS 100 ohm termination. On schematic this is FPGA_MCLK1.

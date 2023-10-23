@@ -311,7 +311,7 @@ begin
     -- Comparate the clock frequencies in order to define the reset structure to be held
     RST_GEN_BOTH : if (WR_CLK_FREQ = RD_CLK_FREQ) generate
         -- The clocks have the same speed, therefore to reset the flags any clock can be used, and there are no synchronizers
-        -- for CDC needed, There must be some kind of logic to implement the phase differences between clocks, cause althoug
+        -- for CDC (not needed), There must be some kind of logic to implement the phase differences between clocks, cause although
         -- they have the same frequency, they are asynchronous, therefore one clock may reach 5 cycles before the other
         
         -- Process to reset FIFOs Flags

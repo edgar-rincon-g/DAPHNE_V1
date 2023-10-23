@@ -104,10 +104,10 @@ begin
 -----------------------------------------------------------------------------------
     PLL_COM : PLL_Module
     generic map (
-        mult_val => 5, --3 DAPHNE, 5 Nexys
+        mult_val => 3, --3 DAPHNE, 5 Nexys
         div_val => 1,
-        o_div_val => 35, --21 DAPHNE, 35 Nexys
-        period => 3.571 --2.286 DAPHNE, 3.571 Nexys
+        o_div_val => 21, --21 DAPHNE, 35 Nexys
+        period => 2.286 --2.286 DAPHNE, 3.571 Nexys
     )
     port map (
         in_clk => clk_in,
