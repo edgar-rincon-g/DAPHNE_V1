@@ -31,7 +31,7 @@ THE SOFTWARE.
 /*
  * Generic ODDR module
  */
-module oddr #
+module oddr_2 #
 (
     // target ("SIM", "GENERIC", "XILINX", "ALTERA")
     parameter TARGET = "GENERIC",

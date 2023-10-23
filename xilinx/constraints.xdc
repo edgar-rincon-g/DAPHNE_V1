@@ -1,13 +1,19 @@
 # DAPHNE V1 constraints
 # Edgar Rincon Gil <edgar.rincon.g@gmail.com>
 
-create_clock -name adn2814_clk  -period 16.000  [get_ports adn2814_data_p]                      # Good
-create_clock -name sysclk       -period 10.000  [get_ports sysclk_p]                            # Good
+#create_clock -name adn2814_clk  -period 16.000  [get_ports adn2814_data_p]                      # Good
+#create_clock -name sysclk       -period 10.000  [get_ports sysclk_p]                            # Good
 #create_clock -name gbe_refclk   -period 8.000   [get_ports gbe_refclk_p]                       # Supposed unused
-create_clock -name daq_refclk   -period 8.317   [get_ports daq_refclk_p]                        # Good
+#create_clock -name daq_refclk   -period 8.317   [get_ports daq_refclk_p]                        # Good
 
-# rename the auto-generated clocks...
+###########################################################################################################################################
+# Input Clocks to DAPHNE Domains
+create_clock -name cdr_data_p   -period 16.000  [get_ports cdr_data_p]
+create_clock -name daq_refclk   -period 8.317   [get_ports daq_refclk_p]
+create_clock -name sys_clk      -period 10.000  [get_ports sys_clk_p]
+create_clock -name afe_dclk     -period 16.000  [get_ports afe_dclk_p]
 
+# Rename the auto-generated clocks...
 create_generated_clock -name local_clk62p5  [get_pins endpoint_inst/mmcm0_inst/CLKOUT0]
 create_generated_clock -name sclk200        [get_pins endpoint_inst/mmcm0_inst/CLKOUT1]
 create_generated_clock -name sclk100        [get_pins endpoint_inst/mmcm0_inst/CLKOUT2]

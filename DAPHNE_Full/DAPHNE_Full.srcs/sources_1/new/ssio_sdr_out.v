@@ -51,7 +51,7 @@ module ssio_sdr_out #
     output wire [WIDTH-1:0] output_q
 );
 
-oddr #(
+oddr_2 #(
     .TARGET(TARGET),
     .IODDR_STYLE(IODDR_STYLE),
     .WIDTH(1)

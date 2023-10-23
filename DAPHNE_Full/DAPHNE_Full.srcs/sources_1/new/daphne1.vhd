@@ -1,15 +1,15 @@
 ----------------------------------------------------------------------------------
--- Company: 
--- Engineer: 
+-- Company: Universidad EIA
+-- Engineer: Daniel Avila Gomez
 -- 
 -- Create Date: 11.10.2023 13:53:23
--- Design Name: 
+-- Design Name: DAPHNE V1 Firmware Top Module
 -- Module Name: daphne1_arch - Behavioral
--- Project Name: 
--- Target Devices: 
--- Tool Versions: 
+-- Project Name: DAPHNE V1
+-- Target Devices: XC7A200T-2FBG676C
+-- Tool Versions: 2023.1
 -- Description: 
--- 
+-- Instantiates the top module for the DAPHNE V1 Board
 -- Dependencies: 
 -- 
 -- Revision:
@@ -98,6 +98,10 @@ signal sys_clk125   :   std_logic;
 signal sys_clk200   :   std_logic;
 signal sys_clk62_5  :   std_logic;
 
+-- MMCM Timing Endpoint Auxiliary Signals Declaration
+---------------------------------------------------------------------------------------------------------------------
+signal mmcm0_locked :   std_logic;
+
 -- AFE5808A Auxiliary Signals Declaration
 ---------------------------------------------------------------------------------------------------------------------
 signal afe_data     :   std_logic_vector(13 downto 0);
@@ -112,9 +116,36 @@ signal st_axi_ready :   std_logic;
 signal st_axi_last  :   std_logic;
 signal st_axi_user  :   std_logic;
 
-
 -- Components Declaration
 ---------------------------------------------------------------------------------------------------------------------
+-- Timing Endpoint Module
+component endpoint 
+    Port ( 
+        -- System Clocking and Reset Inputs
+        ----------------------------------------------------------------------------------------------------------------------
+        reset_async                 : in std_logic;
+        sysclk_p, sysclk_n          : in std_logic;
+        
+        -- External CDR chip interface: ignore CLKOUT, LOS, and LOL
+        ----------------------------------------------------------------------------------------------------------------------
+        cdr_data_p, cdr_data_n      : in std_logic;         -- LVDS recovered serial data ACKCHYUALLY the clock!
+
+        -- Misc Interface Signals
+        ----------------------------------------------------------------------------------------------------------------------
+--        mmcm1_rst                   : in std_logic;
+--        mmcm1_lck                   : out std_logic;
+        mmcm0_lck                   : out std_logic;
+        
+        -- System Output Clocks
+        ----------------------------------------------------------------------------------------------------------------------
+        sys_clk100                  : out std_logic;
+        sys_clk125                  : out std_logic; 
+        sys_clk200                  : out std_logic;
+        sys_clk62_5                 : out std_logic;
+        afe_clk_p, afe_clk_n        : out std_logic         -- Copy of 62.5 MHz master clock sent to AFEs
+    );
+end component endpoint;
+
 -- Acquisition Module
 component AcquisitionManager 
     Generic (
@@ -208,6 +239,30 @@ begin
     -- System Reset
 --------------------------------------------------------------------------------------------------------------------------------
     async_rst <= reset_n;
+    
+    -- System Timing Endpoint Module
+--------------------------------------------------------------------------------------------------------------------------------
+    SYS_TIMING_EPNT : endpoint 
+        port map ( 
+            ----------------------------------------------------------------------------------------------------------------------
+            reset_async         => async_rst,
+            sysclk_p            => sysclk_p,
+            sysclk_n            => sysclk_n,
+            ----------------------------------------------------------------------------------------------------------------------
+            cdr_data_p          => cdr_data_p,
+            cdr_data_n          => cdr_data_n,
+            ----------------------------------------------------------------------------------------------------------------------
+--            mmcm1_rst           => ,                  -- MMCM1 Not Declared
+--            mmcm1_lck           => ,                  -- MMCM1 Not Declared
+            mmcm0_lck           => mmcm0_locked,
+            ----------------------------------------------------------------------------------------------------------------------
+            sys_clk100          => sys_clk100,
+            sys_clk125          => sys_clk125, 
+            sys_clk200          => sys_clk200,
+            sys_clk62_5         => sys_clk62_5,
+            afe_clk_p           => afe_clk_p, 
+            afe_clk_n           => afe_clk_n            -- Copy of 62.5 MHz master clock sent to AFEs
+        );
 
     -- AFE5808A - 0, Channel 0
 --------------------------------------------------------------------------------------------------------------------------------
