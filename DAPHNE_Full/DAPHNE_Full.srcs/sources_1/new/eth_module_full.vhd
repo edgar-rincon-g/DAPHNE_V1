@@ -70,6 +70,7 @@ signal oei_clk                          :   std_logic;
 signal mac_gmii_txd, mac_gmii_rxd       :   std_logic_vector(7 downto 0);
 signal mac_gmii_tx_en, mac_gmii_tx_er   :   std_logic;
 signal mac_gmii_rx_dv, mac_gmii_rx_er   :   std_logic;   
+signal cfg_ifg_aux                      :   std_logic_vector(7 downto 0);
 
 -- PHY Auxiliary Signals Declaration
 ---------------------------------------------------------------------------------------------------------------------
@@ -359,7 +360,7 @@ begin
         rx_fifo_bad_frame       => open,
         rx_fifo_good_frame      => open,
         speed                   => open,
-        cfg_ifg                 => "00001100",
+        cfg_ifg                 => cfg_ifg_aux,
         cfg_tx_enable           => '1',
         cfg_rx_enable           => '1'
     );

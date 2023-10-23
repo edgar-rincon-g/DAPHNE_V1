@@ -25,6 +25,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
 use IEEE.NUMERIC_STD.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
 
 -- Uncomment the following library declaration if instantiating
 -- any Xilinx leaf cells in this code.
@@ -39,6 +40,7 @@ use work.daphne1_package.all;
 entity daphne1_arch is
     Port ( 
         reset_n: in std_logic; -- Acive LOW async reset from the microcontroller
+        gpi, gpo: std_logic;
         sysclk_p, sysclk_n: in std_logic; -- System Clock LVDS 100 MHz from local oscillator
         
         -- AFE Interface, LVDS, 5 AFE chips, each AFE has 8 DATA + 1 FCLK + 1DCLK outputs
@@ -303,19 +305,19 @@ begin
             sys_clk             => sys_clk100,
             rd_ctrl             => '1',
             wr_enable_signal    => '0',
-            rd_enable_signal    => '0',
+            rd_enable_signal    => '1',
             filt_out            => open,
             xcorr_out           => open,
             xcorr_data_out      => open,
-            trigger             => open,
+            trigger             => led(1),
             fifo_rd_out         => open,
             fifo_o              => open,
             fifo_a_empty        => open,
-            fifo_a_full         => led(1),
-            fifo_empty          => led(2),
+            fifo_a_full         => led(2),
+            fifo_empty          => led(3),
             fifo_full           => open,
-            fifo_wr_err         => led(3),
-            fifo_rd_err         => led(4),
+            fifo_wr_err         => led(4),
+            fifo_rd_err         => open,
             axi_data            => st_axi_data,
             axi_valid           => st_axi_valid,
             axi_ready           => st_axi_ready,
@@ -326,22 +328,22 @@ begin
     -- AFE5808A - 0, Ethernet Streaming Module
 --------------------------------------------------------------------------------------------------------------------------------
     ETH0 : eth_module_full 
-    port map ( 
-        gbe_refclk_p_ibuf       => daq_refclk_p,
-        gbe_refclk_n_ibuf       => daq_refclk_n,
-        gbe_tx_p                => daq0_tx_p,
-        gbe_tx_n                => daq0_tx_n,
-        gbe_rx_p                => '0',             -- Module Unused
-        gbe_rx_n                => '0',             -- Module Unused
-        sys_clk125              => sys_clk125,
-        sys_clk200              => sys_clk200,
-        async_rst               => async_rst,
-        eth_axis_tdata          => st_axi_data,
-        eth_axis_tvalid         => st_axi_valid,
-        eth_axis_tready         => st_axi_ready,
-        eth_axis_tlast          => st_axi_last,
-        eth_axis_tuser          => st_axi_user
-    );
+        port map ( 
+            gbe_refclk_p_ibuf       => daq_refclk_p,
+            gbe_refclk_n_ibuf       => daq_refclk_n,
+            gbe_tx_p                => daq0_tx_p,
+            gbe_tx_n                => daq0_tx_n,
+            gbe_rx_p                => '0',             -- Module Unused
+            gbe_rx_n                => '0',             -- Module Unused
+            sys_clk125              => sys_clk125,
+            sys_clk200              => sys_clk200,
+            async_rst               => async_rst,
+            eth_axis_tdata          => st_axi_data,
+            eth_axis_tvalid         => st_axi_valid,
+            eth_axis_tready         => st_axi_ready,
+            eth_axis_tlast          => st_axi_last,
+            eth_axis_tuser          => st_axi_user
+        );
         
     -- Board Misc Output
 --------------------------------------------------------------------------------------------------------------------------------

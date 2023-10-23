@@ -275,7 +275,7 @@ begin
     port map (
         d_i => xcorr_data_out_aux,
         dt_rdy => dt_rdy,
-        wr_enable => fifo_trig,
+        wr_enable => trigger_aux, --fifo_trig,
         rd_enable => fifo_rd,
 --        full_read => '1',
         wr_clk => clk,
