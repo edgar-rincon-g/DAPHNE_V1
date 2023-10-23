@@ -55,6 +55,40 @@ set_max_delay -datapath_only -from [get_cells core_inst/eth_mac_inst/tx_fifo/fif
 set_max_delay -datapath_only -from [get_cells core_inst/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_update_sync3_reg_reg] -to [get_cells core_inst/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_update_ack_sync1_reg_reg] 8.000
 
 ####################################################################################
+# Constraints from file : 'eth_mac_1g_rgmii.tcl'
+####################################################################################
+
+# Copyright (c) 2019 Alex Forencich
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+
+# RGMII Gigabit Ethernet MAC timing constraints
+
+set_property ASYNC_REG true [get_cells -hier -regexp {.*/tx_mii_select_sync_reg\[\d\]} -filter {PARENT == ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/eth_mac_1g_gmii_inst}]
+set_max_delay -datapath_only -from [get_cells ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/eth_mac_1g_gmii_inst/mii_select_reg_reg] -to [get_cells {ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/eth_mac_1g_gmii_inst/tx_mii_select_sync_reg[0]}] 8.000
+set_property ASYNC_REG true [get_cells -hier -regexp {.*/rx_mii_select_sync_reg\[\d\]} -filter {PARENT == ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/eth_mac_1g_gmii_inst}]
+set_max_delay -datapath_only -from [get_cells ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/eth_mac_1g_gmii_inst/mii_select_reg_reg] -to [get_cells {ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/eth_mac_1g_gmii_inst/rx_mii_select_sync_reg[0]}] 8.000
+set_property ASYNC_REG true [get_cells -hier -regexp {.*/rx_prescale_sync_reg\[\d\]} -filter {PARENT == ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/eth_mac_1g_gmii_inst}]
+set_max_delay -datapath_only -from [get_cells {ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/eth_mac_1g_gmii_inst/rx_prescale_reg[2]}] -to [get_cells {ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/eth_mac_1g_gmii_inst/rx_prescale_sync_reg[0]}] 8.000
+
+
+####################################################################################
 # Constraints from file : 'daphne1.vhd'
 ####################################################################################
 
