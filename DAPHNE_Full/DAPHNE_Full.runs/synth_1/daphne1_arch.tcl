@@ -4,7 +4,7 @@
 
 set TIME_start [clock seconds] 
 namespace eval ::optrace {
-  variable script "C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/DAPHNE_Full/DAPHNE_Full.runs/synth_1/daphne1_arch.tcl"
+  variable script "C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/DAPHNE_Full/DAPHNE_Full.runs/synth_1/daphne1_arch.tcl"
   variable category "vivado_synth"
 }
 
@@ -70,10 +70,6 @@ proc create_report { reportName command } {
   }
 }
 OPTRACE "synth_1" START { ROLLUP_AUTO }
-set_param checkpoint.writeSynthRtdsInDcp 1
-set_msg_config -id {Common 17-41} -limit 10000000
-set_msg_config -id {Synth 8-256} -limit 10000
-set_msg_config -id {Synth 8-638} -limit 10000
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7a200tfbg676-2
 
@@ -81,91 +77,91 @@ set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
 set_param synth.vivado.isSynthRun true
 set_msg_config -source 4 -id {IP_Flow 19-2162} -severity warning -new_severity info
-set_property webtalk.parent_dir C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/DAPHNE_Full/DAPHNE_Full.cache/wt [current_project]
-set_property parent.project_path C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/DAPHNE_Full/DAPHNE_Full.xpr [current_project]
+set_property webtalk.parent_dir C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/DAPHNE_Full/DAPHNE_Full.cache/wt [current_project]
+set_property parent.project_path C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/DAPHNE_Full/DAPHNE_Full.xpr [current_project]
 set_property XPM_LIBRARIES {XPM_CDC XPM_FIFO XPM_MEMORY} [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language VHDL [current_project]
-set_property ip_output_repo c:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/DAPHNE_Full/DAPHNE_Full.cache/ip [current_project]
+set_property ip_output_repo c:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/DAPHNE_Full/DAPHNE_Full.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_verilog -library xil_defaultlib {
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/arbiter.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/arp.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/arp_cache.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/arp_eth_rx.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/arp_eth_tx.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/axis_adapter.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/axis_async_fifo.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/axis_async_fifo_adapter.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/axis_fifo.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/DAPHNE_Full/DAPHNE_Full.srcs/sources_1/new/axis_gmii_rx.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/DAPHNE_Full/DAPHNE_Full.srcs/sources_1/new/axis_gmii_tx.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/eth_arb_mux.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/DAPHNE_Full/DAPHNE_Full.srcs/sources_1/new/eth_axi_core.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/eth_axis_rx.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/eth_axis_tx.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/DAPHNE_Full/DAPHNE_Full.srcs/sources_1/new/eth_mac_1g.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/DAPHNE_Full/DAPHNE_Full.srcs/sources_1/new/eth_mac_1g_gmii.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/DAPHNE_Full/DAPHNE_Full.srcs/sources_1/new/eth_mac_1g_gmii_fifo.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/DAPHNE_Full/DAPHNE_Full.srcs/sources_1/new/eth_mac_1g_gmii_fifo_mod.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/DAPHNE_Full/DAPHNE_Full.srcs/sources_1/new/gmii_phy_if.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/ip.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/ip_arb_mux.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/ip_complete.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/ip_eth_rx.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/ip_eth_tx.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/DAPHNE_Full/DAPHNE_Full.srcs/sources_1/new/lfsr.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/mac_ctrl_rx.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/mac_ctrl_tx.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/mac_pause_ctrl_rx.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/mac_pause_ctrl_tx.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/oddr.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/priority_encoder.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/DAPHNE_Full/DAPHNE_Full.srcs/sources_1/new/ssio_sdr_in.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/DAPHNE_Full/DAPHNE_Full.srcs/sources_1/new/ssio_sdr_out.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/udp.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/udp_checksum_gen.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/udp_complete.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/udp_ip_rx.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/udp_ip_tx.v
+  C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/arbiter.v
+  C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/arp.v
+  C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/arp_cache.v
+  C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/arp_eth_rx.v
+  C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/arp_eth_tx.v
+  C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/axis_adapter.v
+  C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/axis_async_fifo.v
+  C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/axis_async_fifo_adapter.v
+  C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/axis_fifo.v
+  C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/DAPHNE_Full/DAPHNE_Full.srcs/sources_1/new/axis_gmii_rx.v
+  C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/DAPHNE_Full/DAPHNE_Full.srcs/sources_1/new/axis_gmii_tx.v
+  C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/eth_arb_mux.v
+  C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/DAPHNE_Full/DAPHNE_Full.srcs/sources_1/new/eth_axi_core.v
+  C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/eth_axis_rx.v
+  C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/eth_axis_tx.v
+  C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/DAPHNE_Full/DAPHNE_Full.srcs/sources_1/new/eth_mac_1g.v
+  C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/DAPHNE_Full/DAPHNE_Full.srcs/sources_1/new/eth_mac_1g_gmii.v
+  C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/DAPHNE_Full/DAPHNE_Full.srcs/sources_1/new/eth_mac_1g_gmii_fifo.v
+  C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/DAPHNE_Full/DAPHNE_Full.srcs/sources_1/new/eth_mac_1g_gmii_fifo_mod.v
+  C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/DAPHNE_Full/DAPHNE_Full.srcs/sources_1/new/gmii_phy_if.v
+  C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/ip.v
+  C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/ip_arb_mux.v
+  C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/ip_complete.v
+  C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/ip_eth_rx.v
+  C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/ip_eth_tx.v
+  C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/DAPHNE_Full/DAPHNE_Full.srcs/sources_1/new/lfsr.v
+  C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/mac_ctrl_rx.v
+  C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/mac_ctrl_tx.v
+  C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/mac_pause_ctrl_rx.v
+  C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/mac_pause_ctrl_tx.v
+  C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/oddr.v
+  C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/priority_encoder.v
+  C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/DAPHNE_Full/DAPHNE_Full.srcs/sources_1/new/ssio_sdr_in.v
+  C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/DAPHNE_Full/DAPHNE_Full.srcs/sources_1/new/ssio_sdr_out.v
+  C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/udp.v
+  C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/udp_checksum_gen.v
+  C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/udp_complete.v
+  C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/udp_ip_rx.v
+  C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/udp_ip_tx.v
 }
 read_vhdl -library xil_defaultlib {
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/AXI_FIFO_Adapter.vhd
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/AcquisitionManager.vhd
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/AlignFSM.vhd
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/Bufgmux_Module.vhd
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/ClockMUX.vhd
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/ClockManager.vhd
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/DataAcquisition.vhd
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/FDRE_Module.vhd
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/FIFOManager.vhd
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/FIFO_Module.vhd
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/Ibufds_Module.vhd
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/InputBuffers.vhd
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/Iserdese_Block.vhd
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/PLL_Module.vhd
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/ResetMemory_Module.vhd
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/Self-trigger_VHDL.vhd
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/Synchronizer.vhd
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/bitFSM_Module.vhd
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/DAPHNE_Full/DAPHNE_Full.srcs/sources_1/new/daphne1_package.vhd
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/dsp_slice.vhd
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/DAPHNE_Full/DAPHNE_Full.srcs/sources_1/new/endpoint.vhd
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/DAPHNE_Full/DAPHNE_Full.srcs/sources_1/new/eth_module_full.vhd
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/frameFSM_Module.vhd
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/highPass_FirstOrder.vhd
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/rdFSM_Module.vhd
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/selfTrigger_Module.vhd
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/trigSaveReadFSM.vhd
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/wrFSM_Module.vhd
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/DAPHNE_Full/DAPHNE_Full.srcs/sources_1/new/daphne1.vhd
+  C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/AXI_FIFO_Adapter.vhd
+  C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/AcquisitionManager.vhd
+  C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/AlignFSM.vhd
+  C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/Bufgmux_Module.vhd
+  C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/ClockMUX.vhd
+  C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/ClockManager.vhd
+  C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/DataAcquisition.vhd
+  C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/FDRE_Module.vhd
+  C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/FIFOManager.vhd
+  C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/FIFO_Module.vhd
+  C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/Ibufds_Module.vhd
+  C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/InputBuffers.vhd
+  C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/Iserdese_Block.vhd
+  C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/PLL_Module.vhd
+  C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/ResetMemory_Module.vhd
+  C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/Self-trigger_VHDL.vhd
+  C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/Synchronizer.vhd
+  C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/bitFSM_Module.vhd
+  C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/DAPHNE_Full/DAPHNE_Full.srcs/sources_1/new/daphne1_package.vhd
+  C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/dsp_slice.vhd
+  C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/DAPHNE_Full/DAPHNE_Full.srcs/sources_1/new/endpoint.vhd
+  C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/DAPHNE_Full/DAPHNE_Full.srcs/sources_1/new/eth_module_full.vhd
+  C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/frameFSM_Module.vhd
+  C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/highPass_FirstOrder.vhd
+  C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/rdFSM_Module.vhd
+  C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/selfTrigger_Module.vhd
+  C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/trigSaveReadFSM.vhd
+  C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/wrFSM_Module.vhd
+  C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/DAPHNE_Full/DAPHNE_Full.srcs/sources_1/new/daphne1.vhd
 }
-read_ip -quiet C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/DAPHNE_Full/DAPHNE_Full.srcs/sources_1/ip/gig_ethernet_pcs_pma_0/gig_ethernet_pcs_pma_0.xci
-set_property used_in_implementation false [get_files -all c:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/DAPHNE_Full/DAPHNE_Full.gen/sources_1/ip/gig_ethernet_pcs_pma_0/gig_ethernet_pcs_pma_0_board.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/DAPHNE_Full/DAPHNE_Full.gen/sources_1/ip/gig_ethernet_pcs_pma_0/synth/gig_ethernet_pcs_pma_0.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/DAPHNE_Full/DAPHNE_Full.gen/sources_1/ip/gig_ethernet_pcs_pma_0/synth/gig_ethernet_pcs_pma_0_ooc.xdc]
+read_ip -quiet C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/DAPHNE_Full/DAPHNE_Full.srcs/sources_1/ip/gig_ethernet_pcs_pma_0/gig_ethernet_pcs_pma_0.xci
+set_property used_in_implementation false [get_files -all c:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/DAPHNE_Full/DAPHNE_Full.gen/sources_1/ip/gig_ethernet_pcs_pma_0/gig_ethernet_pcs_pma_0_board.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/DAPHNE_Full/DAPHNE_Full.gen/sources_1/ip/gig_ethernet_pcs_pma_0/synth/gig_ethernet_pcs_pma_0.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/DAPHNE_Full/DAPHNE_Full.gen/sources_1/ip/gig_ethernet_pcs_pma_0/synth/gig_ethernet_pcs_pma_0_ooc.xdc]
 
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
@@ -176,12 +172,12 @@ OPTRACE "Adding files" END { }
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
-read_xdc C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/xilinx/constraints.xdc
-set_property used_in_implementation false [get_files C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/xilinx/constraints.xdc]
+read_xdc C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/xilinx/constraints.xdc
+set_property used_in_implementation false [get_files C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/xilinx/constraints.xdc]
 
 set_param ips.enableIPCacheLiteLoad 1
 
-read_checkpoint -auto_incremental -incremental C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/DAPHNE_Full/DAPHNE_Full.srcs/utils_1/imports/synth_1/daphne1_arch.dcp
+read_checkpoint -auto_incremental -incremental C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/DAPHNE_Full/DAPHNE_Full.srcs/utils_1/imports/synth_1/daphne1_arch.dcp
 close [open __synthesis_is_running__ w]
 
 OPTRACE "synth_design" START { }

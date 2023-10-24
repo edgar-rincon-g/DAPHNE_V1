@@ -249,7 +249,7 @@ begin
         RD_CLK => rd_clk,
         SYS_CLK => sys_clk,
         RST => rst,
-        TRIG_IN => trigger_in, --trigger_aux,
+        TRIG_IN => wr_enable_signal, --trigger_in
         READ_IN => rd_enable_signal, --'0',
         FIFO_FULL => afe_fifo_a_full,
         FIFO_EMPTY => afe_fifo_empty,
@@ -275,7 +275,7 @@ begin
     port map (
         d_i => xcorr_data_out_aux,
         dt_rdy => dt_rdy,
-        wr_enable => trigger_aux, --fifo_trig,
+        wr_enable => fifo_trig,
         rd_enable => fifo_rd,
 --        full_read => '1',
         wr_clk => clk,

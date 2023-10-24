@@ -1,4 +1,4 @@
-set_property SRC_FILE_INFO {cfile:C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/xilinx/constraints.xdc rfile:../../../../xilinx/constraints.xdc id:1} [current_design]
+set_property SRC_FILE_INFO {cfile:C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/xilinx/constraints.xdc rfile:../../../../xilinx/constraints.xdc id:1} [current_design]
 set_property src_info {type:XDC file:1 line:31 export:INPUT save:INPUT read:READ} [current_design]
 set_max_delay -datapath_only -from [get_cells -of_objects [get_pins -of_objects [get_nets -segments -of_objects [get_pins -of_objects [get_cells ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/rx_fifo/fifo_inst/s_rst_sync2_reg_reg] -filter {REF_PIN_NAME == D}]] -filter {IS_LEAF && DIRECTION == OUT}]] -to [get_cells ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/rx_fifo/fifo_inst/s_rst_sync2_reg_reg] 8.000
 set_property src_info {type:XDC file:1 line:33 export:INPUT save:INPUT read:READ} [current_design]

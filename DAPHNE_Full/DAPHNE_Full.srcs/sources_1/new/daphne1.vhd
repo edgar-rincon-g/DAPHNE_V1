@@ -40,7 +40,7 @@ use work.daphne1_package.all;
 entity daphne1_arch is
     Port ( 
         reset_n: in std_logic; -- Acive LOW async reset from the microcontroller
-        gpi, gpo: std_logic;
+        gpi, gpo: in std_logic;
         sysclk_p, sysclk_n: in std_logic; -- System Clock LVDS 100 MHz from local oscillator
         
         -- AFE Interface, LVDS, 5 AFE chips, each AFE has 8 DATA + 1 FCLK + 1DCLK outputs
@@ -304,20 +304,20 @@ begin
             rd_clk              => sys_clk62_5,
             sys_clk             => sys_clk100,
             rd_ctrl             => '1',
-            wr_enable_signal    => '0',
-            rd_enable_signal    => '1',
+            wr_enable_signal    => gpi,
+            rd_enable_signal    => gpo,
             filt_out            => open,
             xcorr_out           => open,
             xcorr_data_out      => open,
-            trigger             => led(1),
+            trigger             => open,--led(1),
             fifo_rd_out         => open,
             fifo_o              => open,
             fifo_a_empty        => open,
-            fifo_a_full         => led(2),
-            fifo_empty          => led(3),
+            fifo_a_full         => open,--led(1),
+            fifo_empty          => open,--led(2),
             fifo_full           => open,
-            fifo_wr_err         => led(4),
-            fifo_rd_err         => open,
+            fifo_wr_err         => open,--led(3),
+            fifo_rd_err         => open,--led(4),--open,
             axi_data            => st_axi_data,
             axi_valid           => st_axi_valid,
             axi_ready           => st_axi_ready,
@@ -348,5 +348,6 @@ begin
     -- Board Misc Output
 --------------------------------------------------------------------------------------------------------------------------------
     led(0) <= data_rdy;  
+    led(4 downto 1) <= st_axi_data(3 downto 0);
         
 end Behavioral;
