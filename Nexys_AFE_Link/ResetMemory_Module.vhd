@@ -14,9 +14,17 @@
 -- Dependencies: 
 -- Uses the 'Synchronizer.vhd' file to synchronize in CDC
 -- Revision:
--- Revision 0.01 - File Created
+-- Revision 0.02 - Fixed Bugs
 -- Additional Comments:
--- Must be updated to resolve possible CDC timing issues between RDCLK and WRCLK
+-- Changed behaviour of the module when the frequencies of the write and read clock
+-- are the same, since it is the case on the DAPHNE board design. The system, was 
+-- initially operating with one clock that fed both write and read processes, but
+-- it should not be the case since both processes would use duplicated registers 
+-- doing exactly the same thing, so when synthesis ocurred one was removed.
+-- Fixed a bug where the process depending on the read clock was not updating the 
+-- right signal when clock frequencies were the same.
+-- Updated the clock signal used for the register tasked with controlling the reset
+-- of the write flags.
 ----------------------------------------------------------------------------------
 
 
@@ -326,12 +334,12 @@ begin
                 else
                     if (initRst_rd = '0') then-- OR mem_rst = '1') then
                         -- The process must be done either when booting up or when there is a soft reset
-                        if (resetCounter = "101") then
+                        if (resetCounter_rd = "101") then
                             resetCounter_rd <= "000";
                             initRst_rd <= '1'; -- Automatic Initial Reset has been finished
                             automaticReset_rd <= '0';
                         else
-                            resetCounter_rd <= std_logic_vector(unsigned(resetCounter) + 1);
+                            resetCounter_rd <= std_logic_vector(unsigned(resetCounter_rd) + 1);
                             initRst_rd <= '0'; -- Automatic Initial Reset still in progress
                             automaticReset_rd <= '1';
                         end if;
@@ -340,9 +348,9 @@ begin
             end if;
         end process autom_reset_rd;
         
-        autom_reset_wr: process(rd_clk, rst, initRst_wr, resetCounter_wr) --mem_rst
+        autom_reset_wr: process(wr_clk, rst, initRst_wr, resetCounter_wr) --mem_rst
         begin
-            if rising_edge(rd_clk) then 
+            if rising_edge(wr_clk) then 
                 if (rst = '1') then
                     initRst_wr <= '0'; -- Synchronous reset of the system
                     resetCounter_wr <= "000";
@@ -355,7 +363,7 @@ begin
                             initRst_wr <= '1'; -- Automatic Initial Reset has been finished
                             automaticReset_wr <= '0';
                         else
-                            resetCounter_wr <= std_logic_vector(unsigned(resetCounter) + 1);
+                            resetCounter_wr <= std_logic_vector(unsigned(resetCounter_wr) + 1);
                             initRst_wr <= '0'; -- Automatic Initial Reset still in progress
                             automaticReset_wr <= '1';
                         end if;

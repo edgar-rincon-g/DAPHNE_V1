@@ -12,9 +12,9 @@ echo "Please update the PATH and LD_LIBRARY_PATH variables below, before executi
 exit
 
 if [ -z "$PATH" ]; then
-  PATH=F:/AMDXilinx/Vitis/2023.1/bin;F:/AMDXilinx/Vivado/2023.1/ids_lite/ISE/bin/nt64;F:/AMDXilinx/Vivado/2023.1/ids_lite/ISE/lib/nt64:F:/AMDXilinx/Vivado/2023.1/bin
+  PATH=C:/Xilinx/Vitis/2023.1/bin;C:/Xilinx/Vivado/2023.1/ids_lite/ISE/bin/nt64;C:/Xilinx/Vivado/2023.1/ids_lite/ISE/lib/nt64:C:/Xilinx/Vivado/2023.1/bin
 else
-  PATH=F:/AMDXilinx/Vitis/2023.1/bin;F:/AMDXilinx/Vivado/2023.1/ids_lite/ISE/bin/nt64;F:/AMDXilinx/Vivado/2023.1/ids_lite/ISE/lib/nt64:F:/AMDXilinx/Vivado/2023.1/bin:$PATH
+  PATH=C:/Xilinx/Vitis/2023.1/bin;C:/Xilinx/Vivado/2023.1/ids_lite/ISE/bin/nt64;C:/Xilinx/Vivado/2023.1/ids_lite/ISE/lib/nt64:C:/Xilinx/Vivado/2023.1/bin:$PATH
 fi
 export PATH
 
@@ -25,7 +25,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='C:/Users/PERSONAL/Documents/GitHub/DAPHNE_V1/DAPHNE_Full/DAPHNE_Full.runs/synth_1'
+HD_PWD='C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/DAPHNE_Full/DAPHNE_Full.runs/synth_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log

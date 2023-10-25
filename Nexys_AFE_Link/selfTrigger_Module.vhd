@@ -122,7 +122,7 @@ component trigSaveReadFSM
     Port ( 
         WR_CLK : in std_logic;
         RD_CLK :  in std_logic;
-        SYS_CLK : in std_logic;
+--        SYS_CLK : in std_logic;
         RST : in std_logic;
         TRIG_IN : in std_logic;
         READ_IN : in std_logic;
@@ -247,9 +247,9 @@ begin
     port map (
         WR_CLK => clk,
         RD_CLK => rd_clk,
-        SYS_CLK => sys_clk,
+--        SYS_CLK => sys_clk,
         RST => rst,
-        TRIG_IN => wr_enable_signal, --trigger_in
+        TRIG_IN => trigger_in,
         READ_IN => rd_enable_signal, --'0',
         FIFO_FULL => afe_fifo_a_full,
         FIFO_EMPTY => afe_fifo_empty,

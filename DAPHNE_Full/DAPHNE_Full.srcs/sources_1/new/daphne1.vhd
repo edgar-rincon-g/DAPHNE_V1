@@ -70,7 +70,7 @@ entity daphne1_arch is
         cdr_sfp_los: in std_logic; -- Loss of signal
         cdr_sfp_abs: in std_logic; -- High if module is absent
         cdr_sfp_tx_dis: out std_logic; -- High to disable timing SFP TX
-        cdr_sfp_tx_p, cdr_sfp_tx_n: out std_logic; -- Send data upstream (optional)
+--        cdr_sfp_tx_p, cdr_sfp_tx_n: out std_logic; -- Send data upstream (optional)
 
         -- Timing Endpoint Interface (CDR chip)
         --cdr_clk_p, cdr_clk_n: in std_logic; -- LVDS recovered clock 312MHz (not used anymore) ?
@@ -302,21 +302,21 @@ begin
             rst                 => async_rst,
             clk                 => afe_se_clk,
             rd_clk              => sys_clk62_5,
-            sys_clk             => sys_clk100,
+            sys_clk             => sys_clk125, -- This is AXI Clock, not system Clock. Was initially sys_clk100,
             rd_ctrl             => '1',
-            wr_enable_signal    => gpi,
-            rd_enable_signal    => gpo,
+            wr_enable_signal    => '0', --gpi,
+            rd_enable_signal    => '0',
             filt_out            => open,
             xcorr_out           => open,
             xcorr_data_out      => open,
             trigger             => open,--led(1),
-            fifo_rd_out         => open,
+            fifo_rd_out         => open, -- Was initially open, but this is the signal that tells the rest of the AXI stream that this FIFO is ready to send data, fix: keep it open, it is open in the nexys_ethernet project
             fifo_o              => open,
             fifo_a_empty        => open,
-            fifo_a_full         => open,--led(1),
-            fifo_empty          => open,--led(2),
+            fifo_a_full         => open,--led(1),--open,
+            fifo_empty          => open,--led(2),--open,
             fifo_full           => open,
-            fifo_wr_err         => open,--led(3),
+            fifo_wr_err         => open,--led(3),--open,
             fifo_rd_err         => open,--led(4),--open,
             axi_data            => st_axi_data,
             axi_valid           => st_axi_valid,
@@ -348,6 +348,6 @@ begin
     -- Board Misc Output
 --------------------------------------------------------------------------------------------------------------------------------
     led(0) <= data_rdy;  
-    led(4 downto 1) <= st_axi_data(3 downto 0);
+--    led(4 downto 1) <= st_axi_data(3 downto 0);
         
 end Behavioral;

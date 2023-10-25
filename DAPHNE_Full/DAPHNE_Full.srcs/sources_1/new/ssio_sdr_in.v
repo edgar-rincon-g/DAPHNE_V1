@@ -153,7 +153,7 @@ end
 
 endgenerate
 
-(* IOB = "TRUE" *)
+//(* IOB = "TRUE" *)
 reg [WIDTH-1:0] output_q_reg = {WIDTH{1'b0}};
 
 assign output_q = output_q_reg;

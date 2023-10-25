@@ -78,7 +78,7 @@ set_max_delay -datapath_only -from [get_cells ETH0/ETH_MAC_COM/eth_mac_1g_gmii_f
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-# RGMII Gigabit Ethernet MAC timing constraints
+# GMII Gigabit Ethernet MAC timing constraints
 
 set_property ASYNC_REG true [get_cells -hier -regexp {.*/tx_mii_select_sync_reg\[\d\]} -filter {PARENT == ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/eth_mac_1g_gmii_inst}]
 set_max_delay -datapath_only -from [get_cells ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/eth_mac_1g_gmii_inst/mii_select_reg_reg] -to [get_cells {ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/eth_mac_1g_gmii_inst/tx_mii_select_sync_reg[0]}] 8.000
@@ -115,9 +115,9 @@ create_generated_clock -name afe0_pll_dig_div1      [get_pins AFE0_CH_0/CLK_COM/
 create_generated_clock -name afe0_pll_dig_div2      [get_pins AFE0_CH_0/CLK_COM/PLL_COM/PLLE2_BASE_inst/CLKOUT5]
 create_generated_clock -name afe0_pll_clkfbout      [get_pins AFE0_CH_0/CLK_COM/PLL_COM/PLLE2_BASE_inst/CLKFBOUT]
 
-#create_generated_clock -name oeiclk                 [get_pins ETH0/ETH_PHY_COM/U0/core_clocking_i/mmcm_adv_inst/CLKOUT0] 
-#create_generated_clock -name oeihclk                [get_pins ETH0/ETH_PHY_COM/U0/core_clocking_i/mmcm_adv_inst/CLKOUT1]
-#create_generated_clock -name oei_clkfbout           [get_pins ETH0/ETH_PHY_COM/U0/core_clocking_i/mmcm_adv_inst/CLKFBOUT]
+create_generated_clock -name oeiclk                 [get_pins ETH0/ETH_PHY_COM/U0/core_clocking_i/mmcm_adv_inst/CLKOUT0] 
+create_generated_clock -name oeihclk                [get_pins ETH0/ETH_PHY_COM/U0/core_clocking_i/mmcm_adv_inst/CLKOUT1]
+create_generated_clock -name oei_clkfbout           [get_pins ETH0/ETH_PHY_COM/U0/core_clocking_i/mmcm_adv_inst/CLKFBOUT]
 
 ###########################################################################################################################################
 # Setting Groups Of Clocks And Their Interactions
@@ -126,8 +126,10 @@ set_clock_groups -name mux_div_groups   -logically_exclusive -group afe0_pll_dig
 # Asynchronous Clock Groups    
 set_clock_groups -name async_groups     -asynchronous -group {sys_clk sclk100 mmcm0_clkfbout} \
 -group {afe_dclk afe0_pll_clkfbout afe0_pll_dig0 afe0_pll_dig1 afe0_pll_dig2 afe0_pll_dig_div0 afe0_pll_dig_div1 afe0_pll_dig_div2} \
--group {sclk125} -group {sclk200} -group {sclk62_5} 
-#-group {oeiclk oeihclk oei_clkfbout}
+-group {sclk125 sclk62_5} -group {sclk200} -group {daq_refclk} -group {oeiclk oeihclk oei_clkfbout}
+
+#set_property CLOCK_DEDICATED_ROUTE BACKBONE [get_nets SYS_TIMING_EPNT/sysclk_ibuf]
+#set_property LOC BUFGCTRL_X0Y5 [get_cells ETH0/ETH_PHY_COM/U0/core_clocking_i/bufg_userclk2]
 
 ###########################################################################################################################################
 # Creating False Paths So Timing Analysis Is Ignored (Refer to https://docs.xilinx.com/r/en-US/ug903-vivado-using-constraints/False-Paths)
@@ -189,8 +191,6 @@ set_false_path -from [get_ports daq?_sfp_??s]
 #set_false_path -from [get_pins daq_out_param_reg_reg[*]/C]
 #set_false_path -from [get_pins core_inst/input_inst/*select_reg_reg*/C]
 
-set_property CLOCK_DEDICATED_ROUTE BACKBONE [get_nets SYS_TIMING_EPNT/sysclk_ibuf]
-
 # SYSCLK is LVDS 100MHz comes in on bank 33, VCCO=2.5V.
 # Use internal LVDS 100 ohm termination. On schematic this is FPGA_MCLK1.
 #mclk  First 2 are FPGA_MCLK1_P and FPGA_MCLK1_N 
@@ -220,17 +220,17 @@ set_property IOSTANDARD LVTTL [get_ports {gp?}]
 
 ### Timing interface signals (LVDS)
 # cdr was adn2814
-set_property PACKAGE_PIN V6 [get_ports {cdr_sfp_tx_p}]          
-set_property PACKAGE_PIN W6 [get_ports {cdr_sfp_tx_n}]          
+#set_property PACKAGE_PIN V6 [get_ports {cdr_sfp_tx_p}]          
+#set_property PACKAGE_PIN W6 [get_ports {cdr_sfp_tx_n}]          
 #set_property PACKAGE_PIN AB2 [get_ports {cdr_clk_p}]            
 #set_property PACKAGE_PIN AC2 [get_ports {cdr_clk_n}]            
 set_property PACKAGE_PIN AC3 [get_ports {cdr_data_p}]           
 set_property PACKAGE_PIN AD3 [get_ports {cdr_data_n}]           
 
-set_property IOSTANDARD LVDS_25 [get_ports {cdr_sfp_tx_?}]      
+#set_property IOSTANDARD LVDS_25 [get_ports {cdr_sfp_tx_?}]      
 #set_property IOSTANDARD LVDS_25 [get_ports {cdr_clk_?}]        
 set_property IOSTANDARD LVDS_25 [get_ports {cdr_data_?}]        
-set_property DIFF_TERM TRUE [get_ports {cdr_sfp_tx_?}]          
+#set_property DIFF_TERM TRUE [get_ports {cdr_sfp_tx_?}]          
 #set_property DIFF_TERM TRUE [get_ports {cdr_clk_?}]            
 set_property DIFF_TERM TRUE [get_ports {cdr_data_?}]            
 
@@ -388,10 +388,12 @@ set_property PACKAGE_PIN F5 [get_ports {spi_irq}]
 set_property IOSTANDARD LVTTL [get_ports {spi_*}]           
 
 
-### DAQ link 1, channel 1 Quad 213, X0Y5
+### DAQ link 0, channel 0 Quad 213, X0Y5
 # Review this
 #set_property LOC GTPE2_CHANNEL_X0Y5 [get_cells core_inst/daq_quad_inst/U0/daphne2_daq_txonly_init_i/daphne2_daq_txonly_i/gt1_daphne2_daq_txonly_i/gtpe2_i] 
-# changed dq0 to daq1 and viceversa to fit schematic
+# changed daq0 to daq1 and viceversa to fit schematic
+set_property LOC GTPE2_CHANNEL_X0Y4 [get_cells ETH0/ETH_PHY_COM/U0/pcs_pma_block_i/transceiver_inst/gtwizard_inst/U0/gtwizard_i/gt0_GTWIZARD_i/gtpe2_i] 
+
 set_property PACKAGE_PIN H6 [get_ports {daq0_sfp_los}]      
 set_property PACKAGE_PIN J6 [get_ports {daq0_sfp_abs}]      
 set_property PACKAGE_PIN G6 [get_ports {daq0_sfp_tx_dis}]   
@@ -399,9 +401,9 @@ set_property PACKAGE_PIN H9 [get_ports {daq0_sfp_scl}]
 set_property PACKAGE_PIN G9 [get_ports {daq0_sfp_sda}]    
 set_property IOSTANDARD LVTTL [get_ports {daq0_sfp_*}]    
 
-### DAQ link 0, channel 0 Quad 213, X0Y4
+### DAQ link 1, channel 1 Quad 213, X0Y4
 # Review this
-#set_property LOC GTPE2_CHANNEL_X0Y4 [get_cells core_inst/daq_quad_inst/U0/daphne2_daq_txonly_init_i/daphne2_daq_txonly_i/gt0_daphne2_daq_txonly_i/gtpe2_i] 
+set_property LOC GTPE2_CHANNEL_X0Y4 [get_cells ETH0/ETH_PHY_COM/U0/pcs_pma_block_i/transceiver_inst/gtwizard_inst/U0/gtwizard_i/gt0_GTWIZARD_i/gtpe2_i] 
 
 set_property PACKAGE_PIN L8 [get_ports {daq1_sfp_los}]      
 set_property PACKAGE_PIN K7 [get_ports {daq1_sfp_abs}]       

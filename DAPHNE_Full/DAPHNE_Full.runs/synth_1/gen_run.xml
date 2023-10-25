@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a200tfbg676-2" LaunchTime="1698159785" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/daphne1_arch.dcp">
+<GenRun Id="synth_1" LaunchPart="xc7a200tfbg676-2" LaunchTime="1698266739" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/daphne1_arch.dcp">
   <File Type="PA-TCL" Name="daphne1_arch.tcl"/>
   <File Type="RDS-PROPCONSTRS" Name="daphne1_arch_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="daphne1_arch_reports.tcl"/>
@@ -11,6 +11,13 @@
   <File Type="VDS-TIMING-PB" Name="daphne1_arch_timing_summary_synth.pb"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
     <Filter Type="Srcs"/>
+    <File Path="$PSRCDIR/sources_1/ip/gig_ethernet_pcs_pma_0/gig_ethernet_pcs_pma_0.xci">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <File Path="$PPRDIR/../Nexys_AFE_Link/arbiter.v">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -615,8 +622,9 @@
     </Config>
   </FileSet>
   <Strategy Version="1" Minor="2">
-    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2023"/>
+    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2023">
+      <Desc>Vivado Synthesis Defaults</Desc>
+    </StratHandle>
     <Step Id="synth_design"/>
   </Strategy>
-  <BlockFileSet Type="BlockSrcs" Name="gig_ethernet_pcs_pma_0"/>
 </GenRun>

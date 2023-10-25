@@ -14,9 +14,9 @@
 -- Dependencies: 
 -- 
 -- Revision:
--- Revision 0.01 - File Created
+-- Revision 0.02 - Modified File
 -- Additional Comments:
--- 
+-- Eliminated the SYS_CLK input since it was being unused by the module
 ----------------------------------------------------------------------------------
 
 
@@ -37,7 +37,7 @@ entity trigSaveReadFSM is
     Port ( 
         WR_CLK : in std_logic;
         RD_CLK :  in std_logic;
-        SYS_CLK : in std_logic;
+--        SYS_CLK : in std_logic;
         RST : in std_logic;
         TRIG_IN : in std_logic;
         READ_IN : in std_logic;
