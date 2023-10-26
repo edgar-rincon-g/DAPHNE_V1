@@ -80,11 +80,15 @@ if (TARGET == "XILINX") begin
         assign clk_int = input_clk;
 
         // pass through RX clock to input buffers
-        BUFIO
-        clk_bufio (
-            .I(clk_int),
-            .O(clk_io)
-        );
+//        BUFIO
+//        clk_bufio (
+//            .I(clk_int),
+//            .O(clk_io)
+//        );
+
+        // pass through RX clock to input buffers
+        // Changed to fit the PHY being inside the FPGA (Clock doesn not need to come from a I/O CC Pin)
+        assign clk_io = clk_int;
 
         // pass through RX clock to logic
         BUFR #(

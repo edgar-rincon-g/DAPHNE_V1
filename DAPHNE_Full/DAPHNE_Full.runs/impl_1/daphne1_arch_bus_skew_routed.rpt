@@ -1,0 +1,283 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2023.1 (win64) Build 3865809 Sun May  7 15:05:29 MDT 2023
+| Date         : Thu Oct 26 16:39:32 2023
+| Host         : danielA running 64-bit major release  (build 9200)
+| Command      : report_bus_skew -warn_on_violation -file daphne1_arch_bus_skew_routed.rpt -pb daphne1_arch_bus_skew_routed.pb -rpx daphne1_arch_bus_skew_routed.rpx
+| Design       : daphne1_arch
+| Device       : 7a200t-fbg676
+| Speed File   : -2  PRODUCTION 1.23 2018-06-13
+| Design State : Routed
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Bus Skew Report
+
+Table of Contents
+-----------------
+1. Bus Skew Report Summary
+2. Bus Skew Report Per Constraint
+
+1. Bus Skew Report Summary
+--------------------------
+
+Id  Position  From                            To                              Corner  Requirement(ns)  Actual(ns)  Slack(ns)
+--  --------  ------------------------------  ------------------------------  ------  ---------------  ----------  ---------
+1   14        [get_cells {{ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/rx_fifo/fifo_inst/rd_ptr_reg_reg[*]} {ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/rx_fifo/fifo_inst/rd_ptr_gray_reg_reg[*]}}]
+                                              [get_cells {ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/rx_fifo/fifo_inst/rd_ptr_gray_sync1_reg_reg[*]}]
+                                                                              NA                8.000          NA         NA
+2   16        [get_cells -quiet {{ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/rx_fifo/fifo_inst/wr_ptr_reg_reg[*]} {ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/rx_fifo/fifo_inst/wr_ptr_gray_reg_reg[*]} {ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/rx_fifo/fifo_inst/wr_ptr_sync_gray_reg_reg[*]}}]
+                                              [get_cells {ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/rx_fifo/fifo_inst/wr_ptr_gray_sync1_reg_reg[*]}]
+                                                                              NA                8.000          NA         NA
+3   22        [get_cells {{ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/tx_fifo/fifo_inst/rd_ptr_reg_reg[*]} {ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/tx_fifo/fifo_inst/rd_ptr_gray_reg_reg[*]}}]
+                                              [get_cells {ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/tx_fifo/fifo_inst/rd_ptr_gray_sync1_reg_reg[*]}]
+                                                                              Slow              8.000       0.665      7.335
+4   24        [get_cells -quiet {{ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/tx_fifo/fifo_inst/wr_ptr_reg_reg[*]} {ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/tx_fifo/fifo_inst/wr_ptr_gray_reg_reg[*]} {ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/tx_fifo/fifo_inst/wr_ptr_sync_gray_reg_reg[*]}}]
+                                              [get_cells {ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/tx_fifo/fifo_inst/wr_ptr_gray_sync1_reg_reg[*]}]
+                                                                              Slow              8.000       0.795      7.205
+
+
+2. Bus Skew Report Per Constraint
+---------------------------------
+
+Id: 1
+set_bus_skew -from [get_cells {{ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/rx_fifo/fifo_inst/rd_ptr_reg_reg[*]} {ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/rx_fifo/fifo_inst/rd_ptr_gray_reg_reg[*]}}] -to [get_cells {ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/rx_fifo/fifo_inst/rd_ptr_gray_sync1_reg_reg[*]}] 8.000
+Requirement: 8.000ns
+Endpoints: 0
+No bus skew paths found.
+
+
+Id: 2
+set_bus_skew -from [get_cells -quiet {{ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/rx_fifo/fifo_inst/wr_ptr_reg_reg[*]} {ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/rx_fifo/fifo_inst/wr_ptr_gray_reg_reg[*]} {ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/rx_fifo/fifo_inst/wr_ptr_sync_gray_reg_reg[*]}}] -to [get_cells {ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/rx_fifo/fifo_inst/wr_ptr_gray_sync1_reg_reg[*]}] 8.000
+Requirement: 8.000ns
+Endpoints: 0
+No bus skew paths found.
+
+
+Id: 3
+set_bus_skew -from [get_cells {{ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/tx_fifo/fifo_inst/rd_ptr_reg_reg[*]} {ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/tx_fifo/fifo_inst/rd_ptr_gray_reg_reg[*]}}] -to [get_cells {ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/tx_fifo/fifo_inst/rd_ptr_gray_sync1_reg_reg[*]}] 8.000
+Requirement: 8.000ns
+Endpoints: 14
+
+From Clock            To Clock              Endpoint Pin                    Reference Pin                   Corner  Actual(ns)  Slack(ns)
+--------------------  --------------------  ------------------------------  ------------------------------  ------  ----------  ---------
+sclk125               sclk125               ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/tx_fifo/fifo_inst/rd_ptr_gray_sync1_reg_reg[7]/D
+                                                                            ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/tx_fifo/fifo_inst/rd_ptr_gray_sync1_reg_reg[13]/D
+                                                                                                            Slow         0.665      7.335
+
+
+Slack (MET) :             7.335ns  (requirement - actual skew)
+  Endpoint Source:        ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/tx_fifo/fifo_inst/rd_ptr_gray_reg_reg[7]/C
+                            (rising edge-triggered cell FDRE clocked by sclk125)
+  Endpoint Destination:   ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/tx_fifo/fifo_inst/rd_ptr_gray_sync1_reg_reg[7]/D
+                            (rising edge-triggered cell FDRE clocked by sclk125)
+  Reference Source:       ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/tx_fifo/fifo_inst/rd_ptr_gray_reg_reg[13]/C
+                            (rising edge-triggered cell FDRE clocked by sclk125)
+  Reference Destination:  ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/tx_fifo/fifo_inst/rd_ptr_gray_sync1_reg_reg[13]/D
+                            (rising edge-triggered cell FDRE clocked by sclk125)
+  Path Type:              Bus Skew (Max at Slow Process Corner)
+  Requirement:            8.000ns
+  Endpoint Relative Delay:    1.358ns
+  Reference Relative Delay:   0.518ns
+  Relative CRPR:              0.174ns
+  Actual Bus Skew:            0.665ns  (Endpoint Relative Delay - Reference Relative Delay - Relative CRPR)
+
+Endpoint path:
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock sclk125 rise edge)    0.000     0.000 r  
+    AA4                                               0.000     0.000 r  sysclk_p (IN)
+                         net (fo=0)                   0.000     0.000    SYS_TIMING_EPNT/sysclk_p
+    AA4                  IBUFDS (Prop_ibufds_I_O)     0.907     0.907 r  SYS_TIMING_EPNT/sysclk_ibufds_inst/O
+                         net (fo=1, routed)           1.065     1.972    SYS_TIMING_EPNT/sysclk_ibuf
+    MMCME2_ADV_X1Y1      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT3)
+                                                     -6.553    -4.581 r  SYS_TIMING_EPNT/mmcm0_inst/CLKOUT3
+                         net (fo=1, routed)           1.797    -2.784    SYS_TIMING_EPNT/mmcm0_clkout3
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.081    -2.703 r  SYS_TIMING_EPNT/mmcm0_clk3_inst/O
+                         net (fo=2298, routed)        0.118    -2.585    ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/eth_mac_1g_gmii_inst/gmii_phy_if_inst/sys_clk125
+    BUFGCTRL_X0Y1        BUFGCTRL (Prop_bufgctrl_I0_O)
+                                                      0.081    -2.504 r  ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/eth_mac_1g_gmii_inst/gmii_phy_if_inst/gmii_bufgmux_inst/O
+                         net (fo=163, routed)         1.380    -1.124    ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/tx_fifo/fifo_inst/tx_clk
+    SLICE_X53Y173        FDRE                                         r  ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/tx_fifo/fifo_inst/rd_ptr_gray_reg_reg[7]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X53Y173        FDRE (Prop_fdre_C_Q)         0.379    -0.745 r  ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/tx_fifo/fifo_inst/rd_ptr_gray_reg_reg[7]/Q
+                         net (fo=2, routed)           0.642    -0.103    ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/tx_fifo/fifo_inst/rd_ptr_gray_reg__0[7]
+    SLICE_X48Y173        FDRE                                         r  ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/tx_fifo/fifo_inst/rd_ptr_gray_sync1_reg_reg[7]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sclk125 rise edge)    0.000     0.000 r  
+    AA4                                               0.000     0.000 r  sysclk_p (IN)
+                         net (fo=0)                   0.000     0.000    SYS_TIMING_EPNT/sysclk_p
+    AA4                  IBUFDS (Prop_ibufds_I_O)     0.867     0.867 r  SYS_TIMING_EPNT/sysclk_ibufds_inst/O
+                         net (fo=1, routed)           1.004     1.870    SYS_TIMING_EPNT/sysclk_ibuf
+    MMCME2_ADV_X1Y1      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT3)
+                                                     -6.667    -4.797 r  SYS_TIMING_EPNT/mmcm0_inst/CLKOUT3
+                         net (fo=1, routed)           1.712    -3.085    SYS_TIMING_EPNT/mmcm0_clkout3
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.077    -3.008 r  SYS_TIMING_EPNT/mmcm0_clk3_inst/O
+                         net (fo=2298, routed)        1.274    -1.734    ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/tx_fifo/fifo_inst/sys_clk125
+    SLICE_X48Y173        FDRE                                         r  ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/tx_fifo/fifo_inst/rd_ptr_gray_sync1_reg_reg[7]/C
+                         clock pessimism              0.305    -1.429    
+    SLICE_X48Y173        FDRE (Setup_fdre_C_D)       -0.031    -1.460    ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/tx_fifo/fifo_inst/rd_ptr_gray_sync1_reg_reg[7]
+  -------------------------------------------------------------------
+                         data arrival                          -0.103    
+                         clock arrival                         -1.460    
+  -------------------------------------------------------------------
+                         relative delay                         1.358    
+
+Reference path:
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock sclk125 rise edge)    0.000     0.000 r  
+    AA4                                               0.000     0.000 r  sysclk_p (IN)
+                         net (fo=0)                   0.000     0.000    SYS_TIMING_EPNT/sysclk_p
+    AA4                  IBUFDS (Prop_ibufds_I_O)     0.867     0.867 r  SYS_TIMING_EPNT/sysclk_ibufds_inst/O
+                         net (fo=1, routed)           1.004     1.870    SYS_TIMING_EPNT/sysclk_ibuf
+    MMCME2_ADV_X1Y1      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT3)
+                                                     -6.667    -4.797 r  SYS_TIMING_EPNT/mmcm0_inst/CLKOUT3
+                         net (fo=1, routed)           1.712    -3.085    SYS_TIMING_EPNT/mmcm0_clkout3
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.077    -3.008 r  SYS_TIMING_EPNT/mmcm0_clk3_inst/O
+                         net (fo=2298, routed)        0.112    -2.896    ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/eth_mac_1g_gmii_inst/gmii_phy_if_inst/sys_clk125
+    BUFGCTRL_X0Y1        BUFGCTRL (Prop_bufgctrl_I0_O)
+                                                      0.077    -2.819 r  ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/eth_mac_1g_gmii_inst/gmii_phy_if_inst/gmii_bufgmux_inst/O
+                         net (fo=163, routed)         1.273    -1.546    ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/tx_fifo/fifo_inst/tx_clk
+    SLICE_X50Y174        FDRE                                         r  ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/tx_fifo/fifo_inst/rd_ptr_gray_reg_reg[13]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X50Y174        FDRE (Prop_fdre_C_Q)         0.304    -1.242 r  ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/tx_fifo/fifo_inst/rd_ptr_gray_reg_reg[13]/Q
+                         net (fo=2, routed)           0.318    -0.923    ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/tx_fifo/fifo_inst/rd_ptr_gray_reg__0[13]
+    SLICE_X48Y174        FDRE                                         r  ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/tx_fifo/fifo_inst/rd_ptr_gray_sync1_reg_reg[13]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sclk125 rise edge)    0.000     0.000 r  
+    AA4                                               0.000     0.000 r  sysclk_p (IN)
+                         net (fo=0)                   0.000     0.000    SYS_TIMING_EPNT/sysclk_p
+    AA4                  IBUFDS (Prop_ibufds_I_O)     0.907     0.907 r  SYS_TIMING_EPNT/sysclk_ibufds_inst/O
+                         net (fo=1, routed)           1.065     1.972    SYS_TIMING_EPNT/sysclk_ibuf
+    MMCME2_ADV_X1Y1      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT3)
+                                                     -6.553    -4.581 r  SYS_TIMING_EPNT/mmcm0_inst/CLKOUT3
+                         net (fo=1, routed)           1.797    -2.784    SYS_TIMING_EPNT/mmcm0_clkout3
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.081    -2.703 r  SYS_TIMING_EPNT/mmcm0_clk3_inst/O
+                         net (fo=2298, routed)        1.379    -1.324    ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/tx_fifo/fifo_inst/sys_clk125
+    SLICE_X48Y174        FDRE                                         r  ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/tx_fifo/fifo_inst/rd_ptr_gray_sync1_reg_reg[13]/C
+                         clock pessimism             -0.305    -1.629    
+    SLICE_X48Y174        FDRE (Hold_fdre_C_D)         0.187    -1.442    ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/tx_fifo/fifo_inst/rd_ptr_gray_sync1_reg_reg[13]
+  -------------------------------------------------------------------
+                         data arrival                          -0.923    
+                         clock arrival                         -1.442    
+  -------------------------------------------------------------------
+                         relative delay                         0.518    
+
+
+
+Id: 4
+set_bus_skew -from [get_cells -quiet {{ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/tx_fifo/fifo_inst/wr_ptr_reg_reg[*]} {ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/tx_fifo/fifo_inst/wr_ptr_gray_reg_reg[*]} {ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/tx_fifo/fifo_inst/wr_ptr_sync_gray_reg_reg[*]}}] -to [get_cells {ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/tx_fifo/fifo_inst/wr_ptr_gray_sync1_reg_reg[*]}] 8.000
+Requirement: 8.000ns
+Endpoints: 14
+
+From Clock            To Clock              Endpoint Pin                    Reference Pin                   Corner  Actual(ns)  Slack(ns)
+--------------------  --------------------  ------------------------------  ------------------------------  ------  ----------  ---------
+sclk125               sclk125               ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/tx_fifo/fifo_inst/wr_ptr_gray_sync1_reg_reg[4]/D
+                                                                            ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/tx_fifo/fifo_inst/wr_ptr_gray_sync1_reg_reg[2]/D
+                                                                                                            Slow         0.795      7.205
+
+
+Slack (MET) :             7.205ns  (requirement - actual skew)
+  Endpoint Source:        ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/tx_fifo/fifo_inst/wr_ptr_sync_gray_reg_reg[4]/C
+                            (rising edge-triggered cell FDRE clocked by sclk125)
+  Endpoint Destination:   ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/tx_fifo/fifo_inst/wr_ptr_gray_sync1_reg_reg[4]/D
+                            (rising edge-triggered cell FDRE clocked by sclk125)
+  Reference Source:       ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/tx_fifo/fifo_inst/wr_ptr_sync_gray_reg_reg[2]/C
+                            (rising edge-triggered cell FDRE clocked by sclk125)
+  Reference Destination:  ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/tx_fifo/fifo_inst/wr_ptr_gray_sync1_reg_reg[2]/D
+                            (rising edge-triggered cell FDRE clocked by sclk125)
+  Path Type:              Bus Skew (Max at Slow Process Corner)
+  Requirement:            8.000ns
+  Endpoint Relative Delay:    1.062ns
+  Reference Relative Delay:   0.124ns
+  Relative CRPR:              0.142ns
+  Actual Bus Skew:            0.795ns  (Endpoint Relative Delay - Reference Relative Delay - Relative CRPR)
+
+Endpoint path:
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock sclk125 rise edge)    0.000     0.000 r  
+    AA4                                               0.000     0.000 r  sysclk_p (IN)
+                         net (fo=0)                   0.000     0.000    SYS_TIMING_EPNT/sysclk_p
+    AA4                  IBUFDS (Prop_ibufds_I_O)     0.907     0.907 r  SYS_TIMING_EPNT/sysclk_ibufds_inst/O
+                         net (fo=1, routed)           1.065     1.972    SYS_TIMING_EPNT/sysclk_ibuf
+    MMCME2_ADV_X1Y1      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT3)
+                                                     -6.553    -4.581 r  SYS_TIMING_EPNT/mmcm0_inst/CLKOUT3
+                         net (fo=1, routed)           1.797    -2.784    SYS_TIMING_EPNT/mmcm0_clkout3
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.081    -2.703 r  SYS_TIMING_EPNT/mmcm0_clk3_inst/O
+                         net (fo=2298, routed)        1.379    -1.324    ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/tx_fifo/fifo_inst/sys_clk125
+    SLICE_X48Y175        FDRE                                         r  ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/tx_fifo/fifo_inst/wr_ptr_sync_gray_reg_reg[4]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X48Y175        FDRE (Prop_fdre_C_Q)         0.433    -0.891 r  ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/tx_fifo/fifo_inst/wr_ptr_sync_gray_reg_reg[4]/Q
+                         net (fo=1, routed)           0.675    -0.216    ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/tx_fifo/fifo_inst/wr_ptr_sync_gray_reg[4]
+    SLICE_X48Y176        FDRE                                         r  ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/tx_fifo/fifo_inst/wr_ptr_gray_sync1_reg_reg[4]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sclk125 rise edge)    0.000     0.000 r  
+    AA4                                               0.000     0.000 r  sysclk_p (IN)
+                         net (fo=0)                   0.000     0.000    SYS_TIMING_EPNT/sysclk_p
+    AA4                  IBUFDS (Prop_ibufds_I_O)     0.867     0.867 r  SYS_TIMING_EPNT/sysclk_ibufds_inst/O
+                         net (fo=1, routed)           1.004     1.870    SYS_TIMING_EPNT/sysclk_ibuf
+    MMCME2_ADV_X1Y1      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT3)
+                                                     -6.667    -4.797 r  SYS_TIMING_EPNT/mmcm0_inst/CLKOUT3
+                         net (fo=1, routed)           1.712    -3.085    SYS_TIMING_EPNT/mmcm0_clkout3
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.077    -3.008 r  SYS_TIMING_EPNT/mmcm0_clk3_inst/O
+                         net (fo=2298, routed)        0.112    -2.896    ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/eth_mac_1g_gmii_inst/gmii_phy_if_inst/sys_clk125
+    BUFGCTRL_X0Y1        BUFGCTRL (Prop_bufgctrl_I0_O)
+                                                      0.077    -2.819 r  ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/eth_mac_1g_gmii_inst/gmii_phy_if_inst/gmii_bufgmux_inst/O
+                         net (fo=163, routed)         1.274    -1.545    ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/tx_fifo/fifo_inst/tx_clk
+    SLICE_X48Y176        FDRE                                         r  ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/tx_fifo/fifo_inst/wr_ptr_gray_sync1_reg_reg[4]/C
+                         clock pessimism              0.305    -1.240    
+    SLICE_X48Y176        FDRE (Setup_fdre_C_D)       -0.038    -1.278    ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/tx_fifo/fifo_inst/wr_ptr_gray_sync1_reg_reg[4]
+  -------------------------------------------------------------------
+                         data arrival                          -0.216    
+                         clock arrival                         -1.278    
+  -------------------------------------------------------------------
+                         relative delay                         1.062    
+
+Reference path:
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock sclk125 rise edge)    0.000     0.000 r  
+    AA4                                               0.000     0.000 r  sysclk_p (IN)
+                         net (fo=0)                   0.000     0.000    SYS_TIMING_EPNT/sysclk_p
+    AA4                  IBUFDS (Prop_ibufds_I_O)     0.867     0.867 r  SYS_TIMING_EPNT/sysclk_ibufds_inst/O
+                         net (fo=1, routed)           1.004     1.870    SYS_TIMING_EPNT/sysclk_ibuf
+    MMCME2_ADV_X1Y1      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT3)
+                                                     -6.667    -4.797 r  SYS_TIMING_EPNT/mmcm0_inst/CLKOUT3
+                         net (fo=1, routed)           1.712    -3.085    SYS_TIMING_EPNT/mmcm0_clkout3
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.077    -3.008 r  SYS_TIMING_EPNT/mmcm0_clk3_inst/O
+                         net (fo=2298, routed)        1.273    -1.735    ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/tx_fifo/fifo_inst/sys_clk125
+    SLICE_X53Y175        FDRE                                         r  ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/tx_fifo/fifo_inst/wr_ptr_sync_gray_reg_reg[2]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X53Y175        FDRE (Prop_fdre_C_Q)         0.304    -1.431 r  ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/tx_fifo/fifo_inst/wr_ptr_sync_gray_reg_reg[2]/Q
+                         net (fo=1, routed)           0.329    -1.102    ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/tx_fifo/fifo_inst/wr_ptr_sync_gray_reg[2]
+    SLICE_X52Y175        FDRE                                         r  ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/tx_fifo/fifo_inst/wr_ptr_gray_sync1_reg_reg[2]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sclk125 rise edge)    0.000     0.000 r  
+    AA4                                               0.000     0.000 r  sysclk_p (IN)
+                         net (fo=0)                   0.000     0.000    SYS_TIMING_EPNT/sysclk_p
+    AA4                  IBUFDS (Prop_ibufds_I_O)     0.907     0.907 r  SYS_TIMING_EPNT/sysclk_ibufds_inst/O
+                         net (fo=1, routed)           1.065     1.972    SYS_TIMING_EPNT/sysclk_ibuf
+    MMCME2_ADV_X1Y1      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT3)
+                                                     -6.553    -4.581 r  SYS_TIMING_EPNT/mmcm0_inst/CLKOUT3
+                         net (fo=1, routed)           1.797    -2.784    SYS_TIMING_EPNT/mmcm0_clkout3
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.081    -2.703 r  SYS_TIMING_EPNT/mmcm0_clk3_inst/O
+                         net (fo=2298, routed)        0.118    -2.585    ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/eth_mac_1g_gmii_inst/gmii_phy_if_inst/sys_clk125
+    BUFGCTRL_X0Y1        BUFGCTRL (Prop_bufgctrl_I0_O)
+                                                      0.081    -2.504 r  ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/eth_mac_1g_gmii_inst/gmii_phy_if_inst/gmii_bufgmux_inst/O
+                         net (fo=163, routed)         1.379    -1.125    ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/tx_fifo/fifo_inst/tx_clk
+    SLICE_X52Y175        FDRE                                         r  ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/tx_fifo/fifo_inst/wr_ptr_gray_sync1_reg_reg[2]/C
+                         clock pessimism             -0.305    -1.430    
+    SLICE_X52Y175        FDRE (Hold_fdre_C_D)         0.204    -1.226    ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/tx_fifo/fifo_inst/wr_ptr_gray_sync1_reg_reg[2]
+  -------------------------------------------------------------------
+                         data arrival                          -1.102    
+                         clock arrival                         -1.226    
+  -------------------------------------------------------------------
+                         relative delay                         0.124    
+
+
+

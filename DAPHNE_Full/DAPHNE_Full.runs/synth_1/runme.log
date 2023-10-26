@@ -12,7 +12,7 @@
     ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 
 source daphne1_arch.tcl -notrace
-create_project: Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1457.691 ; gain = 157.441
+create_project: Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1458.820 ; gain = 158.016
 Command: read_checkpoint -auto_incremental -incremental C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/DAPHNE_Full/DAPHNE_Full.srcs/utils_1/imports/synth_1/daphne1_arch.dcp
 INFO: [Vivado 12-5825] Read reference checkpoint from C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/DAPHNE_Full/DAPHNE_Full.srcs/utils_1/imports/synth_1/daphne1_arch.dcp for incremental synthesis
 INFO: [Vivado 12-7989] Please ensure there are no constraint changes
@@ -25,7 +25,7 @@ INFO: [Designutils 20-5440] No compile time benefit to using incremental synthes
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 20724
+INFO: [Synth 8-7075] Helper process launched with PID 12192
 WARNING: [Synth 8-11065] parameter 'BYTE_LANES' becomes localparam in 'arp_eth_rx' with formal parameter declaration list [C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/arp_eth_rx.v:89]
 WARNING: [Synth 8-11065] parameter 'HDR_SIZE' becomes localparam in 'arp_eth_rx' with formal parameter declaration list [C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/arp_eth_rx.v:91]
 WARNING: [Synth 8-11065] parameter 'CYCLE_COUNT' becomes localparam in 'arp_eth_rx' with formal parameter declaration list [C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/arp_eth_rx.v:93]
@@ -88,7 +88,7 @@ WARNING: [Synth 8-11065] parameter 'LEVELS' becomes localparam in 'priority_enco
 WARNING: [Synth 8-11065] parameter 'W' becomes localparam in 'priority_encoder' with formal parameter declaration list [C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/priority_encoder.v:48]
 WARNING: [Synth 8-11065] parameter 'HEADER_FIFO_ADDR_WIDTH' becomes localparam in 'udp_checksum_gen' with formal parameter declaration list [C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/Nexys_AFE_Link/udp_checksum_gen.v:143]
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2341.887 ; gain = 411.531
+Starting RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 2340.301 ; gain = 410.109
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-638] synthesizing module 'daphne1_arch' [C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/DAPHNE_Full/DAPHNE_Full.srcs/sources_1/new/daphne1.vhd:93]
 INFO: [Synth 8-3491] module 'endpoint' declared at 'C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/DAPHNE_Full/DAPHNE_Full.srcs/sources_1/new/endpoint.vhd:35' bound to instance 'SYS_TIMING_EPNT' of component 'endpoint' [C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/DAPHNE_Full/DAPHNE_Full.srcs/sources_1/new/daphne1.vhd:247]
@@ -1043,8 +1043,6 @@ INFO: [Synth 8-6157] synthesizing module 'ssio_sdr_in' [C:/Users/daniel.avila/Do
 	Parameter TARGET bound to: XILINX - type: string 
 	Parameter CLOCK_INPUT_STYLE bound to: BUFR - type: string 
 	Parameter WIDTH bound to: 10 - type: integer 
-INFO: [Synth 8-6157] synthesizing module 'BUFIO' [C:/Xilinx/Vivado/2023.1/scripts/rt/data/unisim_comp.v:1791]
-INFO: [Synth 8-6155] done synthesizing module 'BUFIO' (0#1) [C:/Xilinx/Vivado/2023.1/scripts/rt/data/unisim_comp.v:1791]
 INFO: [Synth 8-6157] synthesizing module 'BUFR' [C:/Xilinx/Vivado/2023.1/scripts/rt/data/unisim_comp.v:1857]
 	Parameter BUFR_DIVIDE bound to: BYPASS - type: string 
 INFO: [Synth 8-6155] done synthesizing module 'BUFR' (0#1) [C:/Xilinx/Vivado/2023.1/scripts/rt/data/unisim_comp.v:1857]
@@ -1453,8 +1451,6 @@ WARNING: [Synth 8-3848] Net cfg_ifg_aux in module/entity eth_module_full does no
 WARNING: [Synth 8-3848] Net daq0_sfp_tx_dis in module/entity daphne1_arch does not have driver. [C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/DAPHNE_Full/DAPHNE_Full.srcs/sources_1/new/daphne1.vhd:57]
 WARNING: [Synth 8-3848] Net daq0_sfp_scl in module/entity daphne1_arch does not have driver. [C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/DAPHNE_Full/DAPHNE_Full.srcs/sources_1/new/daphne1.vhd:58]
 WARNING: [Synth 8-3848] Net daq0_sfp_sda in module/entity daphne1_arch does not have driver. [C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/DAPHNE_Full/DAPHNE_Full.srcs/sources_1/new/daphne1.vhd:58]
-WARNING: [Synth 8-3848] Net daq1_tx_p in module/entity daphne1_arch does not have driver. [C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/DAPHNE_Full/DAPHNE_Full.srcs/sources_1/new/daphne1.vhd:60]
-WARNING: [Synth 8-3848] Net daq1_tx_n in module/entity daphne1_arch does not have driver. [C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/DAPHNE_Full/DAPHNE_Full.srcs/sources_1/new/daphne1.vhd:60]
 WARNING: [Synth 8-3848] Net daq1_sfp_tx_dis in module/entity daphne1_arch does not have driver. [C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/DAPHNE_Full/DAPHNE_Full.srcs/sources_1/new/daphne1.vhd:63]
 WARNING: [Synth 8-3848] Net daq1_sfp_scl in module/entity daphne1_arch does not have driver. [C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/DAPHNE_Full/DAPHNE_Full.srcs/sources_1/new/daphne1.vhd:64]
 WARNING: [Synth 8-3848] Net daq1_sfp_sda in module/entity daphne1_arch does not have driver. [C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/DAPHNE_Full/DAPHNE_Full.srcs/sources_1/new/daphne1.vhd:64]
@@ -1563,18 +1559,18 @@ WARNING: [Synth 8-7129] Port s_eth_payload_axis_tid[1] in module eth_arb_mux is 
 WARNING: [Synth 8-7129] Port s_eth_payload_axis_tid[0] in module eth_arb_mux is either unconnected or has no load
 INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 2808.520 ; gain = 878.164
+Finished RTL Elaboration : Time (s): cpu = 00:00:29 ; elapsed = 00:00:31 . Memory (MB): peak = 2806.848 ; gain = 876.656
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:31 ; elapsed = 00:00:32 . Memory (MB): peak = 2808.520 ; gain = 878.164
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 2806.848 ; gain = 876.656
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:31 ; elapsed = 00:00:32 . Memory (MB): peak = 2808.520 ; gain = 878.164
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 2806.848 ; gain = 876.656
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.297 . Memory (MB): peak = 2808.520 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.318 . Memory (MB): peak = 2806.848 ; gain = 0.000
 INFO: [Netlist 29-17] Analyzing 226 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
@@ -1599,7 +1595,7 @@ INFO: [Project 1-236] Implementation specific constraints were found while readi
 Resolution: To avoid this warning, move constraints listed in [.Xil/daphne1_arch_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 2816.277 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 2806.848 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 209 instances were transformed.
   BUFGMUX => BUFGCTRL (inverted pins: CE0): 1 instance 
@@ -1610,18 +1606,18 @@ INFO: [Project 1-111] Unisim Transformation Summary:
   PLLE2_BASE => PLLE2_ADV: 1 instance 
   SRL16 => SRL16E: 2 instances
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.073 . Memory (MB): peak = 2816.277 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.073 . Memory (MB): peak = 2806.848 ; gain = 0.000
 INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:43 ; elapsed = 00:00:44 . Memory (MB): peak = 2816.277 ; gain = 885.922
+Finished Constraint Validation : Time (s): cpu = 00:00:42 ; elapsed = 00:00:43 . Memory (MB): peak = 2806.848 ; gain = 876.656
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a200tfbg676-2
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:43 ; elapsed = 00:00:44 . Memory (MB): peak = 2816.277 ; gain = 885.922
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:42 ; elapsed = 00:00:43 . Memory (MB): peak = 2806.848 ; gain = 876.656
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
@@ -1735,7 +1731,7 @@ Applied set_property ASYNC_REG = true for ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_
 Applied set_property KEEP_HIERARCHY = SOFT for ETH0/ETH_PHY_COM/U0. (constraint file  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/DAPHNE_Full/DAPHNE_Full.runs/synth_1/dont_touch.xdc, line 10).
 Applied set_property KEEP_HIERARCHY = SOFT for ETH0/ETH_PHY_COM. (constraint file  auto generated constraint).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:43 ; elapsed = 00:00:44 . Memory (MB): peak = 2816.277 ; gain = 885.922
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:42 ; elapsed = 00:00:44 . Memory (MB): peak = 2806.848 ; gain = 876.656
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-802] inferred FSM for state register 'State_reg' in module 'bitFSM_Module'
 INFO: [Synth 8-802] inferred FSM for state register 'State_reg' in module 'frameFSM_Module'
@@ -2010,7 +2006,7 @@ STATE_WRITE_PAYLOAD_LAST |                               11 |                   
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'state_reg_reg' using encoding 'sequential' in module 'udp_ip_tx'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:49 ; elapsed = 00:00:50 . Memory (MB): peak = 2816.277 ; gain = 885.922
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:48 ; elapsed = 00:00:50 . Memory (MB): peak = 2806.848 ; gain = 876.656
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -2333,7 +2329,7 @@ INFO: [Synth 8-3332] Sequential element (pcs_pma_block_i/sync_block_rx_reset_don
 INFO: [Synth 8-3332] Sequential element (pcs_pma_block_i/sync_block_rx_reset_done/data_sync_reg5) is unused and will be removed from module gig_ethernet_pcs_pma_0_support.
 INFO: [Synth 8-3332] Sequential element (pcs_pma_block_i/sync_block_rx_reset_done/data_sync_reg6) is unused and will be removed from module gig_ethernet_pcs_pma_0_support.
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:09 ; elapsed = 00:01:11 . Memory (MB): peak = 2816.277 ; gain = 885.922
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:10 ; elapsed = 00:01:11 . Memory (MB): peak = 2806.848 ; gain = 876.656
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -2407,22 +2403,22 @@ Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-3321] set_false_path : Empty to list for constraint at line 53 of c:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/DAPHNE_Full/DAPHNE_Full.gen/sources_1/ip/gig_ethernet_pcs_pma_0/synth/gig_ethernet_pcs_pma_0.xdc. [c:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/DAPHNE_Full/DAPHNE_Full.gen/sources_1/ip/gig_ethernet_pcs_pma_0/synth/gig_ethernet_pcs_pma_0.xdc:53]
 WARNING: [Synth 8-3321] set_false_path : Empty to list for constraint at line 54 of c:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/DAPHNE_Full/DAPHNE_Full.gen/sources_1/ip/gig_ethernet_pcs_pma_0/synth/gig_ethernet_pcs_pma_0.xdc. [c:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/DAPHNE_Full/DAPHNE_Full.gen/sources_1/ip/gig_ethernet_pcs_pma_0/synth/gig_ethernet_pcs_pma_0.xdc:54]
-WARNING: [Synth 8-3321] set_false_path : Empty through list for constraint at line 136 of C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/xilinx/constraints.xdc. [C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/xilinx/constraints.xdc:136]
-WARNING: [Synth 8-3321] set_false_path : Empty through list for constraint at line 137 of C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/xilinx/constraints.xdc. [C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/xilinx/constraints.xdc:137]
 WARNING: [Synth 8-3321] set_false_path : Empty through list for constraint at line 138 of C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/xilinx/constraints.xdc. [C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/xilinx/constraints.xdc:138]
 WARNING: [Synth 8-3321] set_false_path : Empty through list for constraint at line 139 of C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/xilinx/constraints.xdc. [C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/xilinx/constraints.xdc:139]
+WARNING: [Synth 8-3321] set_false_path : Empty through list for constraint at line 140 of C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/xilinx/constraints.xdc. [C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/xilinx/constraints.xdc:140]
 WARNING: [Synth 8-3321] set_false_path : Empty through list for constraint at line 141 of C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/xilinx/constraints.xdc. [C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/xilinx/constraints.xdc:141]
-WARNING: [Synth 8-3321] set_false_path : Empty through list for constraint at line 142 of C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/xilinx/constraints.xdc. [C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/xilinx/constraints.xdc:142]
 WARNING: [Synth 8-3321] set_false_path : Empty through list for constraint at line 143 of C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/xilinx/constraints.xdc. [C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/xilinx/constraints.xdc:143]
 WARNING: [Synth 8-3321] set_false_path : Empty through list for constraint at line 144 of C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/xilinx/constraints.xdc. [C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/xilinx/constraints.xdc:144]
+WARNING: [Synth 8-3321] set_false_path : Empty through list for constraint at line 145 of C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/xilinx/constraints.xdc. [C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/xilinx/constraints.xdc:145]
+WARNING: [Synth 8-3321] set_false_path : Empty through list for constraint at line 146 of C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/xilinx/constraints.xdc. [C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/xilinx/constraints.xdc:146]
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:20 ; elapsed = 00:01:21 . Memory (MB): peak = 2816.277 ; gain = 885.922
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:20 ; elapsed = 00:01:21 . Memory (MB): peak = 2806.848 ; gain = 876.656
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:01:23 ; elapsed = 00:01:24 . Memory (MB): peak = 2816.277 ; gain = 885.922
+Finished Timing Optimization : Time (s): cpu = 00:01:23 ; elapsed = 00:01:25 . Memory (MB): peak = 2806.848 ; gain = 876.656
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -2464,7 +2460,7 @@ Start Technology Mapping
 INFO: [Synth 8-7052] The timing for the instance ETH0/ETH_FR_GEN/udp_complete_inst/ip_complete_inst/arp_inst/arp_cache_inst/ip_addr_mem_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
 INFO: [Synth 8-7052] The timing for the instance ETH0/ETH_FR_GEN/udp_complete_inst/ip_complete_inst/arp_inst/arp_cache_inst/mac_addr_mem_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:01:26 ; elapsed = 00:01:27 . Memory (MB): peak = 2816.277 ; gain = 885.922
+Finished Technology Mapping : Time (s): cpu = 00:01:26 ; elapsed = 00:01:28 . Memory (MB): peak = 2806.848 ; gain = 876.656
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -2482,37 +2478,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:01:31 ; elapsed = 00:01:32 . Memory (MB): peak = 2816.277 ; gain = 885.922
+Finished IO Insertion : Time (s): cpu = 00:01:31 ; elapsed = 00:01:32 . Memory (MB): peak = 2806.848 ; gain = 876.656
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:01:31 ; elapsed = 00:01:32 . Memory (MB): peak = 2816.277 ; gain = 885.922
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:31 ; elapsed = 00:01:32 . Memory (MB): peak = 2806.848 ; gain = 876.656
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:32 ; elapsed = 00:01:33 . Memory (MB): peak = 2816.277 ; gain = 885.922
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:32 ; elapsed = 00:01:34 . Memory (MB): peak = 2806.848 ; gain = 876.656
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:01:32 ; elapsed = 00:01:33 . Memory (MB): peak = 2816.277 ; gain = 885.922
+Finished Renaming Generated Ports : Time (s): cpu = 00:01:32 ; elapsed = 00:01:34 . Memory (MB): peak = 2806.848 ; gain = 876.656
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:01:32 ; elapsed = 00:01:33 . Memory (MB): peak = 2816.277 ; gain = 885.922
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:32 ; elapsed = 00:01:34 . Memory (MB): peak = 2806.848 ; gain = 876.656
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:01:32 ; elapsed = 00:01:33 . Memory (MB): peak = 2816.277 ; gain = 885.922
+Finished Renaming Generated Nets : Time (s): cpu = 00:01:32 ; elapsed = 00:01:34 . Memory (MB): peak = 2806.848 ; gain = 876.656
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -2575,58 +2571,57 @@ Report Cell Usage:
 |1     |BUFG          |    11|
 |2     |BUFGMUX       |     1|
 |3     |BUFGMUX_CTRL  |     4|
-|4     |BUFIO         |     1|
-|5     |BUFR          |     1|
-|6     |CARRY4        |   279|
-|7     |DSP48E1       |    17|
-|16    |FIFO36E1      |     1|
-|17    |GTPE2_CHANNEL |     1|
-|18    |GTPE2_COMMON  |     1|
-|19    |IBUFDS_GTE2   |     1|
-|20    |ISERDESE2     |     4|
-|22    |LUT1          |   210|
-|23    |LUT2          |   433|
-|24    |LUT3          |   499|
-|25    |LUT4          |   357|
-|26    |LUT5          |   477|
-|27    |LUT6          |   762|
-|28    |MMCME2_ADV    |     2|
-|29    |MUXF7         |     6|
-|30    |ODDR          |     2|
-|32    |PLLE2_BASE    |     1|
-|33    |RAM128X1D     |     4|
-|34    |RAM32M        |    12|
-|35    |RAMB18E1      |     5|
-|39    |RAMB36E1      |     8|
-|43    |SRL16E        |    37|
-|44    |SRLC32E       |    35|
-|45    |FD            |    96|
-|46    |FDCE          |    46|
-|47    |FDP           |    48|
-|48    |FDPE          |    20|
-|49    |FDRE          |  3397|
-|50    |FDSE          |   216|
-|51    |IBUF          |     3|
-|52    |IBUFDS        |     4|
-|53    |IBUFGDS       |     1|
-|54    |OBUF          |     1|
-|55    |OBUFDS        |     1|
-|56    |OBUFT         |    16|
+|4     |BUFR          |     1|
+|5     |CARRY4        |   279|
+|6     |DSP48E1       |    17|
+|15    |FIFO36E1      |     1|
+|16    |GTPE2_CHANNEL |     1|
+|17    |GTPE2_COMMON  |     1|
+|18    |IBUFDS_GTE2   |     1|
+|19    |ISERDESE2     |     4|
+|21    |LUT1          |   210|
+|22    |LUT2          |   433|
+|23    |LUT3          |   499|
+|24    |LUT4          |   357|
+|25    |LUT5          |   477|
+|26    |LUT6          |   762|
+|27    |MMCME2_ADV    |     2|
+|28    |MUXF7         |     6|
+|29    |ODDR          |     2|
+|31    |PLLE2_BASE    |     1|
+|32    |RAM128X1D     |     4|
+|33    |RAM32M        |    12|
+|34    |RAMB18E1      |     5|
+|38    |RAMB36E1      |     8|
+|42    |SRL16E        |    37|
+|43    |SRLC32E       |    35|
+|44    |FD            |    96|
+|45    |FDCE          |    46|
+|46    |FDP           |    48|
+|47    |FDPE          |    20|
+|48    |FDRE          |  3397|
+|49    |FDSE          |   216|
+|50    |IBUF          |     3|
+|51    |IBUFDS        |     4|
+|52    |IBUFGDS       |     1|
+|53    |OBUF          |     1|
+|54    |OBUFDS        |     1|
+|55    |OBUFT         |    14|
 +------+--------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:01:32 ; elapsed = 00:01:33 . Memory (MB): peak = 2816.277 ; gain = 885.922
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:32 ; elapsed = 00:01:34 . Memory (MB): peak = 2806.848 ; gain = 876.656
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 547 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:55 ; elapsed = 00:01:28 . Memory (MB): peak = 2816.277 ; gain = 878.164
-Synthesis Optimization Complete : Time (s): cpu = 00:01:32 ; elapsed = 00:01:34 . Memory (MB): peak = 2816.277 ; gain = 885.922
+Synthesis finished with 0 errors, 0 critical warnings and 545 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:56 ; elapsed = 00:01:28 . Memory (MB): peak = 2806.848 ; gain = 876.656
+Synthesis Optimization Complete : Time (s): cpu = 00:01:32 ; elapsed = 00:01:34 . Memory (MB): peak = 2806.848 ; gain = 876.656
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.146 . Memory (MB): peak = 2816.277 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.157 . Memory (MB): peak = 2806.848 ; gain = 0.000
 INFO: [Netlist 29-17] Analyzing 497 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-141] Inserted 2 OBUFs to IO ports without IO buffers.
 INFO: [Opt 31-138] Pushed 1 inverter(s) to 4 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 2816.277 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 2809.703 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 167 instances were transformed.
   BUFGMUX => BUFGCTRL (inverted pins: CE0): 1 instance 
@@ -2638,11 +2633,11 @@ INFO: [Project 1-111] Unisim Transformation Summary:
   RAM128X1D => RAM128X1D (MUXF7(x2), RAMD64E(x4)): 4 instances
   RAM32M => RAM32M (RAMD32(x6), RAMS32(x2)): 12 instances
 
-Synth Design complete | Checksum: 688c5309
+Synth Design complete | Checksum: 70cad521
 INFO: [Common 17-83] Releasing license: Synthesis
-484 Infos, 357 Warnings, 0 Critical Warnings and 0 Errors encountered.
+482 Infos, 355 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:01:38 ; elapsed = 00:01:41 . Memory (MB): peak = 2816.277 ; gain = 1322.078
+synth_design: Time (s): cpu = 00:01:39 ; elapsed = 00:01:41 . Memory (MB): peak = 2809.703 ; gain = 1315.109
 INFO: [Common 17-1381] The checkpoint 'C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/DAPHNE_Full/DAPHNE_Full.runs/synth_1/daphne1_arch.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file daphne1_arch_utilization_synth.rpt -pb daphne1_arch_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Wed Oct 25 15:47:40 2023...
+INFO: [Common 17-206] Exiting Vivado at Thu Oct 26 16:36:38 2023...

@@ -123,13 +123,15 @@ create_generated_clock -name oei_clkfbout           [get_pins ETH0/ETH_PHY_COM/U
 # Setting Groups Of Clocks And Their Interactions
 set_clock_groups -name mux_groups       -logically_exclusive -group afe0_pll_dig0 -group afe0_pll_dig1 -group afe0_pll_dig2
 set_clock_groups -name mux_div_groups   -logically_exclusive -group afe0_pll_dig_div0 -group afe0_pll_dig_div1 -group afe0_pll_dig_div2
+set_clock_groups -name eth_phy_groups   -logically_exclusive -group sclk125 -group oeiclk
 # Asynchronous Clock Groups    
 set_clock_groups -name async_groups     -asynchronous -group {sys_clk sclk100 mmcm0_clkfbout} \
 -group {afe_dclk afe0_pll_clkfbout afe0_pll_dig0 afe0_pll_dig1 afe0_pll_dig2 afe0_pll_dig_div0 afe0_pll_dig_div1 afe0_pll_dig_div2} \
 -group {sclk125 sclk62_5} -group {sclk200} -group {daq_refclk} -group {oeiclk oeihclk oei_clkfbout}
 
 #set_property CLOCK_DEDICATED_ROUTE BACKBONE [get_nets SYS_TIMING_EPNT/sysclk_ibuf]
-#set_property LOC BUFGCTRL_X0Y5 [get_cells ETH0/ETH_PHY_COM/U0/core_clocking_i/bufg_userclk2]
+set_property LOC BUFGCTRL_X0Y2 [get_cells ETH0/ETH_PHY_COM/U0/core_clocking_i/bufg_userclk2]
+#set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets ETH0/ETH_PHY_COM/U0/core_clocking_i/userclk2] 
 
 ###########################################################################################################################################
 # Creating False Paths So Timing Analysis Is Ignored (Refer to https://docs.xilinx.com/r/en-US/ug903-vivado-using-constraints/False-Paths)
@@ -392,7 +394,11 @@ set_property IOSTANDARD LVTTL [get_ports {spi_*}]
 # Review this
 #set_property LOC GTPE2_CHANNEL_X0Y5 [get_cells core_inst/daq_quad_inst/U0/daphne2_daq_txonly_init_i/daphne2_daq_txonly_i/gt1_daphne2_daq_txonly_i/gtpe2_i] 
 # changed daq0 to daq1 and viceversa to fit schematic
-set_property LOC GTPE2_CHANNEL_X0Y4 [get_cells ETH0/ETH_PHY_COM/U0/pcs_pma_block_i/transceiver_inst/gtwizard_inst/U0/gtwizard_i/gt0_GTWIZARD_i/gtpe2_i] 
+#set_property LOC GTPE2_CHANNEL_X0Y4 [get_cells ETH0/ETH_PHY_COM/U0/pcs_pma_block_i/transceiver_inst/gtwizard_inst/U0/gtwizard_i/gt0_GTWIZARD_i/gtpe2_i] 
+
+set_property LOC B7 [get_ports {daq0_tx_p}]
+set_property LOC A7 [get_ports {daq0_tx_n}]
+#set_property IOSTANDARD LVDS_25 [get_ports {daq0_tx_*}]  
 
 set_property PACKAGE_PIN H6 [get_ports {daq0_sfp_los}]      
 set_property PACKAGE_PIN J6 [get_ports {daq0_sfp_abs}]      
@@ -404,6 +410,10 @@ set_property IOSTANDARD LVTTL [get_ports {daq0_sfp_*}]
 ### DAQ link 1, channel 1 Quad 213, X0Y4
 # Review this
 set_property LOC GTPE2_CHANNEL_X0Y4 [get_cells ETH0/ETH_PHY_COM/U0/pcs_pma_block_i/transceiver_inst/gtwizard_inst/U0/gtwizard_i/gt0_GTWIZARD_i/gtpe2_i] 
+
+#set_property PACKAGE_PIN D8 [get_ports {daq1_tx_p}]
+#set_property PACKAGE_PIN C8 [get_ports {daq1_tx_n}]
+#set_property IOSTANDARD LVDS_25 [get_ports {daq1_tx_*}] 
 
 set_property PACKAGE_PIN L8 [get_ports {daq1_sfp_los}]      
 set_property PACKAGE_PIN K7 [get_ports {daq1_sfp_abs}]       

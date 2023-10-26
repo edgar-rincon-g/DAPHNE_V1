@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.1 (win64) Build 3865809 Sun May  7 15:05:29 MDT 2023
-| Date         : Wed Oct 25 15:47:40 2023
+| Date         : Thu Oct 26 16:36:38 2023
 | Host         : danielA running 64-bit major release  (build 9200)
 | Command      : report_utilization -file daphne1_arch_utilization_synth.rpt -pb daphne1_arch_utilization_synth.pb
 | Design       : daphne1_arch
@@ -98,7 +98,7 @@ Warning! LUT value is adjusted to account for LUT combining.
 +-----------------------------+------+-------+------------+-----------+-------+
 |          Site Type          | Used | Fixed | Prohibited | Available | Util% |
 +-----------------------------+------+-------+------------+-----------+-------+
-| Bonded IOB                  |   30 |     0 |          0 |       400 |  7.50 |
+| Bonded IOB                  |   28 |     0 |          0 |       400 |  7.00 |
 | Bonded IPADs                |    2 |     0 |          0 |        26 |  7.69 |
 | Bonded OPADs                |    2 |     0 |          0 |        16 | 12.50 |
 | PHY_CONTROL                 |    0 |     0 |          0 |        10 |  0.00 |
@@ -122,18 +122,17 @@ Warning! LUT value is adjusted to account for LUT combining.
 5. Clocking
 -----------
 
-+--------------+------+-------+------------+-----------+-------+
-|   Site Type  | Used | Fixed | Prohibited | Available | Util% |
-+--------------+------+-------+------------+-----------+-------+
-| BUFGCTRL     |   16 |     0 |          0 |        32 | 50.00 |
-| BUFIO        |    1 |     0 |          0 |        40 |  2.50 |
-|   BUFIO only |    1 |     0 |            |           |       |
-| MMCME2_ADV   |    2 |     0 |          0 |        10 | 20.00 |
-| PLLE2_ADV    |    1 |     0 |          0 |        10 | 10.00 |
-| BUFMRCE      |    0 |     0 |          0 |        20 |  0.00 |
-| BUFHCE       |    0 |     0 |          0 |       120 |  0.00 |
-| BUFR         |    1 |     0 |          0 |        40 |  2.50 |
-+--------------+------+-------+------------+-----------+-------+
++------------+------+-------+------------+-----------+-------+
+|  Site Type | Used | Fixed | Prohibited | Available | Util% |
++------------+------+-------+------------+-----------+-------+
+| BUFGCTRL   |   16 |     0 |          0 |        32 | 50.00 |
+| BUFIO      |    0 |     0 |          0 |        40 |  0.00 |
+| MMCME2_ADV |    2 |     0 |          0 |        10 | 20.00 |
+| PLLE2_ADV  |    1 |     0 |          0 |        10 | 10.00 |
+| BUFMRCE    |    0 |     0 |          0 |        20 |  0.00 |
+| BUFHCE     |    0 |     0 |          0 |       120 |  0.00 |
+| BUFR       |    1 |     0 |          0 |        40 |  2.50 |
++------------+------+-------+------------+-----------+-------+
 
 
 6. Specific Feature
@@ -177,7 +176,7 @@ Warning! LUT value is adjusted to account for LUT combining.
 | RAMS32        |   24 |  Distributed Memory |
 | DSP48E1       |   17 |    Block Arithmetic |
 | RAMD64E       |   16 |  Distributed Memory |
-| OBUFT         |   16 |                  IO |
+| OBUFT         |   14 |                  IO |
 | MUXF7         |   14 |               MuxFx |
 | BUFG          |   11 |               Clock |
 | RAMB36E1      |    8 |        Block Memory |
@@ -196,7 +195,6 @@ Warning! LUT value is adjusted to account for LUT combining.
 | GTPE2_CHANNEL |    1 |                  IO |
 | FIFO36E1      |    1 |        Block Memory |
 | BUFR          |    1 |               Clock |
-| BUFIO         |    1 |               Clock |
 +---------------+------+---------------------+
 
 
