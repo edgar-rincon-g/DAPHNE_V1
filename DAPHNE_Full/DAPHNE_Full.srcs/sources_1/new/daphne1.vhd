@@ -171,6 +171,7 @@ component AcquisitionManager
         bistlip_on          : out std_logic;       
         dt_rdy              : out std_logic;
         clk_div             : out std_logic;
+        pll_lck_o           : out std_logic;
         data_output         : out std_logic_vector(13 downto 0) -- Was 5 downto 0, used to show only some outputs of the Iserdese
     );
 end component AcquisitionManager;
@@ -236,11 +237,13 @@ component eth_module_full
     );
 end component eth_module_full;
 
+signal fifo_a_full, fifo_empty, fifo_wr_err, fifo_rd_err, pll_afe_lck, trigger: std_logic;
+
 begin
 
     -- System Reset
 --------------------------------------------------------------------------------------------------------------------------------
-    async_rst <= reset_n;
+    async_rst <= NOT(reset_n);
     
     -- System Timing Endpoint Module
 --------------------------------------------------------------------------------------------------------------------------------
@@ -273,12 +276,12 @@ begin
             n_ch => 1
         )
         port map ( 
-            in_P_clk_dt_ports   => afe_dclk_p(0),
-            in_N_clk_dt_ports   => afe_dclk_n(0),
-            in_P_clk_fr_ports   => afe_fclk_p(0),
-            in_N_clk_fr_ports   => afe_fclk_n(0),
-            in_P_data_ports     => afe_p(0)(0),
-            in_N_data_ports     => afe_n(0)(0),
+            in_P_clk_dt_ports   => afe_dclk_p(1),
+            in_N_clk_dt_ports   => afe_dclk_n(1),
+            in_P_clk_fr_ports   => afe_fclk_p(1),
+            in_N_clk_fr_ports   => afe_fclk_n(1),
+            in_P_data_ports     => afe_p(1)(0),
+            in_N_data_ports     => afe_n(1)(0),
             sys_clk             => sys_clk100,
             glob_rst            => async_rst,
             alignment_mode      => '0',
@@ -290,6 +293,7 @@ begin
             bistlip_on          => open,     
             dt_rdy              => data_rdy,
             clk_div             => afe_se_clk,
+            pll_lck_o           => pll_afe_lck,--led(1),
             data_output         => afe_data
         );
         
@@ -309,15 +313,15 @@ begin
             filt_out            => open,
             xcorr_out           => open,
             xcorr_data_out      => open,
-            trigger             => open,--led(1),
+            trigger             => trigger,--led(2),
             fifo_rd_out         => open, -- Was initially open, but this is the signal that tells the rest of the AXI stream that this FIFO is ready to send data, fix: keep it open, it is open in the nexys_ethernet project
             fifo_o              => open,
             fifo_a_empty        => open,
-            fifo_a_full         => open,--led(1),--open,
-            fifo_empty          => open,--led(2),--open,
+            fifo_a_full         => fifo_a_full,--open,--led(2),--fifo_a_full, --open,--led(2),--open,
+            fifo_empty          => fifo_empty,--led(3),--open,
             fifo_full           => open,
-            fifo_wr_err         => open,--led(3),--open,
-            fifo_rd_err         => open,--led(4),--open,
+            fifo_wr_err         => fifo_wr_err,--led(4),--open,
+            fifo_rd_err         => fifo_rd_err,--led(5),--open,
             axi_data            => st_axi_data,
             axi_valid           => st_axi_valid,
             axi_ready           => st_axi_ready,
@@ -347,7 +351,30 @@ begin
         
     -- Board Misc Output
 --------------------------------------------------------------------------------------------------------------------------------
-    led(0) <= data_rdy;  
+--    led <= afe_data(5 downto 0);
+    led(0) <= not(data_rdy);  
+--    led(1) <= not(daq0_sfp_los);
+--    led(2) <= not(daq0_sfp_abs);
+--    led(3) <= not(daq1_sfp_los);
+--    led(4) <= not(daq1_sfp_abs);
+--    led(5) <= not(fifo_a_full);
+    led(1) <= not(pll_afe_lck);
+--    led(2) <= not(mmcm0_locked);
+    led(2) <= not(fifo_a_full);
+    led(3) <= not(fifo_empty);
+    led(4) <= not(fifo_wr_err);
+    led(5) <= not(fifo_rd_err);
 --    led(4 downto 1) <= st_axi_data(3 downto 0);
+
+    -- Enable DAQ Link SFP Transmitters...
+    daq0_sfp_tx_dis <= '0';
+    daq1_sfp_tx_dis <= '0';
+ 
+--    -- DAQ SFP I2C Interface, reserved for future use...
+    daq0_sfp_scl <= 'Z';
+    daq1_sfp_scl <= 'Z';
+    
+    daq0_sfp_sda <= 'Z';
+    daq1_sfp_sda <= 'Z';
         
 end Behavioral;

@@ -1,0 +1,1 @@
+--incr --debug "typical" --relax --mt "2" -L "xil_defaultlib" -L "secureip" -L "xpm" --snapshot "daphne1_arch_behav" "xil_defaultlib.daphne1_arch" -log "elaborate.log" 

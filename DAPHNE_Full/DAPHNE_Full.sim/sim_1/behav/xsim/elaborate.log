@@ -1,0 +1,32 @@
+Vivado Simulator v2023.1
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2023.1/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip -L xpm --snapshot daphne1_arch_behav xil_defaultlib.daphne1_arch -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling package std.standard
+Compiling package std.textio
+Compiling package ieee.std_logic_1164
+Compiling package ieee.numeric_std
+Compiling package ieee.std_logic_arith
+Compiling package ieee.std_logic_unsigned
+Compiling package unisim.vcomponents
+Compiling package unimacro.vcomponents
+Compiling package xil_defaultlib.daphne1_package
+Compiling package ieee.std_logic_signed
+Compiling package ieee.vital_timing
+Compiling package ieee.vital_primitives
+Compiling package unisim.vpkg
+Compiling architecture ibufds_v of entity unisim.IBUFDS [\IBUFDS(diff_term=true,iostandar...]
+Compiling architecture ibufgds_v of entity unisim.IBUFGDS [\IBUFGDS(diff_term=true,iostanda...]
+Compiling architecture mmcme2_adv_v of entity unisim.MMCME2_ADV [\MMCME2_ADV(clkfbout_mult_f=10.0...]
+Compiling architecture bufg_v of entity unisim.BUFG [bufg_default]
+Compiling architecture oddr_v of entity unisim.ODDR [\ODDR(1,13)(1,4)\]
+Compiling architecture obufds_v of entity unisim.OBUFDS [\OBUFDS(iostandard="LVDS")(1,9)(...]
+Compiling architecture epnt_arch of entity xil_defaultlib.endpoint [endpoint_default]
+Compiling architecture behavioral of entity xil_defaultlib.daphne1_arch
+Built simulation snapshot daphne1_arch_behav

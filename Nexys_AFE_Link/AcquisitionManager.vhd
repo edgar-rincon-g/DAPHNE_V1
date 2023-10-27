@@ -57,6 +57,7 @@ entity AcquisitionManager is
         bistlip_on : out std_logic;       
         dt_rdy : out std_logic;
         clk_div : out std_logic;
+        pll_lck_o : out std_logic;
 --        ctrl_usr : in std_logic_vector(1 downto 0);
         --str_align : in std_logic; -- Unused, looking for inmediate astart in the aligning process
         --out_led0 : out std_logic; -- Unused because done will be used as an output enable
@@ -282,6 +283,7 @@ DATA_COM : DataAcquisition
               --dt_aux_out(9) AND dt_aux_out(10));
               
     -- Output signals of the module
+    pll_lck_o <= pll_lck;
     phase_selected <= phase_ctrl_reg_aux;
     ph_overflow <= phase_overflow;
     bistlip_on <= bistlip_on_flag;

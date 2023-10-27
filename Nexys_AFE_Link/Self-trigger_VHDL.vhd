@@ -1279,7 +1279,7 @@ begin
     begin     
         if rising_edge(clk) then
         o_xcorr <= std_logic_vector(resize(r_sumamult, 48));
-            if r_sumamult > 15000 then
+            if r_sumamult > 4000 then
                 o_trigger <= '1';
             else 
                 o_trigger <= '0';

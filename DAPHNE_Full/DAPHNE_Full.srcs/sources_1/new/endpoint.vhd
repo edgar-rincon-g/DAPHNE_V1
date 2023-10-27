@@ -84,8 +84,8 @@ begin
 --------------------------------------------------------------------------------------------------------------------------------
     sysclk_ibufds_inst : IBUFGDS
         generic map (
-            DIFF_TERM => FALSE, -- Differential Termination 
-            IBUF_LOW_PWR => TRUE, -- Low power (TRUE) vs. performance (FALSE) setting for referenced I/O standards
+            DIFF_TERM => TRUE, -- Differential Termination 
+            --IBUF_LOW_PWR => TRUE, -- Low power (TRUE) vs. performance (FALSE) setting for referenced I/O standards
             IOSTANDARD => "LVDS_25")
         port map (
             O                       => sysclk_ibuf,         -- Buffer output

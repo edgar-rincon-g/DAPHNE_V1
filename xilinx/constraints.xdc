@@ -282,7 +282,7 @@ set_property PACKAGE_PIN  AB20 [get_ports {afe_fclk_n[0]}]
 set_property PACKAGE_PIN  AA19 [get_ports {afe_dclk_p[0]}]    
 set_property PACKAGE_PIN  AB19 [get_ports {afe_dclk_n[0]}]      
 
-# LVDS inputs from AFE 1 (Bank 16) on schematic 1, front panel 4
+## LVDS inputs from AFE 1 (Bank 16) on schematic 1, front panel 4
 
 set_property PACKAGE_PIN  B25 [get_ports {afe_p[1][0]}]         
 set_property PACKAGE_PIN  A25 [get_ports {afe_n[1][0]}]         
@@ -305,7 +305,7 @@ set_property PACKAGE_PIN  C19 [get_ports {afe_fclk_n[1]}]
 set_property PACKAGE_PIN  D18 [get_ports {afe_dclk_p[1]}]       
 set_property PACKAGE_PIN  C18 [get_ports {afe_dclk_n[1]}]     
 
-# LVDS inputs from AFE 2 (Bank 15) on schematic 2, front panel 3
+## LVDS inputs from AFE 2 (Bank 15) on schematic 2, front panel 3
 
 set_property PACKAGE_PIN  K22 [get_ports {afe_p[2][0]}]         
 set_property PACKAGE_PIN  K23 [get_ports {afe_n[2][0]}]         
@@ -328,7 +328,7 @@ set_property PACKAGE_PIN  H22 [get_ports {afe_fclk_n[2]}]
 set_property PACKAGE_PIN  K21 [get_ports {afe_dclk_p[2]}]      
 set_property PACKAGE_PIN  J21 [get_ports {afe_dclk_n[2]}]       
 
-# LVDS inputs from AFE 3 (Bank 14) on schematic 3, front panel 2
+## LVDS inputs from AFE 3 (Bank 14) on schematic 3, front panel 2
 
 set_property PACKAGE_PIN  T24 [get_ports {afe_p[3][0]}]         
 set_property PACKAGE_PIN  T25 [get_ports {afe_n[3][0]}]        
@@ -352,7 +352,7 @@ set_property PACKAGE_PIN  N21  [get_ports {afe_dclk_p[3]}]
 set_property PACKAGE_PIN  N22  [get_ports {afe_dclk_n[3]}]     
 
 
-# LVDS inputs from AFE 4 (Bank 13) on schematic 4, front panel 1
+## LVDS inputs from AFE 4 (Bank 13) on schematic 4, front panel 1
 
 set_property PACKAGE_PIN  W20  [get_ports {afe_p[4][0]}]        
 set_property PACKAGE_PIN  Y20  [get_ports {afe_n[4][0]}]        
@@ -409,7 +409,7 @@ set_property IOSTANDARD LVTTL [get_ports {daq0_sfp_*}]
 
 ### DAQ link 1, channel 1 Quad 213, X0Y4
 # Review this
-set_property LOC GTPE2_CHANNEL_X0Y4 [get_cells ETH0/ETH_PHY_COM/U0/pcs_pma_block_i/transceiver_inst/gtwizard_inst/U0/gtwizard_i/gt0_GTWIZARD_i/gtpe2_i] 
+#set_property LOC GTPE2_CHANNEL_X0Y4 [get_cells ETH0/ETH_PHY_COM/U0/pcs_pma_block_i/transceiver_inst/gtwizard_inst/U0/gtwizard_i/gt0_GTWIZARD_i/gtpe2_i] 
 
 #set_property PACKAGE_PIN D8 [get_ports {daq1_tx_p}]
 #set_property PACKAGE_PIN C8 [get_ports {daq1_tx_n}]
@@ -428,7 +428,7 @@ set_property LOC E11 [get_ports daq_refclk_n]
 set_property LOC F11 [get_ports daq_refclk_p]              
 
 
-# All 6 user LEDS are in bank 35, VCCO=3.3V, all LEDs Active High
+# All 6 user LEDS are in bank 35, VCCO=3.3V, all LEDs Active Low
 
 # Assign LED7 to debug header pin 1
 # set_property PACKAGE_PIN C3 [get_ports {led[7]}]
