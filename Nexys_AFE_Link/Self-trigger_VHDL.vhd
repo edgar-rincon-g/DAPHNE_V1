@@ -955,7 +955,7 @@ architecture Behavioral of self_trigger is
     to_signed(integer(-55), g_INPUT_WIDTH), 
     to_signed(integer(-40), g_INPUT_WIDTH), 
     to_signed(integer(-17), g_INPUT_WIDTH), 
-    to_signed(integer(0), g_INPUT_WIDTH)
+    to_signed(integer(0), g_INPUT_WIDTH) -- Was 0
     ); 
  
 
@@ -1279,7 +1279,8 @@ begin
     begin     
         if rising_edge(clk) then
         o_xcorr <= std_logic_vector(resize(r_sumamult, 48));
-            if r_sumamult > 4000 then
+--            if r_sumamult > 50000 then
+            if r_sumamult > 50000 then
                 o_trigger <= '1';
             else 
                 o_trigger <= '0';

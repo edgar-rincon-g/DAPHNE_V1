@@ -254,17 +254,17 @@ component eth_axi_core is
         s_fifo_udp_payload_axis_tvalid  : in std_logic;
         s_fifo_udp_payload_axis_tready  : out std_logic;
         s_fifo_udp_payload_axis_tlast   : in std_logic;
-        s_fifo_udp_payload_axis_tuser   : in std_logic;
+        s_fifo_udp_payload_axis_tuser   : in std_logic
         -- Ethernet & MAC Configuration
         -----------------------------------------------------------
-        local_mac                       : in std_logic_vector(47 downto 0);
-        local_ip                        : in std_logic_vector(31 downto 0);
-        gateway_ip                      : in std_logic_vector(31 downto 0);
-        subnet_mask                     : in std_logic_vector(31 downto 0);
-        dest_ip                         : in std_logic_vector(31 downto 0);
-        local_port                      : in std_logic_vector(15 downto 0);
-        dest_port                       : in std_logic_vector(15 downto 0);
-        udp_length                      : in std_logic_vector(15 downto 0)
+--        local_mac                       : in std_logic_vector(47 downto 0);
+--        local_ip                        : in std_logic_vector(31 downto 0);
+--        gateway_ip                      : in std_logic_vector(31 downto 0);
+--        subnet_mask                     : in std_logic_vector(31 downto 0);
+--        dest_ip                         : in std_logic_vector(31 downto 0);
+--        local_port                      : in std_logic_vector(15 downto 0);
+--        dest_port                       : in std_logic_vector(15 downto 0);
+--        udp_length                      : in std_logic_vector(15 downto 0)
     );
 end component eth_axi_core;
 
@@ -390,15 +390,15 @@ begin
         s_fifo_udp_payload_axis_tvalid  => eth_axis_tvalid,
         s_fifo_udp_payload_axis_tready  => eth_axis_tready,
         s_fifo_udp_payload_axis_tlast   => eth_axis_tlast,
-        s_fifo_udp_payload_axis_tuser   => eth_axis_tuser,
-        local_mac                       => X"020000000000",
-        local_ip                        => X"C0A80080",
-        gateway_ip                      => X"C0A80001",
-        subnet_mask                     => X"FFFFFF00",
-        dest_ip                         => X"C0A80066",
-        local_port                      => X"04D2",
-        dest_port                       => X"1246",
-        udp_length                      => X"0009"
+        s_fifo_udp_payload_axis_tuser   => eth_axis_tuser
+--        local_mac                       => X"020000000000",
+--        local_ip                        => X"C0A80080",
+--        gateway_ip                      => X"C0A80001",
+--        subnet_mask                     => X"FFFFFF00",
+--        dest_ip                         => X"C0A80066",
+--        local_port                      => X"04D2",
+--        dest_port                       => X"1246",
+--        udp_length                      => X"0009"
     );
     
 end eth_arch;

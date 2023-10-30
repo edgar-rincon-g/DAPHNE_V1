@@ -71,21 +71,32 @@ module eth_axi_core #
     input  wire         s_fifo_udp_payload_axis_tvalid,
     output wire         s_fifo_udp_payload_axis_tready,
     input  wire         s_fifo_udp_payload_axis_tlast,
-    input  wire         s_fifo_udp_payload_axis_tuser,
+    input  wire         s_fifo_udp_payload_axis_tuser
     
     /*
      * Ethernet & MAC Configuration
      */
-    input  wire [47:0]  local_mac,
-    input  wire [31:0]  local_ip,
-    input  wire [31:0]  gateway_ip,
-    input  wire [31:0]  subnet_mask,
-    input  wire [31:0]  dest_ip, 
-    input  wire [15:0]  local_port,
-    input  wire [15:0]  dest_port,
-    input  wire [15:0]  udp_length  
+//    input  wire [47:0]  local_mac,
+//    input  wire [31:0]  local_ip,
+//    input  wire [31:0]  gateway_ip,
+//    input  wire [31:0]  subnet_mask,
+//    input  wire [31:0]  dest_ip, 
+//    input  wire [15:0]  local_port,
+//    input  wire [15:0]  dest_port,
+//    input  wire [15:0]  udp_length  
 );
 
+// FPGA Ethernet Configuration
+wire [47:0] local_mac   = 48'h02_00_00_00_00_00;
+wire [47:0] dest_mac    = 48'hE8_11_32_91_D9_0D;
+wire [31:0] local_ip    = {8'd169, 8'd254, 8'd87,   8'd101}; //{8'd192, 8'd168, 8'd0,   8'd128};
+wire [31:0] gateway_ip  = {8'd169, 8'd254, 8'd87,   8'd1}; //{8'd192, 8'd168, 8'd0,   8'd1};
+wire [31:0] subnet_mask = {8'd255, 8'd255, 8'd255, 8'd0}; //{8'd255, 8'd255, 8'd255, 8'd0};
+wire [31:0] dest_ip     = {8'd169, 8'd254, 8'd87,   8'd121}; 
+wire [15:0] local_port  = 16'd1234;
+wire [15:0] dest_port   = 16'd4678;
+wire [15:0] udp_length  = 16'd9;//16'd4088; //16'd9; // Fixed to account the 8 octets of the UDP Header Field and the 46 Bytes of Data Payload
+ 
 // AXI Receiver Ethernet Frame Between Ethernet Module and UDP Stack Module
 wire rx_eth_hdr_ready;
 wire rx_eth_hdr_valid;

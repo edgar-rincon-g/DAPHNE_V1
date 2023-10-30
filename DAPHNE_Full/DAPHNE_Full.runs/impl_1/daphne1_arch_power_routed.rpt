@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2023.1 (win64) Build 3865809 Sun May  7 15:05:29 MDT 2023
-| Date             : Mon Oct 30 09:12:58 2023
+| Date             : Mon Oct 30 16:48:25 2023
 | Host             : danielA running 64-bit major release  (build 9200)
 | Command          : report_power -file daphne1_arch_power_routed.rpt -pb daphne1_arch_power_summary_routed.pb -rpx daphne1_arch_power_routed.rpx
 | Design           : daphne1_arch
@@ -30,10 +30,10 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.727        |
+| Total On-Chip Power (W)  | 0.771        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.566        |
+| Dynamic (W)              | 0.609        |
 | Device Static (W)        | 0.162        |
 | Effective TJA (C/W)      | 1.9          |
 | Max Ambient (C)          | 83.6         |
@@ -52,24 +52,24 @@ Table of Contents
 +--------------------------+-----------+----------+-----------+-----------------+
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
-| Clocks                   |     0.041 |       23 |       --- |             --- |
-| Slice Logic              |     0.010 |     7235 |       --- |             --- |
-|   LUT as Logic           |     0.008 |     2215 |    133800 |            1.66 |
-|   CARRY4                 |    <0.001 |      279 |     33450 |            0.83 |
-|   Register               |    <0.001 |     3811 |    269200 |            1.42 |
-|   LUT as Distributed RAM |    <0.001 |       64 |     46200 |            0.14 |
+| Clocks                   |     0.044 |       23 |       --- |             --- |
+| Slice Logic              |     0.010 |     7394 |       --- |             --- |
+|   LUT as Logic           |     0.008 |     2281 |    133800 |            1.70 |
+|   CARRY4                 |     0.001 |      281 |     33450 |            0.84 |
+|   Register               |    <0.001 |     3875 |    269200 |            1.44 |
+|   LUT as Distributed RAM |    <0.001 |       76 |     46200 |            0.16 |
 |   LUT as Shift Register  |    <0.001 |       56 |     46200 |            0.12 |
-|   F7/F8 Muxes            |    <0.001 |       14 |    133800 |            0.01 |
-|   Others                 |    <0.001 |      208 |       --- |             --- |
-| Signals                  |     0.012 |     6708 |       --- |             --- |
-| Block RAM                |     0.016 |     11.5 |       365 |            3.15 |
+|   F7/F8 Muxes            |    <0.001 |       13 |    133800 |           <0.01 |
+|   Others                 |    <0.001 |      206 |       --- |             --- |
+| Signals                  |     0.013 |     6808 |       --- |             --- |
+| Block RAM                |     0.019 |     11.5 |       365 |            3.15 |
 | MMCM                     |     0.213 |        2 |        10 |           20.00 |
 | PLL                      |     0.115 |        1 |        10 |           10.00 |
 | DSPs                     |     0.009 |       17 |       740 |            2.30 |
-| I/O                      |     0.071 |       26 |       400 |            6.50 |
-| GTP                      |     0.078 |        1 |       --- |             --- |
+| I/O                      |     0.069 |       26 |       400 |            6.50 |
+| GTP                      |     0.116 |        1 |       --- |             --- |
 | Static Power             |     0.162 |          |           |                 |
-| Total                    |     0.727 |          |           |                 |
+| Total                    |     0.771 |          |           |                 |
 +--------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -79,9 +79,9 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.134 |       0.102 |      0.032 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.141 |       0.109 |      0.032 |       NA    | Unspecified | NA         |
 | Vccaux    |       1.800 |     0.216 |       0.185 |      0.031 |       NA    | Unspecified | NA         |
-| Vcco33    |       3.300 |     0.006 |       0.001 |      0.005 |       NA    | Unspecified | NA         |
+| Vcco33    |       3.300 |     0.005 |       0.000 |      0.005 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.027 |       0.022 |      0.005 |       NA    | Unspecified | NA         |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -89,8 +89,8 @@ Table of Contents
 | Vcco12    |       1.200 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vccaux_io |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vccbram   |       1.000 |     0.002 |       0.001 |      0.001 |       NA    | Unspecified | NA         |
-| MGTAVcc   |       1.000 |     0.038 |       0.036 |      0.003 |       NA    | Unspecified | NA         |
-| MGTAVtt   |       1.200 |     0.036 |       0.030 |      0.005 |       NA    | Unspecified | NA         |
+| MGTAVcc   |       1.000 |     0.062 |       0.059 |      0.003 |       NA    | Unspecified | NA         |
+| MGTAVtt   |       1.200 |     0.048 |       0.042 |      0.005 |       NA    | Unspecified | NA         |
 | Vccadc    |       1.800 |     0.020 |       0.000 |      0.020 |       NA    | Unspecified | NA         |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 
@@ -143,7 +143,7 @@ Table of Contents
 | afe0_pll_dig_div0                                                                                                | AFE0_CH_0/CLK_COM/PLL_COM/clk_div_phase[0]                                                               |            16.0 |
 | afe0_pll_dig_div1                                                                                                | AFE0_CH_0/CLK_COM/PLL_COM/clk_div_phase[1]                                                               |            16.0 |
 | afe0_pll_dig_div2                                                                                                | AFE0_CH_0/CLK_COM/PLL_COM/clk_div_phase[2]                                                               |            16.0 |
-| afe_dclk                                                                                                         | afe_dclk_p[1]                                                                                            |             2.3 |
+| afe_dclk                                                                                                         | afe_dclk_p[0]                                                                                            |             2.3 |
 | daq_refclk                                                                                                       | daq_refclk_p                                                                                             |             8.3 |
 | mmcm0_clkfbout                                                                                                   | SYS_TIMING_EPNT/mmcm0_clkfbout                                                                           |            10.0 |
 | oei_clkfbout                                                                                                     | ETH0/ETH_PHY_COM/U0/core_clocking_i/clkfbout                                                             |            16.0 |
@@ -166,11 +166,11 @@ Table of Contents
 +---------------------------------+-----------+
 | Name                            | Power (W) |
 +---------------------------------+-----------+
-| daphne1_arch                    |     0.566 |
-|   AFE0_CH_0                     |     0.147 |
-|     CLK_COM                     |     0.121 |
-|       MUX_CLK_COM               |     0.002 |
-|       PLL_COM                   |     0.118 |
+| daphne1_arch                    |     0.609 |
+|   AFE0_CH_0                     |     0.149 |
+|     CLK_COM                     |     0.123 |
+|       MUX_CLK_COM               |     0.003 |
+|       PLL_COM                   |     0.119 |
 |     DATA_COM                    |     0.001 |
 |     INPUT_COM                   |     0.021 |
 |       DATA_IBUFDS               |     0.007 |
@@ -179,20 +179,18 @@ Table of Contents
 |     SYNCH_COM_0                 |     0.002 |
 |     SYNCH_COM_1                 |     0.002 |
 |   AFE0_ST_0                     |     0.015 |
-|     FIFO_INST_COM               |     0.002 |
-|       MEMORY_CTRL_COM           |     0.001 |
+|     FIFO_INST_COM               |     0.001 |
 |     FILTER_COM                  |     0.002 |
-|       fir_forward               |     0.001 |
 |     SELF_TRIGGER_TOP_COM        |     0.012 |
-|   ETH0                          |     0.244 |
-|     ETH_FR_GEN                  |     0.030 |
-|       eth_axis_rx_inst          |     0.001 |
-|       udp_complete_inst         |     0.024 |
+|   ETH0                          |     0.288 |
+|     ETH_FR_GEN                  |     0.034 |
+|       eth_axis_rx_inst          |     0.002 |
+|       udp_complete_inst         |     0.027 |
 |       udp_payload_tx_fifo       |     0.004 |
-|     ETH_MAC_COM                 |     0.012 |
-|       eth_mac_1g_gmii_fifo_inst |     0.012 |
-|     ETH_PHY_COM                 |     0.202 |
-|       U0                        |     0.202 |
+|     ETH_MAC_COM                 |     0.015 |
+|       eth_mac_1g_gmii_fifo_inst |     0.015 |
+|     ETH_PHY_COM                 |     0.238 |
+|       U0                        |     0.238 |
 |   SYS_TIMING_EPNT               |     0.156 |
 +---------------------------------+-----------+
 

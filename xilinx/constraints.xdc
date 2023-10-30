@@ -97,7 +97,7 @@ set_max_delay -datapath_only -from [get_cells {ETH0/ETH_MAC_COM/eth_mac_1g_gmii_
 create_clock -name cdr_data_p   -period 16.000      [get_ports cdr_data_p]
 create_clock -name daq_refclk   -period 8.317       [get_ports daq_refclk_p]
 create_clock -name sys_clk      -period 10.000      [get_ports sysclk_p]
-create_clock -name afe_dclk     -period 2.286       [get_ports afe_dclk_p[1]]
+create_clock -name afe_dclk     -period 2.286       [get_ports afe_dclk_p[0]]
 
 ###########################################################################################################################################
 # Rename The Auto-Generated Clocks...
@@ -398,6 +398,8 @@ set_property IOSTANDARD LVTTL [get_ports {spi_*}]
 
 set_property LOC B7 [get_ports {daq0_tx_p}]
 set_property LOC A7 [get_ports {daq0_tx_n}]
+set_property LOC B11 [get_ports {daq0_rx_p}]
+set_property LOC A11 [get_ports {daq0_rx_n}]
 #set_property IOSTANDARD LVDS_25 [get_ports {daq0_tx_*}]  
 
 set_property PACKAGE_PIN H6 [get_ports {daq0_sfp_los}]      

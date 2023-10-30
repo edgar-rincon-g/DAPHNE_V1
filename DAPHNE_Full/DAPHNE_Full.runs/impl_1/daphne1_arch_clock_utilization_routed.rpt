@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.1 (win64) Build 3865809 Sun May  7 15:05:29 MDT 2023
-| Date         : Mon Oct 30 09:13:00 2023
+| Date         : Mon Oct 30 16:48:27 2023
 | Host         : danielA running 64-bit major release  (build 9200)
 | Command      : report_clock_utilization -file daphne1_arch_clock_utilization_routed.rpt
 | Design       : daphne1_arch
@@ -35,11 +35,13 @@ Table of Contents
 19. Device Cell Placement Summary for Global Clock g12
 20. Device Cell Placement Summary for Global Clock g13
 21. Device Cell Placement Summary for Global Clock g14
-22. Clock Region Cell Placement per Global Clock: Region X1Y1
-23. Clock Region Cell Placement per Global Clock: Region X1Y2
-24. Clock Region Cell Placement per Global Clock: Region X0Y3
-25. Clock Region Cell Placement per Global Clock: Region X1Y3
-26. Clock Region Cell Placement per Global Clock: Region X0Y4
+22. Clock Region Cell Placement per Global Clock: Region X0Y0
+23. Clock Region Cell Placement per Global Clock: Region X0Y1
+24. Clock Region Cell Placement per Global Clock: Region X1Y1
+25. Clock Region Cell Placement per Global Clock: Region X0Y2
+26. Clock Region Cell Placement per Global Clock: Region X1Y2
+27. Clock Region Cell Placement per Global Clock: Region X0Y3
+28. Clock Region Cell Placement per Global Clock: Region X0Y4
 
 1. Clock Primitive Utilization
 ------------------------------
@@ -63,24 +65,24 @@ Table of Contents
 +-----------+-----------+-----------------+---------------+----------------+--------------+-------------------+-------------+-----------------+--------------+------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------+
 | Global Id | Source Id | Driver Type/Pin | Constraint    | Site           | Clock Region | Load Clock Region | Clock Loads | Non-Clock Loads | Clock Period | Clock                                                                                                            | Driver Pin                                                                                           | Net                                                                                                  |
 +-----------+-----------+-----------------+---------------+----------------+--------------+-------------------+-------------+-----------------+--------------+------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------+
-| g0        | src0      | BUFG/O          | None          | BUFGCTRL_X0Y0  | n/a          |                 2 |        2194 |               0 |        8.000 | sclk125                                                                                                          | SYS_TIMING_EPNT/mmcm0_clk3_inst/O                                                                    | SYS_TIMING_EPNT/sys_clk125                                                                           |
+| g0        | src0      | BUFG/O          | None          | BUFGCTRL_X0Y0  | n/a          |                 5 |        2261 |               0 |        8.000 | sclk125                                                                                                          | SYS_TIMING_EPNT/mmcm0_clk3_inst/O                                                                    | SYS_TIMING_EPNT/sys_clk125                                                                           |
 | g1        | src1      | BUFG/O          | BUFGCTRL_X0Y2 | BUFGCTRL_X0Y2  | n/a          |                 3 |         652 |               0 |        8.000 | oeiclk                                                                                                           | ETH0/ETH_PHY_COM/U0/core_clocking_i/bufg_userclk2/O                                                  | ETH0/ETH_PHY_COM/U0/core_clocking_i/userclk2                                                         |
-| g2        | src2      | BUFGCTRL/O      | None          | BUFGCTRL_X0Y26 | n/a          |                 2 |         434 |               0 |       16.002 | afe0_pll_dig_div1                                                                                                | AFE0_CH_0/CLK_COM/MUX_CLK_DIV_COM/MUX_Out/BUFGMUX_CTRL_inst/O                                        | AFE0_CH_0/CLK_COM/MUX_CLK_DIV_COM/MUX_Out/BUFGMUX_CTRL_inst_0                                        |
-| g2        | src3      | BUFGCTRL/O      | None          | BUFGCTRL_X0Y26 | n/a          |                 2 |         434 |               0 |       16.002 | afe0_pll_dig_div2                                                                                                | AFE0_CH_0/CLK_COM/MUX_CLK_DIV_COM/MUX_Out/BUFGMUX_CTRL_inst/O                                        | AFE0_CH_0/CLK_COM/MUX_CLK_DIV_COM/MUX_Out/BUFGMUX_CTRL_inst_0                                        |
-| g3        | src4      | BUFG/O          | None          | BUFGCTRL_X0Y6  | n/a          |                 3 |         289 |               0 |        5.000 | sclk200                                                                                                          | SYS_TIMING_EPNT/mmcm0_clk1_inst/O                                                                    | SYS_TIMING_EPNT/sys_clk200                                                                           |
+| g2        | src2      | BUFGCTRL/O      | None          | BUFGCTRL_X0Y11 | n/a          |                 1 |         434 |               0 |       16.002 | afe0_pll_dig_div1                                                                                                | AFE0_CH_0/CLK_COM/MUX_CLK_DIV_COM/MUX_Out/BUFGMUX_CTRL_inst/O                                        | AFE0_CH_0/CLK_COM/MUX_CLK_DIV_COM/MUX_Out/BUFGMUX_CTRL_inst_0                                        |
+| g2        | src3      | BUFGCTRL/O      | None          | BUFGCTRL_X0Y11 | n/a          |                 1 |         434 |               0 |       16.002 | afe0_pll_dig_div2                                                                                                | AFE0_CH_0/CLK_COM/MUX_CLK_DIV_COM/MUX_Out/BUFGMUX_CTRL_inst/O                                        | AFE0_CH_0/CLK_COM/MUX_CLK_DIV_COM/MUX_Out/BUFGMUX_CTRL_inst_0                                        |
+| g3        | src4      | BUFG/O          | None          | BUFGCTRL_X0Y6  | n/a          |                 2 |         289 |               0 |        5.000 | sclk200                                                                                                          | SYS_TIMING_EPNT/mmcm0_clk1_inst/O                                                                    | SYS_TIMING_EPNT/sys_clk200                                                                           |
 | g4        | src0      | BUFGCTRL/O      | None          | BUFGCTRL_X0Y1  | n/a          |                 1 |         163 |               0 |        8.000 | sclk125                                                                                                          | ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/eth_mac_1g_gmii_inst/gmii_phy_if_inst/gmii_bufgmux_inst/O | ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/eth_mac_1g_gmii_inst/gmii_phy_if_inst/gmii_bufgmux_inst_0 |
 | g4        | src1      | BUFGCTRL/O      | None          | BUFGCTRL_X0Y1  | n/a          |                 1 |         163 |               0 |        8.000 | oeiclk                                                                                                           | ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/eth_mac_1g_gmii_inst/gmii_phy_if_inst/gmii_bufgmux_inst/O | ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/eth_mac_1g_gmii_inst/gmii_phy_if_inst/gmii_bufgmux_inst_0 |
 | g5        | src5      | BUFG/O          | None          | BUFGCTRL_X0Y3  | n/a          |                 2 |         111 |               0 |       16.000 | oeihclk                                                                                                          | ETH0/ETH_PHY_COM/U0/core_clocking_i/bufg_userclk/O                                                   | ETH0/ETH_PHY_COM/U0/core_clocking_i/userclk                                                          |
-| g6        | src6      | BUFG/O          | None          | BUFGCTRL_X0Y31 | n/a          |                 2 |          76 |               0 |        8.317 | daq_refclk                                                                                                       | ETH0/ETH_PHY_COM/U0/core_clocking_i/bufg_gtrefclk/O                                                  | ETH0/ETH_PHY_COM/U0/core_clocking_i/gtrefclk_bufg                                                    |
-| g7        | src7      | BUFGCTRL/O      | None          | BUFGCTRL_X0Y28 | n/a          |                 1 |          16 |               0 |        2.286 | afe0_pll_dig0                                                                                                    | AFE0_CH_0/CLK_COM/MUX_CLK_COM/MUX_Out/BUFGMUX_CTRL_inst/O                                            | AFE0_CH_0/CLK_COM/MUX_CLK_COM/MUX_Out/clk                                                            |
-| g7        | src8      | BUFGCTRL/O      | None          | BUFGCTRL_X0Y28 | n/a          |                 1 |          16 |               0 |        2.286 | afe0_pll_dig2                                                                                                    | AFE0_CH_0/CLK_COM/MUX_CLK_COM/MUX_Out/BUFGMUX_CTRL_inst/O                                            | AFE0_CH_0/CLK_COM/MUX_CLK_COM/MUX_Out/clk                                                            |
-| g8        | src9      | BUFG/O          | None          | BUFGCTRL_X0Y5  | n/a          |                 3 |          13 |               0 |       16.000 | sclk62_5                                                                                                         | SYS_TIMING_EPNT/mmcm0_clk0_inst/O                                                                    | SYS_TIMING_EPNT/sys_clk62_5                                                                          |
+| g6        | src6      | BUFG/O          | None          | BUFGCTRL_X0Y31 | n/a          |                 1 |          76 |               0 |        8.317 | daq_refclk                                                                                                       | ETH0/ETH_PHY_COM/U0/core_clocking_i/bufg_gtrefclk/O                                                  | ETH0/ETH_PHY_COM/U0/core_clocking_i/gtrefclk_bufg                                                    |
+| g7        | src7      | BUFGCTRL/O      | None          | BUFGCTRL_X0Y9  | n/a          |                 1 |          16 |               0 |        2.286 | afe0_pll_dig0                                                                                                    | AFE0_CH_0/CLK_COM/MUX_CLK_COM/MUX_Out/BUFGMUX_CTRL_inst/O                                            | AFE0_CH_0/CLK_COM/MUX_CLK_COM/MUX_Out/clk                                                            |
+| g7        | src8      | BUFGCTRL/O      | None          | BUFGCTRL_X0Y9  | n/a          |                 1 |          16 |               0 |        2.286 | afe0_pll_dig2                                                                                                    | AFE0_CH_0/CLK_COM/MUX_CLK_COM/MUX_Out/BUFGMUX_CTRL_inst/O                                            | AFE0_CH_0/CLK_COM/MUX_CLK_COM/MUX_Out/clk                                                            |
+| g8        | src9      | BUFG/O          | None          | BUFGCTRL_X0Y5  | n/a          |                 2 |          13 |               0 |       16.000 | sclk62_5                                                                                                         | SYS_TIMING_EPNT/mmcm0_clk0_inst/O                                                                    | SYS_TIMING_EPNT/sys_clk62_5                                                                          |
 | g9        | src10     | BUFG/O          | None          | BUFGCTRL_X0Y7  | n/a          |                 1 |           2 |               0 |       10.000 | sclk100                                                                                                          | SYS_TIMING_EPNT/mmcm0_clk2_inst/O                                                                    | SYS_TIMING_EPNT/sys_clk100                                                                           |
-| g10       | src7      | BUFGCTRL/O      | None          | BUFGCTRL_X0Y29 | n/a          |                 1 |           1 |               0 |        2.286 | afe0_pll_dig0                                                                                                    | AFE0_CH_0/CLK_COM/MUX_CLK_COM/MUX_In/BUFGMUX_CTRL_inst/O                                             | AFE0_CH_0/CLK_COM/MUX_CLK_COM/MUX_In/clk_out                                                         |
-| g10       | src11     | BUFGCTRL/O      | None          | BUFGCTRL_X0Y29 | n/a          |                 1 |           1 |               0 |        2.286 | afe0_pll_dig1                                                                                                    | AFE0_CH_0/CLK_COM/MUX_CLK_COM/MUX_In/BUFGMUX_CTRL_inst/O                                             | AFE0_CH_0/CLK_COM/MUX_CLK_COM/MUX_In/clk_out                                                         |
-| g11       | src12     | BUFGCTRL/O      | None          | BUFGCTRL_X0Y27 | n/a          |                 1 |           1 |               0 |       16.002 | afe0_pll_dig_div0                                                                                                | AFE0_CH_0/CLK_COM/MUX_CLK_DIV_COM/MUX_In/BUFGMUX_CTRL_inst/O                                         | AFE0_CH_0/CLK_COM/MUX_CLK_DIV_COM/MUX_In/clk_out                                                     |
-| g11       | src2      | BUFGCTRL/O      | None          | BUFGCTRL_X0Y27 | n/a          |                 1 |           1 |               0 |       16.002 | afe0_pll_dig_div1                                                                                                | AFE0_CH_0/CLK_COM/MUX_CLK_DIV_COM/MUX_In/BUFGMUX_CTRL_inst/O                                         | AFE0_CH_0/CLK_COM/MUX_CLK_DIV_COM/MUX_In/clk_out                                                     |
-| g12       | src13     | BUFG/O          | None          | BUFGCTRL_X0Y25 | n/a          |                 1 |           1 |               0 |        2.286 | afe0_pll_clkfbout                                                                                                | AFE0_CH_0/CLK_COM/PLL_COM/BUFG_inst/O                                                                | AFE0_CH_0/CLK_COM/PLL_COM/clk_fdbck_i                                                                |
+| g10       | src7      | BUFGCTRL/O      | None          | BUFGCTRL_X0Y8  | n/a          |                 1 |           1 |               0 |        2.286 | afe0_pll_dig0                                                                                                    | AFE0_CH_0/CLK_COM/MUX_CLK_COM/MUX_In/BUFGMUX_CTRL_inst/O                                             | AFE0_CH_0/CLK_COM/MUX_CLK_COM/MUX_In/clk_out                                                         |
+| g10       | src11     | BUFGCTRL/O      | None          | BUFGCTRL_X0Y8  | n/a          |                 1 |           1 |               0 |        2.286 | afe0_pll_dig1                                                                                                    | AFE0_CH_0/CLK_COM/MUX_CLK_COM/MUX_In/BUFGMUX_CTRL_inst/O                                             | AFE0_CH_0/CLK_COM/MUX_CLK_COM/MUX_In/clk_out                                                         |
+| g11       | src12     | BUFGCTRL/O      | None          | BUFGCTRL_X0Y10 | n/a          |                 1 |           1 |               0 |       16.002 | afe0_pll_dig_div0                                                                                                | AFE0_CH_0/CLK_COM/MUX_CLK_DIV_COM/MUX_In/BUFGMUX_CTRL_inst/O                                         | AFE0_CH_0/CLK_COM/MUX_CLK_DIV_COM/MUX_In/clk_out                                                     |
+| g11       | src2      | BUFGCTRL/O      | None          | BUFGCTRL_X0Y10 | n/a          |                 1 |           1 |               0 |       16.002 | afe0_pll_dig_div1                                                                                                | AFE0_CH_0/CLK_COM/MUX_CLK_DIV_COM/MUX_In/BUFGMUX_CTRL_inst/O                                         | AFE0_CH_0/CLK_COM/MUX_CLK_DIV_COM/MUX_In/clk_out                                                     |
+| g12       | src13     | BUFG/O          | None          | BUFGCTRL_X0Y12 | n/a          |                 1 |           1 |               0 |        2.286 | afe0_pll_clkfbout                                                                                                | AFE0_CH_0/CLK_COM/PLL_COM/BUFG_inst/O                                                                | AFE0_CH_0/CLK_COM/PLL_COM/clk_fdbck_i                                                                |
 | g13       | src14     | BUFG/O          | None          | BUFGCTRL_X0Y30 | n/a          |                 1 |           1 |               0 |       16.000 | ETH0/ETH_PHY_COM/U0/pcs_pma_block_i/transceiver_inst/gtwizard_inst/U0/gtwizard_i/gt0_GTWIZARD_i/gtpe2_i/TXOUTCLK | ETH0/ETH_PHY_COM/U0/core_clocking_i/bufg_txoutclk/O                                                  | ETH0/ETH_PHY_COM/U0/core_clocking_i/txoutclk_bufg                                                    |
 | g14       | src15     | BUFG/O          | None          | BUFGCTRL_X0Y4  | n/a          |                 1 |           1 |               0 |       10.000 | mmcm0_clkfbout                                                                                                   | SYS_TIMING_EPNT/mmcm0_clkfb_inst/O                                                                   | SYS_TIMING_EPNT/mmcm0_clkfbout_buf                                                                   |
 +-----------+-----------+-----------------+---------------+----------------+--------------+-------------------+-------------+-----------------+--------------+------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------+
@@ -95,23 +97,23 @@ Table of Contents
 | Source Id | Global Id | Driver Type/Pin        | Constraint         | Site               | Clock Region | Clock Loads | Non-Clock Loads | Source Clock Period | Source Clock                                                                                                     | Driver Pin                                                                                                       | Net                                                                                                      |
 +-----------+-----------+------------------------+--------------------+--------------------+--------------+-------------+-----------------+---------------------+------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------+
 | src0      | g0        | MMCME2_ADV/CLKOUT3     | None               | MMCME2_ADV_X1Y1    | X1Y1         |           1 |               0 |               8.000 | sclk125                                                                                                          | SYS_TIMING_EPNT/mmcm0_inst/CLKOUT3                                                                               | SYS_TIMING_EPNT/mmcm0_clkout3                                                                            |
-| src0      | g4        | BUFG/O                 | None               | BUFGCTRL_X0Y0      | n/a          |        2290 |               0 |               8.000 | sclk125                                                                                                          | SYS_TIMING_EPNT/mmcm0_clk3_inst/O                                                                                | SYS_TIMING_EPNT/sys_clk125                                                                               |
+| src0      | g4        | BUFG/O                 | None               | BUFGCTRL_X0Y0      | n/a          |        2378 |               0 |               8.000 | sclk125                                                                                                          | SYS_TIMING_EPNT/mmcm0_clk3_inst/O                                                                                | SYS_TIMING_EPNT/sys_clk125                                                                               |
 | src1      | g1        | MMCME2_ADV/CLKOUT0     | None               | MMCME2_ADV_X1Y2    | X1Y2         |           1 |               0 |               8.000 | oeiclk                                                                                                           | ETH0/ETH_PHY_COM/U0/core_clocking_i/mmcm_adv_inst/CLKOUT0                                                        | ETH0/ETH_PHY_COM/U0/core_clocking_i/clkout0                                                              |
 | src1      | g4        | BUFG/O                 | BUFGCTRL_X0Y2      | BUFGCTRL_X0Y2      | n/a          |           0 |               0 |               8.000 | oeiclk                                                                                                           | ETH0/ETH_PHY_COM/U0/core_clocking_i/bufg_userclk2/O                                                              | ETH0/ETH_PHY_COM/U0/core_clocking_i/userclk2                                                             |
-| src2      | g2        | BUFGCTRL/O             | None               | BUFGCTRL_X0Y27     | n/a          |           1 |               0 |              16.002 | afe0_pll_dig_div1                                                                                                | AFE0_CH_0/CLK_COM/MUX_CLK_DIV_COM/MUX_In/BUFGMUX_CTRL_inst/O                                                     | AFE0_CH_0/CLK_COM/MUX_CLK_DIV_COM/MUX_In/clk_out                                                         |
-| src2      | g11       | PLLE2_ADV/CLKOUT4      | None               | PLLE2_ADV_X0Y4     | X0Y4         |           0 |               0 |              16.002 | afe0_pll_dig_div1                                                                                                | AFE0_CH_0/CLK_COM/PLL_COM/PLLE2_BASE_inst/CLKOUT4                                                                | AFE0_CH_0/CLK_COM/PLL_COM/clk_div_phase[1]                                                               |
-| src3      | g2        | PLLE2_ADV/CLKOUT5      | None               | PLLE2_ADV_X0Y4     | X0Y4         |           0 |               0 |              16.002 | afe0_pll_dig_div2                                                                                                | AFE0_CH_0/CLK_COM/PLL_COM/PLLE2_BASE_inst/CLKOUT5                                                                | AFE0_CH_0/CLK_COM/PLL_COM/clk_div_phase[2]                                                               |
+| src2      | g2        | BUFGCTRL/O             | None               | BUFGCTRL_X0Y10     | n/a          |           1 |               0 |              16.002 | afe0_pll_dig_div1                                                                                                | AFE0_CH_0/CLK_COM/MUX_CLK_DIV_COM/MUX_In/BUFGMUX_CTRL_inst/O                                                     | AFE0_CH_0/CLK_COM/MUX_CLK_DIV_COM/MUX_In/clk_out                                                         |
+| src2      | g11       | PLLE2_ADV/CLKOUT4      | None               | PLLE2_ADV_X0Y0     | X0Y0         |           0 |               0 |              16.002 | afe0_pll_dig_div1                                                                                                | AFE0_CH_0/CLK_COM/PLL_COM/PLLE2_BASE_inst/CLKOUT4                                                                | AFE0_CH_0/CLK_COM/PLL_COM/clk_div_phase[1]                                                               |
+| src3      | g2        | PLLE2_ADV/CLKOUT5      | None               | PLLE2_ADV_X0Y0     | X0Y0         |           0 |               0 |              16.002 | afe0_pll_dig_div2                                                                                                | AFE0_CH_0/CLK_COM/PLL_COM/PLLE2_BASE_inst/CLKOUT5                                                                | AFE0_CH_0/CLK_COM/PLL_COM/clk_div_phase[2]                                                               |
 | src4      | g3        | MMCME2_ADV/CLKOUT1     | None               | MMCME2_ADV_X1Y1    | X1Y1         |           1 |               0 |               5.000 | sclk200                                                                                                          | SYS_TIMING_EPNT/mmcm0_inst/CLKOUT1                                                                               | SYS_TIMING_EPNT/mmcm0_clkout1                                                                            |
 | src5      | g5        | MMCME2_ADV/CLKOUT1     | None               | MMCME2_ADV_X1Y2    | X1Y2         |           1 |               0 |              16.000 | oeihclk                                                                                                          | ETH0/ETH_PHY_COM/U0/core_clocking_i/mmcm_adv_inst/CLKOUT1                                                        | ETH0/ETH_PHY_COM/U0/core_clocking_i/clkout1                                                              |
 | src6      | g6        | IBUFDS_GTE2/O          | IBUFDS_GTE2_X0Y2   | IBUFDS_GTE2_X0Y2   | X0Y4         |           2 |               0 |               8.317 | daq_refclk                                                                                                       | ETH0/ETH_PHY_COM/U0/core_clocking_i/ibufds_gtrefclk/O                                                            | ETH0/ETH_PHY_COM/U0/core_clocking_i/gtrefclk                                                             |
-| src7      | g7        | BUFGCTRL/O             | None               | BUFGCTRL_X0Y29     | n/a          |           1 |               0 |               2.286 | afe0_pll_dig0                                                                                                    | AFE0_CH_0/CLK_COM/MUX_CLK_COM/MUX_In/BUFGMUX_CTRL_inst/O                                                         | AFE0_CH_0/CLK_COM/MUX_CLK_COM/MUX_In/clk_out                                                             |
-| src7      | g10       | PLLE2_ADV/CLKOUT0      | None               | PLLE2_ADV_X0Y4     | X0Y4         |           1 |               0 |               2.286 | afe0_pll_dig0                                                                                                    | AFE0_CH_0/CLK_COM/PLL_COM/PLLE2_BASE_inst/CLKOUT0                                                                | AFE0_CH_0/CLK_COM/PLL_COM/clk_phase[0]                                                                   |
-| src8      | g7        | PLLE2_ADV/CLKOUT2      | None               | PLLE2_ADV_X0Y4     | X0Y4         |           0 |               0 |               2.286 | afe0_pll_dig2                                                                                                    | AFE0_CH_0/CLK_COM/PLL_COM/PLLE2_BASE_inst/CLKOUT2                                                                | AFE0_CH_0/CLK_COM/PLL_COM/clk_phase[2]                                                                   |
+| src7      | g7        | BUFGCTRL/O             | None               | BUFGCTRL_X0Y8      | n/a          |           1 |               0 |               2.286 | afe0_pll_dig0                                                                                                    | AFE0_CH_0/CLK_COM/MUX_CLK_COM/MUX_In/BUFGMUX_CTRL_inst/O                                                         | AFE0_CH_0/CLK_COM/MUX_CLK_COM/MUX_In/clk_out                                                             |
+| src7      | g10       | PLLE2_ADV/CLKOUT0      | None               | PLLE2_ADV_X0Y0     | X0Y0         |           1 |               0 |               2.286 | afe0_pll_dig0                                                                                                    | AFE0_CH_0/CLK_COM/PLL_COM/PLLE2_BASE_inst/CLKOUT0                                                                | AFE0_CH_0/CLK_COM/PLL_COM/clk_phase[0]                                                                   |
+| src8      | g7        | PLLE2_ADV/CLKOUT2      | None               | PLLE2_ADV_X0Y0     | X0Y0         |           0 |               0 |               2.286 | afe0_pll_dig2                                                                                                    | AFE0_CH_0/CLK_COM/PLL_COM/PLLE2_BASE_inst/CLKOUT2                                                                | AFE0_CH_0/CLK_COM/PLL_COM/clk_phase[2]                                                                   |
 | src9      | g8        | MMCME2_ADV/CLKOUT0     | None               | MMCME2_ADV_X1Y1    | X1Y1         |           1 |               0 |              16.000 | sclk62_5                                                                                                         | SYS_TIMING_EPNT/mmcm0_inst/CLKOUT0                                                                               | SYS_TIMING_EPNT/mmcm0_clkout0                                                                            |
 | src10     | g9        | MMCME2_ADV/CLKOUT2     | None               | MMCME2_ADV_X1Y1    | X1Y1         |           1 |               0 |              10.000 | sclk100                                                                                                          | SYS_TIMING_EPNT/mmcm0_inst/CLKOUT2                                                                               | SYS_TIMING_EPNT/mmcm0_clkout2                                                                            |
-| src11     | g10       | PLLE2_ADV/CLKOUT1      | None               | PLLE2_ADV_X0Y4     | X0Y4         |           0 |               0 |               2.286 | afe0_pll_dig1                                                                                                    | AFE0_CH_0/CLK_COM/PLL_COM/PLLE2_BASE_inst/CLKOUT1                                                                | AFE0_CH_0/CLK_COM/PLL_COM/clk_phase[1]                                                                   |
-| src12     | g11       | PLLE2_ADV/CLKOUT3      | None               | PLLE2_ADV_X0Y4     | X0Y4         |           1 |               0 |              16.002 | afe0_pll_dig_div0                                                                                                | AFE0_CH_0/CLK_COM/PLL_COM/PLLE2_BASE_inst/CLKOUT3                                                                | AFE0_CH_0/CLK_COM/PLL_COM/clk_div_phase[0]                                                               |
-| src13     | g12       | PLLE2_ADV/CLKFBOUT     | None               | PLLE2_ADV_X0Y4     | X0Y4         |           1 |               0 |               2.286 | afe0_pll_clkfbout                                                                                                | AFE0_CH_0/CLK_COM/PLL_COM/PLLE2_BASE_inst/CLKFBOUT                                                               | AFE0_CH_0/CLK_COM/PLL_COM/clk_fdbck_o                                                                    |
+| src11     | g10       | PLLE2_ADV/CLKOUT1      | None               | PLLE2_ADV_X0Y0     | X0Y0         |           0 |               0 |               2.286 | afe0_pll_dig1                                                                                                    | AFE0_CH_0/CLK_COM/PLL_COM/PLLE2_BASE_inst/CLKOUT1                                                                | AFE0_CH_0/CLK_COM/PLL_COM/clk_phase[1]                                                                   |
+| src12     | g11       | PLLE2_ADV/CLKOUT3      | None               | PLLE2_ADV_X0Y0     | X0Y0         |           1 |               0 |              16.002 | afe0_pll_dig_div0                                                                                                | AFE0_CH_0/CLK_COM/PLL_COM/PLLE2_BASE_inst/CLKOUT3                                                                | AFE0_CH_0/CLK_COM/PLL_COM/clk_div_phase[0]                                                               |
+| src13     | g12       | PLLE2_ADV/CLKFBOUT     | None               | PLLE2_ADV_X0Y0     | X0Y0         |           1 |               0 |               2.286 | afe0_pll_clkfbout                                                                                                | AFE0_CH_0/CLK_COM/PLL_COM/PLLE2_BASE_inst/CLKFBOUT                                                               | AFE0_CH_0/CLK_COM/PLL_COM/clk_fdbck_o                                                                    |
 | src14     | g13       | GTPE2_CHANNEL/TXOUTCLK | GTPE2_CHANNEL_X0Y4 | GTPE2_CHANNEL_X0Y4 | X0Y4         |           1 |               0 |              16.000 | ETH0/ETH_PHY_COM/U0/pcs_pma_block_i/transceiver_inst/gtwizard_inst/U0/gtwizard_i/gt0_GTWIZARD_i/gtpe2_i/TXOUTCLK | ETH0/ETH_PHY_COM/U0/pcs_pma_block_i/transceiver_inst/gtwizard_inst/U0/gtwizard_i/gt0_GTWIZARD_i/gtpe2_i/TXOUTCLK | ETH0/ETH_PHY_COM/U0/pcs_pma_block_i/transceiver_inst/gtwizard_inst/U0/gtwizard_i/gt0_GTWIZARD_i/txoutclk |
 | src15     | g14       | MMCME2_ADV/CLKFBOUT    | None               | MMCME2_ADV_X1Y1    | X1Y1         |           1 |               0 |              10.000 | mmcm0_clkfbout                                                                                                   | SYS_TIMING_EPNT/mmcm0_inst/CLKFBOUT                                                                              | SYS_TIMING_EPNT/mmcm0_clkfbout                                                                           |
 +-----------+-----------+------------------------+--------------------+--------------------+--------------+-------------+-----------------+---------------------+------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------+
@@ -141,15 +143,15 @@ Table of Contents
 +-------------------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+
 | Clock Region Name | Used | Avail | Used | Avail | Used | Avail | Used | Avail | Used | Avail | Used | Avail | Used | Avail | Used | Avail | Used | Avail | Used | Avail | Used | Avail | Used | Avail | Used | Avail | Used | Avail | Used | Avail |
 +-------------------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+
-| X0Y0              |    0 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     4 |    0 |     0 |    0 |    50 |    0 |    50 |    0 |  2700 |    0 |   800 |    0 |    60 |    0 |    30 |    0 |    60 |
+| X0Y0              |    6 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    1 |     1 |    0 |     4 |    0 |     0 |    4 |    50 |    0 |    50 |  392 |  2700 |  261 |   800 |    0 |    60 |    1 |    30 |   17 |    60 |
 | X1Y0              |    0 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     4 |    0 |     0 |    0 |    50 |    0 |    50 |    0 |  2500 |    0 |   800 |    0 |    40 |    0 |    20 |    0 |    40 |
-| X0Y1              |    0 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    0 |    50 |    0 |  4200 |    0 |  1400 |    0 |   100 |    0 |    50 |    0 |   100 |
+| X0Y1              |    1 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    0 |    50 |    2 |  4200 |    2 |  1400 |    0 |   100 |    0 |    50 |    0 |   100 |
 | X1Y1              |    2 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    1 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    1 |    50 |    0 |  4000 |    0 |  1400 |    0 |    80 |    0 |    40 |    0 |    80 |
-| X0Y2              |    0 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    0 |    50 |    0 |  3600 |    0 |  1400 |    0 |   100 |    0 |    50 |    0 |   100 |
+| X0Y2              |    1 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    0 |    50 |   28 |  3600 |   11 |  1400 |    0 |   100 |    1 |    50 |    0 |   100 |
 | X1Y2              |    1 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    1 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    0 |    50 |    0 |  4000 |    0 |  1400 |    0 |    80 |    0 |    40 |    0 |    80 |
-| X0Y3              |    8 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    0 |    50 | 3262 |  3600 | 1443 |  1400 |    1 |   100 |    9 |    50 |    2 |   100 |
-| X1Y3              |    1 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    0 |    50 |   15 |  4000 |    0 |  1400 |    0 |    80 |    0 |    40 |    0 |    80 |
-| X0Y4              |    9 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    1 |     1 |    1 |     4 |    0 |     1 |    4 |    50 |    0 |    50 |  534 |  2550 |  325 |   750 |    0 |    50 |    0 |    25 |   15 |    60 |
+| X0Y3              |    5 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    0 |    50 | 2939 |  3600 | 1219 |  1400 |    0 |   100 |    7 |    50 |    0 |   100 |
+| X1Y3              |    0 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    0 |    50 |    0 |  4000 |    0 |  1400 |    0 |    80 |    0 |    40 |    0 |    80 |
+| X0Y4              |    4 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    1 |     4 |    0 |     1 |    0 |    50 |    0 |    50 |  514 |  2550 |  182 |   750 |    0 |    50 |    0 |    25 |    0 |    60 |
 | X1Y4              |    0 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     4 |    0 |     0 |    0 |    50 |    0 |    50 |    0 |  2500 |    0 |   800 |    0 |    40 |    0 |    20 |    0 |    40 |
 +-------------------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+
 * Global Clock column represents track count; while other columns represents cell counts
@@ -176,7 +178,7 @@ All Modules
 +-----------+-----------------+-------------------+---------+-------------+---------------+-------------+----------+----------------+----------+----------------------------+
 | Global Id | Driver Type/Pin | Driver Region (D) | Clock   | Period (ns) | Waveform (ns) | Slice Loads | IO Loads | Clocking Loads | GT Loads | Net                        |
 +-----------+-----------------+-------------------+---------+-------------+---------------+-------------+----------+----------------+----------+----------------------------+
-| g0        | BUFG/O          | n/a               | sclk125 |       8.000 | {0.000 4.000} |        2177 |        0 |              1 |        0 | SYS_TIMING_EPNT/sys_clk125 |
+| g0        | BUFG/O          | n/a               | sclk125 |       8.000 | {0.000 4.000} |        2241 |        0 |              1 |        0 | SYS_TIMING_EPNT/sys_clk125 |
 +-----------+-----------------+-------------------+---------+-------------+---------------+-------------+----------+----------------+----------+----------------------------+
 * Slice Loads column represents load cell count of all cell types other than IO, GT and clock resources
 ** IO Loads column represents load cell count of IO types
@@ -188,10 +190,10 @@ All Modules
 |    | X0    | X1 | HORIZONTAL PROG DELAY |
 +----+-------+----+-----------------------+
 | Y4 |     0 |  0 |                     - |
-| Y3 |  2177 |  0 |                     0 |
-| Y2 |     0 |  0 |                     - |
-| Y1 |     0 |  0 |                     - |
-| Y0 |     0 |  0 |                     - |
+| Y3 |  2198 |  0 |                     0 |
+| Y2 |    29 |  0 |                     0 |
+| Y1 |     2 |  0 |                     0 |
+| Y0 |    12 |  0 |                     0 |
 +----+-------+----+-----------------------+
 
 
@@ -212,8 +214,8 @@ All Modules
 +----+------+----+-----------------------+
 |    | X0   | X1 | HORIZONTAL PROG DELAY |
 +----+------+----+-----------------------+
-| Y4 |   96 |  0 |                     0 |
-| Y3 |  555 |  0 |                     0 |
+| Y4 |   83 |  0 |                     0 |
+| Y3 |  568 |  0 |                     0 |
 | Y2 |    0 |  0 |                     - |
 | Y1 |    0 |  0 |                     - |
 | Y0 |    0 |  0 |                     - |
@@ -226,7 +228,7 @@ All Modules
 +-----------+-----------------+-------------------+----------+-------------+----------------+-------------+----------+----------------+----------+---------------------------------------------------------------+
 | Global Id | Driver Type/Pin | Driver Region (D) | Clock    | Period (ns) | Waveform (ns)  | Slice Loads | IO Loads | Clocking Loads | GT Loads | Net                                                           |
 +-----------+-----------------+-------------------+----------+-------------+----------------+-------------+----------+----------------+----------+---------------------------------------------------------------+
-| g2        | BUFGCTRL/O      | n/a               | Multiple |      16.002 | {5.334 13.335} |         430 |        4 |              0 |        0 | AFE0_CH_0/CLK_COM/MUX_CLK_DIV_COM/MUX_Out/BUFGMUX_CTRL_inst_0 |
+| g2        | BUFGCTRL/O      | n/a               | Multiple |      16.002 | {2.667 10.668} |         430 |        4 |              0 |        0 | AFE0_CH_0/CLK_COM/MUX_CLK_DIV_COM/MUX_Out/BUFGMUX_CTRL_inst_0 |
 +-----------+-----------------+-------------------+----------+-------------+----------------+-------------+----------+----------------+----------+---------------------------------------------------------------+
 * Slice Loads column represents load cell count of all cell types other than IO, GT and clock resources
 ** IO Loads column represents load cell count of IO types
@@ -237,11 +239,11 @@ All Modules
 +----+------+----+-----------------------+
 |    | X0   | X1 | HORIZONTAL PROG DELAY |
 +----+------+----+-----------------------+
-| Y4 |  380 |  0 |                     0 |
-| Y3 |   54 |  0 |                     0 |
+| Y4 |    0 |  0 |                     - |
+| Y3 |    0 |  0 |                     - |
 | Y2 |    0 |  0 |                     - |
 | Y1 |    0 |  0 |                     - |
-| Y0 |    0 |  0 |                     - |
+| Y0 |  434 |  0 |                     0 |
 +----+------+----+-----------------------+
 
 
@@ -259,15 +261,15 @@ All Modules
 **** GT Loads column represents load cell count of GT types
 
 
-+----+------+-----+-----------------------+
-|    | X0   | X1  | HORIZONTAL PROG DELAY |
-+----+------+-----+-----------------------+
-| Y4 |    1 |   0 |                     0 |
-| Y3 |  273 |  15 |                     0 |
-| Y2 |    0 |   0 |                     - |
-| Y1 |    0 |   0 |                     - |
-| Y0 |    0 |   0 |                     - |
-+----+------+-----+-----------------------+
++----+------+----+-----------------------+
+|    | X0   | X1 | HORIZONTAL PROG DELAY |
++----+------+----+-----------------------+
+| Y4 |  279 |  0 |                     0 |
+| Y3 |   10 |  0 |                     0 |
+| Y2 |    0 |  0 |                     - |
+| Y1 |    0 |  0 |                     - |
+| Y0 |    0 |  0 |                     - |
++----+------+----+-----------------------+
 
 
 11. Device Cell Placement Summary for Global Clock g4
@@ -312,8 +314,8 @@ All Modules
 +----+-----+----+-----------------------+
 |    | X0  | X1 | HORIZONTAL PROG DELAY |
 +----+-----+----+-----------------------+
-| Y4 |  48 |  0 |                     0 |
-| Y3 |  63 |  0 |                     0 |
+| Y4 |  86 |  0 |                     0 |
+| Y3 |  25 |  0 |                     0 |
 | Y2 |   0 |  0 |                     - |
 | Y1 |   0 |  0 |                     - |
 | Y0 |   0 |  0 |                     - |
@@ -337,8 +339,8 @@ All Modules
 +----+-----+----+-----------------------+
 |    | X0  | X1 | HORIZONTAL PROG DELAY |
 +----+-----+----+-----------------------+
-| Y4 |  57 |  0 |                     0 |
-| Y3 |  19 |  0 |                     0 |
+| Y4 |  76 |  0 |                     0 |
+| Y3 |   0 |  0 |                     - |
 | Y2 |   0 |  0 |                     - |
 | Y1 |   0 |  0 |                     - |
 | Y0 |   0 |  0 |                     - |
@@ -362,11 +364,11 @@ All Modules
 +----+-----+----+-----------------------+
 |    | X0  | X1 | HORIZONTAL PROG DELAY |
 +----+-----+----+-----------------------+
-| Y4 |  16 |  0 |                     0 |
+| Y4 |   0 |  0 |                     - |
 | Y3 |   0 |  0 |                     - |
 | Y2 |   0 |  0 |                     - |
 | Y1 |   0 |  0 |                     - |
-| Y0 |   0 |  0 |                     - |
+| Y0 |  16 |  0 |                     0 |
 +----+-----+----+-----------------------+
 
 
@@ -384,15 +386,15 @@ All Modules
 **** GT Loads column represents load cell count of GT types
 
 
-+----+----+----+-----------------------+
-|    | X0 | X1 | HORIZONTAL PROG DELAY |
-+----+----+----+-----------------------+
-| Y4 |  8 |  0 |                     0 |
-| Y3 |  4 |  0 |                     0 |
-| Y2 |  0 |  0 |                     - |
-| Y1 |  0 |  1 |                     0 |
-| Y0 |  0 |  0 |                     - |
-+----+----+----+-----------------------+
++----+-----+----+-----------------------+
+|    | X0  | X1 | HORIZONTAL PROG DELAY |
++----+-----+----+-----------------------+
+| Y4 |   0 |  0 |                     - |
+| Y3 |   0 |  0 |                     - |
+| Y2 |   0 |  0 |                     - |
+| Y1 |   0 |  1 |                     0 |
+| Y0 |  12 |  0 |                     0 |
++----+-----+----+-----------------------+
 
 
 16. Device Cell Placement Summary for Global Clock g9
@@ -412,11 +414,11 @@ All Modules
 +----+----+----+-----------------------+
 |    | X0 | X1 | HORIZONTAL PROG DELAY |
 +----+----+----+-----------------------+
-| Y4 |  2 |  0 |                     0 |
+| Y4 |  0 |  0 |                     - |
 | Y3 |  0 |  0 |                     - |
 | Y2 |  0 |  0 |                     - |
 | Y1 |  0 |  0 |                     - |
-| Y0 |  0 |  0 |                     - |
+| Y0 |  2 |  0 |                     0 |
 +----+----+----+-----------------------+
 
 
@@ -487,11 +489,11 @@ All Modules
 +----+----+----+-----------------------+
 |    | X0 | X1 | HORIZONTAL PROG DELAY |
 +----+----+----+-----------------------+
-| Y4 |  1 |  0 |                     0 |
+| Y4 |  0 |  0 |                     - |
 | Y3 |  0 |  0 |                     - |
 | Y2 |  0 |  0 |                     - |
 | Y1 |  0 |  0 |                     - |
-| Y0 |  0 |  0 |                     - |
+| Y0 |  1 |  0 |                     0 |
 +----+----+----+-----------------------+
 
 
@@ -545,7 +547,38 @@ All Modules
 +----+----+----+-----------------------+
 
 
-22. Clock Region Cell Placement per Global Clock: Region X1Y1
+22. Clock Region Cell Placement per Global Clock: Region X0Y0
+-------------------------------------------------------------
+
++-----------+-------+-----------------+------------+-------------+-----------------+-----+-------------+------+-----+----+------+-----+---------+---------------------------------------------------------------+
+| Global Id | Track | Driver Type/Pin | Constraint | Clock Loads | Non-Clock Loads | FF  | Memory LUTs | RAMB | DSP | GT | MMCM | PLL | Hard IP | Net                                                           |
++-----------+-------+-----------------+------------+-------------+-----------------+-----+-------------+------+-----+----+------+-----+---------+---------------------------------------------------------------+
+| g0        | n/a   | BUFG/O          | None       |          12 |               0 |  12 |           0 |    0 |   0 |  0 |    0 |   0 |       0 | SYS_TIMING_EPNT/sys_clk125                                    |
+| g2        | n/a   | BUFGCTRL/O      | None       |         434 |               0 | 356 |          56 |    1 |  17 |  0 |    0 |   0 |       0 | AFE0_CH_0/CLK_COM/MUX_CLK_DIV_COM/MUX_Out/BUFGMUX_CTRL_inst_0 |
+| g7        | n/a   | BUFGCTRL/O      | None       |          16 |               0 |  12 |           0 |    0 |   0 |  0 |    0 |   0 |       0 | AFE0_CH_0/CLK_COM/MUX_CLK_COM/MUX_Out/clk                     |
+| g8        | n/a   | BUFG/O          | None       |          12 |               0 |  11 |           0 |    1 |   0 |  0 |    0 |   0 |       0 | SYS_TIMING_EPNT/sys_clk62_5                                   |
+| g9        | n/a   | BUFG/O          | None       |           2 |               0 |   1 |           1 |    0 |   0 |  0 |    0 |   0 |       0 | SYS_TIMING_EPNT/sys_clk100                                    |
+| g12       | n/a   | BUFG/O          | None       |           1 |               0 |   0 |           0 |    0 |   0 |  0 |    0 |   1 |       0 | AFE0_CH_0/CLK_COM/PLL_COM/clk_fdbck_i                         |
++-----------+-------+-----------------+------------+-------------+-----------------+-----+-------------+------+-----+----+------+-----+---------+---------------------------------------------------------------+
+* Clock Loads column represents cell count of net connects that connect to a clock pin. Internal cell leaf pins are not considered
+** Non-Clock Loads column represents cell count of non-clock pin loads
+*** Columns FF, LUTRAM, RAMB through 'Hard IP' represents load cell counts
+
+
+23. Clock Region Cell Placement per Global Clock: Region X0Y1
+-------------------------------------------------------------
+
++-----------+-------+-----------------+------------+-------------+-----------------+----+-------------+------+-----+----+------+-----+---------+----------------------------+
+| Global Id | Track | Driver Type/Pin | Constraint | Clock Loads | Non-Clock Loads | FF | Memory LUTs | RAMB | DSP | GT | MMCM | PLL | Hard IP | Net                        |
++-----------+-------+-----------------+------------+-------------+-----------------+----+-------------+------+-----+----+------+-----+---------+----------------------------+
+| g0        | n/a   | BUFG/O          | None       |           2 |               0 |  2 |           0 |    0 |   0 |  0 |    0 |   0 |       0 | SYS_TIMING_EPNT/sys_clk125 |
++-----------+-------+-----------------+------------+-------------+-----------------+----+-------------+------+-----+----+------+-----+---------+----------------------------+
+* Clock Loads column represents cell count of net connects that connect to a clock pin. Internal cell leaf pins are not considered
+** Non-Clock Loads column represents cell count of non-clock pin loads
+*** Columns FF, LUTRAM, RAMB through 'Hard IP' represents load cell counts
+
+
+24. Clock Region Cell Placement per Global Clock: Region X1Y1
 -------------------------------------------------------------
 
 +-----------+-------+-----------------+------------+-------------+-----------------+----+-------------+------+-----+----+------+-----+---------+------------------------------------+
@@ -559,7 +592,20 @@ All Modules
 *** Columns FF, LUTRAM, RAMB through 'Hard IP' represents load cell counts
 
 
-23. Clock Region Cell Placement per Global Clock: Region X1Y2
+25. Clock Region Cell Placement per Global Clock: Region X0Y2
+-------------------------------------------------------------
+
++-----------+-------+-----------------+------------+-------------+-----------------+----+-------------+------+-----+----+------+-----+---------+----------------------------+
+| Global Id | Track | Driver Type/Pin | Constraint | Clock Loads | Non-Clock Loads | FF | Memory LUTs | RAMB | DSP | GT | MMCM | PLL | Hard IP | Net                        |
++-----------+-------+-----------------+------------+-------------+-----------------+----+-------------+------+-----+----+------+-----+---------+----------------------------+
+| g0        | n/a   | BUFG/O          | None       |          29 |               0 | 28 |           0 |    1 |   0 |  0 |    0 |   0 |       0 | SYS_TIMING_EPNT/sys_clk125 |
++-----------+-------+-----------------+------------+-------------+-----------------+----+-------------+------+-----+----+------+-----+---------+----------------------------+
+* Clock Loads column represents cell count of net connects that connect to a clock pin. Internal cell leaf pins are not considered
+** Non-Clock Loads column represents cell count of non-clock pin loads
+*** Columns FF, LUTRAM, RAMB through 'Hard IP' represents load cell counts
+
+
+26. Clock Region Cell Placement per Global Clock: Region X1Y2
 -------------------------------------------------------------
 
 +-----------+-------+-----------------+------------+-------------+-----------------+----+-------------+------+-----+----+------+-----+---------+---------------------------------------------------+
@@ -572,55 +618,34 @@ All Modules
 *** Columns FF, LUTRAM, RAMB through 'Hard IP' represents load cell counts
 
 
-24. Clock Region Cell Placement per Global Clock: Region X0Y3
+27. Clock Region Cell Placement per Global Clock: Region X0Y3
 -------------------------------------------------------------
 
 +-----------+-------+-----------------+---------------+-------------+-----------------+------+-------------+------+-----+----+------+-----+---------+------------------------------------------------------------------------------------------------------+
 | Global Id | Track | Driver Type/Pin | Constraint    | Clock Loads | Non-Clock Loads | FF   | Memory LUTs | RAMB | DSP | GT | MMCM | PLL | Hard IP | Net                                                                                                  |
 +-----------+-------+-----------------+---------------+-------------+-----------------+------+-------------+------+-----+----+------+-----+---------+------------------------------------------------------------------------------------------------------+
-| g0        | n/a   | BUFG/O          | None          |        2177 |               0 | 2164 |           0 |    9 |   0 |  0 |    0 |   0 |       0 | SYS_TIMING_EPNT/sys_clk125                                                                           |
-| g1        | n/a   | BUFG/O          | BUFGCTRL_X0Y2 |         555 |               0 |  545 |           8 |    1 |   0 |  0 |    0 |   0 |       0 | ETH0/ETH_PHY_COM/U0/core_clocking_i/userclk2                                                         |
-| g2        | n/a   | BUFGCTRL/O      | None          |          54 |               0 |   39 |          12 |    1 |   2 |  0 |    0 |   0 |       0 | AFE0_CH_0/CLK_COM/MUX_CLK_DIV_COM/MUX_Out/BUFGMUX_CTRL_inst_0                                        |
-| g3        | n/a   | BUFG/O          | None          |         273 |               0 |  273 |           0 |    0 |   0 |  0 |    0 |   0 |       0 | SYS_TIMING_EPNT/sys_clk200                                                                           |
+| g0        | n/a   | BUFG/O          | None          |        2198 |               0 | 2186 |           0 |    7 |   0 |  0 |    0 |   0 |       0 | SYS_TIMING_EPNT/sys_clk125                                                                           |
+| g1        | n/a   | BUFG/O          | BUFGCTRL_X0Y2 |         568 |               0 |  558 |           8 |    1 |   0 |  0 |    0 |   0 |       0 | ETH0/ETH_PHY_COM/U0/core_clocking_i/userclk2                                                         |
+| g3        | n/a   | BUFG/O          | None          |          10 |               0 |   10 |           0 |    0 |   0 |  0 |    0 |   0 |       0 | SYS_TIMING_EPNT/sys_clk200                                                                           |
 | g4        | n/a   | BUFGCTRL/O      | None          |         163 |               0 |  160 |           0 |    2 |   0 |  0 |    0 |   0 |       0 | ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/eth_mac_1g_gmii_inst/gmii_phy_if_inst/gmii_bufgmux_inst_0 |
-| g5        | n/a   | BUFG/O          | None          |          63 |               0 |   63 |           0 |    0 |   0 |  0 |    0 |   0 |       0 | ETH0/ETH_PHY_COM/U0/core_clocking_i/userclk                                                          |
-| g6        | n/a   | BUFG/O          | None          |          19 |               0 |   15 |           4 |    0 |   0 |  0 |    0 |   0 |       0 | ETH0/ETH_PHY_COM/U0/core_clocking_i/gtrefclk_bufg                                                    |
-| g8        | n/a   | BUFG/O          | None          |           4 |               0 |    3 |           0 |    1 |   0 |  0 |    0 |   0 |       0 | SYS_TIMING_EPNT/sys_clk62_5                                                                          |
+| g5        | n/a   | BUFG/O          | None          |          25 |               0 |   25 |           0 |    0 |   0 |  0 |    0 |   0 |       0 | ETH0/ETH_PHY_COM/U0/core_clocking_i/userclk                                                          |
 +-----------+-------+-----------------+---------------+-------------+-----------------+------+-------------+------+-----+----+------+-----+---------+------------------------------------------------------------------------------------------------------+
 * Clock Loads column represents cell count of net connects that connect to a clock pin. Internal cell leaf pins are not considered
 ** Non-Clock Loads column represents cell count of non-clock pin loads
 *** Columns FF, LUTRAM, RAMB through 'Hard IP' represents load cell counts
 
 
-25. Clock Region Cell Placement per Global Clock: Region X1Y3
+28. Clock Region Cell Placement per Global Clock: Region X0Y4
 -------------------------------------------------------------
 
-+-----------+-------+-----------------+------------+-------------+-----------------+----+-------------+------+-----+----+------+-----+---------+----------------------------+
-| Global Id | Track | Driver Type/Pin | Constraint | Clock Loads | Non-Clock Loads | FF | Memory LUTs | RAMB | DSP | GT | MMCM | PLL | Hard IP | Net                        |
-+-----------+-------+-----------------+------------+-------------+-----------------+----+-------------+------+-----+----+------+-----+---------+----------------------------+
-| g3        | n/a   | BUFG/O          | None       |          15 |               0 | 15 |           0 |    0 |   0 |  0 |    0 |   0 |       0 | SYS_TIMING_EPNT/sys_clk200 |
-+-----------+-------+-----------------+------------+-------------+-----------------+----+-------------+------+-----+----+------+-----+---------+----------------------------+
-* Clock Loads column represents cell count of net connects that connect to a clock pin. Internal cell leaf pins are not considered
-** Non-Clock Loads column represents cell count of non-clock pin loads
-*** Columns FF, LUTRAM, RAMB through 'Hard IP' represents load cell counts
-
-
-26. Clock Region Cell Placement per Global Clock: Region X0Y4
--------------------------------------------------------------
-
-+-----------+-------+-----------------+---------------+-------------+-----------------+-----+-------------+------+-----+----+------+-----+---------+---------------------------------------------------------------+
-| Global Id | Track | Driver Type/Pin | Constraint    | Clock Loads | Non-Clock Loads | FF  | Memory LUTs | RAMB | DSP | GT | MMCM | PLL | Hard IP | Net                                                           |
-+-----------+-------+-----------------+---------------+-------------+-----------------+-----+-------------+------+-----+----+------+-----+---------+---------------------------------------------------------------+
-| g1        | n/a   | BUFG/O          | BUFGCTRL_X0Y2 |          96 |               0 |  96 |           0 |    0 |   0 |  0 |    0 |   0 |       0 | ETH0/ETH_PHY_COM/U0/core_clocking_i/userclk2                  |
-| g2        | n/a   | BUFGCTRL/O      | None          |         380 |               0 | 317 |          44 |    0 |  15 |  0 |    0 |   0 |       0 | AFE0_CH_0/CLK_COM/MUX_CLK_DIV_COM/MUX_Out/BUFGMUX_CTRL_inst_0 |
-| g3        | n/a   | BUFG/O          | None          |           1 |               0 |   0 |           0 |    0 |   0 |  0 |    0 |   0 |       0 | SYS_TIMING_EPNT/sys_clk200                                    |
-| g5        | n/a   | BUFG/O          | None          |          48 |               0 |  47 |           0 |    0 |   0 |  1 |    0 |   0 |       0 | ETH0/ETH_PHY_COM/U0/core_clocking_i/userclk                   |
-| g6        | n/a   | BUFG/O          | None          |          57 |               0 |  53 |           3 |    0 |   0 |  1 |    0 |   0 |       0 | ETH0/ETH_PHY_COM/U0/core_clocking_i/gtrefclk_bufg             |
-| g7        | n/a   | BUFGCTRL/O      | None          |          16 |               0 |  12 |           0 |    0 |   0 |  0 |    0 |   0 |       0 | AFE0_CH_0/CLK_COM/MUX_CLK_COM/MUX_Out/clk                     |
-| g8        | n/a   | BUFG/O          | None          |           8 |               0 |   8 |           0 |    0 |   0 |  0 |    0 |   0 |       0 | SYS_TIMING_EPNT/sys_clk62_5                                   |
-| g9        | n/a   | BUFG/O          | None          |           2 |               0 |   1 |           1 |    0 |   0 |  0 |    0 |   0 |       0 | SYS_TIMING_EPNT/sys_clk100                                    |
-| g12       | n/a   | BUFG/O          | None          |           1 |               0 |   0 |           0 |    0 |   0 |  0 |    0 |   1 |       0 | AFE0_CH_0/CLK_COM/PLL_COM/clk_fdbck_i                         |
-+-----------+-------+-----------------+---------------+-------------+-----------------+-----+-------------+------+-----+----+------+-----+---------+---------------------------------------------------------------+
++-----------+-------+-----------------+---------------+-------------+-----------------+-----+-------------+------+-----+----+------+-----+---------+---------------------------------------------------+
+| Global Id | Track | Driver Type/Pin | Constraint    | Clock Loads | Non-Clock Loads | FF  | Memory LUTs | RAMB | DSP | GT | MMCM | PLL | Hard IP | Net                                               |
++-----------+-------+-----------------+---------------+-------------+-----------------+-----+-------------+------+-----+----+------+-----+---------+---------------------------------------------------+
+| g1        | n/a   | BUFG/O          | BUFGCTRL_X0Y2 |          83 |               0 |  83 |           0 |    0 |   0 |  0 |    0 |   0 |       0 | ETH0/ETH_PHY_COM/U0/core_clocking_i/userclk2      |
+| g3        | n/a   | BUFG/O          | None          |         279 |               0 | 278 |           0 |    0 |   0 |  0 |    0 |   0 |       0 | SYS_TIMING_EPNT/sys_clk200                        |
+| g5        | n/a   | BUFG/O          | None          |          86 |               0 |  85 |           0 |    0 |   0 |  1 |    0 |   0 |       0 | ETH0/ETH_PHY_COM/U0/core_clocking_i/userclk       |
+| g6        | n/a   | BUFG/O          | None          |          76 |               0 |  68 |           7 |    0 |   0 |  1 |    0 |   0 |       0 | ETH0/ETH_PHY_COM/U0/core_clocking_i/gtrefclk_bufg |
++-----------+-------+-----------------+---------------+-------------+-----------------+-----+-------------+------+-----+----+------+-----+---------+---------------------------------------------------+
 * Clock Loads column represents cell count of net connects that connect to a clock pin. Internal cell leaf pins are not considered
 ** Non-Clock Loads column represents cell count of non-clock pin loads
 *** Columns FF, LUTRAM, RAMB through 'Hard IP' represents load cell counts
@@ -638,16 +663,16 @@ set_property LOC BUFGCTRL_X0Y3 [get_cells ETH0/ETH_PHY_COM/U0/core_clocking_i/bu
 set_property LOC BUFGCTRL_X0Y30 [get_cells ETH0/ETH_PHY_COM/U0/core_clocking_i/bufg_txoutclk]
 set_property LOC BUFGCTRL_X0Y31 [get_cells ETH0/ETH_PHY_COM/U0/core_clocking_i/bufg_gtrefclk]
 set_property LOC BUFGCTRL_X0Y1 [get_cells ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/eth_mac_1g_gmii_inst/gmii_phy_if_inst/gmii_bufgmux_inst]
-set_property LOC BUFGCTRL_X0Y25 [get_cells AFE0_CH_0/CLK_COM/PLL_COM/BUFG_inst]
-set_property LOC BUFGCTRL_X0Y26 [get_cells AFE0_CH_0/CLK_COM/MUX_CLK_DIV_COM/MUX_Out/BUFGMUX_CTRL_inst]
-set_property LOC BUFGCTRL_X0Y27 [get_cells AFE0_CH_0/CLK_COM/MUX_CLK_DIV_COM/MUX_In/BUFGMUX_CTRL_inst]
-set_property LOC BUFGCTRL_X0Y28 [get_cells AFE0_CH_0/CLK_COM/MUX_CLK_COM/MUX_Out/BUFGMUX_CTRL_inst]
-set_property LOC BUFGCTRL_X0Y29 [get_cells AFE0_CH_0/CLK_COM/MUX_CLK_COM/MUX_In/BUFGMUX_CTRL_inst]
+set_property LOC BUFGCTRL_X0Y12 [get_cells AFE0_CH_0/CLK_COM/PLL_COM/BUFG_inst]
+set_property LOC BUFGCTRL_X0Y11 [get_cells AFE0_CH_0/CLK_COM/MUX_CLK_DIV_COM/MUX_Out/BUFGMUX_CTRL_inst]
+set_property LOC BUFGCTRL_X0Y10 [get_cells AFE0_CH_0/CLK_COM/MUX_CLK_DIV_COM/MUX_In/BUFGMUX_CTRL_inst]
+set_property LOC BUFGCTRL_X0Y9 [get_cells AFE0_CH_0/CLK_COM/MUX_CLK_COM/MUX_Out/BUFGMUX_CTRL_inst]
+set_property LOC BUFGCTRL_X0Y8 [get_cells AFE0_CH_0/CLK_COM/MUX_CLK_COM/MUX_In/BUFGMUX_CTRL_inst]
 
 # Location of IO Primitives which is load of clock spine
 
 # Location of clock ports
-set_property LOC IOB_X0Y226 [get_ports afe_dclk_p[1]]
+set_property LOC IOB_X0Y24 [get_ports afe_dclk_p[0]]
 set_property LOC IPAD_X1Y44 [get_ports daq_refclk_p]
 set_property LOC IOB_X1Y74 [get_ports sysclk_p]
 
@@ -655,28 +680,28 @@ set_property LOC IOB_X1Y74 [get_ports sysclk_p]
 #startgroup
 create_pblock {CLKAG_SYS_TIMING_EPNT/sys_clk62_5}
 add_cells_to_pblock [get_pblocks  {CLKAG_SYS_TIMING_EPNT/sys_clk62_5}] [get_cells -filter { PRIMITIVE_GROUP != I/O && IS_PRIMITIVE==1 && PRIMITIVE_LEVEL !=INTERNAL } -of_object [get_pins -leaf -filter {DIRECTION==IN} -of_objects [get_nets {SYS_TIMING_EPNT/sys_clk62_5}]]]
-resize_pblock [get_pblocks {CLKAG_SYS_TIMING_EPNT/sys_clk62_5}] -add {CLOCKREGION_X0Y3:CLOCKREGION_X0Y3 CLOCKREGION_X0Y4:CLOCKREGION_X0Y4 CLOCKREGION_X1Y1:CLOCKREGION_X1Y1}
+resize_pblock [get_pblocks {CLKAG_SYS_TIMING_EPNT/sys_clk62_5}] -add {CLOCKREGION_X0Y0:CLOCKREGION_X0Y0 CLOCKREGION_X1Y1:CLOCKREGION_X1Y1}
 #endgroup
 
 # Clock net "SYS_TIMING_EPNT/sys_clk200" driven by instance "SYS_TIMING_EPNT/mmcm0_clk1_inst" located at site "BUFGCTRL_X0Y6"
 #startgroup
 create_pblock {CLKAG_SYS_TIMING_EPNT/sys_clk200}
 add_cells_to_pblock [get_pblocks  {CLKAG_SYS_TIMING_EPNT/sys_clk200}] [get_cells -filter { PRIMITIVE_GROUP != I/O && IS_PRIMITIVE==1 && PRIMITIVE_LEVEL !=INTERNAL } -of_object [get_pins -leaf -filter {DIRECTION==IN} -of_objects [get_nets {SYS_TIMING_EPNT/sys_clk200}]]]
-resize_pblock [get_pblocks {CLKAG_SYS_TIMING_EPNT/sys_clk200}] -add {CLOCKREGION_X0Y3:CLOCKREGION_X0Y3 CLOCKREGION_X0Y4:CLOCKREGION_X0Y4 CLOCKREGION_X1Y3:CLOCKREGION_X1Y3}
+resize_pblock [get_pblocks {CLKAG_SYS_TIMING_EPNT/sys_clk200}] -add {CLOCKREGION_X0Y3:CLOCKREGION_X0Y3 CLOCKREGION_X0Y4:CLOCKREGION_X0Y4}
 #endgroup
 
 # Clock net "SYS_TIMING_EPNT/sys_clk125" driven by instance "SYS_TIMING_EPNT/mmcm0_clk3_inst" located at site "BUFGCTRL_X0Y0"
 #startgroup
 create_pblock {CLKAG_SYS_TIMING_EPNT/sys_clk125}
 add_cells_to_pblock [get_pblocks  {CLKAG_SYS_TIMING_EPNT/sys_clk125}] [get_cells -filter { PRIMITIVE_GROUP != I/O && IS_PRIMITIVE==1 && PRIMITIVE_LEVEL !=INTERNAL && NAME!=ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/eth_mac_1g_gmii_inst/gmii_phy_if_inst/gmii_bufgmux_inst} -of_object [get_pins -leaf -filter {DIRECTION==IN} -of_objects [get_nets {SYS_TIMING_EPNT/sys_clk125}]]]
-resize_pblock [get_pblocks {CLKAG_SYS_TIMING_EPNT/sys_clk125}] -add {CLOCKREGION_X0Y3:CLOCKREGION_X0Y3}
+resize_pblock [get_pblocks {CLKAG_SYS_TIMING_EPNT/sys_clk125}] -add {CLOCKREGION_X0Y0:CLOCKREGION_X0Y0 CLOCKREGION_X0Y1:CLOCKREGION_X0Y1 CLOCKREGION_X0Y2:CLOCKREGION_X0Y2 CLOCKREGION_X0Y3:CLOCKREGION_X0Y3}
 #endgroup
 
 # Clock net "SYS_TIMING_EPNT/sys_clk100" driven by instance "SYS_TIMING_EPNT/mmcm0_clk2_inst" located at site "BUFGCTRL_X0Y7"
 #startgroup
 create_pblock {CLKAG_SYS_TIMING_EPNT/sys_clk100}
 add_cells_to_pblock [get_pblocks  {CLKAG_SYS_TIMING_EPNT/sys_clk100}] [get_cells -filter { PRIMITIVE_GROUP != I/O && IS_PRIMITIVE==1 && PRIMITIVE_LEVEL !=INTERNAL } -of_object [get_pins -leaf -filter {DIRECTION==IN} -of_objects [get_nets {SYS_TIMING_EPNT/sys_clk100}]]]
-resize_pblock [get_pblocks {CLKAG_SYS_TIMING_EPNT/sys_clk100}] -add {CLOCKREGION_X0Y4:CLOCKREGION_X0Y4}
+resize_pblock [get_pblocks {CLKAG_SYS_TIMING_EPNT/sys_clk100}] -add {CLOCKREGION_X0Y0:CLOCKREGION_X0Y0}
 #endgroup
 
 # Clock net "ETH0/ETH_PHY_COM/U0/core_clocking_i/userclk2" driven by instance "ETH0/ETH_PHY_COM/U0/core_clocking_i/bufg_userclk2" located at site "BUFGCTRL_X0Y2"
@@ -697,7 +722,7 @@ resize_pblock [get_pblocks {CLKAG_ETH0/ETH_PHY_COM/U0/core_clocking_i/userclk}] 
 #startgroup
 create_pblock {CLKAG_ETH0/ETH_PHY_COM/U0/core_clocking_i/gtrefclk_bufg}
 add_cells_to_pblock [get_pblocks  {CLKAG_ETH0/ETH_PHY_COM/U0/core_clocking_i/gtrefclk_bufg}] [get_cells -filter { PRIMITIVE_GROUP != I/O && IS_PRIMITIVE==1 && PRIMITIVE_LEVEL !=INTERNAL } -of_object [get_pins -leaf -filter {DIRECTION==IN} -of_objects [get_nets {ETH0/ETH_PHY_COM/U0/core_clocking_i/gtrefclk_bufg}]]]
-resize_pblock [get_pblocks {CLKAG_ETH0/ETH_PHY_COM/U0/core_clocking_i/gtrefclk_bufg}] -add {CLOCKREGION_X0Y3:CLOCKREGION_X0Y3 CLOCKREGION_X0Y4:CLOCKREGION_X0Y4}
+resize_pblock [get_pblocks {CLKAG_ETH0/ETH_PHY_COM/U0/core_clocking_i/gtrefclk_bufg}] -add {CLOCKREGION_X0Y4:CLOCKREGION_X0Y4}
 #endgroup
 
 # Clock net "ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/eth_mac_1g_gmii_inst/gmii_phy_if_inst/gmii_bufgmux_inst_0" driven by instance "ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/eth_mac_1g_gmii_inst/gmii_phy_if_inst/gmii_bufgmux_inst" located at site "BUFGCTRL_X0Y1"
@@ -707,16 +732,16 @@ add_cells_to_pblock [get_pblocks  {CLKAG_ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_i
 resize_pblock [get_pblocks {CLKAG_ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/eth_mac_1g_gmii_inst/gmii_phy_if_inst/gmii_bufgmux_inst_0}] -add {CLOCKREGION_X0Y3:CLOCKREGION_X0Y3}
 #endgroup
 
-# Clock net "AFE0_CH_0/CLK_COM/MUX_CLK_DIV_COM/MUX_Out/BUFGMUX_CTRL_inst_0" driven by instance "AFE0_CH_0/CLK_COM/MUX_CLK_DIV_COM/MUX_Out/BUFGMUX_CTRL_inst" located at site "BUFGCTRL_X0Y26"
+# Clock net "AFE0_CH_0/CLK_COM/MUX_CLK_DIV_COM/MUX_Out/BUFGMUX_CTRL_inst_0" driven by instance "AFE0_CH_0/CLK_COM/MUX_CLK_DIV_COM/MUX_Out/BUFGMUX_CTRL_inst" located at site "BUFGCTRL_X0Y11"
 #startgroup
 create_pblock {CLKAG_AFE0_CH_0/CLK_COM/MUX_CLK_DIV_COM/MUX_Out/BUFGMUX_CTRL_inst_0}
 add_cells_to_pblock [get_pblocks  {CLKAG_AFE0_CH_0/CLK_COM/MUX_CLK_DIV_COM/MUX_Out/BUFGMUX_CTRL_inst_0}] [get_cells -filter { PRIMITIVE_GROUP != I/O && IS_PRIMITIVE==1 && PRIMITIVE_LEVEL !=INTERNAL } -of_object [get_pins -leaf -filter {DIRECTION==IN} -of_objects [get_nets {AFE0_CH_0/CLK_COM/MUX_CLK_DIV_COM/MUX_Out/BUFGMUX_CTRL_inst_0}]]]
-resize_pblock [get_pblocks {CLKAG_AFE0_CH_0/CLK_COM/MUX_CLK_DIV_COM/MUX_Out/BUFGMUX_CTRL_inst_0}] -add {CLOCKREGION_X0Y3:CLOCKREGION_X0Y3 CLOCKREGION_X0Y4:CLOCKREGION_X0Y4}
+resize_pblock [get_pblocks {CLKAG_AFE0_CH_0/CLK_COM/MUX_CLK_DIV_COM/MUX_Out/BUFGMUX_CTRL_inst_0}] -add {CLOCKREGION_X0Y0:CLOCKREGION_X0Y0}
 #endgroup
 
-# Clock net "AFE0_CH_0/CLK_COM/MUX_CLK_COM/MUX_Out/clk" driven by instance "AFE0_CH_0/CLK_COM/MUX_CLK_COM/MUX_Out/BUFGMUX_CTRL_inst" located at site "BUFGCTRL_X0Y28"
+# Clock net "AFE0_CH_0/CLK_COM/MUX_CLK_COM/MUX_Out/clk" driven by instance "AFE0_CH_0/CLK_COM/MUX_CLK_COM/MUX_Out/BUFGMUX_CTRL_inst" located at site "BUFGCTRL_X0Y9"
 #startgroup
 create_pblock {CLKAG_AFE0_CH_0/CLK_COM/MUX_CLK_COM/MUX_Out/clk}
 add_cells_to_pblock [get_pblocks  {CLKAG_AFE0_CH_0/CLK_COM/MUX_CLK_COM/MUX_Out/clk}] [get_cells -filter { PRIMITIVE_GROUP != I/O && IS_PRIMITIVE==1 && PRIMITIVE_LEVEL !=INTERNAL } -of_object [get_pins -leaf -filter {DIRECTION==IN} -of_objects [get_nets {AFE0_CH_0/CLK_COM/MUX_CLK_COM/MUX_Out/clk}]]]
-resize_pblock [get_pblocks {CLKAG_AFE0_CH_0/CLK_COM/MUX_CLK_COM/MUX_Out/clk}] -add {CLOCKREGION_X0Y4:CLOCKREGION_X0Y4}
+resize_pblock [get_pblocks {CLKAG_AFE0_CH_0/CLK_COM/MUX_CLK_COM/MUX_Out/clk}] -add {CLOCKREGION_X0Y0:CLOCKREGION_X0Y0}
 #endgroup

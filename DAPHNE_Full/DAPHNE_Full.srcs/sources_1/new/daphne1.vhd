@@ -52,6 +52,7 @@ entity daphne1_arch is
         -- Two high speed links to DAQ
         -- For FELIX links use TX only, disable RX, line rate = 4.809Gbps, refclk = 120.237 MHz
         daq0_tx_p, daq0_tx_n: out std_logic;
+        daq0_rx_p, daq0_rx_n: in std_logic;
         daq0_sfp_abs: in std_logic;
         daq0_sfp_los: in std_logic;
         daq0_sfp_tx_dis: out std_logic;
@@ -194,6 +195,7 @@ component selfTrigger_Module
         trigger             : out std_logic;
 --        state_val : out std_logic_vector(2 downto 0);
         fifo_rd_out         : out std_logic;
+        fifo_wr_out         : out std_logic;
         fifo_o              : out std_logic_vector(13 downto 0);
         fifo_a_empty        : out std_logic;
         fifo_a_full         : out std_logic;
@@ -237,7 +239,8 @@ component eth_module_full
     );
 end component eth_module_full;
 
-signal fifo_a_full, fifo_empty, fifo_wr_err, fifo_rd_err, pll_afe_lck, trigger: std_logic;
+signal fifo_a_full, fifo_empty, fifo_wr_err, fifo_rd_err, pll_afe_lck, trigger, fifo_wr_out, fifo_rd_out: std_logic;
+signal filt_out: std_logic_vector(13 downto 0);
 
 begin
 
@@ -276,12 +279,12 @@ begin
             n_ch => 1
         )
         port map ( 
-            in_P_clk_dt_ports   => afe_dclk_p(1),
-            in_N_clk_dt_ports   => afe_dclk_n(1),
-            in_P_clk_fr_ports   => afe_fclk_p(1),
-            in_N_clk_fr_ports   => afe_fclk_n(1),
-            in_P_data_ports     => afe_p(1)(0),
-            in_N_data_ports     => afe_n(1)(0),
+            in_P_clk_dt_ports   => afe_dclk_p(0),
+            in_N_clk_dt_ports   => afe_dclk_n(0),
+            in_P_clk_fr_ports   => afe_fclk_p(0),
+            in_N_clk_fr_ports   => afe_fclk_n(0),
+            in_P_data_ports     => afe_p(0)(0),
+            in_N_data_ports     => afe_n(0)(0),
             sys_clk             => sys_clk100,
             glob_rst            => async_rst,
             alignment_mode      => '0',
@@ -310,11 +313,12 @@ begin
             rd_ctrl             => '1',
             wr_enable_signal    => '0', --gpi,
             rd_enable_signal    => '0',
-            filt_out            => open,
+            filt_out            => filt_out,--open,
             xcorr_out           => open,
             xcorr_data_out      => open,
             trigger             => trigger,--led(2),
-            fifo_rd_out         => open, -- Was initially open, but this is the signal that tells the rest of the AXI stream that this FIFO is ready to send data, fix: keep it open, it is open in the nexys_ethernet project
+            fifo_rd_out         => fifo_rd_out, -- Was initially open, but this is the signal that tells the rest of the AXI stream that this FIFO is ready to send data, fix: keep it open, it is open in the nexys_ethernet project
+            fifo_wr_out         => fifo_wr_out,
             fifo_o              => open,
             fifo_a_empty        => open,
             fifo_a_full         => fifo_a_full,--open,--led(2),--fifo_a_full, --open,--led(2),--open,
@@ -337,8 +341,8 @@ begin
             gbe_refclk_n_ibuf       => daq_refclk_n,
             gbe_tx_p                => daq0_tx_p,
             gbe_tx_n                => daq0_tx_n,
-            gbe_rx_p                => '0',             -- Module Unused
-            gbe_rx_n                => '0',             -- Module Unused
+            gbe_rx_p                => daq0_rx_p,             -- Module Unused
+            gbe_rx_n                => daq0_rx_n,             -- Module Unused
             sys_clk125              => sys_clk125,
             sys_clk200              => sys_clk200,
             async_rst               => async_rst,
@@ -358,12 +362,20 @@ begin
 --    led(3) <= not(daq1_sfp_los);
 --    led(4) <= not(daq1_sfp_abs);
 --    led(5) <= not(fifo_a_full);
-    led(1) <= not(pll_afe_lck);
+--    led(1) <= not(pll_afe_lck);
 --    led(2) <= not(mmcm0_locked);
-    led(2) <= not(fifo_a_full);
-    led(3) <= not(fifo_empty);
-    led(4) <= not(fifo_wr_err);
-    led(5) <= not(fifo_rd_err);
+    led(1) <= not(fifo_wr_out);
+    led(2) <= not(st_axi_ready);
+    led(3) <= not(st_axi_valid);
+    led(4) <= not(st_axi_data(6));
+    led(5) <= not(st_axi_data(7));
+--    led(5 downto 3) <= not(filt_out(2) & filt_out(1) & filt_out(0));
+--    led(5 downto 1) <= not(afe_data(8) & afe_data(3 downto 0));
+--    led() <= afe_data();
+--    led(2) <= not(fifo_a_full);
+--    led(3) <= not(fifo_empty);
+--    led(4) <= not(fifo_wr_err);
+--    led(5) <= not(fifo_rd_err);
 --    led(4 downto 1) <= st_axi_data(3 downto 0);
 
     -- Enable DAQ Link SFP Transmitters...

@@ -49,6 +49,7 @@ entity selfTrigger_Module is
         trigger : out std_logic;
 --        state_val : out std_logic_vector(2 downto 0);
         fifo_rd_out : out std_logic;
+        fifo_wr_out : out std_logic;
         fifo_o : out std_logic_vector(13 downto 0);
         fifo_a_empty : out std_logic;
         fifo_a_full : out std_logic;
@@ -301,6 +302,7 @@ begin
     
     -- Outputs of the Module
     fifo_rd_out <= fifo_rd;
+    fifo_wr_out <= fifo_trig;
     filt_out <= data_aux;
     trigger <= trigger_aux;--write;
     xcorr_data_out <= xcorr_data_out_aux;

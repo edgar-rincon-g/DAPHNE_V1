@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version              : Vivado v.2023.1 (win64) Build 3865809 Sun May  7 15:05:29 MDT 2023
-| Date                      : Mon Oct 30 09:11:25 2023
+| Date                      : Mon Oct 30 16:46:42 2023
 | Host                      : danielA running 64-bit major release  (build 9200)
 | Command                   : report_io -file daphne1_arch_io_placed.rpt
 | Design                    : daphne1_arch
@@ -25,7 +25,7 @@ Table of Contents
 +---------------+
 | Total User IO |
 +---------------+
-|           139 |
+|           141 |
 +---------------+
 
 
@@ -45,7 +45,7 @@ Table of Contents
 | A8         |                 |            | GND                          | GND           |             |         |            |      |                      |                      |     0.0 |            |           |          |      |                  |              |                   |              |
 | A9         |                 |            | MGTPTXN2_216                 | Gigabit       |             |         |            |      |                      |                      |         |            |           |          |      |                  |              |                   |              |
 | A10        |                 |            | GND                          | GND           |             |         |            |      |                      |                      |     0.0 |            |           |          |      |                  |              |                   |              |
-| A11        |                 |            | MGTPRXN0_216                 | Gigabit       |             |         |            |      |                      |                      |         |            |           |          |      |                  |              |                   |              |
+| A11        | daq0_rx_n       |            | MGTPRXN0_216                 | INPUT         |             |         |            |      |                      |                 NONE |         | FIXED      |           |          |      | NONE             |              |                   |              |
 | A12        |                 |            | GND                          | GND           |             |         |            |      |                      |                      |     0.0 |            |           |          |      |                  |              |                   |              |
 | A13        |                 |            | MGTPRXN2_216                 | Gigabit       |             |         |            |      |                      |                      |         |            |           |          |      |                  |              |                   |              |
 | A14        |                 |            | GND                          | GND           |             |         |            |      |                      |                      |     0.0 |            |           |          |      |                  |              |                   |              |
@@ -227,7 +227,7 @@ Table of Contents
 | B8         |                 |            | MGTAVTT_G11                  | Gigabit Power |             |         |            |      |                      |                      |         |            |           |          |      |                  |              |                   |              |
 | B9         |                 |            | MGTPTXP2_216                 | Gigabit       |             |         |            |      |                      |                      |         |            |           |          |      |                  |              |                   |              |
 | B10        |                 |            | MGTAVTT_G11                  | Gigabit Power |             |         |            |      |                      |                      |         |            |           |          |      |                  |              |                   |              |
-| B11        |                 |            | MGTPRXP0_216                 | Gigabit       |             |         |            |      |                      |                      |         |            |           |          |      |                  |              |                   |              |
+| B11        | daq0_rx_p       |            | MGTPRXP0_216                 | INPUT         |             |         |            |      |                      |                 NONE |         | FIXED      |           |          |      | NONE             |              |                   |              |
 | B12        |                 |            | MGTAVTT_G11                  | Gigabit Power |             |         |            |      |                      |                      |         |            |           |          |      |                  |              |                   |              |
 | B13        |                 |            | MGTPRXP2_216                 | Gigabit       |             |         |            |      |                      |                      |         |            |           |          |      |                  |              |                   |              |
 | B14        |                 |            | MGTAVTT_G11                  | Gigabit Power |             |         |            |      |                      |                      |         |            |           |          |      |                  |              |                   |              |
