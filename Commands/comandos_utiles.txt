@@ -1,0 +1,67 @@
+Cambiar la IP:
+	$ sudo ip addr add 192.168.133.1/24 dev eno2
+
+Concatenar la salida udp con un archivo log
+	$ nc -u -l 50000 > logudp.txt
+
+Volver a DHCP normal:
+	#$ sudo dhclient -r eth0
+	#$ sudo dhclient eth0
+	$ sudo dhclient eno2 -v 
+
+Programar el uC>
+	$ sudo /usr/local/STMicroelectronics/STM32Cube/STM32CubeProgrammer/bin/./STM32CubeProgrammer
+
+Configurar los AFES: #### OJO el AFE 0 ESTÁ MALO ########
+	CFG AFE ALL RAMP
+	CFG AFE 0 RAMP	
+	CFG AFE 0 ONES
+	CFG AFE 0 ZEROS	
+	CFG AFE 0 INITIAL %Para medir normal
+ 
+Escribir los registros de los integradores
+	WR AFE 0 REG 4 V 24 %configurar MSB y offset binary
+	WR AFE 0 REG 4 V 8 %configurar LSB y offset binary
+	WR AFE 0 REG 10 V 256 %Para que los test patterns sean sincronos.
+	WR AFE 0 REG 51 V 16 %Sin integrador PGA
+	WR AFE 0 REG 52 V 2048 %Sin integrador LNA
+	WR AFE 0 VGAIN V 4000 %atenuador
+	WR AFE 0 REG 2 V 0 %Normal measurement
+
+Escribir el offset
+	WR OFFSET CH 0 V 2047 % a partir de 170 empieza a verse ruido
+
+Resetear la FPGA:
+	CFG FPGA RESET
+
+Configurar AFE: Integrador en PGA y LNA, sin offset externo, 0 es en 8182
+
+	WR AFE 0 REG 4 V 24 %configurar MSB y offset binary
+	WR AFE 0 REG 52 V 832 %Active termination, 100ohms, 1.5Vpp LNA clamp, integrator enabled, 18dB LNA gain
+	WR AFE 0 REG 52 V 17216 %Active termination, 100ohms, 1.5Vpp LNA clamp, integrator enabled, 12dB LNA gain
+	WR AFE 0 VGAIN V 4000 %atenuador a -40db
+	WR AFE 0 REG 2 V 0 %Normal measurement
+	CFG AFE ALL ONES
+	CFG AFE ALL ZEROS
+
+
+Configurar DAPHNE No 9:
+	WR AFE 0 REG 4 V 24 %configurar MSB y offset binary
+	WR AFE 0 REG 51 V 16 %Sin integrador PGA
+	WR AFE 0 REG 52 V 20992 %Passive termination, 1.5Vpp LNA clamp, integrator disabled, 12dB LNA gain
+	WR AFE 0 VGAIN V 4000 %atenuador
+	WR OFFSET CH 0 V 2047 % a partir de 170 empieza a verse ruido
+	CFG AFE ALL INITIAL
+	
+En una ventana de consola nueva ponemos lo siguiente para saber que si lo está configurando:
+	stty -F /dev/ttyUSB0 115200 && sleep 0.5
+	cat -v < /dev/ttyUSB0
+
+	echo -ne 'CFG AFE ALL ONES' > /dev/ttyUSB0 
+
+
+
+
+
+
+
