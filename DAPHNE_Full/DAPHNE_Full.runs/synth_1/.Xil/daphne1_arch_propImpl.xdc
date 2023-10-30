@@ -42,24 +42,6 @@ set_property src_info {type:XDC file:2 line:86 export:INPUT save:INPUT read:READ
 set_max_delay -datapath_only -from [get_cells ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/eth_mac_1g_gmii_inst/mii_select_reg_reg] -to [get_cells {ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/eth_mac_1g_gmii_inst/rx_mii_select_sync_reg[0]}] 8.000
 set_property src_info {type:XDC file:2 line:88 export:INPUT save:INPUT read:READ} [current_design]
 set_max_delay -datapath_only -from [get_cells {ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/eth_mac_1g_gmii_inst/rx_prescale_reg[2]}] -to [get_cells {ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/eth_mac_1g_gmii_inst/rx_prescale_sync_reg[0]}] 8.000
-set_property src_info {type:XDC file:2 line:110 export:INPUT save:INPUT read:READ} [current_design]
-create_generated_clock -name afe0_pll_dig0          [get_pins AFE0_CH_0/CLK_COM/PLL_COM/PLLE2_BASE_inst/CLKOUT0]
-set_property src_info {type:XDC file:2 line:111 export:INPUT save:INPUT read:READ} [current_design]
-create_generated_clock -name afe0_pll_dig1          [get_pins AFE0_CH_0/CLK_COM/PLL_COM/PLLE2_BASE_inst/CLKOUT1]
-set_property src_info {type:XDC file:2 line:112 export:INPUT save:INPUT read:READ} [current_design]
-create_generated_clock -name afe0_pll_dig2          [get_pins AFE0_CH_0/CLK_COM/PLL_COM/PLLE2_BASE_inst/CLKOUT2]
-set_property src_info {type:XDC file:2 line:113 export:INPUT save:INPUT read:READ} [current_design]
-create_generated_clock -name afe0_pll_dig_div0      [get_pins AFE0_CH_0/CLK_COM/PLL_COM/PLLE2_BASE_inst/CLKOUT3]
-set_property src_info {type:XDC file:2 line:114 export:INPUT save:INPUT read:READ} [current_design]
-create_generated_clock -name afe0_pll_dig_div1      [get_pins AFE0_CH_0/CLK_COM/PLL_COM/PLLE2_BASE_inst/CLKOUT4]
-set_property src_info {type:XDC file:2 line:115 export:INPUT save:INPUT read:READ} [current_design]
-create_generated_clock -name afe0_pll_dig_div2      [get_pins AFE0_CH_0/CLK_COM/PLL_COM/PLLE2_BASE_inst/CLKOUT5]
-set_property src_info {type:XDC file:2 line:116 export:INPUT save:INPUT read:READ} [current_design]
-create_generated_clock -name afe0_pll_clkfbout      [get_pins AFE0_CH_0/CLK_COM/PLL_COM/PLLE2_BASE_inst/CLKFBOUT]
-set_property src_info {type:XDC file:2 line:124 export:INPUT save:INPUT read:READ} [current_design]
-set_clock_groups -name mux_groups       -logically_exclusive -group afe0_pll_dig0 -group afe0_pll_dig1 -group afe0_pll_dig2
-set_property src_info {type:XDC file:2 line:125 export:INPUT save:INPUT read:READ} [current_design]
-set_clock_groups -name mux_div_groups   -logically_exclusive -group afe0_pll_dig_div0 -group afe0_pll_dig_div1 -group afe0_pll_dig_div2
 set_property src_info {type:XDC file:2 line:133 export:INPUT save:INPUT read:READ} [current_design]
 set_property LOC BUFGCTRL_X0Y2 [get_cells ETH0/ETH_PHY_COM/U0/core_clocking_i/bufg_userclk2]
 set_property src_info {type:XDC file:2 line:199 export:INPUT save:INPUT read:READ} [current_design]
