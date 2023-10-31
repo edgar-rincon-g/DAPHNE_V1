@@ -27,32 +27,44 @@
 
 # AXI stream asynchronous FIFO timing constraints
 
-set_property ASYNC_REG true [get_cells -quiet -hier -regexp {.*/s_rst_sync[23]_reg_reg} -filter {PARENT == ETH_FRAME/eth_mac_inst/rx_fifo/fifo_inst}]
-set_max_delay -datapath_only -from [get_cells -of_objects [get_pins -of_objects [get_nets -segments -of_objects [get_pins -of_objects [get_cells ETH_FRAME/eth_mac_inst/rx_fifo/fifo_inst/s_rst_sync2_reg_reg] -filter {REF_PIN_NAME == D}]] -filter {IS_LEAF && DIRECTION == OUT}]] -to [get_cells ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/rx_fifo/fifo_inst/s_rst_sync2_reg_reg] 8.000
-set_property ASYNC_REG true [get_cells -quiet -hier -regexp {.*/m_rst_sync[23]_reg_reg} -filter {PARENT == ETH_FRAME/eth_mac_inst/rx_fifo/fifo_inst}]
-set_max_delay -datapath_only -from [get_cells -of_objects [get_pins -of_objects [get_nets -segments -of_objects [get_pins -of_objects [get_cells ETH_FRAME/eth_mac_inst/rx_fifo/fifo_inst/m_rst_sync2_reg_reg] -filter {REF_PIN_NAME == D}]] -filter {IS_LEAF && DIRECTION == OUT}]] -to [get_cells ETH0/ETH_MAC_COM/eth_mac_1g_gmii_fifo_inst/rx_fifo/fifo_inst/m_rst_sync2_reg_reg] 8.000
-set_property ASYNC_REG true [get_cells -quiet -hier -regexp {.*/rd_ptr_gray_sync[12]_reg_reg\[\d+\]} -filter {PARENT == ETH_FRAME/eth_mac_inst/rx_fifo/fifo_inst}]
-set_max_delay -datapath_only -from [get_cells {{ETH_FRAME/eth_mac_inst/rx_fifo/fifo_inst/rd_ptr_reg_reg[*]} {ETH_FRAME/eth_mac_inst/rx_fifo/fifo_inst/rd_ptr_gray_reg_reg[*]}}] -to [get_cells {ETH_FRAME/eth_mac_inst/rx_fifo/fifo_inst/rd_ptr_gray_sync1_reg_reg[*]}] 8.000
-set_bus_skew -from [get_cells {{ETH_FRAME/eth_mac_inst/rx_fifo/fifo_inst/rd_ptr_reg_reg[*]} {ETH_FRAME/eth_mac_inst/rx_fifo/fifo_inst/rd_ptr_gray_reg_reg[*]}}] -to [get_cells {ETH_FRAME/eth_mac_inst/rx_fifo/fifo_inst/rd_ptr_gray_sync1_reg_reg[*]}] 8.000
-set_property ASYNC_REG true [get_cells -quiet -hier -regexp {.*/wr_ptr_gray_sync[12]_reg_reg\[\d+\]} -filter {PARENT == ETH_FRAME/eth_mac_inst/rx_fifo/fifo_inst}]
-set_max_delay -datapath_only -from [get_cells -quiet {{ETH_FRAME/eth_mac_inst/rx_fifo/fifo_inst/wr_ptr_reg_reg[*]} {ETH_FRAME/eth_mac_inst/rx_fifo/fifo_inst/wr_ptr_gray_reg_reg[*]} {ETH_FRAME/eth_mac_inst/rx_fifo/fifo_inst/wr_ptr_sync_gray_reg_reg[*]}}] -to [get_cells {ETH_FRAME/eth_mac_inst/rx_fifo/fifo_inst/wr_ptr_gray_sync1_reg_reg[*]}] 8.000
-set_bus_skew -from [get_cells -quiet {{ETH_FRAME/eth_mac_inst/rx_fifo/fifo_inst/wr_ptr_reg_reg[*]} {ETH_FRAME/eth_mac_inst/rx_fifo/fifo_inst/wr_ptr_gray_reg_reg[*]} {ETH_FRAME/eth_mac_inst/rx_fifo/fifo_inst/wr_ptr_sync_gray_reg_reg[*]}}] -to [get_cells {ETH_FRAME/eth_mac_inst/rx_fifo/fifo_inst/wr_ptr_gray_sync1_reg_reg[*]}] 8.000
-set_property ASYNC_REG true [get_cells -quiet -hier -regexp {.*/wr_ptr_update(_ack)?_sync[123]_reg_reg} -filter {PARENT == ETH_FRAME/eth_mac_inst/rx_fifo/fifo_inst}]
-set_max_delay -datapath_only -from [get_cells ETH_FRAME/eth_mac_inst/rx_fifo/fifo_inst/wr_ptr_update_reg_reg] -to [get_cells ETH_FRAME/eth_mac_inst/rx_fifo/fifo_inst/wr_ptr_update_sync1_reg_reg] 8.000
-set_max_delay -datapath_only -from [get_cells ETH_FRAME/eth_mac_inst/rx_fifo/fifo_inst/wr_ptr_update_sync3_reg_reg] -to [get_cells ETH_FRAME/eth_mac_inst/rx_fifo/fifo_inst/wr_ptr_update_ack_sync1_reg_reg] 8.000
-set_property ASYNC_REG true [get_cells -quiet -hier -regexp {.*/s_rst_sync[23]_reg_reg} -filter {PARENT == ETH_FRAME/eth_mac_inst/tx_fifo/fifo_inst}]
-set_max_delay -datapath_only -from [get_cells -of_objects [get_pins -of_objects [get_nets -segments -of_objects [get_pins -of_objects [get_cells ETH_FRAME/eth_mac_inst/tx_fifo/fifo_inst/s_rst_sync2_reg_reg] -filter {REF_PIN_NAME == D}]] -filter {IS_LEAF && DIRECTION == OUT}]] -to [get_cells ETH_FRAME/eth_mac_inst/tx_fifo/fifo_inst/s_rst_sync2_reg_reg] 8.000
-set_property ASYNC_REG true [get_cells -quiet -hier -regexp {.*/m_rst_sync[23]_reg_reg} -filter {PARENT == ETH_FRAME/eth_mac_inst/tx_fifo/fifo_inst}]
-set_max_delay -datapath_only -from [get_cells -of_objects [get_pins -of_objects [get_nets -segments -of_objects [get_pins -of_objects [get_cells ETH_FRAME/eth_mac_inst/tx_fifo/fifo_inst/m_rst_sync2_reg_reg] -filter {REF_PIN_NAME == D}]] -filter {IS_LEAF && DIRECTION == OUT}]] -to [get_cells ETH_FRAME/eth_mac_inst/tx_fifo/fifo_inst/m_rst_sync2_reg_reg] 8.000
-set_property ASYNC_REG true [get_cells -quiet -hier -regexp {.*/rd_ptr_gray_sync[12]_reg_reg\[\d+\]} -filter {PARENT == ETH_FRAME/eth_mac_inst/tx_fifo/fifo_inst}]
-set_max_delay -datapath_only -from [get_cells {{ETH_FRAME/eth_mac_inst/tx_fifo/fifo_inst/rd_ptr_reg_reg[*]} {ETH_FRAME/eth_mac_inst/tx_fifo/fifo_inst/rd_ptr_gray_reg_reg[*]}}] -to [get_cells {ETH_FRAME/eth_mac_inst/tx_fifo/fifo_inst/rd_ptr_gray_sync1_reg_reg[*]}] 8.000
-set_bus_skew -from [get_cells {{ETH_FRAME/eth_mac_inst/tx_fifo/fifo_inst/rd_ptr_reg_reg[*]} {ETH_FRAME/eth_mac_inst/tx_fifo/fifo_inst/rd_ptr_gray_reg_reg[*]}}] -to [get_cells {ETH_FRAME/eth_mac_inst/tx_fifo/fifo_inst/rd_ptr_gray_sync1_reg_reg[*]}] 8.000
-set_property ASYNC_REG true [get_cells -quiet -hier -regexp {.*/wr_ptr_gray_sync[12]_reg_reg\[\d+\]} -filter {PARENT == ETH_FRAME/eth_mac_inst/tx_fifo/fifo_inst}]
-set_max_delay -datapath_only -from [get_cells -quiet {{ETH_FRAME/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_reg_reg[*]} {ETH_FRAME/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_gray_reg_reg[*]} {ETH_FRAME/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_sync_gray_reg_reg[*]}}] -to [get_cells {ETH_FRAME/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_gray_sync1_reg_reg[*]}] 8.000
-set_bus_skew -from [get_cells -quiet {{ETH_FRAME/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_reg_reg[*]} {ETH_FRAME/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_gray_reg_reg[*]} {ETH_FRAME/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_sync_gray_reg_reg[*]}}] -to [get_cells {ETH_FRAME/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_gray_sync1_reg_reg[*]}] 8.000
-set_property ASYNC_REG true [get_cells -quiet -hier -regexp {.*/wr_ptr_update(_ack)?_sync[123]_reg_reg} -filter {PARENT == ETH_FRAME/eth_mac_inst/tx_fifo/fifo_inst}]
-set_max_delay -datapath_only -from [get_cells ETH_FRAME/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_update_reg_reg] -to [get_cells ETH_FRAME/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_update_sync1_reg_reg] 8.000
-set_max_delay -datapath_only -from [get_cells ETH_FRAME/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_update_sync3_reg_reg] -to [get_cells ETH_FRAME/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_update_ack_sync1_reg_reg] 8.000
+##set_property ASYNC_REG true [get_cells -quiet -hier -regexp {.*/s_rst_sync[23]_reg_reg} -filter {PARENT == ETH_FRAME/eth_mac_inst/rx_fifo/fifo_inst}]
+#set_max_delay -datapath_only -from [get_cells -of_objects [get_pins -of_objects [get_nets -segments -of_objects [get_pins -of_objects [get_cells ETH_FRAME/eth_mac_inst/rx_fifo/fifo_inst/s_rst_sync2_reg_reg] -filter {REF_PIN_NAME == D}]] -filter {IS_LEAF && DIRECTION == OUT}]] -to [get_cells ETH_FRAME/eth_mac_inst/rx_fifo/fifo_inst/s_rst_sync2_reg_reg] 8.000
+#set_property ASYNC_REG true [get_cells -quiet -hier -regexp {.*/m_rst_sync[23]_reg_reg} -filter {PARENT == ETH_FRAME/eth_mac_inst/rx_fifo/fifo_inst}]
+#set_max_delay -datapath_only -from [get_cells -of_objects [get_pins -of_objects [get_nets -segments -of_objects [get_pins -of_objects [get_cells ETH_FRAME/eth_mac_inst/rx_fifo/fifo_inst/m_rst_sync2_reg_reg] -filter {REF_PIN_NAME == D}]] -filter {IS_LEAF && DIRECTION == OUT}]] -to [get_cells ETH_FRAME/eth_mac_inst/rx_fifo/fifo_inst/m_rst_sync2_reg_reg] 8.000
+#set_property ASYNC_REG true [get_cells -quiet -hier -regexp {.*/rd_ptr_gray_sync[12]_reg_reg\[\d+\]} -filter {PARENT == ETH_FRAME/eth_mac_inst/rx_fifo/fifo_inst}]
+#set_max_delay -datapath_only -from [get_cells {{ETH_FRAME/eth_mac_inst/rx_fifo/fifo_inst/rd_ptr_reg_reg[*]} {ETH_FRAME/eth_mac_inst/rx_fifo/fifo_inst/rd_ptr_gray_reg_reg[*]}}] -to [get_cells {ETH_FRAME/eth_mac_inst/rx_fifo/fifo_inst/rd_ptr_gray_sync1_reg_reg[*]}] 8.000
+#set_bus_skew -from [get_cells {{ETH_FRAME/eth_mac_inst/rx_fifo/fifo_inst/rd_ptr_reg_reg[*]} {ETH_FRAME/eth_mac_inst/rx_fifo/fifo_inst/rd_ptr_gray_reg_reg[*]}}] -to [get_cells {ETH_FRAME/eth_mac_inst/rx_fifo/fifo_inst/rd_ptr_gray_sync1_reg_reg[*]}] 8.000
+
+
+#set_property ASYNC_REG true [get_cells -quiet -hier -regexp {.*/wr_ptr_gray_sync[12]_reg_reg\[\d+\]} -filter {PARENT == ETH_FRAME/eth_mac_inst/rx_fifo/fifo_inst}]
+# Next constraint last part -to [get_cells {ETH_FRAME/eth_mac_inst/rx_fifo/fifo_inst/wr_ptr_gray_sync1_reg_reg[*]}] ---- Initial objects last element: {ETH_FRAME/eth_mac_inst/rx_fifo/fifo_inst/wr_ptr_sync_gray_reg_reg[*]}
+#set_max_delay -datapath_only -from [get_cells -quiet {{ETH_FRAME/eth_mac_inst/rx_fifo/fifo_inst/wr_ptr_reg_reg[*]} {ETH_FRAME/eth_mac_inst/rx_fifo/fifo_inst/wr_ptr_gray_reg_reg[*]}}] 8.000
+# Next constraint last part -to [get_cells {ETH_FRAME/eth_mac_inst/rx_fifo/fifo_inst/wr_ptr_gray_sync1_reg_reg[*]}] ---- Initial objects last element: {ETH_FRAME/eth_mac_inst/rx_fifo/fifo_inst/wr_ptr_sync_gray_reg_reg[*]}
+#set_bus_skew -from [get_cells -quiet {{ETH_FRAME/eth_mac_inst/rx_fifo/fifo_inst/wr_ptr_reg_reg[*]} {ETH_FRAME/eth_mac_inst/rx_fifo/fifo_inst/wr_ptr_gray_reg_reg[*]}}] 8.000
+
+
+##set_property ASYNC_REG true [get_cells -quiet -hier -regexp {.*/wr_ptr_update(_ack)?_sync[123]_reg_reg} -filter {PARENT == ETH_FRAME/eth_mac_inst/rx_fifo/fifo_inst}]
+#set_max_delay -datapath_only -from [get_cells ETH_FRAME/eth_mac_inst/rx_fifo/fifo_inst/wr_ptr_update_reg_reg] -to [get_cells ETH_FRAME/eth_mac_inst/rx_fifo/fifo_inst/wr_ptr_update_sync1_reg_reg] 8.000
+#set_max_delay -datapath_only -from [get_cells ETH_FRAME/eth_mac_inst/rx_fifo/fifo_inst/wr_ptr_update_sync3_reg_reg] -to [get_cells ETH_FRAME/eth_mac_inst/rx_fifo/fifo_inst/wr_ptr_update_ack_sync1_reg_reg] 8.000
+#set_property ASYNC_REG true [get_cells -quiet -hier -regexp {.*/s_rst_sync[23]_reg_reg} -filter {PARENT == ETH_FRAME/eth_mac_inst/tx_fifo/fifo_inst}]
+#set_max_delay -datapath_only -from [get_cells -of_objects [get_pins -of_objects [get_nets -segments -of_objects [get_pins -of_objects [get_cells ETH_FRAME/eth_mac_inst/tx_fifo/fifo_inst/s_rst_sync2_reg_reg] -filter {REF_PIN_NAME == D}]] -filter {IS_LEAF && DIRECTION == OUT}]] -to [get_cells ETH_FRAME/eth_mac_inst/tx_fifo/fifo_inst/s_rst_sync2_reg_reg] 8.000
+#set_property ASYNC_REG true [get_cells -quiet -hier -regexp {.*/m_rst_sync[23]_reg_reg} -filter {PARENT == ETH_FRAME/eth_mac_inst/tx_fifo/fifo_inst}]
+#set_max_delay -datapath_only -from [get_cells -of_objects [get_pins -of_objects [get_nets -segments -of_objects [get_pins -of_objects [get_cells ETH_FRAME/eth_mac_inst/tx_fifo/fifo_inst/m_rst_sync2_reg_reg] -filter {REF_PIN_NAME == D}]] -filter {IS_LEAF && DIRECTION == OUT}]] -to [get_cells ETH_FRAME/eth_mac_inst/tx_fifo/fifo_inst/m_rst_sync2_reg_reg] 8.000
+#set_property ASYNC_REG true [get_cells -quiet -hier -regexp {.*/rd_ptr_gray_sync[12]_reg_reg\[\d+\]} -filter {PARENT == ETH_FRAME/eth_mac_inst/tx_fifo/fifo_inst}]
+#set_max_delay -datapath_only -from [get_cells {{ETH_FRAME/eth_mac_inst/tx_fifo/fifo_inst/rd_ptr_reg_reg[*]} {ETH_FRAME/eth_mac_inst/tx_fifo/fifo_inst/rd_ptr_gray_reg_reg[*]}}] -to [get_cells {ETH_FRAME/eth_mac_inst/tx_fifo/fifo_inst/rd_ptr_gray_sync1_reg_reg[*]}] 8.000
+#set_bus_skew -from [get_cells {{ETH_FRAME/eth_mac_inst/tx_fifo/fifo_inst/rd_ptr_reg_reg[*]} {ETH_FRAME/eth_mac_inst/tx_fifo/fifo_inst/rd_ptr_gray_reg_reg[*]}}] -to [get_cells {ETH_FRAME/eth_mac_inst/tx_fifo/fifo_inst/rd_ptr_gray_sync1_reg_reg[*]}] 8.000
+
+
+#set_property ASYNC_REG true [get_cells -quiet -hier -regexp {.*/wr_ptr_gray_sync[12]_reg_reg\[\d+\]} -filter {PARENT == ETH_FRAME/eth_mac_inst/tx_fifo/fifo_inst}]
+# Next constraint last part -to [get_cells {ETH_FRAME/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_gray_sync1_reg_reg[*]}] ---- Initial objects last element: {ETH_FRAME/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_sync_gray_reg_reg[*]}
+#set_max_delay -datapath_only -from [get_cells -quiet {{ETH_FRAME/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_reg_reg[*]} {ETH_FRAME/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_gray_reg_reg[*]}}] 8.000
+# Next constraint last part -to [get_cells {ETH_FRAME/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_gray_sync1_reg_reg[*]}] ---- Initial objects last element: {ETH_FRAME/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_sync_gray_reg_reg[*]}
+#set_bus_skew -from [get_cells -quiet {{ETH_FRAME/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_reg_reg[*]} {ETH_FRAME/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_gray_reg_reg[*]}}] 8.000
+
+
+##set_property ASYNC_REG true [get_cells -quiet -hier -regexp {.*/wr_ptr_update(_ack)?_sync[123]_reg_reg} -filter {PARENT == ETH_FRAME/eth_mac_inst/tx_fifo/fifo_inst}]
+#set_max_delay -datapath_only -from [get_cells ETH_FRAME/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_update_reg_reg] -to [get_cells ETH_FRAME/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_update_sync1_reg_reg] 8.000
+#set_max_delay -datapath_only -from [get_cells ETH_FRAME/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_update_sync3_reg_reg] -to [get_cells ETH_FRAME/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_update_ack_sync1_reg_reg] 8.000
 
 ####################################################################################
 # Constraints from file : 'eth_mac_1g_rgmii.tcl'
@@ -80,12 +92,12 @@ set_max_delay -datapath_only -from [get_cells ETH_FRAME/eth_mac_inst/tx_fifo/fif
 
 # GMII Gigabit Ethernet MAC timing constraints
 
-set_property ASYNC_REG true [get_cells -hier -regexp {.*/tx_mii_select_sync_reg\[\d\]} -filter {PARENT == ETH_FRAME/eth_mac_inst/eth_mac_1g_gmii_inst}]
-set_max_delay -datapath_only -from [get_cells ETH_FRAME/eth_mac_inst/eth_mac_1g_gmii_inst/mii_select_reg_reg] -to [get_cells {ETH_FRAME/eth_mac_inst/eth_mac_1g_gmii_inst/tx_mii_select_sync_reg[0]}] 8.000
-set_property ASYNC_REG true [get_cells -hier -regexp {.*/rx_mii_select_sync_reg\[\d\]} -filter {PARENT == ETH_FRAME/eth_mac_inst/eth_mac_1g_gmii_inst}]
-set_max_delay -datapath_only -from [get_cells ETH_FRAME/eth_mac_inst/eth_mac_1g_gmii_inst/mii_select_reg_reg] -to [get_cells {ETH_FRAME/eth_mac_inst/eth_mac_1g_gmii_inst/rx_mii_select_sync_reg[0]}] 8.000
-set_property ASYNC_REG true [get_cells -hier -regexp {.*/rx_prescale_sync_reg\[\d\]} -filter {PARENT == ETH_FRAME/eth_mac_inst/eth_mac_1g_gmii_inst}]
-set_max_delay -datapath_only -from [get_cells {ETH_FRAME/eth_mac_inst/eth_mac_1g_gmii_inst/rx_prescale_reg[2]}] -to [get_cells {ETH_FRAME/eth_mac_inst/eth_mac_1g_gmii_inst/rx_prescale_sync_reg[0]}] 8.000
+##set_property ASYNC_REG true [get_cells -hier -regexp {.*/tx_mii_select_sync_reg\[\d\]} -filter {PARENT == ETH_FRAME/eth_mac_inst/eth_mac_1g_gmii_inst}]
+#set_max_delay -datapath_only -from [get_cells ETH_FRAME/eth_mac_inst/eth_mac_1g_gmii_inst/mii_select_reg_reg] -to [get_cells {ETH_FRAME/eth_mac_inst/eth_mac_1g_gmii_inst/tx_mii_select_sync_reg[0]}] 8.000
+#set_property ASYNC_REG true [get_cells -hier -regexp {.*/rx_mii_select_sync_reg\[\d\]} -filter {PARENT == ETH_FRAME/eth_mac_inst/eth_mac_1g_gmii_inst}]
+#set_max_delay -datapath_only -from [get_cells ETH_FRAME/eth_mac_inst/eth_mac_1g_gmii_inst/mii_select_reg_reg] -to [get_cells {ETH_FRAME/eth_mac_inst/eth_mac_1g_gmii_inst/rx_mii_select_sync_reg[0]}] 8.000
+#set_property ASYNC_REG true [get_cells -hier -regexp {.*/rx_prescale_sync_reg\[\d\]} -filter {PARENT == ETH_FRAME/eth_mac_inst/eth_mac_1g_gmii_inst}]
+#set_max_delay -datapath_only -from [get_cells {ETH_FRAME/eth_mac_inst/eth_mac_1g_gmii_inst/rx_prescale_reg[2]}] -to [get_cells {ETH_FRAME/eth_mac_inst/eth_mac_1g_gmii_inst/rx_prescale_sync_reg[0]}] 8.000
 
 ####################################################################################
 # Constraints from file : 'fpga.vhd'
@@ -119,8 +131,8 @@ set_property LOC BUFGCTRL_X0Y2 [get_cells ETH_PHY_COM/U0/core_clocking_i/bufg_us
 #set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets ETH0/ETH_PHY_COM/U0/core_clocking_i/userclk2]
 
 # Tell vivado about places where signals cross clock domains so timing can be ignored here...
-set_false_path -from [get_ports cdr_sfp_??s]
-set_false_path -from [get_ports daq?_sfp_??s] 
+#set_false_path -from [get_ports cdr_sfp_??s]
+#set_false_path -from [get_ports daq?_sfp_??s] 
 
 # SYSCLK is LVDS 100MHz comes in on bank 33, VCCO=2.5V.
 # Use internal LVDS 100 ohm termination. On schematic this is FPGA_MCLK1.
