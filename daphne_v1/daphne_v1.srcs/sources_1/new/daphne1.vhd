@@ -107,37 +107,35 @@ architecture daphne1_arch of daphne1 is
 
 -- Main System Auxiliary Signals Declaration
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
-signal async_rst                : std_logic;
-signal sys_clk62_5              : std_logic;
-signal sys_clk100               : std_logic;
-signal sys_clk125               : std_logic;
-signal sys_clk200               : std_logic;
+signal async_rst                                        : std_logic;
+signal sys_clk62_5, sys_clk100, sys_clk125, sys_clk200  : std_logic;
 
 -- MMCM Timing Endpoint Auxiliary Signals Declaration
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
-signal mmcm0_locked             : std_logic;
+signal mmcm0_locked                                     : std_logic;
 
 -- AFE5808A Auxiliary Signals Declaration
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
-signal afe_data                 : std_logic_vector(13 downto 0);
-signal afe_se_clk               : std_logic;
-signal data_rdy                 : std_logic := '0';
-signal pll_afe_lck              : std_logic;
-signal align_ph_sel             : std_logic_vector(1 downto 0);
-signal align_ph_ovfl            : std_logic;
-signal align_bitslip_on         : std_logic;
+signal afe_data                                         : std_logic_vector(13 downto 0);
+signal afe_se_clk                                       : std_logic;
+signal data_rdy, pll_afe_lck                            : std_logic;
+signal align_ph_sel                                     : std_logic_vector(1 downto 0);
+signal align_ph_ovfl, align_bitslip_on                  : std_logic;
 
 -- Self Trigger Auxiliary Signals Declaration
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
-signal st_axi_data              : std_logic_vector(7 downto 0);
-signal st_axi_valid             : std_logic;
-signal st_axi_ready             : std_logic;
-signal st_axi_last              : std_logic;
-signal st_axi_user              : std_logic;
+signal filt_out, xcorr_data_out, fifo_o                 : std_logic_vector(13 downto 0);
+signal xcorr_out                                        : std_logic_vector(47 downto 0);
+signal trigger, fifo_rd_out, fifo_wr_out                : std_logic;
+signal fifo_a_empty, fifo_a_full, fifo_full, fifo_empty : std_logic;
+signal fifo_wr_err, fifo_rd_err                         : std_logic;
+signal st_axi_data                                      : std_logic_vector(7 downto 0);
+signal st_axi_valid, st_axi_ready                       : std_logic;
+signal st_axi_last, st_axi_user                         : std_logic;
 
 -- Ethernet Module Auxiliary Signals Declaration
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
-signal eth_com_rx_payload       : std_logic_vector(7 downto 0);
+signal eth_com_rx_payload                               : std_logic_vector(7 downto 0);
 
 -- Components Declaration
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -203,6 +201,45 @@ component AcquisitionManager is
         data_output         : out std_logic_vector(13 downto 0) -- Output of the Iserdese Modules
     );
 end component AcquisitionManager;
+
+-- Self Trigger to AXI Stream Module
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+component selfTrigger_Module 
+    Port ( 
+        -- Module Inputs
+    ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        afe_data            : in std_logic_vector(13 downto 0);     -- Aligned Data to Save from AFE
+        dt_rdy              : in std_logic;                         -- Data Aligned
+        rst                 : in std_logic;                         -- Async Reset
+        clk                 : in std_logic;                         -- AFE Divided Clock Used by the High Pass Filter (62.5 MHz) And the Write Clock of the FIFO 
+        rd_clk              : in std_logic;                         -- Read Clock Used by the FIFO (62.5 MHz) Asynchronous to WR_CLK    
+        sys_clk             : in std_logic;                         -- This is AXI Stream Clock
+        rd_ctrl             : in std_logic;                         -- Read Control Input ('0' Don't read the FIFO after a save, '1' Read the FIFO as soon as it stops saving)
+        wr_enable_signal    : in std_logic;                         -- Auxiliar External Write Enable for the FIFO
+        rd_enable_signal    : in std_logic;                         -- Auxiliar External Read Enable for the FIFO
+        
+        -- Module Outputs
+    ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        filt_out            : out std_logic_vector(13 downto 0);    -- Output of the filter
+        xcorr_out           : out std_logic_vector(47 downto 0);    -- Output of the Self Trigger Correlation Module
+        xcorr_data_out      : out std_logic_vector(13 downto 0);    -- Output of the Self Trigger Correlation Module (Internally connected to the FIFO, 64 Registers Delayed AFE Data)
+        trigger             : out std_logic;                        -- Trigger Output
+        fifo_rd_out         : out std_logic;                        -- Real Read Enable used for the FIFO (Mapped Internally)
+        fifo_wr_out         : out std_logic;                        -- Real Write Enable used for the FIFO (Mapped Internally)
+        fifo_o              : out std_logic_vector(13 downto 0);    -- Output Data of the FIFO    
+        fifo_a_empty        : out std_logic;                        -- Almost Empty Flag of the FIFO
+        fifo_a_full         : out std_logic;                        -- Amost Full Flag of the FIFO (Interpreted as the real Full of the FIFO)
+        fifo_empty          : out std_logic;                        -- Empty Flag of the FIFO
+        fifo_full           : out std_logic;                        -- Full Flag of the FIFO
+        fifo_wr_err         : out std_logic;                        -- Write Error Flag of the FIFO (Internally Generated Not Real One)
+        fifo_rd_err         : out std_logic;                        -- Read Error Flag of the FIFO (Internally Generated Not Real One)
+        axi_data            : out std_logic_vector(7 downto 0);     -- Output Data of the FIFO in AXI Stream Interface
+        axi_valid           : out std_logic;                        -- AXI Stream Valid from the FIFO Read Process
+        axi_ready           : in std_logic;                         -- AXI Stream Ready for the FIFO Read Process
+        axi_last            : out std_logic;                        -- AXI Stream Last from the FIFO Read Process
+        axi_user            : out std_logic                         -- AXI Stream User from the FIFO Read Process (Always '1')
+    );
+end component selfTrigger_Module;
 
 -- Ethernet Streaming Module
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -306,6 +343,44 @@ begin
             clk_div                     => afe_se_clk,          -- Synthetic AFE Frame CLock Derived from Digital Clock (In Phase)
             pll_lck_o                   => pll_afe_lck,         -- AFE Digital Clock PLL Locked
             data_output                 => afe_data             -- Output of the Iserdese Modules
+        );
+        
+    -- AFE5808A #0, Self Trigger for the Channel 0 Instantiation 
+------------------------------------------------------------------------------------------------------------------------------------------------------------------    
+    AFE0_ST_CH_0 : selfTrigger_Module 
+        port map ( 
+            -- Module Inputs
+        ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            afe_data                    => afe_data,            -- Aligned Data to Save from AFE
+            dt_rdy                      => data_rdy,            -- Data Aligned
+            rst                         => async_rst,           -- Async Reset
+            clk                         => afe_se_clk,          -- AFE Divided Clock Used by the High Pass Filter (62.5 MHz) And the Write Clock of the FIFO 
+            rd_clk                      => sys_clk62_5,         -- Read Clock Used by the FIFO (62.5 MHz) Asynchronous to WR_CLK    
+            sys_clk                     => sys_clk125,          -- This is AXI Clock, not System Clock 100 Mhz. Was initially sys_clk100,
+            rd_ctrl                     => '1',                 -- Read Control Input ('0' Don't read the FIFO after a save, '1' Read the FIFO as soon as it stops saving)
+            wr_enable_signal            => '0',                 -- Auxiliar External Write Enable for the FIFO
+            rd_enable_signal            => '0',                 -- Auxiliar External Read Enable for the FIFO
+            
+            -- Module Outputs
+        ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            filt_out                    => filt_out,            -- Output of the filter
+            xcorr_out                   => xcorr_out,           -- Output of the Self Trigger Correlation Module
+            xcorr_data_out              => xcorr_data_out,      -- Output of the Self Trigger Correlation Module (Internally connected to the FIFO, 64 Registers Delayed AFE Data)
+            trigger                     => trigger,             -- Trigger Output
+            fifo_rd_out                 => fifo_rd_out,         -- Real Read Enable used for the FIFO (Mapped Internally)
+            fifo_wr_out                 => fifo_wr_out,          -- Real Write Enable used for the FIFO (Mapped Internally)
+            fifo_o                      => fifo_o,              -- Output Data of the FIFO    
+            fifo_a_empty                => fifo_a_empty,        -- Almost Empty Flag of the FIFO
+            fifo_a_full                 => fifo_a_full,         -- Amost Full Flag of the FIFO (Interpreted as the real Full of the FIFO)
+            fifo_empty                  => fifo_empty,          -- Empty Flag of the FIFO
+            fifo_full                   => fifo_full,           -- Full Flag of the FIFO
+            fifo_wr_err                 => fifo_wr_err,         -- Write Error Flag of the FIFO (Internally Generated Not Real One)
+            fifo_rd_err                 => fifo_rd_err,         -- Read Error Flag of the FIFO (Internally Generated Not Real One)
+            axi_data                    => st_axi_data,         -- Output Data of the FIFO in AXI Stream Interface
+            axi_valid                   => st_axi_valid,        -- AXI Stream Valid from the FIFO Read Process
+            axi_ready                   => st_axi_ready,        -- AXI Stream Ready for the FIFO Read Process
+            axi_last                    => st_axi_last,         -- AXI Stream Last from the FIFO Read Process
+            axi_user                    => st_axi_user          -- AXI Stream User from the FIFO Read Process (Always '1')
         );
         
     -- DAPHNE Ethernet Streaming Module
