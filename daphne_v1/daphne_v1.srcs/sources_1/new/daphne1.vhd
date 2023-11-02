@@ -438,6 +438,12 @@ begin
     -- Board Misc Output
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
     -- LED Connections (Mapped to Ethernet Rx To Check Connection Status)
-    led                     <= not(eth_com_rx_payload(5 downto 0));
+--    led                     <= not(eth_com_rx_payload(5 downto 0)); -- Works to see if the Rx ETH Part is working
+    led(0) <= not(data_rdy);
+    led(1) <= not(trigger);
+    led(2) <= not(fifo_wr_out);
+    led(3) <= not(fifo_rd_out);
+    led(4) <= not(fifo_empty);
+    led(5) <= not(st_axi_ready);
 
 end daphne1_arch;
