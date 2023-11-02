@@ -1,0 +1,41 @@
+Vivado Simulator v2023.1
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2023.1/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot trigger_top_TB_behav xil_defaultlib.trigger_top_TB -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling package std.standard
+Compiling package std.textio
+Compiling package ieee.std_logic_1164
+Compiling package ieee.numeric_std
+Compiling package ieee.std_logic_arith
+Compiling package ieee.std_logic_signed
+Compiling package unisim.vcomponents
+Compiling package unimacro.vcomponents
+Compiling package ieee.vital_timing
+Compiling package ieee.vital_primitives
+Compiling package unisim.vpkg
+Compiling package ieee.std_logic_unsigned
+Compiling architecture dsp48e1_v of entity unisim.DSP48E1 [\DSP48E1(adreg=0,alumodereg=0,bc...]
+Compiling architecture dspslice_arch of entity xil_defaultlib.dsp_slice [\dsp_slice(use_dport=true,breg=0...]
+Compiling architecture dsp48e1_v of entity unisim.DSP48E1 [\DSP48E1(acascreg=0,adreg=0,alum...]
+Compiling architecture dspslice_arch of entity xil_defaultlib.dsp_slice [\dsp_slice(areg=0,breg=0,adreg=0...]
+Compiling architecture hp_firstord_arch of entity xil_defaultlib.highPass_FirstOrder [highpass_firstorder_default]
+Compiling architecture behavioral of entity xil_defaultlib.self_trigger [self_trigger_default]
+Compiling architecture trigfsm_arch of entity xil_defaultlib.trigSaveReadFSM [trigsavereadfsm_default]
+Compiling architecture rstmem_arch of entity xil_defaultlib.ResetMemory_Module [\ResetMemory_Module(wr_clk_freq=...]
+Compiling architecture ff36_internal_vhdl_v of entity unisim.FF36_INTERNAL_VHDL [\FF36_INTERNAL_VHDL(almost_full_...]
+Compiling architecture fifo36e1_v of entity unisim.FIFO36E1 [\FIFO36E1(almost_full_offset="10...]
+Compiling architecture fifo_v of entity unimacro.FIFO_DUALCLOCK_MACRO [\FIFO_DUALCLOCK_MACRO(almost_ful...]
+Compiling architecture fifo_arch of entity xil_defaultlib.FIFO_Module [\FIFO_Module(dt_width=14,pointer...]
+Compiling architecture wrfsm_arch of entity xil_defaultlib.wrFSM_Module [wrfsm_module_default]
+Compiling architecture rdfsm_arch of entity xil_defaultlib.rdFSM_Module [rdfsm_module_default]
+Compiling architecture fifoman_arch of entity xil_defaultlib.FIFOManager [\FIFOManager(wr_clk_freq=62.5,rd...]
+Compiling architecture axififo_arch of entity xil_defaultlib.AXI_FIFO_Adapter [\AXI_FIFO_Adapter(wr_clk_freq=62...]
+Compiling architecture behavioral of entity xil_defaultlib.selfTrigger_Module [selftrigger_module_default]
+Compiling architecture behavioral of entity xil_defaultlib.trigger_top_tb
+Built simulation snapshot trigger_top_TB_behav

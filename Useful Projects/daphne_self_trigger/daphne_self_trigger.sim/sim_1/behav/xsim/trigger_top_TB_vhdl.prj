@@ -1,0 +1,19 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"../../../../daphne_self_trigger.srcs/sources_1/new/AXI_FIFO_Adapter.vhd" \
+"../../../../daphne_self_trigger.srcs/sources_1/new/FDRE_Module.vhd" \
+"../../../../daphne_self_trigger.srcs/sources_1/new/FIFOManager.vhd" \
+"../../../../daphne_self_trigger.srcs/sources_1/new/FIFO_Module.vhd" \
+"../../../../daphne_self_trigger.srcs/sources_1/new/ResetMemory_Module.vhd" \
+"../../../../daphne_self_trigger.srcs/sources_1/new/Self-trigger_VHDL.vhd" \
+"../../../../daphne_self_trigger.srcs/sources_1/new/Synchronizer.vhd" \
+"../../../../daphne_self_trigger.srcs/sources_1/new/dsp_slice.vhd" \
+"../../../../daphne_self_trigger.srcs/sources_1/new/highPass_FirstOrder.vhd" \
+"../../../../daphne_self_trigger.srcs/sources_1/new/rdFSM_Module.vhd" \
+"../../../../daphne_self_trigger.srcs/sources_1/new/selfTrigger_Module.vhd" \
+"../../../../daphne_self_trigger.srcs/sources_1/new/trigSaveReadFSM.vhd" \
+"../../../../daphne_self_trigger.srcs/sources_1/new/wrFSM_Module.vhd" \
+"../../../../daphne_self_trigger.srcs/sources_1/new/trigger_top_TB.vhd" \
+
+# Do not sort compile order
+nosort

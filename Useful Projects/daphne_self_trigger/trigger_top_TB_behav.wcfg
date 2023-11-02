@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="trigger_top_TB_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="trigger_top_TB" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="681,799.700 ns"></ZoomStartTime>
+      <ZoomEndTime time="681,904.301 ns"></ZoomEndTime>
+      <Cursor1Time time="681,872.100 ns"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="340"></NameColumnWidth>
+      <ValueColumnWidth column_width="150"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="30" />
+   <wvobject fp_name="/trigger_top_TB/sys_clk62_5" type="logic">
+      <obj_property name="ElementShortName">sys_clk62_5</obj_property>
+      <obj_property name="ObjectShortName">sys_clk62_5</obj_property>
+   </wvobject>
+   <wvobject fp_name="/trigger_top_TB/sys_clk125" type="logic">
+      <obj_property name="ElementShortName">sys_clk125</obj_property>
+      <obj_property name="ObjectShortName">sys_clk125</obj_property>
+   </wvobject>
+   <wvobject fp_name="/trigger_top_TB/rst" type="logic">
+      <obj_property name="ElementShortName">rst</obj_property>
+      <obj_property name="ObjectShortName">rst</obj_property>
+   </wvobject>
+   <wvobject fp_name="/trigger_top_TB/data_rdy" type="logic">
+      <obj_property name="ElementShortName">data_rdy</obj_property>
+      <obj_property name="ObjectShortName">data_rdy</obj_property>
+   </wvobject>
+   <wvobject fp_name="/trigger_top_TB/afe_data" type="array">
+      <obj_property name="ElementShortName">afe_data[13:0]</obj_property>
+      <obj_property name="ObjectShortName">afe_data[13:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/trigger_top_TB/rd_ctrl" type="logic">
+      <obj_property name="ElementShortName">rd_ctrl</obj_property>
+      <obj_property name="ObjectShortName">rd_ctrl</obj_property>
+   </wvobject>
+   <wvobject fp_name="/trigger_top_TB/ext_wr_enable" type="logic">
+      <obj_property name="ElementShortName">ext_wr_enable</obj_property>
+      <obj_property name="ObjectShortName">ext_wr_enable</obj_property>
+   </wvobject>
+   <wvobject fp_name="/trigger_top_TB/ext_rd_enable" type="logic">
+      <obj_property name="ElementShortName">ext_rd_enable</obj_property>
+      <obj_property name="ObjectShortName">ext_rd_enable</obj_property>
+   </wvobject>
+   <wvobject fp_name="/trigger_top_TB/filt_out" type="array">
+      <obj_property name="ElementShortName">filt_out[13:0]</obj_property>
+      <obj_property name="ObjectShortName">filt_out[13:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/trigger_top_TB/xcorr_out" type="array">
+      <obj_property name="ElementShortName">xcorr_out[47:0]</obj_property>
+      <obj_property name="ObjectShortName">xcorr_out[47:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/trigger_top_TB/xcorr_data_out" type="array">
+      <obj_property name="ElementShortName">xcorr_data_out[13:0]</obj_property>
+      <obj_property name="ObjectShortName">xcorr_data_out[13:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/trigger_top_TB/afe_div_clk" type="logic">
+      <obj_property name="ElementShortName">afe_div_clk</obj_property>
+      <obj_property name="ObjectShortName">afe_div_clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/trigger_top_TB/trigger" type="logic">
+      <obj_property name="ElementShortName">trigger</obj_property>
+      <obj_property name="ObjectShortName">trigger</obj_property>
+   </wvobject>
+   <wvobject fp_name="/trigger_top_TB/trigger_vec" type="array">
+      <obj_property name="ElementShortName">trigger_vec[0:0]</obj_property>
+      <obj_property name="ObjectShortName">trigger_vec[0:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/trigger_top_TB/fifo_rd_out" type="logic">
+      <obj_property name="ElementShortName">fifo_rd_out</obj_property>
+      <obj_property name="ObjectShortName">fifo_rd_out</obj_property>
+   </wvobject>
+   <wvobject fp_name="/trigger_top_TB/fifo_wr_out" type="logic">
+      <obj_property name="ElementShortName">fifo_wr_out</obj_property>
+      <obj_property name="ObjectShortName">fifo_wr_out</obj_property>
+   </wvobject>
+   <wvobject fp_name="/trigger_top_TB/fifo_o" type="array">
+      <obj_property name="ElementShortName">fifo_o[13:0]</obj_property>
+      <obj_property name="ObjectShortName">fifo_o[13:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/trigger_top_TB/fifo_a_empty" type="logic">
+      <obj_property name="ElementShortName">fifo_a_empty</obj_property>
+      <obj_property name="ObjectShortName">fifo_a_empty</obj_property>
+   </wvobject>
+   <wvobject fp_name="/trigger_top_TB/fifo_a_full" type="logic">
+      <obj_property name="ElementShortName">fifo_a_full</obj_property>
+      <obj_property name="ObjectShortName">fifo_a_full</obj_property>
+   </wvobject>
+   <wvobject fp_name="/trigger_top_TB/fifo_empty" type="logic">
+      <obj_property name="ElementShortName">fifo_empty</obj_property>
+      <obj_property name="ObjectShortName">fifo_empty</obj_property>
+   </wvobject>
+   <wvobject fp_name="/trigger_top_TB/fifo_full" type="logic">
+      <obj_property name="ElementShortName">fifo_full</obj_property>
+      <obj_property name="ObjectShortName">fifo_full</obj_property>
+   </wvobject>
+   <wvobject fp_name="/trigger_top_TB/fifo_wr_err" type="logic">
+      <obj_property name="ElementShortName">fifo_wr_err</obj_property>
+      <obj_property name="ObjectShortName">fifo_wr_err</obj_property>
+   </wvobject>
+   <wvobject fp_name="/trigger_top_TB/fifo_rd_err" type="logic">
+      <obj_property name="ElementShortName">fifo_rd_err</obj_property>
+      <obj_property name="ObjectShortName">fifo_rd_err</obj_property>
+   </wvobject>
+   <wvobject fp_name="/trigger_top_TB/axi_data" type="array">
+      <obj_property name="ElementShortName">axi_data[7:0]</obj_property>
+      <obj_property name="ObjectShortName">axi_data[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/trigger_top_TB/axi_valid" type="logic">
+      <obj_property name="ElementShortName">axi_valid</obj_property>
+      <obj_property name="ObjectShortName">axi_valid</obj_property>
+   </wvobject>
+   <wvobject fp_name="/trigger_top_TB/axi_ready" type="logic">
+      <obj_property name="ElementShortName">axi_ready</obj_property>
+      <obj_property name="ObjectShortName">axi_ready</obj_property>
+   </wvobject>
+   <wvobject fp_name="/trigger_top_TB/axi_last" type="logic">
+      <obj_property name="ElementShortName">axi_last</obj_property>
+      <obj_property name="ObjectShortName">axi_last</obj_property>
+   </wvobject>
+   <wvobject fp_name="/trigger_top_TB/axi_user" type="logic">
+      <obj_property name="ElementShortName">axi_user</obj_property>
+      <obj_property name="ObjectShortName">axi_user</obj_property>
+   </wvobject>
+   <wvobject fp_name="/trigger_top_TB/afe_value_force" type="array">
+      <obj_property name="ElementShortName">afe_value_force[0:20735]</obj_property>
+      <obj_property name="ObjectShortName">afe_value_force[0:20735]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/trigger_top_TB/dut/SELF_TRIGGER_TOP_COM/r_sumamult" type="array">
+      <obj_property name="ElementShortName">r_sumamult[27:0]</obj_property>
+      <obj_property name="ObjectShortName">r_sumamult[27:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+</wave_config>

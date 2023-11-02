@@ -99,7 +99,7 @@ wire [47:0] local_mac   = 48'h02_00_00_00_00_00;
 wire [31:0] local_ip    = {8'd169, 8'd254, 8'd87,   8'd100};
 wire [31:0] gateway_ip  = {8'd169, 8'd254, 8'd87,   8'd121};
 wire [31:0] subnet_mask = {8'd255, 8'd255, 8'd0, 8'd0};
-//wire [31:0] dest_ip     = {8'd169, 8'd254, 8'd87,   8'd121}; 
+wire [31:0] dest_ip     = {8'd169, 8'd254, 8'd87,   8'd121}; 
 wire [15:0] local_port  = 16'd1234;
 wire [15:0] dest_port   = 16'd4678;
 wire [15:0] udp_length  = 16'd9;
@@ -405,9 +405,9 @@ assign tx_udp_ip_dscp = 0;
 assign tx_udp_ip_ecn = 0;
 assign tx_udp_ip_ttl = 64;
 assign tx_udp_ip_source_ip = local_ip;
-assign tx_udp_ip_dest_ip = rx_udp_ip_source_ip; //dest_ip
-assign tx_udp_source_port = rx_udp_dest_port; //local_port
-assign tx_udp_dest_port = rx_udp_source_port; //dest_port
+assign tx_udp_ip_dest_ip = dest_ip; //rx_udp_ip_source_ip
+assign tx_udp_source_port = local_port; //rx_udp_dest_port
+assign tx_udp_dest_port = dest_port; //rx_udp_source_port
 assign tx_udp_length = udp_length; // Original: rx_udp_length;
 assign tx_udp_checksum = 0;
     
@@ -648,12 +648,12 @@ always @(posedge clk) begin
     if (rst) begin
         payload_reg <= 0;
     end else begin
-        if (tx_udp_payload_axis_tvalid) begin
+        if (eth_udp_rx_payload_axis_tvalid) begin
             if (!valid_last) begin
-                payload_reg <= tx_udp_payload_axis_tdata;
+                payload_reg <= eth_udp_rx_payload_axis_tdata;
                 valid_last <= 1'b1;
             end
-            if (tx_udp_payload_axis_tlast) begin
+            if (eth_udp_rx_payload_axis_tlast) begin
                 valid_last <= 1'b0;
             end
         end
