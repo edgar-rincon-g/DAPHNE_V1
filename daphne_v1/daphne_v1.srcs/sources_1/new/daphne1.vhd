@@ -64,8 +64,8 @@ entity daphne1 is
         daq0_sfp_scl, daq0_sfp_sda  : out std_logic;                            -- SFP I2C interface (optional)
     -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         -- DAQ1    
-        daq1_tx_p, daq1_tx_n        : out std_logic;
-        daq1_rx_p, daq1_rx_n        : in std_logic;
+--        daq1_tx_p, daq1_tx_n        : out std_logic;
+--        daq1_rx_p, daq1_rx_n        : in std_logic;
         daq1_sfp_abs                : in std_logic;
         daq1_sfp_los                : in std_logic;
         daq1_sfp_tx_dis             : out std_logic;

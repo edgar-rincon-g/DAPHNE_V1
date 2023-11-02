@@ -18,11 +18,11 @@ create_clock -name afe_dclk     -period 2.286       [get_ports afe_dclk_p[0]]
 
 ###########################################################################################################################################
 # Rename The Auto-Generated Clocks
-create_generated_clock -name sclk100                [get_pins SYS_TIMING_EPNT/mmcm0_inst/CLKOUT2]
-create_generated_clock -name sclk125                [get_pins SYS_TIMING_EPNT/mmcm0_inst/CLKOUT3]
-create_generated_clock -name sclk200                [get_pins SYS_TIMING_EPNT/mmcm0_inst/CLKOUT1]
-create_generated_clock -name sclk62_5               [get_pins SYS_TIMING_EPNT/mmcm0_inst/CLKOUT0]
-create_generated_clock -name mmcm0_clkfbout         [get_pins SYS_TIMING_EPNT/mmcm0_inst/CLKFBOUT]
+create_generated_clock -name sclk100                [get_pins SYS_TIMING_ENPT/mmcm0_inst/CLKOUT2]
+create_generated_clock -name sclk125                [get_pins SYS_TIMING_ENPT/mmcm0_inst/CLKOUT3]
+create_generated_clock -name sclk200                [get_pins SYS_TIMING_ENPT/mmcm0_inst/CLKOUT1]
+create_generated_clock -name sclk62_5               [get_pins SYS_TIMING_ENPT/mmcm0_inst/CLKOUT0]
+create_generated_clock -name mmcm0_clkfbout         [get_pins SYS_TIMING_ENPT/mmcm0_inst/CLKFBOUT]
 
 create_generated_clock -name afe0_pll_dig0          [get_pins AFE0_CH_0/CLK_COM/PLL_COM/PLLE2_BASE_inst/CLKOUT0]
 create_generated_clock -name afe0_pll_dig1          [get_pins AFE0_CH_0/CLK_COM/PLL_COM/PLLE2_BASE_inst/CLKOUT1]
@@ -32,9 +32,9 @@ create_generated_clock -name afe0_pll_dig_div1      [get_pins AFE0_CH_0/CLK_COM/
 create_generated_clock -name afe0_pll_dig_div2      [get_pins AFE0_CH_0/CLK_COM/PLL_COM/PLLE2_BASE_inst/CLKOUT5]
 create_generated_clock -name afe0_pll_clkfbout      [get_pins AFE0_CH_0/CLK_COM/PLL_COM/PLLE2_BASE_inst/CLKFBOUT]
 
-create_generated_clock -name oeiclk                 [get_pins ETH0/ETH_PHY_COM/U0/core_clocking_i/mmcm_adv_inst/CLKOUT0] 
-create_generated_clock -name oeihclk                [get_pins ETH0/ETH_PHY_COM/U0/core_clocking_i/mmcm_adv_inst/CLKOUT1]
-create_generated_clock -name oei_clkfbout           [get_pins ETH0/ETH_PHY_COM/U0/core_clocking_i/mmcm_adv_inst/CLKFBOUT]
+create_generated_clock -name oeiclk                 [get_pins ETH_MOD/ETH_PHY_COM/U0/core_clocking_i/mmcm_adv_inst/CLKOUT0] 
+create_generated_clock -name oeihclk                [get_pins ETH_MOD/ETH_PHY_COM/U0/core_clocking_i/mmcm_adv_inst/CLKOUT1]
+create_generated_clock -name oei_clkfbout           [get_pins ETH_MOD/ETH_PHY_COM/U0/core_clocking_i/mmcm_adv_inst/CLKFBOUT]
 
 ###########################################################################################################################################
 # Setting Groups Of Clocks And Their Interactions
@@ -50,7 +50,7 @@ set_clock_groups -name async_groups                 -asynchronous        -group 
 ###########################################################################################################################################
 # Place Specific BUFG from the Ethernet PHY to avoid unsupported clocking topologies 
 #set_property CLOCK_DEDICATED_ROUTE BACKBONE [get_nets SYS_TIMING_EPNT/sysclk_ibuf]
-set_property LOC BUFGCTRL_X0Y2                      [get_cells ETH0/ETH_PHY_COM/U0/core_clocking_i/bufg_userclk2]
+set_property LOC BUFGCTRL_X0Y2                      [get_cells ETH_MOD/ETH_PHY_COM/U0/core_clocking_i/bufg_userclk2]
 #set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets ETH0/ETH_PHY_COM/U0/core_clocking_i/userclk2]
 
 ###########################################################################################################################################
@@ -333,8 +333,10 @@ set_property IOSTANDARD LVTTL                       [get_ports {daq0_sfp_*}]
 # Review this
 #set_property LOC GTPE2_CHANNEL_X0Y4 [get_cells ETH0/ETH_PHY_COM/U0/pcs_pma_block_i/transceiver_inst/gtwizard_inst/U0/gtwizard_i/gt0_GTWIZARD_i/gtpe2_i] 
 
-#set_property PACKAGE_PIN D8                         [get_ports {daq1_tx_p}]
-#set_property PACKAGE_PIN C8                         [get_ports {daq1_tx_n}]
+#set_property LOC D8                         [get_ports {daq1_tx_p}]
+#set_property LOC C8                         [get_ports {daq1_tx_n}]
+#set_property LOC D14                        [get_ports {daq1_rx_p}]
+#set_property LOC C14                        [get_ports {daq1_rx_n}]
 #set_property IOSTANDARD LVDS_25                     [get_ports {daq1_tx_*}] 
 
 set_property PACKAGE_PIN L8                         [get_ports {daq1_sfp_los}]      
