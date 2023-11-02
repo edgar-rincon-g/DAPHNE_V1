@@ -42,37 +42,37 @@ entity AXI_FIFO_Adapter is
         -- FIFO Important Parameters
         data_width          : integer       := 14;
         fifoPointersLength  : integer       := 11;
-        AEMPTY_OFF          : bit_vector    := X"0080"; -- Almost Empty Offset
-        AFULL_OFF           : bit_vector    := X"0080"  -- Almost Full Offset
+        AEMPTY_OFF          : bit_vector    := X"0080";                                 -- Almost Empty Offset
+        AFULL_OFF           : bit_vector    := X"0080"                                  -- Almost Full Offset
     );
     Port (
         -- Module Inputs
     ----------------------------------------------------------------------------------------------------------------------------------
-        d_i                 : in std_logic_vector((data_width - 1) downto 0);
-        dt_rdy              : in std_logic;
-        wr_enable           : in std_logic;
-        rd_enable           : in std_logic;
-        wr_clk              : in std_logic;
-        rd_clk              : in std_logic;
-        m_axi_clk           : in std_logic;
-        rst                 : in std_logic;
+        d_i                 : in std_logic_vector((data_width - 1) downto 0);           -- Parallel Data Input for the FIFO
+        dt_rdy              : in std_logic;                                             -- Data Ready Flag from Acquisition Module
+        wr_enable           : in std_logic;                                             -- Write Enable Control Signal for the FIFO
+        rd_enable           : in std_logic;                                             -- Read Enable Control Signal for the FIFO
+        wr_clk              : in std_logic;                                             -- Write Clock for the FIFO
+        rd_clk              : in std_logic;                                             -- Read Clock for the FIFO
+        m_axi_clk           : in std_logic;                                             -- AXI Stream Interface Clock
+        rst                 : in std_logic;                                             -- Async Reset
     
         -- Module Outputs
     ----------------------------------------------------------------------------------------------------------------------------------    
-        a_empty             : out std_logic;
-        a_full              : out std_logic;
-        empty               : out std_logic;
-        full                : out std_logic; 
-        wr_err              : out std_logic;
-        rd_err              : out std_logic;
-        wr_count            : out std_logic_vector((fifoPointersLength - 1) downto 0);
-        rd_count            : out std_logic_vector((fifoPointersLength - 1) downto 0);
-        fifo_o              : out std_logic_vector(13 downto 0);
-        m_axi_fifo_tdata    : out std_logic_vector((data_width/2) downto 0);
-        m_axi_fifo_tvalid   : out std_logic;
-        m_axi_fifo_tready   : in std_logic;
-        m_axi_fifo_tlast    : out std_logic;
-        m_axi_fifo_tuser    : out std_logic 
+        a_empty             : out std_logic;                                            -- Almost Empty Flag of the FIFO
+        a_full              : out std_logic;                                            -- Almost Full Flag of the FIFO
+        empty               : out std_logic;                                            -- Empty Flag of the FIFO
+        full                : out std_logic;                                            -- Full Flag of the FIFO 
+        wr_err              : out std_logic;                                            -- Write Error Flag of the FIFO
+        rd_err              : out std_logic;                                            -- Read Error Flag of the FIFO
+        wr_count            : out std_logic_vector((fifoPointersLength - 1) downto 0);  -- Write Pointer of the FIFO
+        rd_count            : out std_logic_vector((fifoPointersLength - 1) downto 0);  -- Read Pointer of the FIFO
+        fifo_o              : out std_logic_vector(13 downto 0);                        -- Parallel Data Output of the FIFO
+        m_axi_fifo_tdata    : out std_logic_vector((data_width/2) downto 0);            -- AXI Stream Data from the FIFO
+        m_axi_fifo_tvalid   : out std_logic;                                            -- AXI Stream Valid Control Signal
+        m_axi_fifo_tready   : in std_logic;                                             -- AXI Stream Ready Control Signal
+        m_axi_fifo_tlast    : out std_logic;                                            -- AXI Stream Last Control Signal
+        m_axi_fifo_tuser    : out std_logic                                             -- AXI Stream User Control Signal (Errors in the data)
     );
 end AXI_FIFO_Adapter;
 
@@ -103,32 +103,32 @@ component FIFOManager
         -- FIFO Important Parameters
         data_width              : integer       := 14;
         fifoPointersLength      : integer       := 11;
-        AEMPTY_OFF              : bit_vector    := X"0080"; -- Almost Empty Offset
-        AFULL_OFF               : bit_vector    := X"0080"  -- Almost Full Offset
+        AEMPTY_OFF              : bit_vector    := X"0080";                                 -- Almost Empty Offset
+        AFULL_OFF               : bit_vector    := X"0080"                                  -- Almost Full Offset
     );
     Port ( 
         -- Module Inputs
     --------------------------------------------------------------------------------------------------------------------------------------------
-        d_i                     : in std_logic_vector((data_width - 1) downto 0);
-        dt_rdy                  : in std_logic;
-        wr_enable               : in std_logic;
-        rd_enable               : in std_logic;
-        wr_clk                  : in std_logic;
-        rd_clk                  : in std_logic;
-        rst                     : in std_logic;
+        d_i                     : in std_logic_vector((data_width - 1) downto 0);           -- Parallel Data Input for the FIFO
+        dt_rdy                  : in std_logic;                                             -- Data Alligned from the Acquisition Module
+        wr_enable               : in std_logic;                                             -- Write Enable Used by the Module
+        rd_enable               : in std_logic;                                             -- Read Enable Used by the Module
+        wr_clk                  : in std_logic;                                             -- Write Clock Used by the Module
+        rd_clk                  : in std_logic;                                             -- Read Clock Used by the Module
+        rst                     : in std_logic;                                             -- Reset for the FIFO
         
         -- Module Outputs
     --------------------------------------------------------------------------------------------------------------------------------------------    
-        a_empty                 : out std_logic;
-        a_full                  : out std_logic;
-        empty                   : out std_logic;
-        full                    : out std_logic; 
-        wr_err                  : out std_logic;
-        rd_err                  : out std_logic;
-        data_rd_valid           : out std_logic;
-        wr_count                : out std_logic_vector((fifoPointersLength - 1) downto 0);
-        rd_count                : out std_logic_vector((fifoPointersLength - 1) downto 0);
-        d_o                     : out std_logic_vector((data_width - 1) downto 0)       
+        a_empty                 : out std_logic;                                            -- Almost Empty Flag of the FIFO
+        a_full                  : out std_logic;                                            -- Almost Full Flag of the FIFO
+        empty                   : out std_logic;                                            -- Empty Flag of the FIFO
+        full                    : out std_logic;                                            -- Full Flag of the FIFO
+        wr_err                  : out std_logic;                                            -- Write Error Flag Generated by the Module
+        rd_err                  : out std_logic;                                            -- Read Error Flag Generated by the Module
+        data_rd_valid           : out std_logic;                                            -- Real Read Flag for the FIFO
+        wr_count                : out std_logic_vector((fifoPointersLength - 1) downto 0);  -- Write Pointer of the FIFO
+        rd_count                : out std_logic_vector((fifoPointersLength - 1) downto 0);  -- Read Pointer of the FIFO
+        d_o                     : out std_logic_vector((data_width - 1) downto 0)           -- Parallel Data Output of the FIFO
     );
 end component FIFOManager;
 

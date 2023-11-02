@@ -92,20 +92,25 @@ component highPass_FirstOrder
 end component highPass_FirstOrder;
 
 component self_trigger 
- generic(
-  g_INPUT_WIDTH : natural := 14;
-  g_SUM_WIDTH   : natural := 14;
-  g_MULT_WIDTH  : natural := 28
- );
- port(
-  clk  : in  std_logic;
-  rst : in std_logic;
-  i_data  : in  std_logic_vector(g_INPUT_WIDTH - 1 downto 0);
-  data_hpf : in std_logic_vector(g_INPUT_WIDTH - 1 downto 0);
-  o_data : out std_logic_vector(g_SUM_WIDTH - 1 downto 0);
-  o_xcorr : out std_logic_vector(47 downto 0);
-  o_trigger : out std_logic
- );
+    Generic (
+        g_INPUT_WIDTH           : natural   := 14;                                      -- Width of the Input Data
+        g_SUM_WIDTH             : natural   := 14;                                      -- Width of the Internal Addition
+        g_MULT_WIDTH            : natural   := 28                                       -- Width of the Internal Multiplication
+    );
+    Port (
+        -- Module Inputs
+    --------------------------------------------------------------------------------------------------------------------------------------
+        clk                     : in  std_logic;                                        -- Clock for the Module
+        rst                     : in std_logic;                                         -- Async Reset
+        i_data                  : in  std_logic_vector(g_INPUT_WIDTH - 1 downto 0);     -- Input Parallel Data from the Acquisition Module
+        data_hpf                : in std_logic_vector(g_INPUT_WIDTH - 1 downto 0);      -- Filtered Data from the High Pass Filter
+        
+        -- Module Outputs
+    --------------------------------------------------------------------------------------------------------------------------------------
+        o_data                  : out std_logic_vector(g_SUM_WIDTH - 1 downto 0);       -- Output Data (n Samples Delayed)
+        o_xcorr                 : out std_logic_vector(47 downto 0);                    -- Output Correlation Value
+        o_trigger               : out std_logic                                         -- Trigger Output
+    );
 end component;
 
 -- FIFO Write & Read Control FSM Module Declaration
@@ -142,37 +147,37 @@ component AXI_FIFO_Adapter
         -- FIFO Important Parameters
         data_width          : integer       := 14;
         fifoPointersLength  : integer       := 11;
-        AEMPTY_OFF          : bit_vector    := X"0080"; -- Almost Empty Offset 
-        AFULL_OFF           : bit_vector    := X"0080"  -- Almost Full Offset
+        AEMPTY_OFF          : bit_vector    := X"0080";                                 -- Almost Empty Offset
+        AFULL_OFF           : bit_vector    := X"0080"                                  -- Almost Full Offset
     );
     Port (
         -- Module Inputs
     ----------------------------------------------------------------------------------------------------------------------------------
-        d_i                 : in std_logic_vector((data_width - 1) downto 0);
-        dt_rdy              : in std_logic;
-        wr_enable           : in std_logic;
-        rd_enable           : in std_logic;
-        wr_clk              : in std_logic;
-        rd_clk              : in std_logic;
-        m_axi_clk           : in std_logic;
-        rst                 : in std_logic;
+        d_i                 : in std_logic_vector((data_width - 1) downto 0);           -- Parallel Data Input for the FIFO
+        dt_rdy              : in std_logic;                                             -- Data Ready Flag from Acquisition Module
+        wr_enable           : in std_logic;                                             -- Write Enable Control Signal for the FIFO
+        rd_enable           : in std_logic;                                             -- Read Enable Control Signal for the FIFO
+        wr_clk              : in std_logic;                                             -- Write Clock for the FIFO
+        rd_clk              : in std_logic;                                             -- Read Clock for the FIFO
+        m_axi_clk           : in std_logic;                                             -- AXI Stream Interface Clock
+        rst                 : in std_logic;                                             -- Async Reset
     
         -- Module Outputs
     ----------------------------------------------------------------------------------------------------------------------------------    
-        a_empty             : out std_logic;
-        a_full              : out std_logic;
-        empty               : out std_logic;
-        full                : out std_logic; 
-        wr_err              : out std_logic;
-        rd_err              : out std_logic;
-        wr_count            : out std_logic_vector((fifoPointersLength - 1) downto 0);
-        rd_count            : out std_logic_vector((fifoPointersLength - 1) downto 0);
-        fifo_o              : out std_logic_vector(13 downto 0);
-        m_axi_fifo_tdata    : out std_logic_vector((data_width/2) downto 0);
-        m_axi_fifo_tvalid   : out std_logic;
-        m_axi_fifo_tready   : in std_logic;
-        m_axi_fifo_tlast    : out std_logic;
-        m_axi_fifo_tuser    : out std_logic 
+        a_empty             : out std_logic;                                            -- Almost Empty Flag of the FIFO
+        a_full              : out std_logic;                                            -- Almost Full Flag of the FIFO
+        empty               : out std_logic;                                            -- Empty Flag of the FIFO
+        full                : out std_logic;                                            -- Full Flag of the FIFO 
+        wr_err              : out std_logic;                                            -- Write Error Flag of the FIFO
+        rd_err              : out std_logic;                                            -- Read Error Flag of the FIFO
+        wr_count            : out std_logic_vector((fifoPointersLength - 1) downto 0);  -- Write Pointer of the FIFO
+        rd_count            : out std_logic_vector((fifoPointersLength - 1) downto 0);  -- Read Pointer of the FIFO
+        fifo_o              : out std_logic_vector(13 downto 0);                        -- Parallel Data Output of the FIFO
+        m_axi_fifo_tdata    : out std_logic_vector((data_width/2) downto 0);            -- AXI Stream Data from the FIFO
+        m_axi_fifo_tvalid   : out std_logic;                                            -- AXI Stream Valid Control Signal
+        m_axi_fifo_tready   : in std_logic;                                             -- AXI Stream Ready Control Signal
+        m_axi_fifo_tlast    : out std_logic;                                            -- AXI Stream Last Control Signal
+        m_axi_fifo_tuser    : out std_logic                                             -- AXI Stream User Control Signal (Errors in the data)
     );
 end component AXI_FIFO_Adapter;
 
