@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version              : Vivado v.2023.1 (win64) Build 3865809 Sun May  7 15:05:29 MDT 2023
-| Date                      : Thu Nov  2 17:23:37 2023
+| Date                      : Fri Nov  3 14:30:47 2023
 | Host                      : danielA running 64-bit major release  (build 9200)
 | Command                   : report_io -file daphne1_io_placed.rpt
 | Design                    : daphne1
@@ -272,8 +272,8 @@ Table of Contents
 | D1         |                 | High Range | IO_L23N_T3_35                | User IO       |             |      35 |            |      |                      |                      |         |            |           |          |      |                  |              |                   |              |
 | D2         |                 | High Range | VCCO_35                      | VCCO          |             |      35 |            |      |                      |                      |    3.30 |            |           |          |      |                  |              |                   |              |
 | D3         | led[5]          | High Range | IO_L17P_T2_35                | OUTPUT        | LVTTL       |      35 |         12 | SLOW |                      |            FP_VTT_50 |         | FIXED      |           |          |      | NONE             |              |                   |              |
-| D4         | gpo             | High Range | IO_L14P_T2_SRCC_35           | INPUT         | LVTTL       |      35 |            |      |                      |                 NONE |         | FIXED      |           |          |      | NONE             |              |                   |              |
-| D5         | gpi             | High Range | IO_L13N_T2_MRCC_35           | INPUT         | LVTTL       |      35 |            |      |                      |                 NONE |         | FIXED      |           |          |      | NONE             |              |                   |              |
+| D4         | gpo             | High Range | IO_L14P_T2_SRCC_35           | INPUT         | LVCMOS33    |      35 |            |      |                      |                 NONE |         | FIXED      |           |          |      | NONE             |              |                   |              |
+| D5         | gpi             | High Range | IO_L13N_T2_MRCC_35           | INPUT         | LVCMOS33    |      35 |            |      |                      |                 NONE |         | FIXED      |           |          |      | NONE             |              |                   |              |
 | D6         | cdr_los         | High Range | IO_L1N_T0_AD4N_35            | INPUT         | LVTTL       |      35 |            |      |                      |                 NONE |         | FIXED      |           |          |      | NONE             |              |                   |              |
 | D7         |                 |            | GND                          | GND           |             |         |            |      |                      |                      |     0.0 |            |           |          |      |                  |              |                   |              |
 | D8         |                 |            | MGTPTXP1_216                 | Gigabit       |             |         |            |      |                      |                      |         |            |           |          |      |                  |              |                   |              |

@@ -137,12 +137,9 @@ set_property IOSTANDARD LVDS_25                     [get_ports {afe_clk_?}]
 # External trigger is from rear panel SMB connector (on schematic net is GPI)
 # I/O bank 35, VCCO=3.3V. NOTE: this input is INVERTED by the OPTOCOUPER!
 
-####### External trigger not located on this pin
-#set_property PACKAGE_PIN D5 [get_ports {trig_ext}]
-#set_property IOSTANDARD LVTTL [get_ports {trig_ext}]
 set_property PACKAGE_PIN D5                         [get_ports {gpi}]                   
 set_property PACKAGE_PIN D4                         [get_ports {gpo}]                   
-set_property IOSTANDARD LVTTL                       [get_ports {gp?}]  
+set_property IOSTANDARD LVCMOS33                    [get_ports {gp?}]  
 
 ### Timing interface signals (LVDS)
 # cdr was adn2814

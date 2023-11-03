@@ -252,7 +252,7 @@ eth_mac_1g_gmii_fifo #(
     .TARGET(TARGET),
     .IODDR_STYLE(IODDR_STYLE),
     .CLOCK_INPUT_STYLE(CLOCK_INPUT_STYLE),
-    .ENABLE_PADDING(1),
+    .ENABLE_PADDING(1),                     // Was 1
     .MIN_FRAME_LENGTH(64),
     .TX_FIFO_DEPTH(MAC_TX_FIFO_DEPTH),
     .TX_FRAME_FIFO(1),

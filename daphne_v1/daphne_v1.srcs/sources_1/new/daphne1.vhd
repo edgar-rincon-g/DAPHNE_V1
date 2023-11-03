@@ -126,7 +126,7 @@ signal align_ph_ovfl, align_bitslip_on                  : std_logic;
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 signal filt_out, xcorr_data_out, fifo_o                 : std_logic_vector(13 downto 0);
 signal xcorr_out                                        : std_logic_vector(47 downto 0);
-signal trigger, fifo_rd_out, fifo_wr_out                : std_logic;
+signal trigger, fifo_rd_out, fifo_wr_out, ext_trig      : std_logic;
 signal fifo_a_empty, fifo_a_full, fifo_full, fifo_empty : std_logic;
 signal fifo_wr_err, fifo_rd_err                         : std_logic;
 signal st_axi_data                                      : std_logic_vector(7 downto 0);
@@ -135,7 +135,11 @@ signal st_axi_last, st_axi_user                         : std_logic;
 
 -- Ethernet Module Auxiliary Signals Declaration
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
+signal eth_com_rx_axi_data                              : std_logic_vector(7 downto 0);
+signal eth_com_rx_axi_ready, eth_com_rx_axi_valid       : std_logic;
+signal eth_com_rx_axi_last, eth_com_rx_axi_user         : std_logic;
 signal eth_com_rx_payload                               : std_logic_vector(7 downto 0);
+signal eth_trig_reg, valid_last                         : std_logic;                       
 
 -- Components Declaration
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -358,7 +362,7 @@ begin
             rd_clk                      => sys_clk62_5,         -- Read Clock Used by the FIFO (62.5 MHz) Asynchronous to WR_CLK    
             sys_clk                     => sys_clk125,          -- This is AXI Clock, not System Clock 100 Mhz. Was initially sys_clk100,
             rd_ctrl                     => '1',                 -- Read Control Input ('0' Don't read the FIFO after a save, '1' Read the FIFO as soon as it stops saving)
-            wr_enable_signal            => '0',                 -- Auxiliar External Write Enable for the FIFO
+            wr_enable_signal            => ext_trig,            -- Auxiliar External Write Enable for the FIFO
             rd_enable_signal            => '0',                 -- Auxiliar External Read Enable for the FIFO
             
             -- Module Outputs
@@ -412,16 +416,47 @@ begin
             
             -- AXI Stream Module Rx Output
     -------------------------------------------------------------------------------------------------------------------------------------------------------
-            eth_rx_axis_tdata           => open,                -- Reserved For Future Use... 
-            eth_rx_axis_tvalid          => open,                -- Reserved For Future Use...
+            eth_rx_axis_tdata           => eth_com_rx_axi_data, -- Reserved For Future Use... 
+            eth_rx_axis_tvalid          => eth_com_rx_axi_valid,-- Reserved For Future Use...
             eth_rx_axis_tready          => '1',                 -- Reserved For Future Use...
-            eth_rx_axis_tlast           => open,                -- Reserved For Future Use...
-            eth_rx_axis_tuser           => open,                -- Reserved For Future Use...
+            eth_rx_axis_tlast           => eth_com_rx_axi_last, -- Reserved For Future Use...
+            eth_rx_axis_tuser           => eth_com_rx_axi_user, -- Reserved For Future Use...
             
             -- Misc Core Outputs
     -------------------------------------------------------------------------------------------------------------------------------------------------------
             eth_payload                 => eth_com_rx_payload
         );
+        
+    -- Generate External Trigger from Ethernet Commands
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ETH_TRIG_PROC : process(sys_clk125, async_rst, eth_com_rx_axi_valid, valid_last, eth_com_rx_payload, eth_com_rx_axi_last)
+        begin
+            if rising_edge(sys_clk125) then
+                if (async_rst = '1') then
+                    eth_trig_reg <= '0';
+                else
+                    if (eth_com_rx_axi_valid = '1') then
+                        if (not(valid_last) = '1') then
+                            if (eth_com_rx_payload = X"74") then
+                                -- Ask if the payload is the letter t in lowercase, if it is, then generate a trigger
+                                eth_trig_reg <= '1';
+                            else 
+                                -- Do not generate a trigger since the payload is not the letter t in lowercase
+                                eth_trig_reg <= '0';
+                            end if;
+                            valid_last <= '1';
+                        end if;
+                        if (eth_com_rx_axi_last = '1') then
+                            valid_last <= '0';
+                            eth_trig_reg <= '0'; -- Turn off the trigger signal
+                        end if;
+                    end if;
+                end if;
+            end if;
+    end process ETH_TRIG_PROC;
+    
+    -- External Triggers OR Gate Control
+    ext_trig <= eth_trig_reg; -- OR gpi;
         
     -- Ethernet SFP Link Control Signals
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -438,12 +473,12 @@ begin
     -- Board Misc Output
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
     -- LED Connections (Mapped to Ethernet Rx To Check Connection Status)
---    led                     <= not(eth_com_rx_payload(5 downto 0)); -- Works to see if the Rx ETH Part is working
-    led(0) <= not(data_rdy);
-    led(1) <= not(trigger);
-    led(2) <= not(fifo_wr_out);
-    led(3) <= not(fifo_rd_out);
-    led(4) <= not(fifo_empty);
-    led(5) <= not(st_axi_ready);
+    led                     <= not(eth_com_rx_payload(5 downto 0)); -- Works to see if the Rx ETH Part is working
+--    led(0) <= not(data_rdy);
+--    led(1) <= not(trigger);
+--    led(2) <= not(fifo_wr_out);
+--    led(3) <= not(fifo_rd_out);
+--    led(4) <= not(fifo_empty);
+--    led(5) <= not(st_axi_ready);
 
 end daphne1_arch;
