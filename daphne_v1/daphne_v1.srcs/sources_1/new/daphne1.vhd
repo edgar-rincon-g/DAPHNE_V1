@@ -146,6 +146,10 @@ signal eth_trig_reg, valid_last                         : std_logic;
 signal eth_com_rx_payload_reg                           : std_logic_vector(7 downto 0);
 signal ext_trig                                         : std_logic;        
 
+-- External Trigger From Ethernet Signals Declaration
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+signal eth_read_reg, ext_read                           : std_logic;
+
 -- Components Declaration
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -368,7 +372,7 @@ begin
             sys_clk                     => sys_clk125,          -- This is AXI Clock, not System Clock 100 Mhz. Was initially sys_clk100,
             rd_ctrl                     => '1',                 -- Read Control Input ('0' Don't read the FIFO after a save, '1' Read the FIFO as soon as it stops saving)
             wr_enable_signal            => ext_trig,            -- Auxiliar External Write Enable for the FIFO
-            rd_enable_signal            => '0',                 -- Auxiliar External Read Enable for the FIFO
+            rd_enable_signal            => ext_read,            -- Auxiliar External Read Enable for the FIFO
             
             -- Module Outputs
         ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -471,6 +475,41 @@ begin
     
     -- External Triggers OR Gate Control
     ext_trig                <= eth_trig_reg; -- OR gpi;
+    
+    -- Generate External Read from Ethernet Commands
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    -- Creates a signal to read the FIFO externally by using the keys on the keyboard.
+    -- Specifically use the letter 'r'.
+    -- Exactly the same behaviour as the external trigger generation
+    ETH_READ_PROC : process(afe_se_clk, async_rst, eth_com_rx_payload, eth_com_rx_payload_reg)
+        begin
+            if falling_edge(afe_se_clk) then
+                if (async_rst = '1') then
+                    eth_read_reg <= '0';
+                else
+                    -- Assign the value to a register to keep track fo the last payload given to the FPGA
+                    eth_com_rx_payload_reg <= eth_com_rx_payload;
+                    
+                    -- Let's see if the data has changed
+                    if (eth_com_rx_payload /= eth_com_rx_payload_reg) then
+                        -- The data has changed, therefore it is time to see if the payload condition to trigger is met
+                        if (eth_com_rx_payload = X"72") then
+                            -- If the payload condition is met, generate a trigger
+                            eth_read_reg <= '1';
+                        else
+                            -- Do not generate a trigger
+                            eth_read_reg <= '0';
+                        end if;
+                    else
+                        -- Do not generate a trigger
+                        eth_read_reg <= '0';
+                    end if;
+                end if;    
+            end if;
+    end process ETH_READ_PROC;
+    
+    -- External Triggers OR Gate Control
+    ext_read                <= eth_read_reg; 
         
     -- Ethernet SFP Link Control Signals
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------

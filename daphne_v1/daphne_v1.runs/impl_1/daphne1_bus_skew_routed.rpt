@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.1 (win64) Build 3865809 Sun May  7 15:05:29 MDT 2023
-| Date         : Fri Nov  3 15:26:26 2023
+| Date         : Fri Nov  3 15:55:02 2023
 | Host         : danielA running 64-bit major release  (build 9200)
 | Command      : report_bus_skew -warn_on_violation -file daphne1_bus_skew_routed.rpt -pb daphne1_bus_skew_routed.pb -rpx daphne1_bus_skew_routed.rpx
 | Design       : daphne1
@@ -30,10 +30,10 @@ Id  Position  From                            To                              Co
                                                                               NA                8.000          NA         NA
 3   77        [get_cells {{ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/rd_ptr_reg_reg[*]} {ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/rd_ptr_gray_reg_reg[*]}}]
                                               [get_cells {ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/rd_ptr_gray_sync1_reg_reg[*]}]
-                                                                              Slow              8.000       0.788      7.212
+                                                                              Slow              8.000       0.752      7.248
 4   79        [get_cells -quiet {ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_sync_commit_reg_reg[*]}]
                                               [get_cells {ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_commit_sync_reg_reg[*]}]
-                                                                              Slow              8.000       1.205      6.795
+                                                                              Slow              8.000       0.864      7.136
 
 
 2. Bus Skew Report Per Constraint
@@ -60,26 +60,26 @@ Endpoints: 14
 
 From Clock            To Clock              Endpoint Pin                    Reference Pin                   Corner  Actual(ns)  Slack(ns)
 --------------------  --------------------  ------------------------------  ------------------------------  ------  ----------  ---------
-sclk125               sclk125               ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/rd_ptr_gray_sync1_reg_reg[9]/D
-                                                                            ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/rd_ptr_gray_sync1_reg_reg[1]/D
-                                                                                                            Slow         0.788      7.212
+sclk125               sclk125               ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/rd_ptr_gray_sync1_reg_reg[6]/D
+                                                                            ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/rd_ptr_gray_sync1_reg_reg[11]/D
+                                                                                                            Slow         0.752      7.248
 
 
-Slack (MET) :             7.212ns  (requirement - actual skew)
-  Endpoint Source:        ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/rd_ptr_gray_reg_reg[9]/C
+Slack (MET) :             7.248ns  (requirement - actual skew)
+  Endpoint Source:        ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/rd_ptr_gray_reg_reg[6]/C
                             (rising edge-triggered cell FDRE clocked by sclk125)
-  Endpoint Destination:   ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/rd_ptr_gray_sync1_reg_reg[9]/D
+  Endpoint Destination:   ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/rd_ptr_gray_sync1_reg_reg[6]/D
                             (rising edge-triggered cell FDRE clocked by sclk125)
-  Reference Source:       ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/rd_ptr_gray_reg_reg[1]/C
+  Reference Source:       ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/rd_ptr_gray_reg_reg[11]/C
                             (rising edge-triggered cell FDRE clocked by sclk125)
-  Reference Destination:  ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/rd_ptr_gray_sync1_reg_reg[1]/D
+  Reference Destination:  ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/rd_ptr_gray_sync1_reg_reg[11]/D
                             (rising edge-triggered cell FDRE clocked by sclk125)
   Path Type:              Bus Skew (Max at Slow Process Corner)
   Requirement:            8.000ns
-  Endpoint Relative Delay:    1.502ns
-  Reference Relative Delay:   0.540ns
-  Relative CRPR:              0.174ns
-  Actual Bus Skew:            0.788ns  (Endpoint Relative Delay - Reference Relative Delay - Relative CRPR)
+  Endpoint Relative Delay:    1.429ns
+  Reference Relative Delay:   0.501ns
+  Relative CRPR:              0.175ns
+  Actual Bus Skew:            0.752ns  (Endpoint Relative Delay - Reference Relative Delay - Relative CRPR)
 
 Endpoint path:
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
@@ -96,12 +96,12 @@ Endpoint path:
                          net (fo=2465, routed)        0.118    -2.585    ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/eth_mac_1g_gmii_inst/gmii_phy_if_inst/sys_clk125
     BUFGCTRL_X0Y1        BUFGCTRL (Prop_bufgctrl_I0_O)
                                                       0.081    -2.504 r  ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/eth_mac_1g_gmii_inst/gmii_phy_if_inst/gmii_bufgmux_inst/O
-                         net (fo=163, routed)         1.365    -1.139    ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/tx_clk
-    SLICE_X78Y185        FDRE                                         r  ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/rd_ptr_gray_reg_reg[9]/C
+                         net (fo=163, routed)         1.373    -1.131    ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/tx_clk
+    SLICE_X75Y182        FDRE                                         r  ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/rd_ptr_gray_reg_reg[6]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X78Y185        FDRE (Prop_fdre_C_Q)         0.348    -0.791 r  ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/rd_ptr_gray_reg_reg[9]/Q
-                         net (fo=1, routed)           0.638    -0.153    ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/rd_ptr_gray_reg_1[9]
-    SLICE_X79Y185        FDRE                                         r  ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/rd_ptr_gray_sync1_reg_reg[9]/D
+    SLICE_X75Y182        FDRE (Prop_fdre_C_Q)         0.348    -0.783 r  ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/rd_ptr_gray_reg_reg[6]/Q
+                         net (fo=1, routed)           0.601    -0.182    ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/rd_ptr_gray_reg_1[6]
+    SLICE_X76Y179        FDRE                                         r  ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/rd_ptr_gray_sync1_reg_reg[6]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock sclk125 rise edge)    0.000     0.000 r  
@@ -113,15 +113,15 @@ Endpoint path:
                                                      -6.667    -4.797 r  SYS_TIMING_ENPT/mmcm0_inst/CLKOUT3
                          net (fo=1, routed)           1.712    -3.085    SYS_TIMING_ENPT/mmcm0_clkout3
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.077    -3.008 r  SYS_TIMING_ENPT/mmcm0_clk3_inst/O
-                         net (fo=2465, routed)        1.257    -1.751    ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/sys_clk125
-    SLICE_X79Y185        FDRE                                         r  ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/rd_ptr_gray_sync1_reg_reg[9]/C
-                         clock pessimism              0.305    -1.446    
-    SLICE_X79Y185        FDRE (Setup_fdre_C_D)       -0.209    -1.655    ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/rd_ptr_gray_sync1_reg_reg[9]
+                         net (fo=2465, routed)        1.260    -1.748    ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/sys_clk125
+    SLICE_X76Y179        FDRE                                         r  ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/rd_ptr_gray_sync1_reg_reg[6]/C
+                         clock pessimism              0.305    -1.443    
+    SLICE_X76Y179        FDRE (Setup_fdre_C_D)       -0.168    -1.611    ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/rd_ptr_gray_sync1_reg_reg[6]
   -------------------------------------------------------------------
-                         data arrival                          -0.153    
-                         clock arrival                         -1.655    
+                         data arrival                          -0.182    
+                         clock arrival                         -1.611    
   -------------------------------------------------------------------
-                         relative delay                         1.502    
+                         relative delay                         1.429    
 
 Reference path:
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
@@ -138,12 +138,12 @@ Reference path:
                          net (fo=2465, routed)        0.112    -2.896    ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/eth_mac_1g_gmii_inst/gmii_phy_if_inst/sys_clk125
     BUFGCTRL_X0Y1        BUFGCTRL (Prop_bufgctrl_I0_O)
                                                       0.077    -2.819 r  ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/eth_mac_1g_gmii_inst/gmii_phy_if_inst/gmii_bufgmux_inst/O
-                         net (fo=163, routed)         1.253    -1.566    ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/tx_clk
-    SLICE_X78Y180        FDRE                                         r  ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/rd_ptr_gray_reg_reg[1]/C
+                         net (fo=163, routed)         1.267    -1.552    ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/tx_clk
+    SLICE_X75Y183        FDRE                                         r  ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/rd_ptr_gray_reg_reg[11]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X78Y180        FDRE (Prop_fdre_C_Q)         0.304    -1.262 r  ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/rd_ptr_gray_reg_reg[1]/Q
-                         net (fo=1, routed)           0.291    -0.971    ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/rd_ptr_gray_reg_1[1]
-    SLICE_X78Y181        FDRE                                         r  ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/rd_ptr_gray_sync1_reg_reg[1]/D
+    SLICE_X75Y183        FDRE (Prop_fdre_C_Q)         0.304    -1.248 r  ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/rd_ptr_gray_reg_reg[11]/Q
+                         net (fo=1, routed)           0.303    -0.945    ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/rd_ptr_gray_reg_1[11]
+    SLICE_X76Y182        FDRE                                         r  ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/rd_ptr_gray_sync1_reg_reg[11]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock sclk125 rise edge)    0.000     0.000 r  
@@ -155,15 +155,15 @@ Reference path:
                                                      -6.553    -4.581 r  SYS_TIMING_ENPT/mmcm0_inst/CLKOUT3
                          net (fo=1, routed)           1.797    -2.784    SYS_TIMING_ENPT/mmcm0_clkout3
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.081    -2.703 r  SYS_TIMING_ENPT/mmcm0_clk3_inst/O
-                         net (fo=2465, routed)        1.361    -1.342    ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/sys_clk125
-    SLICE_X78Y181        FDRE                                         r  ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/rd_ptr_gray_sync1_reg_reg[1]/C
-                         clock pessimism             -0.305    -1.647    
-    SLICE_X78Y181        FDRE (Hold_fdre_C_D)         0.136    -1.511    ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/rd_ptr_gray_sync1_reg_reg[1]
+                         net (fo=2465, routed)        1.371    -1.332    ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/sys_clk125
+    SLICE_X76Y182        FDRE                                         r  ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/rd_ptr_gray_sync1_reg_reg[11]/C
+                         clock pessimism             -0.305    -1.637    
+    SLICE_X76Y182        FDRE (Hold_fdre_C_D)         0.191    -1.446    ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/rd_ptr_gray_sync1_reg_reg[11]
   -------------------------------------------------------------------
-                         data arrival                          -0.971    
-                         clock arrival                         -1.511    
+                         data arrival                          -0.945    
+                         clock arrival                         -1.446    
   -------------------------------------------------------------------
-                         relative delay                         0.540    
+                         relative delay                         0.501    
 
 
 
@@ -174,26 +174,26 @@ Endpoints: 14
 
 From Clock            To Clock              Endpoint Pin                    Reference Pin                   Corner  Actual(ns)  Slack(ns)
 --------------------  --------------------  ------------------------------  ------------------------------  ------  ----------  ---------
-sclk125               sclk125               ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_commit_sync_reg_reg[11]/D
-                                                                            ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_commit_sync_reg_reg[6]/D
-                                                                                                            Slow         1.205      6.795
+sclk125               sclk125               ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_commit_sync_reg_reg[8]/D
+                                                                            ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_commit_sync_reg_reg[3]/D
+                                                                                                            Slow         0.864      7.136
 
 
-Slack (MET) :             6.795ns  (requirement - actual skew)
-  Endpoint Source:        ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_sync_commit_reg_reg[11]/C
+Slack (MET) :             7.136ns  (requirement - actual skew)
+  Endpoint Source:        ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_sync_commit_reg_reg[8]/C
                             (rising edge-triggered cell FDRE clocked by sclk125)
-  Endpoint Destination:   ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_commit_sync_reg_reg[11]/D
+  Endpoint Destination:   ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_commit_sync_reg_reg[8]/D
                             (rising edge-triggered cell FDRE clocked by sclk125)
-  Reference Source:       ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_sync_commit_reg_reg[6]/C
+  Reference Source:       ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_sync_commit_reg_reg[3]/C
                             (rising edge-triggered cell FDRE clocked by sclk125)
-  Reference Destination:  ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_commit_sync_reg_reg[6]/D
+  Reference Destination:  ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_commit_sync_reg_reg[3]/D
                             (rising edge-triggered cell FDRE clocked by sclk125)
   Path Type:              Bus Skew (Max at Slow Process Corner)
   Requirement:            8.000ns
-  Endpoint Relative Delay:    1.531ns
-  Reference Relative Delay:   0.184ns
-  Relative CRPR:              0.142ns
-  Actual Bus Skew:            1.205ns  (Endpoint Relative Delay - Reference Relative Delay - Relative CRPR)
+  Endpoint Relative Delay:    1.355ns
+  Reference Relative Delay:   0.314ns
+  Relative CRPR:              0.176ns
+  Actual Bus Skew:            0.864ns  (Endpoint Relative Delay - Reference Relative Delay - Relative CRPR)
 
 Endpoint path:
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
@@ -207,12 +207,12 @@ Endpoint path:
                                                      -6.553    -4.581 r  SYS_TIMING_ENPT/mmcm0_inst/CLKOUT3
                          net (fo=1, routed)           1.797    -2.784    SYS_TIMING_ENPT/mmcm0_clkout3
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.081    -2.703 r  SYS_TIMING_ENPT/mmcm0_clk3_inst/O
-                         net (fo=2465, routed)        1.374    -1.329    ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/sys_clk125
-    SLICE_X74Y183        FDRE                                         r  ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_sync_commit_reg_reg[11]/C
+                         net (fo=2465, routed)        1.377    -1.326    ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/sys_clk125
+    SLICE_X72Y182        FDRE                                         r  ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_sync_commit_reg_reg[8]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X74Y183        FDRE (Prop_fdre_C_Q)         0.398    -0.931 r  ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_sync_commit_reg_reg[11]/Q
-                         net (fo=1, routed)           1.047     0.116    ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_sync_commit_reg[11]
-    SLICE_X80Y184        FDRE                                         r  ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_commit_sync_reg_reg[11]/D
+    SLICE_X72Y182        FDRE (Prop_fdre_C_Q)         0.433    -0.893 r  ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_sync_commit_reg_reg[8]/Q
+                         net (fo=1, routed)           0.936     0.043    ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_sync_commit_reg[8]
+    SLICE_X73Y182        FDRE                                         r  ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_commit_sync_reg_reg[8]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock sclk125 rise edge)    0.000     0.000 r  
@@ -227,15 +227,15 @@ Endpoint path:
                          net (fo=2465, routed)        0.112    -2.896    ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/eth_mac_1g_gmii_inst/gmii_phy_if_inst/sys_clk125
     BUFGCTRL_X0Y1        BUFGCTRL (Prop_bufgctrl_I0_O)
                                                       0.077    -2.819 r  ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/eth_mac_1g_gmii_inst/gmii_phy_if_inst/gmii_bufgmux_inst/O
-                         net (fo=163, routed)         1.256    -1.563    ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/tx_clk
-    SLICE_X80Y184        FDRE                                         r  ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_commit_sync_reg_reg[11]/C
-                         clock pessimism              0.305    -1.258    
-    SLICE_X80Y184        FDRE (Setup_fdre_C_D)       -0.157    -1.415    ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_commit_sync_reg_reg[11]
+                         net (fo=163, routed)         1.269    -1.550    ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/tx_clk
+    SLICE_X73Y182        FDRE                                         r  ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_commit_sync_reg_reg[8]/C
+                         clock pessimism              0.305    -1.245    
+    SLICE_X73Y182        FDRE (Setup_fdre_C_D)       -0.067    -1.312    ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_commit_sync_reg_reg[8]
   -------------------------------------------------------------------
-                         data arrival                           0.116    
-                         clock arrival                         -1.415    
+                         data arrival                           0.043    
+                         clock arrival                         -1.312    
   -------------------------------------------------------------------
-                         relative delay                         1.531    
+                         relative delay                         1.355    
 
 Reference path:
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
@@ -249,12 +249,12 @@ Reference path:
                                                      -6.667    -4.797 r  SYS_TIMING_ENPT/mmcm0_inst/CLKOUT3
                          net (fo=1, routed)           1.712    -3.085    SYS_TIMING_ENPT/mmcm0_clkout3
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.077    -3.008 r  SYS_TIMING_ENPT/mmcm0_clk3_inst/O
-                         net (fo=2465, routed)        1.255    -1.753    ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/sys_clk125
-    SLICE_X78Y182        FDRE                                         r  ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_sync_commit_reg_reg[6]/C
+                         net (fo=2465, routed)        1.268    -1.740    ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/sys_clk125
+    SLICE_X72Y181        FDRE                                         r  ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_sync_commit_reg_reg[3]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X78Y182        FDRE (Prop_fdre_C_Q)         0.304    -1.449 r  ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_sync_commit_reg_reg[6]/Q
-                         net (fo=1, routed)           0.343    -1.106    ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_sync_commit_reg[6]
-    SLICE_X82Y182        FDRE                                         r  ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_commit_sync_reg_reg[6]/D
+    SLICE_X72Y181        FDRE (Prop_fdre_C_Q)         0.319    -1.421 r  ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_sync_commit_reg_reg[3]/Q
+                         net (fo=1, routed)           0.328    -1.093    ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_sync_commit_reg[3]
+    SLICE_X73Y181        FDRE                                         r  ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_commit_sync_reg_reg[3]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock sclk125 rise edge)    0.000     0.000 r  
@@ -269,15 +269,15 @@ Reference path:
                          net (fo=2465, routed)        0.118    -2.585    ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/eth_mac_1g_gmii_inst/gmii_phy_if_inst/sys_clk125
     BUFGCTRL_X0Y1        BUFGCTRL (Prop_bufgctrl_I0_O)
                                                       0.081    -2.504 r  ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/eth_mac_1g_gmii_inst/gmii_phy_if_inst/gmii_bufgmux_inst/O
-                         net (fo=163, routed)         1.357    -1.147    ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/tx_clk
-    SLICE_X82Y182        FDRE                                         r  ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_commit_sync_reg_reg[6]/C
-                         clock pessimism             -0.305    -1.452    
-    SLICE_X82Y182        FDRE (Hold_fdre_C_D)         0.162    -1.290    ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_commit_sync_reg_reg[6]
+                         net (fo=163, routed)         1.376    -1.128    ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/tx_clk
+    SLICE_X73Y181        FDRE                                         r  ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_commit_sync_reg_reg[3]/C
+                         clock pessimism             -0.305    -1.433    
+    SLICE_X73Y181        FDRE (Hold_fdre_C_D)         0.025    -1.408    ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_inst/tx_fifo/fifo_inst/wr_ptr_commit_sync_reg_reg[3]
   -------------------------------------------------------------------
-                         data arrival                          -1.106    
-                         clock arrival                         -1.290    
+                         data arrival                          -1.093    
+                         clock arrival                         -1.408    
   -------------------------------------------------------------------
-                         relative delay                         0.184    
+                         relative delay                         0.314    
 
 
 

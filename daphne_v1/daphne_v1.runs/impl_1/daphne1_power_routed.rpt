@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2023.1 (win64) Build 3865809 Sun May  7 15:05:29 MDT 2023
-| Date             : Fri Nov  3 15:26:24 2023
+| Date             : Fri Nov  3 15:55:00 2023
 | Host             : danielA running 64-bit major release  (build 9200)
 | Command          : report_power -file daphne1_power_routed.rpt -pb daphne1_power_summary_routed.pb -rpx daphne1_power_routed.rpx
 | Design           : daphne1
@@ -53,16 +53,16 @@ Table of Contents
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
 | Clocks                   |     0.045 |       23 |       --- |             --- |
-| Slice Logic              |     0.010 |     7508 |       --- |             --- |
-|   LUT as Logic           |     0.008 |     2294 |    133800 |            1.71 |
+| Slice Logic              |     0.010 |     7537 |       --- |             --- |
+|   LUT as Logic           |     0.009 |     2305 |    133800 |            1.72 |
 |   CARRY4                 |     0.001 |      283 |     33450 |            0.85 |
-|   Register               |    <0.001 |     3945 |    269200 |            1.47 |
+|   Register               |    <0.001 |     3959 |    269200 |            1.47 |
 |   LUT as Distributed RAM |    <0.001 |       80 |     46200 |            0.17 |
 |   LUT as Shift Register  |    <0.001 |       56 |     46200 |            0.12 |
 |   F7/F8 Muxes            |    <0.001 |       12 |    133800 |           <0.01 |
-|   Others                 |    <0.001 |      209 |       --- |             --- |
-| Signals                  |     0.013 |     6949 |       --- |             --- |
-| Block RAM                |     0.024 |     13.5 |       365 |            3.70 |
+|   Others                 |    <0.001 |      208 |       --- |             --- |
+| Signals                  |     0.013 |     6974 |       --- |             --- |
+| Block RAM                |     0.023 |     13.5 |       365 |            3.70 |
 | MMCM                     |     0.213 |        2 |        10 |           20.00 |
 | PLL                      |     0.115 |        1 |        10 |           10.00 |
 | DSPs                     |     0.010 |       17 |       740 |            2.30 |
@@ -180,11 +180,10 @@ Table of Contents
 |     SYNCH_COM_1           |     0.002 |
 |   AFE0_ST_CH_0            |     0.016 |
 |     FIFO_INST_COM         |     0.001 |
-|       MEMORY_CTRL_COM     |     0.001 |
 |     FILTER_COM            |     0.002 |
-|     SELF_TRIGGER_TOP_COM  |     0.012 |
-|   ETH_MOD                 |     0.294 |
-|     ETH_MAC_UDP_STACK_COM |     0.055 |
+|     SELF_TRIGGER_TOP_COM  |     0.013 |
+|   ETH_MOD                 |     0.293 |
+|     ETH_MAC_UDP_STACK_COM |     0.054 |
 |       eth_axis_rx_inst    |     0.002 |
 |       eth_mac_inst        |     0.014 |
 |       rx_udp_payload_fifo |     0.007 |
