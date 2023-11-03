@@ -1,0 +1,27 @@
+-- Original External Trigger With Ethernet Rx (Works One Cycle Later)
+
+ETH_TRIG_PROC : process(sys_clk125, async_rst, eth_com_rx_axi_valid, valid_last, eth_com_rx_payload, eth_com_rx_axi_last)
+        begin
+            if rising_edge(sys_clk125) then
+                if (async_rst = '1') then
+                    eth_trig_reg <= '0';
+                else
+                    if (eth_com_rx_axi_valid = '1') then
+                        if (not(valid_last) = '1') then
+                            if (eth_com_rx_payload = X"74") then
+                                -- Ask if the payload is the letter t in lowercase, if it is, then generate a trigger
+                                eth_trig_reg <= '1';
+                            else 
+                                -- Do not generate a trigger since the payload is not the letter t in lowercase
+                                eth_trig_reg <= '0';
+                            end if;
+                            valid_last <= '1';
+                        end if;
+                        if (eth_com_rx_axi_last = '1') then
+                            valid_last <= '0';
+                            eth_trig_reg <= '0'; -- Turn off the trigger signal
+                        end if;
+                    end if;
+                end if;
+            end if;
+    end process ETH_TRIG_PROC;
