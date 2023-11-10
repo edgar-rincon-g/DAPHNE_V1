@@ -289,6 +289,22 @@ begin
     -- Finally, let's assign the filter's output 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     -- Output from DSP is 48 bits long, must shift right 15 bits to find the integer part/round (changed to 17 bits later with new coefficient approximation)
-    y_out               <= std_logic_vector(resize(shift_right(signed(y_0),17),Data_Size)) ;
+--    y_out               <= std_logic_vector(resize(shift_right(signed(y_0),17),Data_Size)) ;
+    
+    -- The other rounding method should use the condition that the fractional part of the output is having
+    -- If the fractional output is greater or equal to 0.5, then we should round up, else round down
+    -- Remember that shifting right the result only rounds down the value so this filter may always bring a negative average
+    ROUND_PROC: process(y_0)
+    begin
+        if (y_0 >= X"10000") then
+            -- 0000 0000 0000 0000 0000 0000 0000 000.1 0000 0000 0000 0000 bin = 65536 dec = 01.00.00 hex
+            -- This means that the first fractional element is 1 therefore the whole sum would be 
+            -- 0.5 or above, therefore must add one since the shift right rounding method always rounds down
+            y_out <= std_logic_vector(resize(shift_right(signed(y_0),17),Data_Size) + 1);
+        else
+            -- Output is below the 0.5 fractional range, therefore the rounding method by shifting right is kept
+            y_out <= std_logic_vector(resize(shift_right(signed(y_0),17),Data_Size));
+        end if;
+    end process ROUND_PROC;  
     
 end hp_firstOrd_arch;
