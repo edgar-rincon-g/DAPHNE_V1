@@ -216,13 +216,18 @@ begin
     
     SELF_TRIGGER_TOP_COM : self_trigger
     port map (
-        clk => clk,
-        rst => rst,
-        i_data => afe_data,
-        data_hpf => data_aux,
-        o_data => xcorr_data_out_aux,
-        o_xcorr => xcorr_out,
-        o_trigger => trigger_aux
+        -- Module Inputs
+    --------------------------------------------------------------------------------------------------------------------------------------
+        clk                 => clk,
+        rst                 => rst,
+        i_data              => afe_data,
+        data_hpf            => data_aux,
+        
+        -- Module Outputs
+    --------------------------------------------------------------------------------------------------------------------------------------
+        o_data              => xcorr_data_out_aux,
+        o_xcorr             => xcorr_out,
+        o_trigger           => trigger_aux
     );
     
     -- Trigger signal can be either the external trigger input or the self triggering one

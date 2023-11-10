@@ -46,7 +46,7 @@ entity dsp_slice is
         Use_Pattern_Det                                             : string        := "NO_PATDET";
         AReg, BReg, CReg, DReg, ADReg, MReg, PReg                   : integer       := 1;
         ACascReg, BCascReg, ALUModeReg, CarryInReg, CarryInSelReg   : integer       := 1;                                     
-        InModeReg, OPModeReg : integer := 1                     
+        InModeReg, OPModeReg                                        : integer       := 1                     
     );
     Port ( 
         -- Reset for both the input and internal registers
