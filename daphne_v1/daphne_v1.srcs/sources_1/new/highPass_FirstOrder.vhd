@@ -126,6 +126,8 @@ signal y_1          : std_logic_vector(47 downto 0) := (others => '0');     -- P
 signal y_0_resized  : std_logic_vector(29 downto 0) := (others => '0');     -- Resized value fo the output, so that it fits the DSP slice multiplication input 
 signal y_0_aux      : std_logic_vector(47 downto 0) := (others => '0');     -- Refers to the right shifted, integer value of the filter's output
 signal y_1_shifted  : std_logic_vector(47 downto 0) := (others => '0'); 
+signal y_0_less_one : std_logic_vector(47 downto 0) := (others => '0');
+signal y_0_inverted : std_logic_vector(47 downto 0) := (others => '0');
 
 begin
 
@@ -293,17 +295,38 @@ begin
     
     -- The other rounding method should use the condition that the fractional part of the output is having
     -- If the fractional output is greater or equal to 0.5, then we should round up, else round down
+    -- This only happens if the input is positive, if it is negative the condition msut still be met but the code is different
+    -- That is the reason why there are to conditions to be met 
     -- Remember that shifting right the result only rounds down the value so this filter may always bring a negative average
-    ROUND_PROC: process(y_0)
+    ROUND_PROC: process(y_0, y_0_less_one, y_0_inverted)
     begin
-        if (y_0 >= X"10000") then
-            -- 0000 0000 0000 0000 0000 0000 0000 000.1 0000 0000 0000 0000 bin = 65536 dec = 01.00.00 hex
-            -- This means that the first fractional element is 1 therefore the whole sum would be 
-            -- 0.5 or above, therefore must add one since the shift right rounding method always rounds down
-            y_out <= std_logic_vector(resize(shift_right(signed(y_0),17),Data_Size) + 1);
+        if (y_0(y_0'HIGH) = '1') then
+            -- This means that the output of the filter is negative, therefore the comparattion has to be done in a different way
+            -- Transform the twos complement representation and find the original number
+            y_0_less_one <= std_logic_vector(signed(y_0) - 1);
+            y_0_inverted <= NOT(y_0_less_one);
+            
+            -- Now that the number is inverted, find if the fractional part is bigger or equal to 0.5
+            if (y_0_inverted >= X"10000") then
+                -- 0000 0000 0000 0000 0000 0000 0000 000.1 0000 0000 0000 0000 bin = 65536 dec = 01.00.00 hex
+                -- This means that the first fractional element is 1 therefore the whole sum would be 
+                -- 0.5 or above. The rounding still goes for the round down so this negative number only needs to be shifted right
+                y_out <= std_logic_vector(resize(shift_right(signed(y_0),17),Data_Size));
+            else
+                -- Output is below the 0.5 fractional range, therefore the rounding method must be shift right and add one to fit the round up
+                y_out <= std_logic_vector(resize(shift_right(signed(y_0),17),Data_Size) + 1);
+            end if;
         else
-            -- Output is below the 0.5 fractional range, therefore the rounding method by shifting right is kept
-            y_out <= std_logic_vector(resize(shift_right(signed(y_0),17),Data_Size));
+            -- This means that the output of the filter is positive therefore the comparation is straight forward
+            if (y_0 >= X"10000") then
+                -- 0000 0000 0000 0000 0000 0000 0000 000.1 0000 0000 0000 0000 bin = 65536 dec = 01.00.00 hex
+                -- This means that the first fractional element is 1 therefore the whole sum would be 
+                -- 0.5 or above, therefore must add one since the shift right rounding method always rounds down
+                y_out <= std_logic_vector(resize(shift_right(signed(y_0),17),Data_Size) + 1);
+            else
+                -- Output is below the 0.5 fractional range, therefore the rounding method by shifting right is kept
+                y_out <= std_logic_vector(resize(shift_right(signed(y_0),17),Data_Size));
+            end if;
         end if;
     end process ROUND_PROC;  
     
