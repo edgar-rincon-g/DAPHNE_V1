@@ -222,7 +222,6 @@ begin
         generic map (
             AReg            => 0,
             BReg            => 0,
-            ADReg           => 0,
             MReg            => 0,
             PReg            => 0,
             ACascReg        => 0,
