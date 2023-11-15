@@ -289,7 +289,7 @@ begin
     
     -- Finally, let's assign the filter's output 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    -- Output from DSP is 48 bits long, must shift right 15 bits to find the integer part/round (changed to 17 bits later with new coefficient approximation)
+    -- Output from DSP is 48 bitsS long, must shift right 15 bits to find the integer part/round (changed to 17 bits later with new coefficient approximation)
 --    y_out               <= std_logic_vector(resize(shift_right(signed(y_0),17),Data_Size)) ;
     
     -- The other rounding method should use the condition that the fractional part of the output is having
