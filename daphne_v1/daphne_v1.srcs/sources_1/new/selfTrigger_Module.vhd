@@ -351,7 +351,7 @@ begin
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     SELF_TRIGGER_TOP_COM : neural_network
         generic map (
-            PRE_W_SIZE          => 79
+            PRE_W_SIZE          => 85 -- 79 Before adding pipeline to the filters' Forward DSPs
         )
         port map (
             -- Module Inputs

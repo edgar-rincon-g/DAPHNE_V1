@@ -144,10 +144,8 @@ begin
     fir_forward : dsp_slice
         generic map (
             Use_Dport       => TRUE,
+            AReg            => 2,                                   -- New test for DSP Pipelining
             BReg            => 0,
-            DReg            => 0,
-            ADReg           => 0,
-            MReg            => 0,
             PReg            => 0,
             BCascReg        => 0,
             ALUModeReg      => 0,
@@ -163,9 +161,9 @@ begin
             RstB            => '0',
             RstC            => rst,
             RstCtrl         => '0',
-            RstD            => '0',
+            RstD            => rst,                                 -- Originally '0'
             RstInMode       => '0',
-            RstM            => '0',
+            RstM            => rst,                                 -- Originally '0'
             RstP            => '0', 
             A               => x_A,
             ACIn            => b"000000000000000000000000000000",
@@ -180,21 +178,21 @@ begin
             ALUMode         => X"0",
             CarryInSel      => b"000",
             Clk             => clk,
-            InMode          => b"01100",
+            InMode          => b"01100",                            -- Establishes D-A2 Operation
             OPMode          => b"0110101",                          -- Disables the use of the C port b"0000101",  0110101
-            CEA1            => '0',
+            CEA1            => '1',                                 -- Originally '0'
             CEA2            => '1',
-            CEAD            => '0',
+            CEAD            => '1',                                 -- Originally '0'
             CEALUMode       => '0',
             CEB1            => '0',
             CEB2            => '0',
             CEC             => '1',
             CECarryIn       => '0', 
             CECtrl          => '0',
-            CED             => '0',
+            CED             => '1',                                 -- Originally '0'
             CEInMode        => '0',
-            CEM             => '0',
-            CEP             => '0',
+            CEM             => '1',                                 -- Originally '0'
+            CEP             => '0',                                 
             ACOut           => open,
             BCOut           => open,                
             CarryCascOut    => open,
