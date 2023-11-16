@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.1 (win64) Build 3865809 Sun May  7 15:05:29 MDT 2023
-| Date         : Thu Nov 16 11:32:50 2023
+| Date         : Thu Nov 16 15:23:47 2023
 | Host         : danielA running 64-bit major release  (build 9200)
 | Command      : report_methodology -file daphne1_methodology_drc_routed.rpt -pb daphne1_methodology_drc_routed.pb -rpx daphne1_methodology_drc_routed.rpx
 | Design       : daphne1
@@ -52,42 +52,42 @@ Related violations: <none>
 
 PDRC-190#1 Warning
 Suboptimally placed synchronized register chain  
-The FDPE cell ETH_MOD/ETH_PHY_COM/U0/pcs_pma_block_i/gig_ethernet_pcs_pma_0_core/gpcs_pma_inst/MGT_RESET.SYNC_ASYNC_RESET/reset_sync5 in site SLICE_X51Y188 is part of a synchronized register chain that is suboptimally placed as the load FDPE cell ETH_MOD/ETH_PHY_COM/U0/pcs_pma_block_i/gig_ethernet_pcs_pma_0_core/gpcs_pma_inst/MGT_RESET.SYNC_ASYNC_RESET/reset_sync6 is not placed in the same (SLICE) site.
+The FDPE cell ETH_MOD/ETH_PHY_COM/U0/pcs_pma_block_i/gig_ethernet_pcs_pma_0_core/gpcs_pma_inst/MGT_RESET.SYNC_ASYNC_RESET/reset_sync5 in site SLICE_X44Y191 is part of a synchronized register chain that is suboptimally placed as the load FDPE cell ETH_MOD/ETH_PHY_COM/U0/pcs_pma_block_i/gig_ethernet_pcs_pma_0_core/gpcs_pma_inst/MGT_RESET.SYNC_ASYNC_RESET/reset_sync6 is not placed in the same (SLICE) site.
 Related violations: <none>
 
 PDRC-190#2 Warning
 Suboptimally placed synchronized register chain  
-The FDPE cell ETH_MOD/ETH_PHY_COM/U0/pcs_pma_block_i/transceiver_inst/gtwizard_inst/U0/gtwizard_i/gt0_GTWIZARD_i/gtrxreset_seq_i/sync_gtrxreset_in/reset_sync5 in site SLICE_X47Y205 is part of a synchronized register chain that is suboptimally placed as the load FDPE cell ETH_MOD/ETH_PHY_COM/U0/pcs_pma_block_i/transceiver_inst/gtwizard_inst/U0/gtwizard_i/gt0_GTWIZARD_i/gtrxreset_seq_i/sync_gtrxreset_in/reset_sync6 is not placed in the same (SLICE) site.
+The FDPE cell ETH_MOD/ETH_PHY_COM/U0/pcs_pma_block_i/transceiver_inst/gtwizard_inst/U0/gtwizard_i/gt0_GTWIZARD_i/gtrxreset_seq_i/sync_gtrxreset_in/reset_sync5 in site SLICE_X49Y206 is part of a synchronized register chain that is suboptimally placed as the load FDPE cell ETH_MOD/ETH_PHY_COM/U0/pcs_pma_block_i/transceiver_inst/gtwizard_inst/U0/gtwizard_i/gt0_GTWIZARD_i/gtrxreset_seq_i/sync_gtrxreset_in/reset_sync6 is not placed in the same (SLICE) site.
 Related violations: <none>
 
 PDRC-190#3 Warning
 Suboptimally placed synchronized register chain  
-The FDPE cell ETH_MOD/ETH_PHY_COM/U0/pcs_pma_block_i/transceiver_inst/gtwizard_inst/U0/gtwizard_i/gt0_GTWIZARD_i/gtrxreset_seq_i/sync_rst_sync/reset_sync5 in site SLICE_X49Y202 is part of a synchronized register chain that is suboptimally placed as the load FDPE cell ETH_MOD/ETH_PHY_COM/U0/pcs_pma_block_i/transceiver_inst/gtwizard_inst/U0/gtwizard_i/gt0_GTWIZARD_i/gtrxreset_seq_i/sync_rst_sync/reset_sync6 is not placed in the same (SLICE) site.
+The FDPE cell ETH_MOD/ETH_PHY_COM/U0/pcs_pma_block_i/transceiver_inst/gtwizard_inst/U0/gtwizard_i/gt0_GTWIZARD_i/gtrxreset_seq_i/sync_rst_sync/reset_sync5 in site SLICE_X51Y199 is part of a synchronized register chain that is suboptimally placed as the load FDPE cell ETH_MOD/ETH_PHY_COM/U0/pcs_pma_block_i/transceiver_inst/gtwizard_inst/U0/gtwizard_i/gt0_GTWIZARD_i/gtrxreset_seq_i/sync_rst_sync/reset_sync6 is not placed in the same (SLICE) site.
 Related violations: <none>
 
 PDRC-190#4 Warning
 Suboptimally placed synchronized register chain  
-The FDPE cell ETH_MOD/ETH_PHY_COM/U0/pcs_pma_block_i/transceiver_inst/reclock_encommaalign/reset_sync5 in site SLICE_X54Y198 is part of a synchronized register chain that is suboptimally placed as the load FDPE cell ETH_MOD/ETH_PHY_COM/U0/pcs_pma_block_i/transceiver_inst/reclock_encommaalign/reset_sync6 is not placed in the same (SLICE) site.
+The FDPE cell ETH_MOD/ETH_PHY_COM/U0/pcs_pma_block_i/transceiver_inst/reclock_encommaalign/reset_sync5 in site SLICE_X55Y198 is part of a synchronized register chain that is suboptimally placed as the load FDPE cell ETH_MOD/ETH_PHY_COM/U0/pcs_pma_block_i/transceiver_inst/reclock_encommaalign/reset_sync6 is not placed in the same (SLICE) site.
 Related violations: <none>
 
 PDRC-190#5 Warning
 Suboptimally placed synchronized register chain  
-The FDPE cell ETH_MOD/ETH_PHY_COM/U0/pcs_pma_block_i/transceiver_inst/reclock_rxreset/reset_sync5 in site SLICE_X46Y203 is part of a synchronized register chain that is suboptimally placed as the load FDPE cell ETH_MOD/ETH_PHY_COM/U0/pcs_pma_block_i/transceiver_inst/reclock_rxreset/reset_sync6 is not placed in the same (SLICE) site.
+The FDPE cell ETH_MOD/ETH_PHY_COM/U0/pcs_pma_block_i/transceiver_inst/reclock_rxreset/reset_sync5 in site SLICE_X47Y201 is part of a synchronized register chain that is suboptimally placed as the load FDPE cell ETH_MOD/ETH_PHY_COM/U0/pcs_pma_block_i/transceiver_inst/reclock_rxreset/reset_sync6 is not placed in the same (SLICE) site.
 Related violations: <none>
 
 PDRC-190#6 Warning
 Suboptimally placed synchronized register chain  
-The FDPE cell ETH_MOD/ETH_PHY_COM/U0/pcs_pma_block_i/transceiver_inst/reclock_txreset/reset_sync5 in site SLICE_X54Y187 is part of a synchronized register chain that is suboptimally placed as the load FDPE cell ETH_MOD/ETH_PHY_COM/U0/pcs_pma_block_i/transceiver_inst/reclock_txreset/reset_sync6 is not placed in the same (SLICE) site.
+The FDPE cell ETH_MOD/ETH_PHY_COM/U0/pcs_pma_block_i/transceiver_inst/reclock_txreset/reset_sync5 in site SLICE_X52Y198 is part of a synchronized register chain that is suboptimally placed as the load FDPE cell ETH_MOD/ETH_PHY_COM/U0/pcs_pma_block_i/transceiver_inst/reclock_txreset/reset_sync6 is not placed in the same (SLICE) site.
 Related violations: <none>
 
 PDRC-190#7 Warning
 Suboptimally placed synchronized register chain  
-The FDRE cell ETH_MOD/ETH_PHY_COM/U0/pcs_pma_block_i/gig_ethernet_pcs_pma_0_core/gpcs_pma_inst/MGT_RESET.SRESET_PIPE_reg in site SLICE_X55Y188 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell ETH_MOD/ETH_PHY_COM/U0/pcs_pma_block_i/gig_ethernet_pcs_pma_0_core/gpcs_pma_inst/MGT_RESET.SRESET_reg is not placed in the same (SLICE) site.
+The FDRE cell ETH_MOD/ETH_PHY_COM/U0/pcs_pma_block_i/gig_ethernet_pcs_pma_0_core/gpcs_pma_inst/MGT_RESET.SRESET_PIPE_reg in site SLICE_X46Y194 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell ETH_MOD/ETH_PHY_COM/U0/pcs_pma_block_i/gig_ethernet_pcs_pma_0_core/gpcs_pma_inst/MGT_RESET.SRESET_reg is not placed in the same (SLICE) site.
 Related violations: <none>
 
 PDRC-190#8 Warning
 Suboptimally placed synchronized register chain  
-The FDRE cell ETH_MOD/ETH_PHY_COM/U0/pcs_pma_block_i/transceiver_inst/gtwizard_inst/U0/gt0_rxresetfsm_i/sync_data_valid/data_sync_reg2 in site SLICE_X43Y197 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell ETH_MOD/ETH_PHY_COM/U0/pcs_pma_block_i/transceiver_inst/gtwizard_inst/U0/gt0_rxresetfsm_i/sync_data_valid/data_sync_reg3 is not placed in the same (SLICE) site.
+The FDRE cell ETH_MOD/ETH_PHY_COM/U0/pcs_pma_block_i/transceiver_inst/gtwizard_inst/U0/gt0_rxresetfsm_i/sync_data_valid/data_sync_reg2 in site SLICE_X48Y202 is part of a synchronized register chain that is suboptimally placed as the load FDRE cell ETH_MOD/ETH_PHY_COM/U0/pcs_pma_block_i/transceiver_inst/gtwizard_inst/U0/gt0_rxresetfsm_i/sync_data_valid/data_sync_reg3 is not placed in the same (SLICE) site.
 Related violations: <none>
 
 SYNTH-5#1 Warning
