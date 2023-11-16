@@ -13,9 +13,10 @@
 -- Dependencies: 
 -- 
 -- Revision:
--- Revision 0.01 - File Created
+-- Revision 0.02 - File Modified
 -- Additional Comments:
--- 
+-- Added new version of the self trigger Module that includes the Neural Network
+-- Self Trigger, has a new output but is unused by the DAPHNE board as of this version
 ----------------------------------------------------------------------------------
 
 
@@ -124,8 +125,8 @@ signal align_ph_ovfl, align_bitslip_on                  : std_logic;
 
 -- Self Trigger Auxiliary Signals Declaration
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
-signal filt_out, xcorr_data_out, fifo_o                 : std_logic_vector(13 downto 0);
-signal xcorr_out                                        : std_logic_vector(47 downto 0);
+signal filt_out, fifo_i, fifo_o                         : std_logic_vector(13 downto 0);
+signal st_calc_value_out                                : std_logic_vector(47 downto 0);
 signal trigger, fifo_rd_out, fifo_wr_out                : std_logic;
 signal fifo_a_empty, fifo_a_full, fifo_full, fifo_empty : std_logic;
 signal fifo_wr_err, fifo_rd_err                         : std_logic;
@@ -226,7 +227,7 @@ component selfTrigger_Module
         rst                 : in std_logic;                         -- Async Reset
         clk                 : in std_logic;                         -- AFE Divided Clock Used by the High Pass Filter (62.5 MHz) And the Write Clock of the FIFO 
         rd_clk              : in std_logic;                         -- Read Clock Used by the FIFO (62.5 MHz) Asynchronous to WR_CLK    
-        sys_clk             : in std_logic;                         -- This is AXI Stream Clock
+        sys_clk             : in std_logic;                         -- This is AXI Stream Clock (125 MHz)
         rd_ctrl             : in std_logic;                         -- Read Control Input ('0' Don't read the FIFO after a save, '1' Read the FIFO as soon as it stops saving)
         wr_enable_signal    : in std_logic;                         -- Auxiliar External Write Enable for the FIFO
         rd_enable_signal    : in std_logic;                         -- Auxiliar External Read Enable for the FIFO
@@ -234,8 +235,9 @@ component selfTrigger_Module
         -- Module Outputs
     ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         filt_out            : out std_logic_vector(13 downto 0);    -- Output of the filter
-        xcorr_out           : out std_logic_vector(47 downto 0);    -- Output of the Self Trigger Correlation Module
-        xcorr_data_out      : out std_logic_vector(13 downto 0);    -- Output of the Self Trigger Correlation Module (Internally connected to the FIFO, 64 Registers Delayed AFE Data)
+        calc_value_out      : out std_logic_vector(47 downto 0);    -- Output of the Self Trigger Module (Calculated Correlation or Calculated Sigmoid Prediction)
+        net_agg             : out std_logic_vector(47 downto 0);    -- Output of the Seff Trigger Neural Network (Aggregation of Output Neuron)
+        fifo_input_data     : out std_logic_vector(13 downto 0);    -- Output of the Self Trigger Correlation Module (Internally connected to the FIFO, 64 Registers Delayed AFE Data)
         trigger             : out std_logic;                        -- Trigger Output
         fifo_rd_out         : out std_logic;                        -- Real Read Enable used for the FIFO (Mapped Internally)
         fifo_wr_out         : out std_logic;                        -- Real Write Enable used for the FIFO (Mapped Internally)
@@ -376,12 +378,13 @@ begin
             
             -- Module Outputs
         ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-            filt_out                    => filt_out,            -- Output of the filter
-            xcorr_out                   => xcorr_out,           -- Output of the Self Trigger Correlation Module
-            xcorr_data_out              => xcorr_data_out,      -- Output of the Self Trigger Correlation Module (Internally connected to the FIFO, 64 Registers Delayed AFE Data)
+            filt_out                    => filt_out,            -- Output of the filter            
+            calc_value_out              => st_calc_value_out,   -- Output of the Self Trigger Module (Calculated Correlation or Calculated Sigmoid Prediction)
+            net_agg                     => open,                -- Output of the Seff Trigger Neural Network (Aggregation of Output Neuron) -- UNUSED!
+            fifo_input_data             => fifo_i,              -- Output of the Self Trigger Neural Network Module (Internally connected to the FIFO, 79 Registers Delayed AFE Data)
             trigger                     => trigger,             -- Trigger Output
             fifo_rd_out                 => fifo_rd_out,         -- Real Read Enable used for the FIFO (Mapped Internally)
-            fifo_wr_out                 => fifo_wr_out,          -- Real Write Enable used for the FIFO (Mapped Internally)
+            fifo_wr_out                 => fifo_wr_out,         -- Real Write Enable used for the FIFO (Mapped Internally)
             fifo_o                      => fifo_o,              -- Output Data of the FIFO    
             fifo_a_empty                => fifo_a_empty,        -- Almost Empty Flag of the FIFO
             fifo_a_full                 => fifo_a_full,         -- Amost Full Flag of the FIFO (Interpreted as the real Full of the FIFO)

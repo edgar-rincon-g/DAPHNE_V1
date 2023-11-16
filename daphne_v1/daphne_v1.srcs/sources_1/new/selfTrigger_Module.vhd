@@ -13,9 +13,12 @@
 ---- Dependencies: 
 ---- Relies on the 'highPass_FirstOrder.vhd' and 'Self-trigger_VHDL.vhd' files
 ---- Revision:
----- Revision 0.01 - File Created
+---- Revision 0.02 - File Modified
 ---- Additional Comments:
----- 
+---- Added new neural network self trigger to the module, including a new structure 
+---- For the module including a new low pass filter that is used by the network
+---- Also commented the old self trigger so both modules do not exist at the same time
+---- But kept its signals and comments on where this signals should be placed
 ------------------------------------------------------------------------------------
 
 
@@ -49,8 +52,9 @@ entity selfTrigger_Module is
         -- Module Outputs
     ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         filt_out            : out std_logic_vector(13 downto 0);    -- Output of the filter
-        xcorr_out           : out std_logic_vector(47 downto 0);    -- Output of the Self Trigger Correlation Module
-        xcorr_data_out      : out std_logic_vector(13 downto 0);    -- Output of the Self Trigger Correlation Module (Internally connected to the FIFO, 64 Registers Delayed AFE Data)
+        calc_value_out      : out std_logic_vector(47 downto 0);    -- Output of the Self Trigger Module (Calculated Correlation or Calculated Sigmoid Prediction)
+        net_agg             : out std_logic_vector(47 downto 0);    -- Output of the Seff Trigger Neural Network (Aggregation of Output Neuron)
+        fifo_input_data     : out std_logic_vector(13 downto 0);    -- Output of the Self Trigger Correlation Module (Internally connected to the FIFO, 64 Registers Delayed AFE Data)
         trigger             : out std_logic;                        -- Trigger Output
         fifo_rd_out         : out std_logic;                        -- Real Read Enable used for the FIFO (Mapped Internally)
         fifo_wr_out         : out std_logic;                        -- Real Write Enable used for the FIFO (Mapped Internally)
@@ -91,6 +95,28 @@ component highPass_FirstOrder
     );
 end component highPass_FirstOrder;
 
+-- Low Pass Module Declaration
+--------------------------------------------------------------------------------------------------------------------------------------------------
+component lowPass_FirstOrder 
+    Generic (
+        Data_Size               : integer   := 14;
+        Coefficient_Resolution  : integer   := 17                                   -- One more than decimal desired
+    );
+    Port (
+        -- Module Inputs
+    ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        rst                     : in std_logic;                                     -- Reset for the filter
+        clk                     : in std_logic;                                     -- Clock for the filter
+        x_in                    : in std_logic_vector((Data_Size - 1) downto 0);    -- Input vector from AFEs
+        
+        -- Module Output
+    ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        y_out                   : out std_logic_vector((Data_Size - 1) downto 0)    -- Output vector from Filter
+    );
+end component;
+
+-- Self Trigger With Cross Correlation Module Declaration
+--------------------------------------------------------------------------------------------------------------------------------------------------
 component self_trigger 
     Generic (
         g_INPUT_WIDTH           : natural   := 14;                                      -- Width of the Input Data
@@ -110,6 +136,57 @@ component self_trigger
         o_data                  : out std_logic_vector(g_SUM_WIDTH - 1 downto 0);       -- Output Data (n Samples Delayed)
         o_xcorr                 : out std_logic_vector(47 downto 0);                    -- Output Correlation Value
         o_trigger               : out std_logic                                         -- Trigger Output
+    );
+end component;
+
+-- Self Trigger With Neural Network Module Declaration
+--------------------------------------------------------------------------------------------------------------------------------------------------
+component neural_network
+    Generic (
+        -- DSP Slices For Internal Multiplication Parameters
+    -------------------------------------------------------------------------------------------------------------------------------------------
+        A_IN_SIZE       : integer   := 30;                                      -- Input Size Of The A Vector For The DSP Slice
+        B_IN_SIZE       : integer   := 18;                                      -- Input Size Of The B Vector For The DSP Slice
+        
+        -- Representation Of The Weights And BIASES Parameters
+    -------------------------------------------------------------------------------------------------------------------------------------------
+        W_BIT_WIDTH     : integer   := 25;                                      -- Weights Representation Total Size 
+        W_B_RES         : integer   := 14;                                      -- Fractional Resolution Of The Weights
+        B1_SIZE_INT     : integer   := 12;                                      -- Integer Size Of The Input BIAS
+        B1_SIZE_FRAC    : integer   := 27;                                      -- Fractional Size Of The Input BIAS                       
+        B2_SIZE_INT     : integer   := 19;                                      -- Integer Size Of The Hidden BIAS    
+        B2_SIZE_FRAC    : integer   := 25;                                      -- Fractional Size Of The Hidden BIAS
+        
+        -- Neural Network Structure Parameters
+    ------------------------------------------------------------------------------------------------------------------------------------------- 
+        W_SIZE          : integer   := 16;                                      -- Size Of The Window Of Registers Used By The Neural Network
+        N_HIDDEN        : integer   := 12;                                      -- Number Of Hidden Neurons in the Hidden Layer
+        -- Originally 64 registers were used for the pre window, with pipelining, the delay increased 13 clk cycles
+        -- Therefore the number increases to 77 registers. With two more delays generated by the filters, the value may increase to
+        -- 78 with one filter used and 79 with two cascaded filters used
+        PRE_W_SIZE      : integer   := 64;                                      -- Number Of Pre Samples to Store in The FIFO
+        
+        -- Size Of The Input Data
+    ------------------------------------------------------------------------------------------------------------------------------------------- 
+        DATA_WIDTH      : integer   := 14                                       -- Width Of The Input Vector Of Data
+    );
+    Port ( 
+        -- Module Inputs
+    -------------------------------------------------------------------------------------------------------------------------------------------
+        clk             : in std_logic;                                         -- Clock Used By The Module                                     
+        rst             : in std_logic;                                         -- Async Reset
+        data_valid      : in std_logic;                                         -- Data Alligned
+        filt_data       : in std_logic_vector((DATA_WIDTH - 1) downto 0);       -- Data Under Test For Trigger Pattern (Filtered Data)
+        data            : in std_logic_vector((DATA_WIDTH - 1) downto 0);       -- Real Data Sampled By The AFE
+        
+        -- Module Outputs
+    -------------------------------------------------------------------------------------------------------------------------------------------        
+        trigger_o       : out std_logic;                                        -- Trigger Output Enabled By the data_valid Input
+        y_predict_o     : out signed((A_IN_SIZE + B_IN_SIZE - 1) downto 0);     -- Prediction By The Neural Network
+        y_j_o           : out signed((A_IN_SIZE + B_IN_SIZE - 1) downto 0);     -- Aggregation Of The Output of The Neural Network
+        trigger_aux     : out std_logic;                                        -- Trigger Output Made By The Neural Network
+        norm_dt         : out signed(DATA_WIDTH downto 0);                      -- Normalized Version Of The Data Used By The Module
+        o_data          : out std_logic_vector((DATA_WIDTH - 1) downto 0)       -- Output Real Data Of The Module (Delayed By 64/n Samples)
     );
 end component;
 
@@ -183,19 +260,27 @@ end component AXI_FIFO_Adapter;
 
 -- Internal Connections and Auxiliary Signals
 --------------------------------------------------------------------------------------------------------------------------------------------------
-signal data_aux             : std_logic_vector(13 downto 0);
-signal trigger_aux          : std_logic;
-signal read                 : std_logic;
-signal trigger_in           : std_logic;
-signal fifo_trig            : std_logic;
-signal fifo_rd              : std_logic; 
-signal afe_fifo_a_empty     : std_logic;
-signal afe_fifo_a_full      : std_logic;
-signal afe_fifo_empty       : std_logic;
-signal afe_fifo_full        : std_logic;
-signal afe_fifo_wr_err      : std_logic;
-signal afe_fifo_rd_err      : std_logic;
-signal xcorr_data_out_aux   : std_logic_vector(13 downto 0);
+signal hp_filt_data                 : std_logic_vector(13 downto 0);
+signal hp_filt_data_reg             : std_logic_vector(13 downto 0);
+signal lp_filt_data                 : std_logic_vector(13 downto 0);
+signal lp_filt_data_reg             : std_logic_vector(13 downto 0);
+signal trigger_aux                  : std_logic;
+signal read                         : std_logic;
+signal trigger_in                   : std_logic;
+signal fifo_trig                    : std_logic;
+signal fifo_rd                      : std_logic; 
+signal afe_fifo_a_empty             : std_logic;
+signal afe_fifo_a_full              : std_logic;
+signal afe_fifo_empty               : std_logic;
+signal afe_fifo_full                : std_logic;
+signal afe_fifo_wr_err              : std_logic;
+signal afe_fifo_rd_err              : std_logic;
+signal xcorr_data_out_aux           : std_logic_vector(13 downto 0);
+signal xcorr_calc_out               : std_logic_vector(47 downto 0);
+signal neural_network_data_out_aux  : std_logic_vector(13 downto 0);
+signal network_prediction           : signed(47 downto 0);
+signal network_agg                  : signed(47 downto 0);
+signal normalized_data              : signed(14 downto 0);
 
 begin
     
@@ -207,28 +292,85 @@ begin
         ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
             rst             => rst,
             clk             => clk,
-            x_in            => afe_data,
+            x_in            => afe_data,                                -- Use lp_filt_data if low pass is implemented but has no enable controlled. Use afe_data if no low pass is used or low pass has enable input
             
             -- Module Outputs
         --------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
-            y_out           => data_aux 
+            y_out           => hp_filt_data 
+        );
+        
+    -- Filters Outputs Pipelining Instantiation
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    REG_FILT_IN : process(clk, rst)
+        begin
+            if rising_edge(clk) then
+                if (rst = '1') then
+                    hp_filt_data_reg <= (others => '0');
+                    lp_filt_data_reg <= (others => '0');
+                else
+                    hp_filt_data_reg <= hp_filt_data;
+                    lp_filt_data_reg <= lp_filt_data;
+                end if;
+            end if;
+    end process REG_FILT_IN;
+    
+    -- Low Pass First Order Filter Component Instantiation
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    LP_FILTER_COM : lowPass_FirstOrder     
+        port map (
+            -- Module Inputs
+        ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            rst             => rst,
+            clk             => clk,
+            x_in            => hp_filt_data_reg,                        -- Use afe_data if low pass enabler is not implemented/used, use hp_filt_data with low pass enable controlled or if no low pass filter is implemented at all 
+            
+            -- Module Outputs
+        --------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+            y_out           => lp_filt_data 
         );
     
-    SELF_TRIGGER_TOP_COM : self_trigger
-    port map (
-        -- Module Inputs
-    --------------------------------------------------------------------------------------------------------------------------------------
-        clk                 => clk,
-        rst                 => rst,
-        i_data              => afe_data,
-        data_hpf            => data_aux,
+--    -- Cross Correlation Self Trigger Component Instantiation
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--    SELF_TRIGGER_TOP_COM : self_trigger
+--    port map (
+--        -- Module Inputs
+--    --------------------------------------------------------------------------------------------------------------------------------------
+--        clk                 => clk,
+--        rst                 => rst,
+--        i_data              => afe_data,
+--        data_hpf            => hp_filt_data,
         
-        -- Module Outputs
-    --------------------------------------------------------------------------------------------------------------------------------------
-        o_data              => xcorr_data_out_aux,
-        o_xcorr             => xcorr_out,
-        o_trigger           => trigger_aux
-    );
+--        -- Module Outputs
+--    --------------------------------------------------------------------------------------------------------------------------------------
+--        o_data              => xcorr_data_out_aux,
+--        o_xcorr             => xcorr_calc_out,
+--        o_trigger           => trigger_aux
+--    );
+    
+    -- Neural Network Self Trigger Component Instantiation
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    SELF_TRIGGER_TOP_COM : neural_network
+        generic map (
+            PRE_W_SIZE          => 79
+        )
+        port map (
+            -- Module Inputs
+        --------------------------------------------------------------------------------------------------------------------------------------
+            clk                 => clk,
+            rst                 => rst,
+            data_valid          => dt_rdy,
+            filt_data           => lp_filt_data_reg,                    -- Use hp_filt_data_reg for high pass output, use lp_filt_data_reg for low pass output
+            data                => afe_data,
+            
+            -- Module Outputs
+        --------------------------------------------------------------------------------------------------------------------------------------
+            trigger_o           => trigger_aux,
+            y_predict_o         => network_prediction,
+            y_j_o               => network_agg,
+            trigger_aux         => open,
+            norm_dt             => open,                                -- Use normalized_data if needed, else keep this output open
+            o_data              => neural_network_data_out_aux       
+        );
     
     -- Trigger signal can be either the external trigger input or the self triggering one
     trigger_in              <= wr_enable_signal OR trigger_aux; --uncomment for real one, comment to test if write enable and read enable are properly working
@@ -273,7 +415,7 @@ begin
         port map (
             -- Module Inputs
         ----------------------------------------------------------------------------------------------------------------------------------
-            d_i                 => xcorr_data_out_aux,
+            d_i                 => neural_network_data_out_aux,         -- Use xcorr_data_out_aux for Cross Correlation Self Trigger, use neural_network_data_out_aux for Neural Network Self Trigger
             dt_rdy              => dt_rdy,
             wr_enable           => fifo_trig,
             rd_enable           => fifo_rd,
@@ -304,9 +446,11 @@ begin
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     fifo_rd_out             <= fifo_rd;
     fifo_wr_out             <= fifo_trig;
-    filt_out                <= data_aux;
-    trigger                 <= trigger_aux;                     --write;
-    xcorr_data_out          <= xcorr_data_out_aux;
+    calc_value_out          <= std_logic_vector(network_prediction);    -- Or could be related to the cross correlation calculated value xcorr_calc_out
+    net_agg                 <= std_logic_vector(network_agg);           -- Only used when the neural network is used/instantiated
+    filt_out                <= lp_filt_data_reg;                        -- Output of the filter chain, may be only hp_filt_data_reg when the self trigger is based on the Cross Correlation
+    trigger                 <= trigger_aux;                             -- used to be the write signal
+    fifo_input_data         <= neural_network_data_out_aux;                      -- Use xcorr_data_out_aux for Cross Correlation Self Trigger, use neural_network_data_out_aux for Neural Network Self Trigger
     fifo_a_empty            <= afe_fifo_a_empty;
     fifo_empty              <= afe_fifo_empty;
     fifo_a_full             <= afe_fifo_a_full;

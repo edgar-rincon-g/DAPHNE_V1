@@ -2,12 +2,12 @@
 -- Company: Universidad EIA
 -- Engineer: Daniel Avila Gomez
 -- 
--- Create Date: 13.06.2023 07:26:37
--- Design Name: High Pass Filter DSP Slice
--- Module Name: highPass_FirstOrder_Oldv2 - Behavioral
+-- Create Date: 10.11.2023 12:06:13
+-- Design Name: Low Pass Filter DSP Slice
+-- Module Name: lowPass_FirstOrder - lp_firstOrd_arch
 -- Project Name: DAPHNE V1 - SELF TRIGGER MODULE
--- Target Devices: XC7A200T-1SBG484C
--- Tool Versions: 2022.2
+-- Target Devices: XC7A200T-2FBG676C
+-- Tool Versions: 2023.1
 -- Description: 
 -- Instantiates a DSP48EC1 Slice
 -- Dependencies: 
@@ -15,8 +15,11 @@
 -- Revision:
 -- Revision 0.01 - File Created
 -- Additional Comments:
--- Makes an approximation fo the output last value by truncating only some bits, 
--- instead of a full round
+-- Makes an approximation of the output last value by evaluating the output
+-- V2.0 Filter features an Enable input to avoid the usage of the filter until 
+-- The High Pass Filter has stabilized, this will test the differences in 
+-- Performance when the chain is High Pass to Low Pass rather than Low Pass to 
+-- High Pass
 ----------------------------------------------------------------------------------
 
 
@@ -26,7 +29,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
 use IEEE.NUMERIC_STD.ALL;
-use IEEE.STD_LOGIC_SIGNED.ALL; 
+use IEEE.STD_LOGIC_SIGNED.ALL;
 
 -- Uncomment the following library declaration if instantiating
 -- any Xilinx leaf cells in this code.
@@ -36,7 +39,7 @@ use UNISIM.VComponents.all;
 Library UNIMACRO;
 use UNIMACRO.vcomponents.all;
 
-entity highPass_FirstOrder is
+entity lowPass_FirstOrder is
     Generic (
         Data_Size               : integer   := 14;
         Coefficient_Resolution  : integer   := 17                                   -- One more than decimal desired
@@ -52,16 +55,16 @@ entity highPass_FirstOrder is
     ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
         y_out                   : out std_logic_vector((Data_Size - 1) downto 0)    -- Output vector from Filter
     );
-end highPass_FirstOrder;
+end lowPass_FirstOrder;
 
-architecture hp_firstOrd_arch of highPass_FirstOrder is
+architecture lp_firstOrd_arch of lowPass_FirstOrder is
 
 -- Coefficients used by the filter
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- Since the numerator uses the same constant but in a change of signs, we may only use one 
-constant num_c1         : signed(17 downto 0) := to_signed(integer(130973), Coefficient_Resolution + 1); -- Original 32743, changed to but this value should be modified according to the real multiplication of the coeff and the number representation
+constant num_c1         : signed(17 downto 0) := to_signed(integer(3214), Coefficient_Resolution + 1); -- Original 32743, changed to but this value should be modified according to the real multiplication of the coeff and the number representation
 -- The denominator uses only one as the first coefficient 1 is a Bypass of the signal
-constant den_c1         : signed(17 downto 0) := to_signed(integer(130874), Coefficient_Resolution + 1); -- Original 32719, changed to but this value should be modified according to the real multiplication of the coeff and the number representation
+constant den_c1         : signed(17 downto 0) := to_signed(integer(124644), Coefficient_Resolution + 1); -- Original 32719, changed to but this value should be modified according to the real multiplication of the coeff and the number representation
 
 -- Components used by the filter
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -135,9 +138,13 @@ begin
 
     -- Transform the input to a signed type value in order to use in the module 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    x_A                 <= std_logic_vector(resize(unsigned(x_in),30));
-    x_D                 <= std_logic_vector(resize(unsigned(x_in),25));    
-      
+--    x_A                 <= std_logic_vector(resize(signed(x_in),30)) when (filt_en = '1') else "000000000000000000000000000000";
+--    x_D                 <= std_logic_vector(resize(signed(x_in),25)) when (filt_en = '1') else "0000000000000000000000000";    
+    
+    -- Eliminated the enabler for the filter, so it works always
+    x_A                 <= std_logic_vector(resize(signed(x_in),30));
+    x_D                 <= std_logic_vector(resize(signed(x_in),25));    
+    
     -- Forward FIR Filter (Input Signal and Its Registers)
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     -- Requires only one DSP Slice 
@@ -180,7 +187,7 @@ begin
             ALUMode         => X"0",
             CarryInSel      => b"000",
             Clk             => clk,
-            InMode          => b"01100",
+            InMode          => b"00100",
             OPMode          => b"0110101",                          -- Disables the use of the C port b"0000101",  0110101
             CEA1            => '0',
             CEA2            => '1',
@@ -329,4 +336,4 @@ begin
         end if;
     end process ROUND_PROC;  
     
-end hp_firstOrd_arch;
+end lp_firstOrd_arch;
