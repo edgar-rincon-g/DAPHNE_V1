@@ -288,11 +288,11 @@ type hidden_window is array (0 to (N_HIDDEN - 1)) of signed((A_IN_SIZE + B_IN_SI
 signal h_j, hidden_data     : hidden_window                                 := (others => (others => '0'));
 type hidden_mult is array (0 to (N_HIDDEN - 1)) of signed((A_IN_SIZE + B_IN_SIZE + W_BIT_WIDTH - 1) downto 0); 
 signal hid_m                : hidden_mult                                   := (others => (others => '0')); 
-type hidden_add is array (0 to (N_HIDDEN - 1)) of signed((A_IN_SIZE + B_IN_SIZE + W_BIT_WIDTH - 1) downto 0);
+type hidden_add is array (0 to ((N_HIDDEN/2) - 1)) of signed((A_IN_SIZE + B_IN_SIZE + W_BIT_WIDTH - 1) downto 0);
 signal add_hid              : hidden_add                                    := (others => (others => '0'));
-type hidden_add_reg is array (0 to (N_HIDDEN - 1)) of signed((A_IN_SIZE + B_IN_SIZE + W_BIT_WIDTH - 1) downto 0);
+type hidden_add_reg is array (0 to ((N_HIDDEN/4) - 1)) of signed((A_IN_SIZE + B_IN_SIZE + W_BIT_WIDTH - 1) downto 0);
 signal add_hid_reg          : hidden_add_reg                                := (others => (others => '0'));
-type hidden_add_reg_reg is array (0 to (N_HIDDEN - 1)) of signed((A_IN_SIZE + B_IN_SIZE + W_BIT_WIDTH - 1) downto 0);
+type hidden_add_reg_reg is array (0 to (N_HIDDEN/6 - 1)) of signed((A_IN_SIZE + B_IN_SIZE + W_BIT_WIDTH - 1) downto 0);
 signal add_hid_reg_reg      : hidden_add_reg_reg                            := (others => (others => '0'));
 signal y_j_reg              : signed((A_IN_SIZE + B_IN_SIZE + W_BIT_WIDTH - 1) downto 0) := (others => '0');
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="impl_1" LaunchPart="xc7a200tfbg676-2" LaunchTime="1699044597">
+<GenRun Id="impl_1" LaunchPart="xc7a200tfbg676-2" LaunchTime="1700152102">
   <File Type="ROUTE-PWR" Name="daphne1_power_routed.rpt"/>
   <File Type="PA-TCL" Name="daphne1.tcl"/>
   <File Type="ROUTE-PWR-SUM" Name="daphne1_power_summary_routed.pb"/>
@@ -449,12 +449,6 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/new/Self-trigger_VHDL.vhd">
-      <FileInfo>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
     <File Path="$PSRCDIR/sources_1/new/Synchronizer.vhd">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -503,6 +497,18 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
+    <File Path="$PSRCDIR/sources_1/new/lowPass_FirstOrder.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/neural_network.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <File Path="$PSRCDIR/sources_1/new/rdFSM_Module.vhd">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -529,6 +535,13 @@
     </File>
     <File Path="$PSRCDIR/sources_1/new/daphne1.vhd">
       <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/Self-trigger_VHDL.vhd">
+      <FileInfo>
+        <Attr Name="UserDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>

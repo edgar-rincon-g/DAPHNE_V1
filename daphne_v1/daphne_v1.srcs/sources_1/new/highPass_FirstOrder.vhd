@@ -316,6 +316,10 @@ begin
                 y_out <= std_logic_vector(resize(shift_right(signed(y_0),17),Data_Size) + 1);
             end if;
         else
+            -- Do not modify the Two's Complement signals
+            y_0_less_one <= (others => '0');
+            y_0_inverted <= (others => '0');
+        
             -- This means that the output of the filter is positive therefore the comparation is straight forward
             if (y_0 >= X"10000") then
                 -- 0000 0000 0000 0000 0000 0000 0000 000.1 0000 0000 0000 0000 bin = 65536 dec = 01.00.00 hex

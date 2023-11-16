@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2023.1 (win64) Build 3865809 Sun May  7 15:05:29 MDT 2023
-| Date             : Fri Nov  3 15:55:00 2023
+| Date             : Thu Nov 16 11:32:57 2023
 | Host             : danielA running 64-bit major release  (build 9200)
 | Command          : report_power -file daphne1_power_routed.rpt -pb daphne1_power_summary_routed.pb -rpx daphne1_power_routed.rpx
 | Design           : daphne1
@@ -30,14 +30,14 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.787        |
+| Total On-Chip Power (W)  | 1.031        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.625        |
-| Device Static (W)        | 0.162        |
+| Dynamic (W)              | 0.868        |
+| Device Static (W)        | 0.163        |
 | Effective TJA (C/W)      | 1.9          |
-| Max Ambient (C)          | 83.5         |
-| Junction Temperature (C) | 26.5         |
+| Max Ambient (C)          | 83.1         |
+| Junction Temperature (C) | 26.9         |
 | Confidence Level         | Medium       |
 | Setting File             | ---          |
 | Simulation Activity File | ---          |
@@ -52,24 +52,24 @@ Table of Contents
 +--------------------------+-----------+----------+-----------+-----------------+
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
-| Clocks                   |     0.045 |       23 |       --- |             --- |
-| Slice Logic              |     0.010 |     7537 |       --- |             --- |
-|   LUT as Logic           |     0.009 |     2305 |    133800 |            1.72 |
-|   CARRY4                 |     0.001 |      283 |     33450 |            0.85 |
-|   Register               |    <0.001 |     3959 |    269200 |            1.47 |
+| Clocks                   |     0.062 |       23 |       --- |             --- |
+| Slice Logic              |     0.049 |    17488 |       --- |             --- |
+|   LUT as Logic           |     0.042 |     6937 |    133800 |            5.18 |
+|   CARRY4                 |     0.005 |     1457 |     33450 |            4.36 |
+|   Register               |     0.002 |     6242 |    269200 |            2.32 |
 |   LUT as Distributed RAM |    <0.001 |       80 |     46200 |            0.17 |
-|   LUT as Shift Register  |    <0.001 |       56 |     46200 |            0.12 |
-|   F7/F8 Muxes            |    <0.001 |       12 |    133800 |           <0.01 |
-|   Others                 |    <0.001 |      208 |       --- |             --- |
-| Signals                  |     0.013 |     6974 |       --- |             --- |
+|   F7/F8 Muxes            |    <0.001 |       17 |    133800 |            0.01 |
+|   LUT as Shift Register  |    <0.001 |       54 |     46200 |            0.12 |
+|   Others                 |    <0.001 |      218 |       --- |             --- |
+| Signals                  |     0.090 |    25213 |       --- |             --- |
 | Block RAM                |     0.023 |     13.5 |       365 |            3.70 |
 | MMCM                     |     0.213 |        2 |        10 |           20.00 |
 | PLL                      |     0.115 |        1 |        10 |           10.00 |
-| DSPs                     |     0.010 |       17 |       740 |            2.30 |
+| DSPs                     |     0.120 |      280 |       740 |           37.84 |
 | I/O                      |     0.079 |       26 |       400 |            6.50 |
 | GTP                      |     0.116 |        1 |       --- |             --- |
-| Static Power             |     0.162 |          |           |                 |
-| Total                    |     0.787 |          |           |                 |
+| Static Power             |     0.163 |          |           |                 |
+| Total                    |     1.031 |          |           |                 |
 +--------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -79,7 +79,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.147 |       0.115 |      0.032 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.391 |       0.358 |      0.033 |       NA    | Unspecified | NA         |
 | Vccaux    |       1.800 |     0.216 |       0.186 |      0.031 |       NA    | Unspecified | NA         |
 | Vcco33    |       3.300 |     0.008 |       0.003 |      0.005 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.027 |       0.022 |      0.005 |       NA    | Unspecified | NA         |
@@ -166,31 +166,32 @@ Table of Contents
 +---------------------------+-----------+
 | Name                      | Power (W) |
 +---------------------------+-----------+
-| daphne1                   |     0.625 |
-|   AFE0_CH_0               |     0.149 |
+| daphne1                   |     0.868 |
+|   AFE0_CH_0               |     0.150 |
 |     CLK_COM               |     0.123 |
 |       MUX_CLK_COM         |     0.003 |
 |       PLL_COM             |     0.119 |
-|     DATA_COM              |     0.001 |
+|     DATA_COM              |     0.002 |
 |     INPUT_COM             |     0.021 |
 |       DATA_IBUFDS         |     0.007 |
 |       DIGITAL_IBUFDS      |     0.008 |
 |       FRAME_IBUFDS        |     0.007 |
 |     SYNCH_COM_0           |     0.002 |
 |     SYNCH_COM_1           |     0.002 |
-|   AFE0_ST_CH_0            |     0.016 |
-|     FIFO_INST_COM         |     0.001 |
+|   AFE0_ST_CH_0            |     0.259 |
 |     FILTER_COM            |     0.002 |
-|     SELF_TRIGGER_TOP_COM  |     0.013 |
-|   ETH_MOD                 |     0.293 |
-|     ETH_MAC_UDP_STACK_COM |     0.054 |
-|       eth_axis_rx_inst    |     0.002 |
+|       fir_forward         |     0.001 |
+|     LP_FILTER_COM         |     0.002 |
+|       fir_forward         |     0.001 |
+|     SELF_TRIGGER_TOP_COM  |     0.252 |
+|   ETH_MOD                 |     0.292 |
+|     ETH_MAC_UDP_STACK_COM |     0.052 |
 |       eth_mac_inst        |     0.014 |
 |       rx_udp_payload_fifo |     0.007 |
 |       tx_udp_payload_fifo |     0.004 |
-|       udp_complete_inst   |     0.027 |
-|     ETH_PHY_COM           |     0.239 |
-|       U0                  |     0.239 |
+|       udp_complete_inst   |     0.026 |
+|     ETH_PHY_COM           |     0.240 |
+|       U0                  |     0.240 |
 |   SYS_TIMING_ENPT         |     0.156 |
 +---------------------------+-----------+
 
