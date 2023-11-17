@@ -260,7 +260,7 @@ constant b2 : signed((B2_SIZE_INT + B2_SIZE_FRAC - 1) downto 0) := to_signed(int
 constant Neg_Th : signed(DATA_WIDTH downto 0) := to_signed(integer(-4096),(DATA_WIDTH + 1)); 
 constant Pos_Th : signed(DATA_WIDTH downto 0) := to_signed(integer(4096),(DATA_WIDTH + 1));
 -- Triggering Threshold
-constant Trig_Th : signed((A_IN_SIZE + B_IN_SIZE - 1) downto 0) := to_signed(integer(8388608),(A_IN_SIZE + B_IN_SIZE)); -- 0.5 is 8388608, 0.9 is approximately 15099494 (In truth is 0.899999976158142)
+constant Trig_Th : signed((A_IN_SIZE + B_IN_SIZE - 1) downto 0) := to_signed(integer(15938355),(A_IN_SIZE + B_IN_SIZE)); -- 0.5 is 8388608, 0.9 is approximately 15099494 (In truth is 0.899999976158142)
 -- 0.75 is 12582912, 0.95 is 15938355 (In truth is 0.949999988079071)
 
 -- Auxiliary Signals To Interconnect The Module And Its Components
