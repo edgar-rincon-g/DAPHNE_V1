@@ -14,7 +14,7 @@
 create_clock -name cdr_data_p   -period 16.000      [get_ports cdr_data_p]
 create_clock -name daq_refclk   -period 8.317       [get_ports daq_refclk_p]
 create_clock -name sys_clk      -period 10.000      [get_ports sysclk_p]
-create_clock -name afe_dclk     -period 2.286       [get_ports afe_dclk_p[0]]
+create_clock -name afe_dclk     -period 2.286       [get_ports afe_dclk_p[3]]
 
 ###########################################################################################################################################
 # Rename The Auto-Generated Clocks
@@ -91,28 +91,28 @@ set_false_path -from                                [get_ports daq?_sfp_??s]
 
 ###########################################################################################################################################
 # Input Delay Constraint
-set_input_delay -clock afe_dclk -max 0.773          [get_ports afe_p[0][*]];
-set_input_delay -clock afe_dclk -min 0.380          [get_ports afe_p[0][*]];
-set_input_delay -clock afe_dclk -max 0.773          [get_ports afe_p[0][*]] -clock_fall -add_delay;
-set_input_delay -clock afe_dclk -min 0.380          [get_ports afe_p[0][*]] -clock_fall -add_delay;
-set_input_delay -clock afe_dclk -max 0.773          [get_ports afe_n[0][*]];
-set_input_delay -clock afe_dclk -min 0.380          [get_ports afe_n[0][*]];
-set_input_delay -clock afe_dclk -max 0.773          [get_ports afe_n[0][*]] -clock_fall -add_delay;
-set_input_delay -clock afe_dclk -min 0.380          [get_ports afe_n[0][*]] -clock_fall -add_delay;
-set_input_delay -clock afe_dclk -max 0.773          [get_ports afe_fclk_p[0]];
-set_input_delay -clock afe_dclk -min 0.380          [get_ports afe_fclk_p[0]];
-set_input_delay -clock afe_dclk -max 0.773          [get_ports afe_fclk_p[0]] -clock_fall -add_delay;
-set_input_delay -clock afe_dclk -min 0.380          [get_ports afe_fclk_p[0]] -clock_fall -add_delay;
-set_input_delay -clock afe_dclk -max 0.773          [get_ports afe_fclk_n[0]];
-set_input_delay -clock afe_dclk -min 0.380          [get_ports afe_fclk_n[0]];
-set_input_delay -clock afe_dclk -max 0.773          [get_ports afe_fclk_n[0]] -clock_fall -add_delay; 
-set_input_delay -clock afe_dclk -min 0.380          [get_ports afe_fclk_n[0]] -clock_fall -add_delay;
+set_input_delay -clock afe_dclk -max 0.773          [get_ports afe_p[3][*]];
+set_input_delay -clock afe_dclk -min 0.380          [get_ports afe_p[3][*]];
+set_input_delay -clock afe_dclk -max 0.773          [get_ports afe_p[3][*]] -clock_fall -add_delay;
+set_input_delay -clock afe_dclk -min 0.380          [get_ports afe_p[3][*]] -clock_fall -add_delay;
+set_input_delay -clock afe_dclk -max 0.773          [get_ports afe_n[3][*]];
+set_input_delay -clock afe_dclk -min 0.380          [get_ports afe_n[3][*]];
+set_input_delay -clock afe_dclk -max 0.773          [get_ports afe_n[3][*]] -clock_fall -add_delay;
+set_input_delay -clock afe_dclk -min 0.380          [get_ports afe_n[3][*]] -clock_fall -add_delay;
+set_input_delay -clock afe_dclk -max 0.773          [get_ports afe_fclk_p[3]];
+set_input_delay -clock afe_dclk -min 0.380          [get_ports afe_fclk_p[3]];
+set_input_delay -clock afe_dclk -max 0.773          [get_ports afe_fclk_p[3]] -clock_fall -add_delay;
+set_input_delay -clock afe_dclk -min 0.380          [get_ports afe_fclk_p[3]] -clock_fall -add_delay;
+set_input_delay -clock afe_dclk -max 0.773          [get_ports afe_fclk_n[3]];
+set_input_delay -clock afe_dclk -min 0.380          [get_ports afe_fclk_n[3]];
+set_input_delay -clock afe_dclk -max 0.773          [get_ports afe_fclk_n[3]] -clock_fall -add_delay; 
+set_input_delay -clock afe_dclk -min 0.380          [get_ports afe_fclk_n[3]] -clock_fall -add_delay;
 
 # False Paths related to Input Delay definition
-set_false_path -from                                [get_ports afe_fclk_p[0]]
-set_false_path -from                                [get_ports afe_fclk_n[0]]
-set_false_path -from                                [get_ports afe_p[0][*]]
-set_false_path -from                                [get_ports afe_n[0][*]]
+set_false_path -from                                [get_ports afe_fclk_p[3]]
+set_false_path -from                                [get_ports afe_fclk_n[3]]
+set_false_path -from                                [get_ports afe_p[3][*]]
+set_false_path -from                                [get_ports afe_n[3][*]]
 
 ###########################################################################################################################################
 # Placing / General IO Constraints

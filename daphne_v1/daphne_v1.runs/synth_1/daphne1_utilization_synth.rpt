@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.1 (win64) Build 3865809 Sun May  7 15:05:29 MDT 2023
-| Date         : Fri Nov 17 11:57:21 2023
+| Date         : Fri Nov 17 14:58:25 2023
 | Host         : danielA running 64-bit major release  (build 9200)
 | Command      : report_utilization -file daphne1_utilization_synth.rpt -pb daphne1_utilization_synth.pb
 | Design       : daphne1
@@ -36,8 +36,8 @@ Table of Contents
 |   LUT as Memory            |  138 |     0 |          0 |     46200 |  0.30 |
 |     LUT as Distributed RAM |   80 |     0 |            |           |       |
 |     LUT as Shift Register  |   58 |     0 |            |           |       |
-| Slice Registers            | 3773 |     0 |          0 |    269200 |  1.40 |
-|   Register as Flip Flop    | 3773 |     0 |          0 |    269200 |  1.40 |
+| Slice Registers            | 3771 |     0 |          0 |    269200 |  1.40 |
+|   Register as Flip Flop    | 3771 |     0 |          0 |    269200 |  1.40 |
 |   Register as Latch        |    0 |     0 |          0 |    269200 |  0.00 |
 | F7 Muxes                   |   15 |     0 |          0 |     67300 |  0.02 |
 | F8 Muxes                   |    0 |     0 |          0 |     33650 |  0.00 |
@@ -61,7 +61,7 @@ Warning! LUT value is adjusted to account for LUT combining.
 | 68    |          Yes |           - |          Set |
 | 46    |          Yes |           - |        Reset |
 | 226   |          Yes |         Set |            - |
-| 3433  |          Yes |       Reset |            - |
+| 3431  |          Yes |       Reset |            - |
 +-------+--------------+-------------+--------------+
 
 
@@ -158,12 +158,12 @@ Warning! LUT value is adjusted to account for LUT combining.
 +---------------+------+---------------------+
 |    Ref Name   | Used | Functional Category |
 +---------------+------+---------------------+
-| FDRE          | 3433 |        Flop & Latch |
+| FDRE          | 3431 |        Flop & Latch |
 | LUT6          |  774 |                 LUT |
 | LUT3          |  542 |                 LUT |
-| LUT5          |  503 |                 LUT |
-| LUT2          |  400 |                 LUT |
-| LUT4          |  371 |                 LUT |
+| LUT5          |  499 |                 LUT |
+| LUT2          |  407 |                 LUT |
+| LUT4          |  369 |                 LUT |
 | CARRY4        |  272 |          CarryLogic |
 | FDSE          |  226 |        Flop & Latch |
 | LUT1          |  222 |                 LUT |
