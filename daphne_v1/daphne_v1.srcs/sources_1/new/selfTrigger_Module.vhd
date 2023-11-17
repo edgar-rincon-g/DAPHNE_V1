@@ -373,7 +373,7 @@ begin
         );
     
     -- Trigger signal can be either the external trigger input or the self triggering one
-    trigger_in              <= wr_enable_signal;-- OR trigger_aux; --uncomment for real one, comment to test if write enable and read enable are properly working
+    trigger_in              <= wr_enable_signal OR trigger_aux; --uncomment for real one, comment to test if write enable and read enable are properly working
     
     -- FIFO can be read either manually or automatically depending on the configuration of the RD_AFTER input
     -- If the FIFO is read manually, it depends on the rd_enable signal

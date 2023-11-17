@@ -337,12 +337,12 @@ begin
         port map ( 
             -- Module Inputs
     -----------------------------------------------------------------------------------------------------------------------------------
-            in_P_clk_dt_ports           => afe_dclk_p(3),       -- Digital Bit Clock Differential P Input
-            in_N_clk_dt_ports           => afe_dclk_n(3),       -- Digital Bit Clock Differential N Input
-            in_P_clk_fr_ports           => afe_fclk_p(3),       -- Frame Clock Differential P Input
-            in_N_clk_fr_ports           => afe_fclk_n(3),       -- Frame Clock Differential N Input
-            in_P_data_ports             => afe_p(3)(0),         -- Data Differential P Input
-            in_N_data_ports             => afe_n(3)(0),         -- Data Differential N Input
+            in_P_clk_dt_ports           => afe_dclk_p(2),       -- Digital Bit Clock Differential P Input
+            in_N_clk_dt_ports           => afe_dclk_n(2),       -- Digital Bit Clock Differential N Input
+            in_P_clk_fr_ports           => afe_fclk_p(2),       -- Frame Clock Differential P Input
+            in_N_clk_fr_ports           => afe_fclk_n(2),       -- Frame Clock Differential N Input
+            in_P_data_ports             => afe_p(2)(7),         -- Data Differential P Input
+            in_N_data_ports             => afe_n(2)(7),         -- Data Differential N Input
             sys_clk                     => sys_clk100,          -- System Clock 100 MHz
             glob_rst                    => async_rst,           -- System Reset, Active HIGH
             alignment_mode              => '0',                 -- '0' Automatic Alignment, '1' Manual Alignment
