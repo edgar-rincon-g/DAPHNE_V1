@@ -94,7 +94,7 @@ begin
                 enough_data <= '0';
             else
                 if (cnt_samples_wr = '1') then
-                    if (samples_counted_wr > X"2D9") then --X"26E") then
+                    if (samples_counted_wr > X"26E") then --X"2D9") then
                         samples_counted_wr <= (others => '0');
                         enough_data <= '1';
                     else
@@ -189,7 +189,7 @@ begin
                 stop_reading <= '0';
             else
                 if (cnt_samples_rd = '1') then
-                    if (samples_counted_rd > X"2D9") then --X"26E") then 2d9 sends 732 samples
+                    if (samples_counted_rd > X"26E") then --X"2D9") then 2d9 sends 732 samples, 26E send 625 samples
                         samples_counted_rd <= (others => '0');
                         stop_reading <= '1';
                     else

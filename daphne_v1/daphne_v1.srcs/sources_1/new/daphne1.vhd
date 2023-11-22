@@ -236,7 +236,7 @@ component selfTrigger_Module
     ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         filt_out            : out std_logic_vector(13 downto 0);    -- Output of the filter
         calc_value_out      : out std_logic_vector(47 downto 0);    -- Output of the Self Trigger Module (Calculated Correlation or Calculated Sigmoid Prediction)
-        net_agg             : out std_logic_vector(47 downto 0);    -- Output of the Seff Trigger Neural Network (Aggregation of Output Neuron)
+--        net_agg             : out std_logic_vector(47 downto 0);    -- Output of the Seff Trigger Neural Network (Aggregation of Output Neuron)
         fifo_input_data     : out std_logic_vector(13 downto 0);    -- Output of the Self Trigger Correlation Module (Internally connected to the FIFO, 64 Registers Delayed AFE Data)
         trigger             : out std_logic;                        -- Trigger Output
         fifo_rd_out         : out std_logic;                        -- Real Read Enable used for the FIFO (Mapped Internally)
@@ -337,12 +337,12 @@ begin
         port map ( 
             -- Module Inputs
     -----------------------------------------------------------------------------------------------------------------------------------
-            in_P_clk_dt_ports           => afe_dclk_p(2),       -- Digital Bit Clock Differential P Input
-            in_N_clk_dt_ports           => afe_dclk_n(2),       -- Digital Bit Clock Differential N Input
-            in_P_clk_fr_ports           => afe_fclk_p(2),       -- Frame Clock Differential P Input
-            in_N_clk_fr_ports           => afe_fclk_n(2),       -- Frame Clock Differential N Input
-            in_P_data_ports             => afe_p(2)(7),         -- Data Differential P Input
-            in_N_data_ports             => afe_n(2)(7),         -- Data Differential N Input
+            in_P_clk_dt_ports           => afe_dclk_p(1),       -- Digital Bit Clock Differential P Input
+            in_N_clk_dt_ports           => afe_dclk_n(1),       -- Digital Bit Clock Differential N Input
+            in_P_clk_fr_ports           => afe_fclk_p(1),       -- Frame Clock Differential P Input
+            in_N_clk_fr_ports           => afe_fclk_n(1),       -- Frame Clock Differential N Input
+            in_P_data_ports             => afe_p(1)(7),         -- Data Differential P Input
+            in_N_data_ports             => afe_n(1)(7),         -- Data Differential N Input
             sys_clk                     => sys_clk100,          -- System Clock 100 MHz
             glob_rst                    => async_rst,           -- System Reset, Active HIGH
             alignment_mode              => '0',                 -- '0' Automatic Alignment, '1' Manual Alignment
@@ -380,7 +380,7 @@ begin
         ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
             filt_out                    => filt_out,            -- Output of the filter            
             calc_value_out              => st_calc_value_out,   -- Output of the Self Trigger Module (Calculated Correlation or Calculated Sigmoid Prediction)
-            net_agg                     => open,                -- Output of the Seff Trigger Neural Network (Aggregation of Output Neuron) -- UNUSED!
+--            net_agg                     => open,                -- Output of the Seff Trigger Neural Network (Aggregation of Output Neuron) -- UNUSED!
             fifo_input_data             => fifo_i,              -- Output of the Self Trigger Neural Network Module (Internally connected to the FIFO, 79 Registers Delayed AFE Data)
             trigger                     => trigger,             -- Trigger Output
             fifo_rd_out                 => fifo_rd_out,         -- Real Read Enable used for the FIFO (Mapped Internally)
@@ -529,12 +529,15 @@ begin
     -- Board Misc Output
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
     -- LED Connections (Mapped to Ethernet Rx To Check Connection Status)
-    led                     <= not(eth_com_rx_payload(5 downto 0)); -- Works to see if the Rx ETH Part is working
---    led(0) <= not(data_rdy);
+--    led(5 downto 2)                   <= not(eth_com_rx_payload(3 downto 0)); -- Works to see if the Rx ETH Part is working
+    led(0) <= not(data_rdy);
+    led(1) <= not(pll_afe_lck);
 --    led(1) <= not(trigger);
 --    led(2) <= not(fifo_wr_out);
 --    led(3) <= not(fifo_rd_out);
---    led(4) <= not(fifo_empty);
---    led(5) <= not(st_axi_ready);
+    led(2) <= not(fifo_empty);
+    led(3) <= not(fifo_a_full);
+--    led(5)
+    led(4) <= not(st_axi_ready);
 
 end daphne1_arch;

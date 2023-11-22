@@ -72,7 +72,6 @@ proc create_report { reportName command } {
 OPTRACE "synth_1" START { ROLLUP_AUTO }
 set_param chipscope.maxJobs 3
 set_param xicom.use_bs_reader 1
-set_msg_config -id {Common 17-41} -limit 10000000
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7a200tfbg676-2
 
@@ -145,6 +144,7 @@ read_vhdl -library xil_defaultlib {
   C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/Iserdese_Block.vhd
   C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/PLL_Module.vhd
   C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/ResetMemory_Module.vhd
+  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/Self-trigger_VHDL.vhd
   C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/Synchronizer.vhd
   C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/bitFSM_Module.vhd
   C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/daphne1_package.vhd
@@ -154,7 +154,6 @@ read_vhdl -library xil_defaultlib {
   C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/frameFSM_Module.vhd
   C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/highPass_FirstOrder.vhd
   C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/lowPass_FirstOrder.vhd
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/neural_network.vhd
   C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/rdFSM_Module.vhd
   C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/selfTrigger_Module.vhd
   C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/trigSaveReadFSM.vhd
