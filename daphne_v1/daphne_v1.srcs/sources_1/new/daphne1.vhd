@@ -236,7 +236,7 @@ component selfTrigger_Module
     ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         filt_out            : out std_logic_vector(13 downto 0);    -- Output of the filter
         calc_value_out      : out std_logic_vector(47 downto 0);    -- Output of the Self Trigger Module (Calculated Correlation or Calculated Sigmoid Prediction)
---        net_agg             : out std_logic_vector(47 downto 0);    -- Output of the Seff Trigger Neural Network (Aggregation of Output Neuron)
+        net_agg             : out std_logic_vector(47 downto 0);    -- Output of the Seff Trigger Neural Network (Aggregation of Output Neuron)
         fifo_input_data     : out std_logic_vector(13 downto 0);    -- Output of the Self Trigger Correlation Module (Internally connected to the FIFO, 64 Registers Delayed AFE Data)
         trigger             : out std_logic;                        -- Trigger Output
         fifo_rd_out         : out std_logic;                        -- Real Read Enable used for the FIFO (Mapped Internally)
@@ -380,7 +380,7 @@ begin
         ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
             filt_out                    => filt_out,            -- Output of the filter            
             calc_value_out              => st_calc_value_out,   -- Output of the Self Trigger Module (Calculated Correlation or Calculated Sigmoid Prediction)
---            net_agg                     => open,                -- Output of the Seff Trigger Neural Network (Aggregation of Output Neuron) -- UNUSED!
+            net_agg                     => open,                -- Output of the Seff Trigger Neural Network (Aggregation of Output Neuron) -- UNUSED!
             fifo_input_data             => fifo_i,              -- Output of the Self Trigger Neural Network Module (Internally connected to the FIFO, 79 Registers Delayed AFE Data)
             trigger                     => trigger,             -- Trigger Output
             fifo_rd_out                 => fifo_rd_out,         -- Real Read Enable used for the FIFO (Mapped Internally)

@@ -53,7 +53,7 @@ entity selfTrigger_Module is
     ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         filt_out            : out std_logic_vector(13 downto 0);    -- Output of the filter
         calc_value_out      : out std_logic_vector(47 downto 0);    -- Output of the Self Trigger Module (Calculated Correlation or Calculated Sigmoid Prediction)
---        net_agg             : out std_logic_vector(47 downto 0);    -- Output of the Seff Trigger Neural Network (Aggregation of Output Neuron)
+        net_agg             : out std_logic_vector(47 downto 0);    -- Output of the Seff Trigger Neural Network (Aggregation of Output Neuron)
         fifo_input_data     : out std_logic_vector(13 downto 0);    -- Output of the Self Trigger Correlation Module (Internally connected to the FIFO, 64 Registers Delayed AFE Data)
         trigger             : out std_logic;                        -- Trigger Output
         fifo_rd_out         : out std_logic;                        -- Real Read Enable used for the FIFO (Mapped Internally)
@@ -329,48 +329,48 @@ begin
             y_out           => lp_filt_data 
         );
     
-    -- Cross Correlation Self Trigger Component Instantiation
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    SELF_TRIGGER_TOP_COM : self_trigger
-    port map (
-        -- Module Inputs
-    --------------------------------------------------------------------------------------------------------------------------------------
-        clk                 => clk,
-        rst                 => rst,
-        i_data              => afe_data,
-        data_hpf            => hp_filt_data_reg,
-        
-        -- Module Outputs
-    --------------------------------------------------------------------------------------------------------------------------------------
-        o_data              => xcorr_data_out_aux,
-        o_xcorr             => xcorr_calc_out,
-        o_trigger           => trigger_aux
-    );
-    
---    -- Neural Network Self Trigger Component Instantiation
+--    -- Cross Correlation Self Trigger Component Instantiation
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
---    SELF_TRIGGER_TOP_COM : neural_network
---        generic map (
---            PRE_W_SIZE          => 85 -- 79 Before adding pipeline to the filters' Forward DSPs
---        )
---        port map (
---            -- Module Inputs
---        --------------------------------------------------------------------------------------------------------------------------------------
---            clk                 => clk,
---            rst                 => rst,
---            data_valid          => dt_rdy,
---            filt_data           => lp_filt_data_reg,                    -- Use hp_filt_data_reg for high pass output, use lp_filt_data_reg for low pass output
---            data                => afe_data,
+--    SELF_TRIGGER_TOP_COM : self_trigger
+--    port map (
+--        -- Module Inputs
+--    --------------------------------------------------------------------------------------------------------------------------------------
+--        clk                 => clk,
+--        rst                 => rst,
+--        i_data              => afe_data,
+--        data_hpf            => hp_filt_data_reg,
+        
+--        -- Module Outputs
+--    --------------------------------------------------------------------------------------------------------------------------------------
+--        o_data              => xcorr_data_out_aux,
+--        o_xcorr             => xcorr_calc_out,
+--        o_trigger           => trigger_aux
+--    );
+    
+    -- Neural Network Self Trigger Component Instantiation
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    SELF_TRIGGER_TOP_COM : neural_network
+        generic map (
+            PRE_W_SIZE          => 85 -- 79 Before adding pipeline to the filters' Forward DSPs
+        )
+        port map (
+            -- Module Inputs
+        --------------------------------------------------------------------------------------------------------------------------------------
+            clk                 => clk,
+            rst                 => rst,
+            data_valid          => dt_rdy,
+            filt_data           => lp_filt_data_reg,                    -- Use hp_filt_data_reg for high pass output, use lp_filt_data_reg for low pass output
+            data                => afe_data,
             
---            -- Module Outputs
---        --------------------------------------------------------------------------------------------------------------------------------------
---            trigger_o           => trigger_aux,
---            y_predict_o         => network_prediction,
---            y_j_o               => network_agg,
---            trigger_aux         => open,
---            norm_dt             => open,                                -- Use normalized_data if needed, else keep this output open
---            o_data              => neural_network_data_out_aux       
---        );
+            -- Module Outputs
+        --------------------------------------------------------------------------------------------------------------------------------------
+            trigger_o           => trigger_aux,
+            y_predict_o         => network_prediction,
+            y_j_o               => network_agg,
+            trigger_aux         => open,
+            norm_dt             => open,                                -- Use normalized_data if needed, else keep this output open
+            o_data              => neural_network_data_out_aux       
+        );
     
     -- Trigger signal can be either the external trigger input or the self triggering one
     trigger_in              <= wr_enable_signal OR trigger_aux; --uncomment for real one, comment to test if write enable and read enable are properly working
@@ -415,7 +415,7 @@ begin
         port map (
             -- Module Inputs
         ----------------------------------------------------------------------------------------------------------------------------------
-            d_i                 => xcorr_data_out_aux,         -- Use xcorr_data_out_aux, for Cross Correlation Self Trigger, use neural_network_data_out_aux for Neural Network Self Trigger
+            d_i                 => neural_network_data_out_aux,         -- Use xcorr_data_out_aux, for Cross Correlation Self Trigger, use neural_network_data_out_aux for Neural Network Self Trigger
             dt_rdy              => dt_rdy,
             wr_enable           => fifo_trig,
             rd_enable           => fifo_rd,
@@ -446,11 +446,11 @@ begin
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     fifo_rd_out             <= fifo_rd;
     fifo_wr_out             <= fifo_trig;
-    calc_value_out          <= xcorr_calc_out;    -- Or could be related to the cross correlation calculated value xcorr_calc_out;
---    net_agg                 <= std_logic_vector(network_agg);           -- Only used when the neural network is used/instantiated
+    calc_value_out          <= std_logic_vector(network_prediction);    -- std_logic_vector(network_prediction) or could be related to the cross correlation calculated value xcorr_calc_out;
+    net_agg                 <= std_logic_vector(network_agg);           -- Only used when the neural network is used/instantiated
     filt_out                <= lp_filt_data_reg;                        -- Output of the filter chain, may be only hp_filt_data_reg when the self trigger is based on the Cross Correlation
     trigger                 <= trigger_aux;                             -- used to be the write signal
-    fifo_input_data         <= xcorr_data_out_aux;             -- Use xcorr_data_out_aux; for Cross Correlation Self Trigger, use neural_network_data_out_aux for Neural Network Self Trigger
+    fifo_input_data         <= neural_network_data_out_aux;             -- Use xcorr_data_out_aux; for Cross Correlation Self Trigger, use neural_network_data_out_aux for Neural Network Self Trigger
     fifo_a_empty            <= afe_fifo_a_empty;
     fifo_empty              <= afe_fifo_empty;
     fifo_a_full             <= afe_fifo_a_full;
