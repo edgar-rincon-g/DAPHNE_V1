@@ -1,0 +1,18 @@
+Configure AFE: PGA and LNA Integrator, no external offset, 0 is at 8191 ADC:
+
+	WR AFE 4 REG 4 V 24 		% Configure MSB y offset binary
+	WR AFE 4 REG 52 V 17216 	% Active termination, 100ohms, 1.5Vpp LNA clamp, integrator enabled, 12dB LNA gain
+	WR AFE 4 VGAIN V 4000 		% Attenuator at -40db
+
+Test the AFE allignment first:
+
+	CFG AFE ALL ONES
+	CFG AFE ALL ZEROS
+	CFG AFE ALL RAMP
+	WR AFE 4 REG 2 V 8192 		% Sync Training Pattern
+	WR AFE 4 REG 2 V 16384 		% Deskew Training Pattern
+	WR AFE 4 REG 2 V 0 		% Normal measurement
+
+Reset the FPGA if necessary:
+	
+	CFG FPGA RESET
