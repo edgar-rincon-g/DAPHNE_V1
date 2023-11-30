@@ -60,7 +60,7 @@ signal State, Next_State        : states;
 
 -- Aux signals to operate inside the FSM
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-signal phase_count              : std_logic_vector(1 downto 0) := "10";
+signal phase_count              : std_logic_vector(1 downto 0) := "00";
 signal sleep_count              : std_logic_vector(2 downto 0) := "000";
 signal q_vector                 : std_logic_vector(13 downto 0) := "00000000000000";
 signal is_aligned               : std_logic := '0';
@@ -92,7 +92,7 @@ begin
     begin
         if rising_edge(clk_fsm) then
             if (rst = '1') then
-                phase_count <= "10";
+                phase_count <= "00";
                 phase_overflow <= '0';
             else
                 if (increase_phase = '1') then
@@ -101,7 +101,7 @@ begin
                         phase_overflow <= '0';
                     else
                         phase_overflow <= '1';
-                        phase_count <= "10";
+                        phase_count <= "00";
                     end if;
                 end if;
             end if;
