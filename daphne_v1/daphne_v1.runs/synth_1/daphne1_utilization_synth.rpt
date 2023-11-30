@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.1 (win64) Build 3865809 Sun May  7 15:05:29 MDT 2023
-| Date         : Wed Nov 29 14:01:40 2023
+| Date         : Thu Nov 30 15:06:58 2023
 | Host         : danielA running 64-bit major release  (build 9200)
 | Command      : report_utilization -file daphne1_utilization_synth.rpt -pb daphne1_utilization_synth.pb
 | Design       : daphne1
@@ -31,13 +31,13 @@ Table of Contents
 +----------------------------+------+-------+------------+-----------+-------+
 |          Site Type         | Used | Fixed | Prohibited | Available | Util% |
 +----------------------------+------+-------+------------+-----------+-------+
-| Slice LUTs*                | 7140 |     0 |          0 |    134600 |  5.30 |
-|   LUT as Logic             | 7002 |     0 |          0 |    134600 |  5.20 |
+| Slice LUTs*                | 7128 |     0 |          0 |    134600 |  5.30 |
+|   LUT as Logic             | 6990 |     0 |          0 |    134600 |  5.19 |
 |   LUT as Memory            |  138 |     0 |          0 |     46200 |  0.30 |
 |     LUT as Distributed RAM |   80 |     0 |            |           |       |
 |     LUT as Shift Register  |   58 |     0 |            |           |       |
-| Slice Registers            | 6260 |     0 |          0 |    269200 |  2.33 |
-|   Register as Flip Flop    | 6260 |     0 |          0 |    269200 |  2.33 |
+| Slice Registers            | 6246 |     0 |          0 |    269200 |  2.32 |
+|   Register as Flip Flop    | 6246 |     0 |          0 |    269200 |  2.32 |
 |   Register as Latch        |    0 |     0 |          0 |    269200 |  0.00 |
 | F7 Muxes                   |   17 |     0 |          0 |     67300 |  0.03 |
 | F8 Muxes                   |    0 |     0 |          0 |     33650 |  0.00 |
@@ -61,7 +61,7 @@ Warning! LUT value is adjusted to account for LUT combining.
 | 68    |          Yes |           - |          Set |
 | 46    |          Yes |           - |        Reset |
 | 226   |          Yes |         Set |            - |
-| 5920  |          Yes |       Reset |            - |
+| 5906  |          Yes |       Reset |            - |
 +-------+--------------+-------------+--------------+
 
 
@@ -98,7 +98,7 @@ Warning! LUT value is adjusted to account for LUT combining.
 +-----------------------------+------+-------+------------+-----------+-------+
 |          Site Type          | Used | Fixed | Prohibited | Available | Util% |
 +-----------------------------+------+-------+------------+-----------+-------+
-| Bonded IOB                  |   28 |     0 |          0 |       400 |  7.00 |
+| Bonded IOB                  |   29 |     0 |          0 |       400 |  7.25 |
 | Bonded IPADs                |    4 |     0 |          0 |        26 | 15.38 |
 | Bonded OPADs                |    2 |     0 |          0 |        16 | 12.50 |
 | PHY_CONTROL                 |    0 |     0 |          0 |        10 |  0.00 |
@@ -159,14 +159,14 @@ Warning! LUT value is adjusted to account for LUT combining.
 +---------------+------+---------------------+
 |    Ref Name   | Used | Functional Category |
 +---------------+------+---------------------+
-| FDRE          | 5920 |        Flop & Latch |
-| LUT2          | 3970 |                 LUT |
-| LUT3          | 1830 |                 LUT |
+| FDRE          | 5906 |        Flop & Latch |
+| LUT2          | 3969 |                 LUT |
+| LUT3          | 1831 |                 LUT |
 | CARRY4        | 1457 |          CarryLogic |
-| LUT6          | 1198 |                 LUT |
-| LUT4          |  880 |                 LUT |
-| LUT5          |  856 |                 LUT |
-| LUT1          |  590 |                 LUT |
+| LUT6          | 1193 |                 LUT |
+| LUT4          |  867 |                 LUT |
+| LUT5          |  854 |                 LUT |
+| LUT1          |  589 |                 LUT |
 | DSP48E1       |  280 |    Block Arithmetic |
 | FDSE          |  226 |        Flop & Latch |
 | RAMD32        |   96 |  Distributed Memory |
@@ -181,9 +181,9 @@ Warning! LUT value is adjusted to account for LUT combining.
 | SRL16E        |    9 |  Distributed Memory |
 | OBUF          |    9 |                  IO |
 | OBUFT         |    8 |                  IO |
+| IBUF          |    6 |                  IO |
 | RAMB18E1      |    5 |        Block Memory |
 | IBUFDS        |    5 |                  IO |
-| IBUF          |    5 |                  IO |
 | BUFGCTRL      |    5 |               Clock |
 | ISERDESE2     |    4 |                  IO |
 | ODDR          |    2 |                  IO |
