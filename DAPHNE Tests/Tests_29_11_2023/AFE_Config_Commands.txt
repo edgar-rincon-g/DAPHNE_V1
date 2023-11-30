@@ -11,8 +11,11 @@ Test the AFE allignment first:
 	CFG AFE ALL RAMP
 	WR AFE 4 REG 2 V 8192 		% Sync Training Pattern
 	WR AFE 4 REG 2 V 16384 		% Deskew Training Pattern
+	WR AFE 4 REG 2 V 24576		% Custom Training Pattern (Call The AFE To Output This Pattern)
+	WR AFE 4 REG 5 V 11561		% Modify Register 5 Which Holds The Custom Treining Pattern, Set to 0x2D29 which is currently programmed on the FPGA
 	WR AFE 4 REG 2 V 0 		% Normal measurement
 
 Reset the FPGA if necessary:
 	
 	CFG FPGA RESET
+
