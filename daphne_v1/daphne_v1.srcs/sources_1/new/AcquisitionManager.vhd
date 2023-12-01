@@ -60,7 +60,8 @@ entity AcquisitionManager is
         phase_selected      : out std_logic_vector(1 downto 0); -- Selected Phase to Align the Data
         ph_overflow         : out std_logic;                    -- Phase Overflowed (Digital Bit Clock Alignment)
         bistlip_on          : out std_logic;                    -- Bitslip Being Executed      
-        dt_rdy              : out std_logic;                    -- Data Aligned
+        dt_dig_rdy          : out std_logic;                    -- Digital Clock Aligned With Data
+        dt_rdy              : out std_logic;                    -- Data Completely Aligned
         clk_div             : out std_logic;                    -- Synthetic AFE Frame CLock Derived from Digital Clock (In Phase)
         pll_lck_o           : out std_logic;                    -- AFE Digital Clock PLL Locked
         data_output         : out std_logic_vector(13 downto 0) -- Output of the Iserdese Modules
@@ -89,7 +90,7 @@ end component InputBuffers;
 
 -- DataAcquisition Component instantiation
 --------------------------------------------------------------------------------------------------------------------------------------------------
-component DataAcquisition
+component DataAcquisition 
     Generic (
         n_ch    : integer   := 1
     );
@@ -110,7 +111,8 @@ component DataAcquisition
         ph_ovfl             : out std_logic;                        -- Phase Overflowed (Digital Bit Clock Alignment)
         btslp_on            : out std_logic;                        -- Bitslip Being Executed on the Iserdeses
         phase_ctrl          : out std_logic_vector(1 downto 0);     -- Selected Phase to Align the Data ("11" Reserved for Future Use)
-        align_done          : out std_logic;                        -- Data Aligned
+        dg_align_done       : out std_logic;                        -- Digital Clock Aligned With The Data
+        align_done          : out std_logic;                        -- Data Completely Aligned
         dt_out              : out std_logic_vector(13 downto 0)     -- Output of the Iserdese Modules
     );
 end component DataAcquisition;
@@ -160,6 +162,7 @@ signal bistlip_on_flag      : std_logic;
 --------------------------------------------------------------------------------------------------------------------------------------------------
 -- Other output signals
 signal done_reg             : std_logic;
+signal done_dig_reg         : std_logic;
 signal dt_aux_out           : std_logic_vector(13 downto 0);
 
 begin
@@ -238,6 +241,7 @@ begin
             ph_ovfl         => phase_overflow,
             btslp_on        => bistlip_on_flag,
             phase_ctrl      => phase_ctrl_reg_aux,
+            dg_align_done   => done_dig_reg,
             align_done      => done_reg,
             dt_out          => dt_aux_out
         );
@@ -249,7 +253,8 @@ begin
     ph_overflow     <=  phase_overflow;         -- Overflow in the phase aligning machine
     bistlip_on      <=  bistlip_on_flag;        -- Bitslip in operation
     clk_div         <=  clk_dig_div;            -- Frame Clock
-    dt_rdy          <=  done_reg;               -- Alignment finished   
+    dt_dig_rdy      <=  done_dig_reg;           -- Digital Clock Aligned With Data finished
+    dt_rdy          <=  done_reg;               -- Complete Alignment finished   
     data_output     <=  dt_aux_out;             -- Output data form the Iserdese Block
 
 end acqMan_arch;

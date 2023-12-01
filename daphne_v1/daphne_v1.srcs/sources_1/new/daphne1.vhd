@@ -119,7 +119,7 @@ signal mmcm0_locked                                     : std_logic;
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 signal afe_data                                         : std_logic_vector(13 downto 0);
 signal afe_se_clk                                       : std_logic;
-signal data_rdy, pll_afe_lck                            : std_logic;
+signal data_dig_rdy, data_rdy, pll_afe_lck              : std_logic;
 signal align_ph_sel                                     : std_logic_vector(1 downto 0);
 signal align_ph_ovfl, align_bitslip_on                  : std_logic;
 
@@ -148,7 +148,7 @@ signal eth_new_comm_given                               : std_logic;            
 signal eth_trig_reg, eth_read_reg                       : std_logic;                        -- External Trigger/Read Registers From Ethernet Signal Declaration
 signal ext_trig, ext_read                               : std_logic;                        -- External Trigger/Read From Ethernet Signal Declaration 
 signal eth_cust_train_reg, eth_deskew_train_reg         : std_logic;                        -- External Training Patterns Registers From Ethernet Signal Declaration
-signal ext_cust_train_active, ext_deskew_train_active   : std_logic;                        -- External Training Patterns From Ethernet Signal Declaration
+signal ext_cust_train_active, ext_deskew_train_active   : std_logic := '0';                        -- External Training Patterns From Ethernet Signal Declaration
 
 -- Components Declaration
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -184,7 +184,7 @@ end component endpoint;
 
 -- AFE5808A Data Acquisition/Capturing - Aligning Module
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
-component AcquisitionManager is
+component AcquisitionManager 
     Generic (
         n_ch    : integer   := 1
     );
@@ -208,7 +208,8 @@ component AcquisitionManager is
         phase_selected      : out std_logic_vector(1 downto 0); -- Selected Phase to Align the Data
         ph_overflow         : out std_logic;                    -- Phase Overflowed (Digital Bit Clock Alignment)
         bistlip_on          : out std_logic;                    -- Bitslip Being Executed      
-        dt_rdy              : out std_logic;                    -- Data Aligned
+        dt_dig_rdy          : out std_logic;                    -- Digital Clock Aligned With Data
+        dt_rdy              : out std_logic;                    -- Data Completely Aligned
         clk_div             : out std_logic;                    -- Synthetic AFE Frame CLock Derived from Digital Clock (In Phase)
         pll_lck_o           : out std_logic;                    -- AFE Digital Clock PLL Locked
         data_output         : out std_logic_vector(13 downto 0) -- Output of the Iserdese Modules
@@ -336,27 +337,28 @@ begin
         port map ( 
             -- Module Inputs
     -----------------------------------------------------------------------------------------------------------------------------------
-            in_P_clk_dt_ports           => afe_dclk_p(1),       -- Digital Bit Clock Differential P Input
-            in_N_clk_dt_ports           => afe_dclk_n(1),       -- Digital Bit Clock Differential N Input
-            in_P_clk_fr_ports           => afe_fclk_p(1),       -- Frame Clock Differential P Input
-            in_N_clk_fr_ports           => afe_fclk_n(1),       -- Frame Clock Differential N Input
-            in_P_data_ports             => afe_p(1)(7),         -- Data Differential P Input
-            in_N_data_ports             => afe_n(1)(7),         -- Data Differential N Input
-            sys_clk                     => sys_clk100,          -- System Clock 100 MHz
-            glob_rst                    => async_rst,           -- System Reset, Active HIGH
-            alignment_mode              => '1',                 -- '0' Automatic Alignment, '1' Manual Alignment
-            train_pat_act               => '1',                 -- Specific Training Pattern Active in the AFE Outputs
-            custom_pat_act              => '1',                 -- Custom Training Pattern Active in the AFE Outputs 
+            in_P_clk_dt_ports           => afe_dclk_p(1),           -- Digital Bit Clock Differential P Input
+            in_N_clk_dt_ports           => afe_dclk_n(1),           -- Digital Bit Clock Differential N Input
+            in_P_clk_fr_ports           => afe_fclk_p(1),           -- Frame Clock Differential P Input
+            in_N_clk_fr_ports           => afe_fclk_n(1),           -- Frame Clock Differential N Input
+            in_P_data_ports             => afe_p(1)(7),             -- Data Differential P Input
+            in_N_data_ports             => afe_n(1)(7),             -- Data Differential N Input
+            sys_clk                     => sys_clk100,              -- System Clock 100 MHz
+            glob_rst                    => async_rst,               -- System Reset, Active HIGH
+            alignment_mode              => '1',                     -- '0' Automatic Alignment, '1' Manual Alignment
+            train_pat_act               => ext_deskew_train_active, -- Specific Training Pattern Active in the AFE Outputs
+            custom_pat_act              => ext_cust_train_active,   -- Custom Training Pattern Active in the AFE Outputs 
             
             -- Module Outputs
     -----------------------------------------------------------------------------------------------------------------------------------
-            phase_selected              => align_ph_sel,        -- Selected Phase to Align the Data
-            ph_overflow                 => align_ph_ovfl,       -- Phase Overflowed (Digital Bit Clock Alignment)
-            bistlip_on                  => align_bitslip_on,    -- Bitslip Being Executed      
-            dt_rdy                      => data_rdy,            -- Data Aligned
-            clk_div                     => afe_se_clk,          -- Synthetic AFE Frame CLock Derived from Digital Clock (In Phase)
-            pll_lck_o                   => pll_afe_lck,         -- AFE Digital Clock PLL Locked
-            data_output                 => afe_data             -- Output of the Iserdese Modules
+            phase_selected              => align_ph_sel,            -- Selected Phase to Align the Data
+            ph_overflow                 => align_ph_ovfl,           -- Phase Overflowed (Digital Bit Clock Alignment)
+            bistlip_on                  => align_bitslip_on,        -- Bitslip Being Executed      
+            dt_dig_rdy                  => data_dig_rdy,            -- Digital Clock Aligned With Data
+            dt_rdy                      => data_rdy,                -- Data Completely Aligned
+            clk_div                     => afe_se_clk,              -- Synthetic AFE Frame CLock Derived from Digital Clock (In Phase)
+            pll_lck_o                   => pll_afe_lck,             -- AFE Digital Clock PLL Locked
+            data_output                 => afe_data                 -- Output of the Iserdese Modules
         );
         
     -- AFE5808A #0, Self Trigger for the Channel 0 Instantiation 
@@ -366,7 +368,7 @@ begin
             -- Module Inputs
         ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
             afe_data                    => afe_data,            -- Aligned Data to Save from AFE
-            dt_rdy                      => data_rdy,            -- Data Aligned
+            dt_rdy                      => data_dig_rdy,            -- Data Aligned
             rst                         => async_rst,           -- Async Reset
             clk                         => afe_se_clk,          -- AFE Divided Clock Used by the High Pass Filter (62.5 MHz) And the Write Clock of the FIFO 
             rd_clk                      => sys_clk62_5,         -- Read Clock Used by the FIFO (62.5 MHz) Asynchronous to WR_CLK    
@@ -463,7 +465,7 @@ begin
                         -- The data has changed, therefore notify the FPGA that a new command has been sent
                         eth_new_comm_given <= '1';
                     else
-                        -- Do not generate a trigger
+                        -- No new commands were given
                         eth_new_comm_given <= '0';
                     end if;
                 end if;    
@@ -473,7 +475,7 @@ begin
     -------------------------------------------------------- COMMAND DECODER -------------------------------------------------------- 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------    
     -- With a new command being given, a decoder changes different signals, this decoder is created as a combinatorial process 
-    ETH_PAYLOAD_COMM_DECO : process(eth_new_comm_given, eth_com_rx_payload)
+    ETH_PAYLOAD_COMM_DECO : process(eth_new_comm_given, eth_com_rx_payload, eth_cust_train_reg)
         begin
             -- Generate the proper output according to the payload
             case (eth_com_rx_payload) is
@@ -507,13 +509,7 @@ begin
 
                 when X"64" =>
                     -- Use the letter 'd' in Lowercase to tell DAPHNE V1 that the deskew training pattern si active at the AFE5808A outputs.
-                    if (eth_new_comm_given = '1') then
-                        -- Ask if it is valid, generate a trigger if it is 
-                        eth_deskew_train_reg <= '1';
-                    else
-                        -- Do not generate a trigger since the payload is not a new command (Keep the signal low)
-                        eth_deskew_train_reg <= '0';
-                    end if;
+                    eth_deskew_train_reg <= '1';
                     -- Other signals not used by this case must be kept low/unmodified
                     eth_read_reg <= '0';
                     eth_trig_reg <= '0';
@@ -521,13 +517,7 @@ begin
                     
                 when X"63" =>
                     -- Use the letter 'c' in Lowercase to tell DAPHNE V1 that the custom training pattern si active at the AFE5808A outputs.
-                    if (eth_new_comm_given = '1') then
-                        -- Ask if it is valid, generate a trigger if it is 
-                        eth_cust_train_reg <= '1';
-                    else
-                        -- Do not generate a trigger since the payload is not a new command (Keep the signal low)
-                        eth_cust_train_reg <= '0';
-                    end if;
+                    eth_cust_train_reg <= '1';
                     -- Other signals not used by this case must be kept low/unmodified
                     eth_read_reg <= '0';
                     eth_trig_reg <= '0';
@@ -566,13 +556,16 @@ begin
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
     -- LED Connections (Mapped to Ethernet Rx To Check Connection Status)
 --    led(5 downto 2)                   <= not(eth_com_rx_payload(3 downto 0)); -- Works to see if the Rx ETH Part is working
-    led(0) <= not(data_rdy);
-    led(1) <= not(pll_afe_lck);
+    led(0) <= not(pll_afe_lck);
+    led(2 downto 1) <= not(align_ph_sel);
+    led(3) <= not(align_ph_ovfl);
+    led(4) <= not(align_bitslip_on);
+    led(5) <= not(data_rdy);
 --    led(1) <= not(trigger);
 --    led(2) <= not(fifo_wr_out);
 --    led(3) <= not(fifo_rd_out);
-    led(2) <= not(fifo_empty);
-    led(3) <= not(fifo_a_full);
-    led(4) <= not(st_axi_ready);
+--    led(2) <= not(fifo_empty);
+--    led(3) <= not(fifo_a_full);
+--    led(4) <= not(st_axi_ready);
 
 end daphne1_arch;

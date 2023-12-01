@@ -52,7 +52,8 @@ entity DataAcquisition is
         ph_ovfl             : out std_logic;                        -- Phase Overflowed (Digital Bit Clock Alignment)
         btslp_on            : out std_logic;                        -- Bitslip Being Executed on the Iserdeses
         phase_ctrl          : out std_logic_vector(1 downto 0);     -- Selected Phase to Align the Data ("11" Reserved for Future Use)
-        align_done          : out std_logic;                        -- Data Aligned
+        dg_align_done       : out std_logic;                        -- Digital Clock Aligned With The Data
+        align_done          : out std_logic;                        -- Data Completely Aligned
         dt_out              : out std_logic_vector(13 downto 0)     -- Output of the Iserdese Modules
     );
 end DataAcquisition;
@@ -61,7 +62,7 @@ architecture datMod_arch of DataAcquisition is
 
 -- FSM Component instantiation
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-component AlignFSM is
+component AlignFSM 
     Port ( 
         -- Module Inputs
     ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -78,11 +79,12 @@ component AlignFSM is
     ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         phase_overflow      : out std_logic;                        -- Phase Overflowed (Digital Bit Clock Alignment)
         bitslip_on_flag     : out std_logic;                        -- Bitslip Operation being Executed
-        bitslip             : out std_logic;                        -- Bitslipt Control Output for teh Iserdese
+        bitslip             : out std_logic;                        -- Bitslipt Control Output for the Iserdese
         phase_out           : out std_logic_vector(1 downto 0);     -- Selected Phase to Align the Data ("11" Reserved for Future Use)
-        done                : out std_logic                         -- Data Aligned
+        done_bit_fsm        : out std_logic;                        -- Data Aligned With the Digital Clock
+        done_frame_fsm      : out std_logic                         -- Data Aligned With Frame Clock (Final Alignment)
     );
-end component;
+end component AlignFSM;
 
 -- Iserdese Component instantiation
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -135,7 +137,8 @@ begin
             bitslip_on_flag     => btslp_on,
             bitslip             => global_bitslip,
             phase_out           => phase_ctrl,
-            done                => align_done
+            done_bit_fsm        => dg_align_done,
+            done_frame_fsm      => align_done
         );
 
     -- Instantiates the Iserdese module that uses the frame clock as another data input

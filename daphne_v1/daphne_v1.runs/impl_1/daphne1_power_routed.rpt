@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2023.1 (win64) Build 3865809 Sun May  7 15:05:29 MDT 2023
-| Date             : Thu Nov 30 15:11:38 2023
+| Date             : Fri Dec  1 10:36:59 2023
 | Host             : danielA running 64-bit major release  (build 9200)
 | Command          : report_power -file daphne1_power_routed.rpt -pb daphne1_power_summary_routed.pb -rpx daphne1_power_routed.rpx
 | Design           : daphne1
@@ -33,7 +33,7 @@ Table of Contents
 | Total On-Chip Power (W)  | 1.012        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.850        |
+| Dynamic (W)              | 0.849        |
 | Device Static (W)        | 0.163        |
 | Effective TJA (C/W)      | 1.9          |
 | Max Ambient (C)          | 83.1         |
@@ -52,21 +52,21 @@ Table of Contents
 +--------------------------+-----------+----------+-----------+-----------------+
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
-| Clocks                   |     0.063 |       23 |       --- |             --- |
-| Slice Logic              |     0.049 |    17427 |       --- |             --- |
-|   LUT as Logic           |     0.042 |     6889 |    133800 |            5.15 |
+| Clocks                   |     0.062 |       23 |       --- |             --- |
+| Slice Logic              |     0.049 |    17436 |       --- |             --- |
+|   LUT as Logic           |     0.042 |     6901 |    133800 |            5.16 |
 |   CARRY4                 |     0.005 |     1457 |     33450 |            4.36 |
-|   Register               |     0.002 |     6234 |    269200 |            2.32 |
+|   Register               |     0.002 |     6236 |    269200 |            2.32 |
 |   LUT as Distributed RAM |    <0.001 |       80 |     46200 |            0.17 |
 |   F7/F8 Muxes            |    <0.001 |       17 |    133800 |            0.01 |
 |   LUT as Shift Register  |    <0.001 |       54 |     46200 |            0.12 |
 |   Others                 |    <0.001 |      216 |       --- |             --- |
-| Signals                  |     0.088 |    25158 |       --- |             --- |
+| Signals                  |     0.088 |    25161 |       --- |             --- |
 | Block RAM                |     0.023 |     13.5 |       365 |            3.70 |
 | MMCM                     |     0.213 |        2 |        10 |           20.00 |
 | PLL                      |     0.115 |        1 |        10 |           10.00 |
 | DSPs                     |     0.120 |      280 |       740 |           37.84 |
-| I/O                      |     0.063 |       25 |       400 |            6.25 |
+| I/O                      |     0.062 |       25 |       400 |            6.25 |
 | GTP                      |     0.116 |        1 |       --- |             --- |
 | Static Power             |     0.163 |          |           |                 |
 | Total                    |     1.012 |          |           |                 |
@@ -79,7 +79,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.388 |       0.356 |      0.032 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.388 |       0.355 |      0.032 |       NA    | Unspecified | NA         |
 | Vccaux    |       1.800 |     0.214 |       0.184 |      0.031 |       NA    | Unspecified | NA         |
 | Vcco33    |       3.300 |     0.005 |       0.000 |      0.005 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.025 |       0.020 |      0.005 |       NA    | Unspecified | NA         |
@@ -166,24 +166,24 @@ Table of Contents
 +---------------------------+-----------+
 | Name                      | Power (W) |
 +---------------------------+-----------+
-| daphne1                   |     0.850 |
-|   AFE0_CH_0               |     0.141 |
+| daphne1                   |     0.849 |
+|   AFE0_CH_0               |     0.139 |
 |     CLK_COM               |     0.121 |
 |       MUX_CLK_COM         |     0.002 |
 |       PLL_COM             |     0.118 |
 |     INPUT_COM             |     0.014 |
 |       DATA_IBUFDS         |     0.007 |
 |       DIGITAL_IBUFDS      |     0.008 |
-|     SYNCH_COM_0           |     0.002 |
-|     SYNCH_COM_1           |     0.002 |
-|   AFE0_ST_CH_0            |     0.256 |
+|     SYNCH_COM_0           |     0.001 |
+|     SYNCH_COM_1           |     0.001 |
+|   AFE0_ST_CH_0            |     0.257 |
 |     FIFO_INST_COM         |     0.001 |
 |       MEMORY_CTRL_COM     |     0.001 |
 |     HP_FILTER_COM         |     0.002 |
 |       fir_forward         |     0.001 |
 |     LP_FILTER_COM         |     0.002 |
 |       fir_forward         |     0.001 |
-|     SELF_TRIGGER_TOP_COM  |     0.250 |
+|     SELF_TRIGGER_TOP_COM  |     0.251 |
 |   ETH_MOD                 |     0.296 |
 |     ETH_MAC_UDP_STACK_COM |     0.054 |
 |       eth_mac_inst        |     0.015 |

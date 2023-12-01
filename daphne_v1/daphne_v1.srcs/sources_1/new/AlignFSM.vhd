@@ -50,7 +50,8 @@ entity AlignFSM is
         bitslip_on_flag     : out std_logic;                        -- Bitslip Operation being Executed
         bitslip             : out std_logic;                        -- Bitslipt Control Output for the Iserdese
         phase_out           : out std_logic_vector(1 downto 0);     -- Selected Phase to Align the Data ("11" Reserved for Future Use)
-        done                : out std_logic                         -- Data Aligned
+        done_bit_fsm        : out std_logic;                        -- Data Aligned With the Digital Clock
+        done_frame_fsm      : out std_logic                         -- Data Aligned With Frame Clock (Final Alignment)
     );
 end AlignFSM;
 
@@ -163,6 +164,7 @@ begin
     
     -- Done Output of the Module assignation
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    done            <= done_align;
+    done_bit_fsm        <= done_bit; 
+    done_frame_fsm      <= done_align;
     
 end alFsm_arch;
