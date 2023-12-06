@@ -95,8 +95,8 @@ begin
                 phase_count <= "00";
                 phase_overflow <= '0';
             else
-                if (increase_phase = '1') then
-                    if (phase_count /= "11") then
+                if (increase_phase = '1') then 
+                    if (phase_count /= "11") then -- Esto no se necesita, puede ser de 3 bits y el overflow es el 3er bit
                         phase_count <= std_logic_vector(unsigned(phase_count) + 1);
                         phase_overflow <= '0';
                     else

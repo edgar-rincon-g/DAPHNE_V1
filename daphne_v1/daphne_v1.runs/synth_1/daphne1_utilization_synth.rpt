@@ -1,8 +1,8 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.1 (win64) Build 3865809 Sun May  7 15:05:29 MDT 2023
-| Date         : Fri Dec  1 10:32:58 2023
-| Host         : danielA running 64-bit major release  (build 9200)
+| Date         : Wed Dec  6 15:37:47 2023
+| Host         : EDGARRINCON running 64-bit major release  (build 9200)
 | Command      : report_utilization -file daphne1_utilization_synth.rpt -pb daphne1_utilization_synth.pb
 | Design       : daphne1
 | Device       : xc7a200tfbg676-2
@@ -31,15 +31,15 @@ Table of Contents
 +----------------------------+------+-------+------------+-----------+-------+
 |          Site Type         | Used | Fixed | Prohibited | Available | Util% |
 +----------------------------+------+-------+------------+-----------+-------+
-| Slice LUTs*                | 7133 |     0 |          0 |    134600 |  5.30 |
-|   LUT as Logic             | 6995 |     0 |          0 |    134600 |  5.20 |
-|   LUT as Memory            |  138 |     0 |          0 |     46200 |  0.30 |
+| Slice LUTs*                | 2615 |     0 |          0 |    134600 |  1.94 |
+|   LUT as Logic             | 2463 |     0 |          0 |    134600 |  1.83 |
+|   LUT as Memory            |  152 |     0 |          0 |     46200 |  0.33 |
 |     LUT as Distributed RAM |   80 |     0 |            |           |       |
-|     LUT as Shift Register  |   58 |     0 |            |           |       |
-| Slice Registers            | 6248 |     0 |          0 |    269200 |  2.32 |
-|   Register as Flip Flop    | 6248 |     0 |          0 |    269200 |  2.32 |
+|     LUT as Shift Register  |   72 |     0 |            |           |       |
+| Slice Registers            | 3971 |     0 |          0 |    269200 |  1.48 |
+|   Register as Flip Flop    | 3971 |     0 |          0 |    269200 |  1.48 |
 |   Register as Latch        |    0 |     0 |          0 |    269200 |  0.00 |
-| F7 Muxes                   |   17 |     0 |          0 |     67300 |  0.03 |
+| F7 Muxes                   |   14 |     0 |          0 |     67300 |  0.02 |
 | F8 Muxes                   |    0 |     0 |          0 |     33650 |  0.00 |
 +----------------------------+------+-------+------------+-----------+-------+
 * Warning! The Final LUT count, after physical optimizations and full implementation, is typically lower. Run opt_design after synthesis, if not already completed, for a more realistic count.
@@ -58,10 +58,10 @@ Warning! LUT value is adjusted to account for LUT combining.
 | 0     |            _ |         Set |            - |
 | 0     |            _ |       Reset |            - |
 | 0     |          Yes |           - |            - |
-| 68    |          Yes |           - |          Set |
-| 46    |          Yes |           - |        Reset |
-| 226   |          Yes |         Set |            - |
-| 5908  |          Yes |       Reset |            - |
+| 69    |          Yes |           - |          Set |
+| 58    |          Yes |           - |        Reset |
+| 225   |          Yes |         Set |            - |
+| 3619  |          Yes |       Reset |            - |
 +-------+--------------+-------------+--------------+
 
 
@@ -87,8 +87,8 @@ Warning! LUT value is adjusted to account for LUT combining.
 +----------------+------+-------+------------+-----------+-------+
 |    Site Type   | Used | Fixed | Prohibited | Available | Util% |
 +----------------+------+-------+------------+-----------+-------+
-| DSPs           |  280 |     0 |          0 |       740 | 37.84 |
-|   DSP48E1 only |  280 |       |            |           |       |
+| DSPs           |   17 |     0 |          0 |       740 |  2.30 |
+|   DSP48E1 only |   17 |       |            |           |       |
 +----------------+------+-------+------------+-----------+-------+
 
 
@@ -159,27 +159,27 @@ Warning! LUT value is adjusted to account for LUT combining.
 +---------------+------+---------------------+
 |    Ref Name   | Used | Functional Category |
 +---------------+------+---------------------+
-| FDRE          | 5908 |        Flop & Latch |
-| LUT2          | 3968 |                 LUT |
-| LUT3          | 1832 |                 LUT |
-| CARRY4        | 1457 |          CarryLogic |
-| LUT6          | 1193 |                 LUT |
-| LUT4          |  870 |                 LUT |
-| LUT5          |  856 |                 LUT |
-| LUT1          |  591 |                 LUT |
-| DSP48E1       |  280 |    Block Arithmetic |
-| FDSE          |  226 |        Flop & Latch |
+| FDRE          | 3619 |        Flop & Latch |
+| LUT6          |  775 |                 LUT |
+| LUT3          |  588 |                 LUT |
+| LUT2          |  510 |                 LUT |
+| LUT5          |  503 |                 LUT |
+| LUT4          |  355 |                 LUT |
+| CARRY4        |  312 |          CarryLogic |
+| LUT1          |  266 |                 LUT |
+| FDSE          |  225 |        Flop & Latch |
 | RAMD32        |   96 |  Distributed Memory |
-| FDPE          |   68 |        Flop & Latch |
-| SRLC32E       |   49 |  Distributed Memory |
-| FDCE          |   46 |        Flop & Latch |
+| FDPE          |   69 |        Flop & Latch |
+| FDCE          |   58 |        Flop & Latch |
+| SRL16E        |   37 |  Distributed Memory |
+| SRLC32E       |   35 |  Distributed Memory |
 | RAMS32        |   32 |  Distributed Memory |
-| MUXF7         |   17 |               MuxFx |
+| DSP48E1       |   17 |    Block Arithmetic |
 | RAMD64E       |   16 |  Distributed Memory |
+| MUXF7         |   14 |               MuxFx |
 | BUFG          |   11 |               Clock |
 | RAMB36E1      |   10 |        Block Memory |
 | OBUF          |   10 |                  IO |
-| SRL16E        |    9 |  Distributed Memory |
 | OBUFT         |    7 |                  IO |
 | IBUF          |    6 |                  IO |
 | RAMB18E1      |    5 |        Block Memory |

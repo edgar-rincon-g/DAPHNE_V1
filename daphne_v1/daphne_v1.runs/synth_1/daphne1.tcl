@@ -4,7 +4,7 @@
 
 set TIME_start [clock seconds] 
 namespace eval ::optrace {
-  variable script "C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.runs/synth_1/daphne1.tcl"
+  variable script "C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.runs/synth_1/daphne1.tcl"
   variable category "vivado_synth"
 }
 
@@ -79,91 +79,89 @@ set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
 set_param synth.vivado.isSynthRun true
 set_msg_config -source 4 -id {IP_Flow 19-2162} -severity warning -new_severity info
-set_property webtalk.parent_dir C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.cache/wt [current_project]
-set_property parent.project_path C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.xpr [current_project]
+set_property webtalk.parent_dir C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.cache/wt [current_project]
+set_property parent.project_path C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.xpr [current_project]
 set_property XPM_LIBRARIES {XPM_CDC XPM_FIFO XPM_MEMORY} [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language VHDL [current_project]
-set_property ip_output_repo c:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.cache/ip [current_project]
+set_property ip_output_repo c:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_verilog -library xil_defaultlib {
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/arbiter.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/arp.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/arp_cache.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/arp_eth_rx.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/arp_eth_tx.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/axis_adapter.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/axis_async_fifo.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/axis_async_fifo_adapter.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/axis_fifo.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/axis_gmii_rx.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/axis_gmii_tx.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/eth_arb_mux.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/eth_axis_rx.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/eth_axis_tx.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/eth_mac_1g.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/eth_mac_1g_gmii.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/eth_mac_1g_gmii_fifo.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/eth_mac_stack.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/gmii_phy_if.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/ip.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/ip_arb_mux.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/ip_complete.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/ip_eth_rx.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/ip_eth_tx.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/lfsr.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/mac_ctrl_rx.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/mac_ctrl_tx.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/mac_pause_ctrl_rx.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/mac_pause_ctrl_tx.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/oddr.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/priority_encoder.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/ssio_sdr_in.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/ssio_sdr_out.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/udp.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/udp_checksum_gen.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/udp_complete.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/udp_ip_rx.v
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/udp_ip_tx.v
+  C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/arbiter.v
+  C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/arp.v
+  C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/arp_cache.v
+  C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/arp_eth_rx.v
+  C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/arp_eth_tx.v
+  C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/axis_adapter.v
+  C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/axis_async_fifo.v
+  C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/axis_async_fifo_adapter.v
+  C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/axis_fifo.v
+  C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/axis_gmii_rx.v
+  C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/axis_gmii_tx.v
+  C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/eth_arb_mux.v
+  C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/eth_axis_rx.v
+  C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/eth_axis_tx.v
+  C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/eth_mac_1g.v
+  C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/eth_mac_1g_gmii.v
+  C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/eth_mac_1g_gmii_fifo.v
+  C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/eth_mac_stack.v
+  C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/gmii_phy_if.v
+  C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/ip.v
+  C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/ip_arb_mux.v
+  C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/ip_complete.v
+  C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/ip_eth_rx.v
+  C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/ip_eth_tx.v
+  C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/lfsr.v
+  C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/mac_ctrl_rx.v
+  C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/mac_ctrl_tx.v
+  C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/mac_pause_ctrl_rx.v
+  C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/mac_pause_ctrl_tx.v
+  C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/oddr.v
+  C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/priority_encoder.v
+  C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/ssio_sdr_in.v
+  C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/ssio_sdr_out.v
+  C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/udp.v
+  C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/udp_checksum_gen.v
+  C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/udp_complete.v
+  C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/udp_ip_rx.v
+  C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/udp_ip_tx.v
 }
 read_vhdl -library xil_defaultlib {
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/AXI_FIFO_Adapter.vhd
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/AcquisitionManager.vhd
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/AlignFSM.vhd
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/Bufgmux_Module.vhd
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/ClockMUX.vhd
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/ClockManager.vhd
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/DataAcquisition.vhd
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/FDRE_Module.vhd
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/FIFOManager.vhd
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/FIFO_Module.vhd
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/Ibufds_Module.vhd
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/InputBuffers.vhd
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/Iserdese_Block.vhd
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/PLL_Module.vhd
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/ResetMemory_Module.vhd
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/Synchronizer.vhd
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/bitFSM_Module.vhd
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/daphne1_package.vhd
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/dsp_slice.vhd
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/endpoint.vhd
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/eth_core.vhd
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/frameFSM_Module.vhd
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/highPass_FirstOrder.vhd
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/lowPass_FirstOrder.vhd
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/neural_network.vhd
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/rdFSM_Module.vhd
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/selfTrigger_Module.vhd
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/trigSaveReadFSM.vhd
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/wrFSM_Module.vhd
-  C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/daphne1.vhd
+  C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/AXI_FIFO_Adapter.vhd
+  C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/AcquisitionManager.vhd
+  C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/AlignFSM.vhd
+  C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/Bufgmux_Module.vhd
+  C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/ClockMUX.vhd
+  C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/ClockManager.vhd
+  C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/DataAcquisition.vhd
+  C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/FDRE_Module.vhd
+  C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/FIFOManager.vhd
+  C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/FIFO_Module.vhd
+  C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/Ibufds_Module.vhd
+  C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/InputBuffers.vhd
+  C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/Iserdese_Block.vhd
+  C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/PLL_Module.vhd
+  C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/ResetMemory_Module.vhd
+  C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/Self-trigger_VHDL.vhd
+  C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/Synchronizer.vhd
+  C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/daphne1_package.vhd
+  C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/dsp_slice.vhd
+  C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/endpoint.vhd
+  C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/eth_core.vhd
+  C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/highPass_FirstOrder.vhd
+  C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/lowPass_FirstOrder.vhd
+  C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/rdFSM_Module.vhd
+  C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/selfTrigger_Module.vhd
+  C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/trigSaveReadFSM.vhd
+  C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/wrFSM_Module.vhd
+  C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/daphne1.vhd
 }
-read_ip -quiet C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/ip/gig_ethernet_pcs_pma_0/gig_ethernet_pcs_pma_0.xci
-set_property used_in_implementation false [get_files -all c:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.gen/sources_1/ip/gig_ethernet_pcs_pma_0/gig_ethernet_pcs_pma_0_board.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.gen/sources_1/ip/gig_ethernet_pcs_pma_0/synth/gig_ethernet_pcs_pma_0.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.gen/sources_1/ip/gig_ethernet_pcs_pma_0/synth/gig_ethernet_pcs_pma_0_ooc.xdc]
+read_ip -quiet C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/ip/gig_ethernet_pcs_pma_0/gig_ethernet_pcs_pma_0.xci
+set_property used_in_implementation false [get_files -all c:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.gen/sources_1/ip/gig_ethernet_pcs_pma_0/gig_ethernet_pcs_pma_0_board.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.gen/sources_1/ip/gig_ethernet_pcs_pma_0/synth/gig_ethernet_pcs_pma_0.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.gen/sources_1/ip/gig_ethernet_pcs_pma_0/synth/gig_ethernet_pcs_pma_0_ooc.xdc]
 
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
@@ -174,23 +172,23 @@ OPTRACE "Adding files" END { }
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
-read_xdc C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/constrs_1/new/daphne_constraints.xdc
-set_property used_in_implementation false [get_files C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/constrs_1/new/daphne_constraints.xdc]
+read_xdc C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/constrs_1/new/daphne_constraints.xdc
+set_property used_in_implementation false [get_files C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/constrs_1/new/daphne_constraints.xdc]
 
-read_xdc -unmanaged C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/constrs_1/new/axis_async_fifo.tcl
-set_property used_in_implementation false [get_files C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/constrs_1/new/axis_async_fifo.tcl]
+read_xdc -unmanaged C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/constrs_1/new/axis_async_fifo.tcl
+set_property used_in_implementation false [get_files C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/constrs_1/new/axis_async_fifo.tcl]
 
-read_xdc -unmanaged C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/constrs_1/new/eth_mac_1g_gmii.tcl
-set_property used_in_implementation false [get_files C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/constrs_1/new/eth_mac_1g_gmii.tcl]
+read_xdc -unmanaged C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/constrs_1/new/eth_mac_1g_gmii.tcl
+set_property used_in_implementation false [get_files C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/constrs_1/new/eth_mac_1g_gmii.tcl]
 
-read_xdc -unmanaged C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/constrs_1/new/gmii_phy_if.tcl
-set_property used_in_implementation false [get_files C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/constrs_1/new/gmii_phy_if.tcl]
+read_xdc -unmanaged C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/constrs_1/new/gmii_phy_if.tcl
+set_property used_in_implementation false [get_files C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/constrs_1/new/gmii_phy_if.tcl]
 
 read_xdc dont_touch.xdc
 set_property used_in_implementation false [get_files dont_touch.xdc]
 set_param ips.enableIPCacheLiteLoad 1
 
-read_checkpoint -auto_incremental -incremental C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/utils_1/imports/synth_1/daphne1.dcp
+read_checkpoint -auto_incremental -incremental C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/utils_1/imports/synth_1/daphne1.dcp
 close [open __synthesis_is_running__ w]
 
 OPTRACE "synth_design" START { }

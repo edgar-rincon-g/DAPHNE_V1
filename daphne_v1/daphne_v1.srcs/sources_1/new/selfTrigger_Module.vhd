@@ -36,6 +36,10 @@ library UNISIM;
 use UNISIM.VComponents.all;
 
 entity selfTrigger_Module is
+    Generic(
+        DATA_WIDTH      : integer   := 14;
+        PRE_W_SIZE      : integer   := 64       -- Number Of Pre Samples to Store in The FIFO
+    );
     Port ( 
         -- Module Inputs
     ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -117,7 +121,7 @@ end component;
 
 -- Self Trigger With Cross Correlation Module Declaration
 --------------------------------------------------------------------------------------------------------------------------------------------------
-component self_trigger 
+component trigger_matching_filters 
     Generic (
         g_INPUT_WIDTH           : natural   := 14;                                      -- Width of the Input Data
         g_SUM_WIDTH             : natural   := 14;                                      -- Width of the Internal Addition
@@ -128,13 +132,13 @@ component self_trigger
     --------------------------------------------------------------------------------------------------------------------------------------
         clk                     : in  std_logic;                                        -- Clock for the Module
         rst                     : in std_logic;                                         -- Async Reset
-        i_data                  : in  std_logic_vector(g_INPUT_WIDTH - 1 downto 0);     -- Input Parallel Data from the Acquisition Module
-        data_hpf                : in std_logic_vector(g_INPUT_WIDTH - 1 downto 0);      -- Filtered Data from the High Pass Filter
+        --i_data                  : in  std_logic_vector(g_INPUT_WIDTH - 1 downto 0);     -- Input Parallel Data from the Acquisition Module
+        data                    : in std_logic_vector(g_INPUT_WIDTH - 1 downto 0);      -- Filtered Data from the High Pass Filter
         
         -- Module Outputs
     --------------------------------------------------------------------------------------------------------------------------------------
-        o_data                  : out std_logic_vector(g_SUM_WIDTH - 1 downto 0);       -- Output Data (n Samples Delayed)
-        o_xcorr                 : out std_logic_vector(47 downto 0);                    -- Output Correlation Value
+        --o_data                  : out std_logic_vector(g_SUM_WIDTH - 1 downto 0);       -- Output Data (n Samples Delayed)
+        --o_xcorr                 : out std_logic_vector(47 downto 0);                    -- Output Correlation Value
         o_trigger               : out std_logic                                         -- Trigger Output
     );
 end component;
@@ -282,8 +286,44 @@ signal network_prediction           : signed(47 downto 0);
 signal network_agg                  : signed(47 downto 0);
 signal normalized_data              : signed(14 downto 0);
 
+-- n (64) Pre Registers to Store in the FIFO
+type pre_save_reg_window is array (0 to (PRE_W_SIZE - 1)) of std_logic_vector((DATA_WIDTH - 1) downto 0);
+signal data_del             : pre_save_reg_window                           := (others => (others => '0'));
+
 begin
+
+-- Create the Delays For The Data Used By The Output Of The Module (Given To The FIFO A 64 Samples Pre Window Data)
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    -- Create a For Generate To Create The Assignation Of Registers In Chain
+    DATA_DELAY_GEN : for i in 0 to (PRE_W_SIZE - 1) generate
+        -- Initial Register Assignation (Will Always Be The Input Data)
+        FIRST_DEL_GEN : if (i = 0) generate
+            FIRST_DEL_PROC : process(afe_data, clk, rst)
+            begin
+                if rising_edge(clk) then
+                    if (rst = '1') then
+                        data_del(i) <= (others => '0');
+                    else
+                        data_del(i) <= afe_data;
+                    end if;
+                end if;
+            end process FIRST_DEL_PROC;            
+        end generate FIRST_DEL_GEN;
     
+        -- Consecutive Registers Assignation / Registers Chain
+        CHAIN_DEL_GEN : if (i > 0) generate
+            CHAIN_DEL_PROC : process(data_del, clk, rst)
+            begin
+                if rising_edge(clk) then
+                    if (rst = '1') then
+                        data_del(i) <= (others => '0');
+                    else
+                        data_del(i) <= data_del(i-1);
+                    end if;
+                end if;
+            end process CHAIN_DEL_PROC;
+        end generate CHAIN_DEL_GEN;
+    end generate DATA_DELAY_GEN;    
     -- High Pass First Order Filter Component Instantiation
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     HP_FILTER_COM : highPass_FirstOrder     
@@ -329,48 +369,48 @@ begin
             y_out           => lp_filt_data 
         );
     
---    -- Cross Correlation Self Trigger Component Instantiation
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
---    SELF_TRIGGER_TOP_COM : self_trigger
---    port map (
---        -- Module Inputs
---    --------------------------------------------------------------------------------------------------------------------------------------
---        clk                 => clk,
---        rst                 => rst,
---        i_data              => afe_data,
---        data_hpf            => hp_filt_data_reg,
-        
---        -- Module Outputs
---    --------------------------------------------------------------------------------------------------------------------------------------
---        o_data              => xcorr_data_out_aux,
---        o_xcorr             => xcorr_calc_out,
---        o_trigger           => trigger_aux
---    );
-    
-    -- Neural Network Self Trigger Component Instantiation
+    -- Cross Correlation Self Trigger Component Instantiation
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    SELF_TRIGGER_TOP_COM : neural_network
-        generic map (
-            PRE_W_SIZE          => 85 -- 79 Before adding pipeline to the filters' Forward DSPs
-        )
-        port map (
-            -- Module Inputs
-        --------------------------------------------------------------------------------------------------------------------------------------
-            clk                 => clk,
-            rst                 => rst,
-            data_valid          => dt_rdy,
-            filt_data           => lp_filt_data_reg,                    -- Use hp_filt_data_reg for high pass output, use lp_filt_data_reg for low pass output
-            data                => afe_data,
+    SELF_TRIGGER_ALGORITHM : trigger_matching_filters
+    port map (
+        -- Module Inputs
+    --------------------------------------------------------------------------------------------------------------------------------------
+        clk                 => clk,
+        rst                 => rst,
+        --i_data              => afe_data,
+        data                => hp_filt_data_reg,
+        
+        -- Module Outputs
+    --------------------------------------------------------------------------------------------------------------------------------------
+        --o_data              => xcorr_data_out_aux,
+        --o_xcorr             => xcorr_calc_out,
+        o_trigger           => trigger_aux
+    );
+    
+--    -- Neural Network Self Trigger Component Instantiation
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--    SELF_TRIGGER_TOP_COM : neural_network
+--        generic map (
+--            PRE_W_SIZE          => 85 -- 79 Before adding pipeline to the filters' Forward DSPs
+--        )
+--        port map (
+--            -- Module Inputs
+--        --------------------------------------------------------------------------------------------------------------------------------------
+--            clk                 => clk,
+--            rst                 => rst,
+--            data_valid          => dt_rdy,
+--            filt_data           => lp_filt_data_reg,                    -- Use hp_filt_data_reg for high pass output, use lp_filt_data_reg for low pass output
+--            data                => afe_data,
             
-            -- Module Outputs
-        --------------------------------------------------------------------------------------------------------------------------------------
-            trigger_o           => trigger_aux,
-            y_predict_o         => network_prediction,
-            y_j_o               => network_agg,
-            trigger_aux         => open,
-            norm_dt             => open,                                -- Use normalized_data if needed, else keep this output open
-            o_data              => neural_network_data_out_aux       
-        );
+--            -- Module Outputs
+--        --------------------------------------------------------------------------------------------------------------------------------------
+--            trigger_o           => trigger_aux,
+--            y_predict_o         => network_prediction,
+--            y_j_o               => network_agg,
+--            trigger_aux         => open,
+--            norm_dt             => open,                                -- Use normalized_data if needed, else keep this output open
+--            o_data              => neural_network_data_out_aux       
+--        );
     
     -- Trigger signal can be either the external trigger input or the self triggering one
     trigger_in              <= wr_enable_signal OR trigger_aux; --uncomment for real one, comment to test if write enable and read enable are properly working
@@ -415,7 +455,7 @@ begin
         port map (
             -- Module Inputs
         ----------------------------------------------------------------------------------------------------------------------------------
-            d_i                 => neural_network_data_out_aux,         -- Use xcorr_data_out_aux, for Cross Correlation Self Trigger, use neural_network_data_out_aux for Neural Network Self Trigger
+            d_i                 => data_del(data_del'HIGH),--xcorr_data_out_aux,--neural_network_data_out_aux,         -- Use xcorr_data_out_aux, for Cross Correlation Self Trigger, use neural_network_data_out_aux for Neural Network Self Trigger
             dt_rdy              => dt_rdy,
             wr_enable           => fifo_trig,
             rd_enable           => fifo_rd,

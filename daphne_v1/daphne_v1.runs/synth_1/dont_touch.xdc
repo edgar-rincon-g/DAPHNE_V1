@@ -12,10 +12,10 @@
 # IP: ip/gig_ethernet_pcs_pma_0/gig_ethernet_pcs_pma_0.xci
 set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==gig_ethernet_pcs_pma_0 || ORIG_REF_NAME==gig_ethernet_pcs_pma_0} -quiet] -quiet
 
-# XDC: c:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.gen/sources_1/ip/gig_ethernet_pcs_pma_0/gig_ethernet_pcs_pma_0_board.xdc
+# XDC: c:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.gen/sources_1/ip/gig_ethernet_pcs_pma_0/gig_ethernet_pcs_pma_0_board.xdc
 set_property KEEP_HIERARCHY SOFT [get_cells [split [join [get_cells -hier -filter {REF_NAME==gig_ethernet_pcs_pma_0 || ORIG_REF_NAME==gig_ethernet_pcs_pma_0} -quiet] {/U0 } ]/U0 ] -quiet] -quiet
 
-# XDC: c:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.gen/sources_1/ip/gig_ethernet_pcs_pma_0/synth/gig_ethernet_pcs_pma_0.xdc
+# XDC: c:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.gen/sources_1/ip/gig_ethernet_pcs_pma_0/synth/gig_ethernet_pcs_pma_0.xdc
 #dup# set_property KEEP_HIERARCHY SOFT [get_cells [split [join [get_cells -hier -filter {REF_NAME==gig_ethernet_pcs_pma_0 || ORIG_REF_NAME==gig_ethernet_pcs_pma_0} -quiet] {/U0 } ]/U0 ] -quiet] -quiet
 
-# XDC: c:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.gen/sources_1/ip/gig_ethernet_pcs_pma_0/synth/gig_ethernet_pcs_pma_0_ooc.xdc
+# XDC: c:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.gen/sources_1/ip/gig_ethernet_pcs_pma_0/synth/gig_ethernet_pcs_pma_0_ooc.xdc

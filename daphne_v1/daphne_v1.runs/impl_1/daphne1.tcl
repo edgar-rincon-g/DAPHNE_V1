@@ -17,7 +17,7 @@ proc create_report { reportName command } {
   }
 }
 namespace eval ::optrace {
-  variable script "C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.runs/impl_1/daphne1.tcl"
+  variable script "C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.runs/impl_1/daphne1.tcl"
   variable category "vivado_impl"
 }
 
@@ -131,20 +131,20 @@ OPTRACE "create in-memory project" START { }
   set_param project.singleFileAddWarning.threshold 0
 OPTRACE "create in-memory project" END { }
 OPTRACE "set parameters" START { }
-  set_property webtalk.parent_dir C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.cache/wt [current_project]
-  set_property parent.project_path C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.xpr [current_project]
-  set_property ip_output_repo C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.cache/ip [current_project]
+  set_property webtalk.parent_dir C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.cache/wt [current_project]
+  set_property parent.project_path C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.xpr [current_project]
+  set_property ip_output_repo C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.cache/ip [current_project]
   set_property ip_cache_permissions {read write} [current_project]
   set_property XPM_LIBRARIES {XPM_CDC XPM_FIFO XPM_MEMORY} [current_project]
 OPTRACE "set parameters" END { }
 OPTRACE "add files" START { }
-  add_files -quiet C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.runs/synth_1/daphne1.dcp
-  read_ip -quiet C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/ip/gig_ethernet_pcs_pma_0/gig_ethernet_pcs_pma_0.xci
+  add_files -quiet C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.runs/synth_1/daphne1.dcp
+  read_ip -quiet C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/ip/gig_ethernet_pcs_pma_0/gig_ethernet_pcs_pma_0.xci
 OPTRACE "read constraints: implementation" START { }
-  read_xdc C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/constrs_1/new/daphne_constraints.xdc
-  read_xdc -unmanaged C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/constrs_1/new/axis_async_fifo.tcl
-  read_xdc -unmanaged C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/constrs_1/new/eth_mac_1g_gmii.tcl
-  read_xdc -unmanaged C:/Users/daniel.avila/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/constrs_1/new/gmii_phy_if.tcl
+  read_xdc C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/constrs_1/new/daphne_constraints.xdc
+  read_xdc -unmanaged C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/constrs_1/new/axis_async_fifo.tcl
+  read_xdc -unmanaged C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/constrs_1/new/eth_mac_1g_gmii.tcl
+  read_xdc -unmanaged C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/constrs_1/new/gmii_phy_if.tcl
 OPTRACE "read constraints: implementation" END { }
 OPTRACE "add files" END { }
 OPTRACE "link_design" START { }

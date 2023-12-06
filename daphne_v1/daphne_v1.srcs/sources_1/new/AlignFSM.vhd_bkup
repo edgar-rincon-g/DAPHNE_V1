@@ -1,0 +1,173 @@
+----------------------------------------------------------------------------------
+-- Company: Unviersidad EIA
+
+-- Engineer: Edgar Rincón Gil <edgar.rincon.g@gmail.com>
+-- Create Date: 05.12.2023 
+-- Design Name: Data Alignment FSM Full Build
+-- Module Name: AlignFSM - alFsm_arch
+-- Project Name: DAPHNE V1 - DATA ALIGNMENT MODULE
+-- Target Devices: XC7A200T-1SBG484C
+-- Tool Versions: 2023.1
+-- Description: 
+-- Creates a big Module containing all the training FSM to align the Digital and Frame Clocks with the Data
+-- Dependencies: 
+-- Relies on 'bitFSM_Module.vhd', 'frameFSM_Module.vhd' files
+-- Revision:
+-- Revision 0.02 - File Updated
+-- Additional Comments:
+-- The Alignment Module has succesfully included both FSM to completely align the data
+----------------------------------------------------------------------------------
+
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use ieee.numeric_std.all;
+use IEEE.std_logic_signed.all;
+
+-- Uncomment the following library declaration if using
+-- arithmetic functions with Signed or Unsigned values
+--use IEEE.NUMERIC_STD.ALL;
+
+-- Uncomment the following library declaration if instantiating
+-- any Xilinx leaf cells in this code.
+--library UNISIM;
+--use UNISIM.VComponents.all;
+
+entity AlignFSM is
+    Port ( 
+        -- Module Inputs
+    ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        clk_div             : in std_logic;                         -- Divided Version of the Digital Clock
+        rst                 : in std_logic;                         -- Async Reset
+        iser_data           : in std_logic_vector(13 downto 0);     -- Channel Data (use Channel 0 to Align all 8 Channels)
+        frame_data          : in std_logic_vector(13 downto 0);     -- Frame Clock Turned To Data
+        --al_frame            : in std_logic;                         -- '0' Automatic Alignment, '1' Manual Alignment
+        pll_locked          : in std_logic;                         -- PLL Locked
+        --train_pat_active    : in std_logic;                         -- Specific Training Pattern Active in the AFE Outputs
+        --custom_pat_active   : in std_logic;                         -- Custom Training Pattern Active in the AFE Outputs
+        
+        -- Module Outputs
+    ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        phase_overflow      : out std_logic;                        -- Phase Overflowed (Digital Bit Clock Alignment)
+        bitslip_on_flag     : out std_logic;                        -- Bitslip Operation being Executed
+        bitslip             : out std_logic;                        -- Bitslipt Control Output for the Iserdese
+        phase_out           : out std_logic_vector(1 downto 0);     -- Selected Phase to Align the Data ("11" Reserved for Future Use)
+        done_bit_fsm        : out std_logic;                        -- Data Aligned With the Digital Clock
+        done_frame_fsm      : out std_logic                         -- Data Aligned With Frame Clock (Final Alignment)
+    );
+end AlignFSM;
+
+architecture Behavior of AlignFSM is
+
+-- Aux signals to interconnect the FSMs
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+signal done_bit             : std_logic := '0';
+signal done_frame           : std_logic := '0';
+signal phase                : std_logic_vector(2 downto 0);
+signal start_process        : std_logic;
+TYPE Tstate IS (not_aligned, bit_align, frame_align, align_done, reset_align);
+signal state: Tstate := not_aligned;
+signal next_state: Tstate;
+TYPE Tstate_bitslip IS (idle, do_bitslip, wait_4_cycles );
+signal state_bitslip: Tstate_bitslip := idle;
+signal next_state_bitslip: Tstate_bitslip;
+signal contador_bitslip     : std_logic_vector(1 downto 0);
+
+begin 
+    process(clk_div, rst)
+    begin
+        if (rst = '1') then
+            done_bit <= '0';
+            done_frame <= '0';
+            phase <= b"000";
+            state <= not_aligned;
+            state_bitslip <= idle;
+            contador_bitslip <= b"00";
+        elsif rising_edge(clk_div) then
+            state <= next_state;
+            state_bitslip <= next_state_bitslip;
+            
+            --Next if statement allows the state bit align to increment by 1 the phase selection lines
+            if(state = bit_align) then
+                phase <= phase + 1;
+            else
+                phase <= phase;
+            end if;            
+            
+            --Next if statement allows to increment the counter to wait 4 cycles before checking the frame again
+            if(state_bitslip = wait_4_cycles) then
+                contador_bitslip <= contador_bitslip + 1;
+            else
+                contador_bitslip <= b"00";
+            end if; 
+        end if;
+    end process;
+    
+    process(state, pll_locked, iser_data, frame_data)
+    begin
+        case state is 
+            when not_aligned =>
+                if(pll_locked = '1') then
+                    next_state <= bit_align;
+                else 
+                    next_state <= not_aligned;
+                end if;
+                
+            when bit_align =>
+                if((iser_data = x"2AAA") or (iser_data = x"1555")) then
+                    done_bit <= '1';
+                    next_state <= frame_align;
+                else 
+                    next_state <= bit_align;
+                end if;
+                
+            when frame_align =>
+                if(iser_data = x"004") then             
+                    next_state <= align_done;
+                else 
+                    next_state <= frame_align;                                       
+                end if;       
+                
+            when align_done =>
+                done_frame <= '1';
+                next_state <= align_done;
+                                             
+            when OTHERS =>
+                next_state <= not_aligned;
+                                          
+        end case;              
+    end process;
+    
+    process(state, state_bitslip, iser_data, frame_data)
+    begin
+        case state_bitslip is
+            when idle =>
+                if((state = frame_align) and (next_state = frame_align)) then
+                    next_state_bitslip <= do_bitslip;
+                else
+                    next_state_bitslip <= idle;
+                end if;
+                
+            when do_bitslip =>
+                bitslip <= '1';
+                next_state_bitslip <= wait_4_cycles;
+                
+            when wait_4_cycles =>    
+                if(contador_bitslip = 3) then
+                    next_state_bitslip <= do_bitslip;
+                else
+                    bitslip <= '0';    
+                    next_state_bitslip <= wait_4_cycles;
+                end if;
+                
+            when others =>
+                next_state_bitslip <= idle;
+                
+        end case;
+    end process;
+    
+    phase_overflow <= phase(2);
+    done_bit_fsm <= done_bit;
+    done_frame_fsm <= done_frame;
+       
+end Behavior;   

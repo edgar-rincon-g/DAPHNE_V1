@@ -69,16 +69,16 @@ component AlignFSM
         clk_div             : in std_logic;                         -- Divided Version of the Digital Clock
         rst                 : in std_logic;                         -- Async Reset
         iser_data           : in std_logic_vector(13 downto 0);     -- Channel Data (use Channel 0 to Align all 8 Channels)
-        frame_data          : in std_logic_vector(13 downto 0);     -- Frame Clock Turned To Data
-        al_frame            : in std_logic;                         -- '0' Automatic Alignment, '1' Manual Alignment
+        --frame_data          : in std_logic_vector(13 downto 0);     -- Frame Clock Turned To Data
+        --al_frame            : in std_logic;                         -- '0' Automatic Alignment, '1' Manual Alignment
         pll_locked          : in std_logic;                         -- PLL Locked
-        train_pat_active    : in std_logic;                         -- Specific Training Pattern Active in the AFE Outputs
-        custom_pat_active   : in std_logic;                         -- Custom Training Pattern Active in the AFE Outputs
+        --train_pat_active    : in std_logic;                         -- Specific Training Pattern Active in the AFE Outputs
+        --custom_pat_active   : in std_logic;                         -- Custom Training Pattern Active in the AFE Outputs
         
         -- Module Outputs
     ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-        phase_overflow      : out std_logic;                        -- Phase Overflowed (Digital Bit Clock Alignment)
-        bitslip_on_flag     : out std_logic;                        -- Bitslip Operation being Executed
+        --phase_overflow      : out std_logic;                        -- Phase Overflowed (Digital Bit Clock Alignment)
+        --bitslip_on_flag     : out std_logic;                        -- Bitslip Operation being Executed
         bitslip             : out std_logic;                        -- Bitslipt Control Output for the Iserdese
         phase_out           : out std_logic_vector(1 downto 0);     -- Selected Phase to Align the Data ("11" Reserved for Future Use)
         done_bit_fsm        : out std_logic;                        -- Data Aligned With the Digital Clock
@@ -125,16 +125,16 @@ begin
             clk_div             => dt_div_clk,
             rst                 => reset,
             iser_data           => data_out,
-            frame_data          => fr_data,
-            al_frame            => al_mode,
+            --frame_data          => fr_data,
+            --al_frame            => al_mode,
             pll_locked          => pll_lckd,
-            train_pat_active    => train_active,
-            custom_pat_active   => custom_active,
+            --train_pat_active    => train_active,
+            --custom_pat_active   => custom_active,
             
             -- Module Outputs
         ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-            phase_overflow      => ph_ovfl,
-            bitslip_on_flag     => btslp_on,
+            --phase_overflow      => ph_ovfl,
+            --bitslip_on_flag     => btslp_on,
             bitslip             => global_bitslip,
             phase_out           => phase_ctrl,
             done_bit_fsm        => dg_align_done,
@@ -176,5 +176,5 @@ begin
     -- Data is stored again in the outputs of the module
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     dt_out <= data_out;
-
+    btslp_on <= global_bitslip;
 end datMod_arch;
