@@ -55,7 +55,7 @@ architecture biFsm_arch of bitFSM_Module is
 
 -- Declaration of the states type and signal
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-type states is (reset, need_align, check_phase, phase_overflowed, up_phase, asleep, bit_aligned);
+type states is (reset, need_align, check_phase, phase_works, phase_overflowed, up_phase, asleep, bit_aligned);
 signal State, Next_State        : states;
 
 -- Aux signals to operate inside the FSM
@@ -68,6 +68,8 @@ signal increase_phase           : std_logic := '0';
 signal phase_overflow           : std_logic := '0';
 signal start_sleep_count        : std_logic := '0';
 signal done_reg                 : std_logic := '0';
+signal phase_worked_flag        : std_logic := '0';
+signal working_phases           : std_logic_vector(2 downto 0) := "000";
 
 -- Signals that control the overflow flag when checking each phase
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -95,6 +97,7 @@ begin
                 phase_count <= "00";
                 phase_overflow <= '0';
             else
+                -- Increase the used phase
                 if (increase_phase = '1') then
                     if (phase_count /= "11") then
                         phase_count <= std_logic_vector(unsigned(phase_count) + 1);
@@ -102,6 +105,21 @@ begin
                     else
                         phase_overflow <= '1';
                         phase_count <= "00";
+                    end if;
+                end if;
+                
+                -- See if the used phase works and save it
+                if (phase_worked_flag = '1') then
+                    -- Now, change the state of the register that holds the information on if this phase worked
+                    if (phase_count = "00") then
+                        -- Phase one works the first time, so change from 0 to 1
+                        working_phases(0) <= '1';
+                    elsif (phase_count = "01") then
+                        -- Phase one works the first time, so change from 0 to 1
+                        working_phases(1) <= '1';
+                    elsif (phase_count = "10") then
+                        -- Phase one works the first time, so change from 0 to 1
+                        working_phases(2) <= '1';
                     end if;
                 end if;
             end if;
@@ -173,16 +191,22 @@ begin
                     Next_State <= check_phase;
                 end if;
             when check_phase =>
-                if (is_aligned = '1') then -- OR (phase_overflow = '1') then
-                    -- We verify if the data is aligned, if so, we have finished
-                    -- If there are no phases that work, the FSM will remain on a loop, so we must get it out
-                    Next_State <= bit_aligned;
+                if (is_aligned = '1' AND phase_overflow_flag_reg = '0') then -- OR (phase_overflow = '1') then
+                    -- This phase works on this run so save it on the system
+                    Next_State <= phase_works;
+                elsif (is_aligned = '1') then
+                    Next_State <= phase_works;
                 elsif (phase_overflow = '1') then
                     Next_State <= phase_overflowed;
                 else 
                     -- If not, we must go to the state where the phase changes...
                     Next_State <= up_phase;
                 end if;
+            when phase_works =>
+                -- This phase works so we must add this information somewhere
+                -- Increase to test the next phase and so on
+                Next_State <= up_phase;
+                 
             when phase_overflowed =>
                 -- If the system found an overflow when checking each phase, it must keep searching until the data is aligned
                 -- Notify that there was an overflow, to state the condition for the system, just in case
@@ -213,6 +237,7 @@ begin
                 done_reg <= '0';
                 turn_on_phase_overflow <= '0';
                 turn_off_phase_overflow <= '0';
+                phase_worked_flag <= '0';
             when need_align =>
                 -- This is a transition state therefore no outputs change
                 increase_phase <= '0';
@@ -220,6 +245,7 @@ begin
                 done_reg <= '0';
                 turn_on_phase_overflow <= '0';
                 turn_off_phase_overflow <= '0';
+                phase_worked_flag <= '0';
             when check_phase =>
                 -- This is also a transition state therefore no outputs change
                 increase_phase <= '0';
@@ -227,6 +253,15 @@ begin
                 done_reg <= '0';
                 turn_on_phase_overflow <= '0';
                 turn_off_phase_overflow <= '0';
+                phase_worked_flag <= '0';
+            when phase_works =>
+                -- This is a control state that notifies outside processes that the current used phase worked
+                increase_phase <= '0';
+                start_sleep_count <= '0';
+                done_reg <= '0';
+                turn_on_phase_overflow <= '0';
+                turn_off_phase_overflow <= '0';
+                phase_worked_flag <= '1';
             when phase_overflowed =>
                 -- This is an error status state, it drives HIGH the 'turn on' signal for the phase overlow flag
                 increase_phase <= '0';
@@ -234,6 +269,7 @@ begin
                 done_reg <= '0';
                 turn_on_phase_overflow <= '1';
                 turn_off_phase_overflow <= '0';
+                phase_worked_flag <= '0';
             when up_phase =>
                 -- The clock phase used by the system must change
                 increase_phase <= '1';
@@ -241,6 +277,7 @@ begin
                 done_reg <= '0';
                 turn_on_phase_overflow <= '0';
                 turn_off_phase_overflow <= '0';
+                phase_worked_flag <= '0';
             when asleep =>
                 -- Since the phase changed, FSM must wait until Clock signal is stable
                 increase_phase <= '0';    
@@ -248,6 +285,7 @@ begin
                 done_reg <= '0';
                 turn_on_phase_overflow <= '0';
                 turn_off_phase_overflow <= '0';
+                phase_worked_flag <= '0';
             when bit_aligned =>
                 -- FSM has finished, notifies this achievement with done_reg in logic HIGH
                 -- Also, drive HIGH the 'turn off' signal for the phase overlow flag
@@ -256,12 +294,14 @@ begin
                 done_reg <= '1';
                 turn_on_phase_overflow <= '0';
                 turn_off_phase_overflow <= '1';
+                phase_worked_flag <= '0';
             when others =>
                 increase_phase <= '0';    
                 start_sleep_count <= '0';
                 done_reg <= '0';
                 turn_on_phase_overflow <= '0';
                 turn_off_phase_overflow <= '0';
+                phase_worked_flag <= '0';
         end case;
     end process do_states;
     
