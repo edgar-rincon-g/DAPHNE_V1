@@ -97,9 +97,9 @@ module eth_mac_stack #
 // Ethernet Configuration
 wire [47:0] local_mac   = 48'h02_00_00_00_00_00;
 wire [31:0] local_ip    = {8'd169, 8'd254, 8'd87,   8'd100};
-wire [31:0] gateway_ip  = {8'd169, 8'd254, 8'd87,   8'd121};
+wire [31:0] gateway_ip  = {8'd169, 8'd254, 8'd7,   8'd58};
 wire [31:0] subnet_mask = {8'd255, 8'd255, 8'd0, 8'd0};
-wire [31:0] dest_ip     = {8'd169, 8'd254, 8'd87,   8'd121}; 
+wire [31:0] dest_ip     = {8'd169, 8'd254, 8'd7,   8'd58}; 
 wire [15:0] local_port  = 16'd1234;
 wire [15:0] dest_port   = 16'd4678;
 wire [15:0] udp_length  = 16'd9;

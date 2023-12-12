@@ -24,7 +24,8 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
---use IEEE.NUMERIC_STD.ALL;
+use IEEE.NUMERIC_STD.ALL;
+use IEEE.std_logic_signed.all;
 
 -- Uncomment the following library declaration if instantiating
 -- any Xilinx leaf cells in this code.
@@ -76,6 +77,7 @@ end component ClockMUX;
 -- Aux signal to interconnect the components
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
 signal clk_out_phase        : std_logic_vector(2 downto 0);
+signal phase_sel_div        : std_logic_vector(2 downto 0);
 signal clk_out_div_phase    : std_logic_vector(2 downto 0);
 signal clk_div_aux          : std_logic;
 signal rst_aux1             : std_logic;
@@ -99,7 +101,7 @@ begin
             rst_aux4    <= rst_aux3;
             rst_aux5    <= rst_aux4;
             rst_aux6    <= rst_aux5;
-            rst_pll     <= rst_aux6;
+            rst_pll     <= rst_aux6;            
         end if;
     end process;
 
@@ -141,5 +143,6 @@ begin
     -- Aux signal of Clock coming from MUX that is read inside this module is connected to output
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
     clk_div_out         <= clk_div_aux;
+    
     
 end clkMod_arch;

@@ -63,7 +63,7 @@ architecture Behavior of AlignFSM is
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 signal done_bit             : std_logic := '0';
 signal done_frame           : std_logic := '0';
-signal phase                : std_logic_vector(2 downto 0);
+signal phase                : std_logic_vector(1 downto 0);
 signal start_process        : std_logic;
 TYPE Tstate IS (not_aligned, bit_align0, bit_align1, bit_align2, bit_align3, 
                 frame_align, align_done, reset_align);
@@ -81,7 +81,7 @@ begin
         if (rst = '1') then
             done_bit <= '0';
             done_frame <= '0';
-            phase <= b"000";
+            phase <= b"00";
             state <= not_aligned;
             state_bitslip <= idle;
             contador_bitslip <= b"00";
@@ -91,13 +91,13 @@ begin
             
 --            --Next if statement allows the state bit align to increment by 1 the phase selection lines
             if(state = bit_align0) then
-                phase <= b"000";
+                phase <= b"00";
             elsif(state = bit_align1) then
-                phase <= b"001";
+                phase <= b"01";
             elsif(state = bit_align2) then
-                phase <= b"010";
-            elsif(state = bit_align3) then
-                phase <= b"011";
+                phase <= b"10";
+--            elsif(state = bit_align3) then
+--                phase <= b"011";
             else
                 phase <= phase;
             end if;            
@@ -140,15 +140,15 @@ begin
                 if( (iser_data = b"10101010101010") or (iser_data = b"01010101010101")) then
                     next_state <= frame_align;
                 else                    
-                    next_state <= bit_align3;
+                    next_state <= bit_align0;
                 end if;
             
-            when bit_align3 =>
-                if( (iser_data = b"10101010101010") or (iser_data = b"01010101010101")) then
-                    next_state <= frame_align;
-                else                    
-                    next_state <= bit_align0;
-                end if;    
+--            when bit_align3 =>
+--                if( (iser_data = b"10101010101010") or (iser_data = b"01010101010101")) then
+--                    next_state <= frame_align;
+--                else                    
+--                    next_state <= bit_align0;
+--                end if;    
                 
             when frame_align => -- CUSTOM OUTPUT 0X2D29
                 if(iser_data = b"10110100101001") then             
@@ -257,7 +257,7 @@ begin
     end process;
     
     -- bitslip <= bitslip_signal;
-    phase_out <= phase(1) & phase(0);
+    phase_out <= phase;
     --phase_overflow <= phase(2);
     -- done_bit_fsm <= done_bit;
     -- done_frame_fsm <= done_frame;

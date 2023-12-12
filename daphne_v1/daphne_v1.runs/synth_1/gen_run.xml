@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a200tfbg676-2" LaunchTime="1701894918" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/daphne1.dcp">
+<GenRun Id="synth_1" LaunchPart="xc7a200tfbg676-2" LaunchTime="1702388673" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/daphne1.dcp">
   <File Type="PA-TCL" Name="daphne1.tcl"/>
   <File Type="RDS-PROPCONSTRS" Name="daphne1_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="daphne1_reports.tcl"/>
@@ -374,12 +374,6 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/new/Self-trigger_VHDL.vhd">
-      <FileInfo>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
     <File Path="$PSRCDIR/sources_1/new/Synchronizer.vhd">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -440,6 +434,12 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
+    <File Path="$PSRCDIR/sources_1/new/trigger_matching_filters.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <File Path="$PSRCDIR/sources_1/new/wrFSM_Module.vhd">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -448,6 +448,13 @@
     </File>
     <File Path="$PSRCDIR/sources_1/new/daphne1.vhd">
       <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/Self-trigger_VHDL.vhd">
+      <FileInfo>
+        <Attr Name="UserDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>

@@ -1,7 +1,7 @@
 ----------------------------------------------------------------------------------
 -- Company: Universidad EIA
 -- Engineer: Daniel Avila Gomez
--- 
+-- Engineer2: Edgar Rincón Gil <edgar.rincon.g@gmail.com>
 -- Create Date: 03.05.2023 13:18:32
 -- Design Name: PLL Build
 -- Module Name: PLL_Module - pll_arch
@@ -79,13 +79,22 @@ begin
             CLKOUT3_DUTY_CYCLE  => 0.5,
             CLKOUT4_DUTY_CYCLE  => 0.5,
             CLKOUT5_DUTY_CYCLE  => 0.5,
-            -- CLKOUT0_PHASE - CLKOUT5_PHASE: Phase offset for each CLKOUT (-360.000-360.000).
-            CLKOUT0_PHASE       => 0.0,         -- This were the only possible frequencies to cover most of the range (437.5 MHz)
-            CLKOUT1_PHASE       => 60.0,        -- This were the only possible frequencies to cover most of the range (437.5 MHz)
-            CLKOUT2_PHASE       => 120.0,       -- This were the only possible frequencies to cover most of the range (437.5 MHz)
-            CLKOUT3_PHASE       => 0.0,         -- This were the only possible frequencies to cover most of the range (62.5 MHz)
-            CLKOUT4_PHASE       => 60.0,        -- This were the only possible frequencies to cover most of the range (62.5 MHz)
-            CLKOUT5_PHASE       => 120.0,       -- This were the only possible frequencies to cover most of the range (62.5 MHz)
+--            -- CLKOUT0_PHASE - CLKOUT5_PHASE: Phase offset for each CLKOUT (-360.000-360.000).
+--            CLKOUT0_PHASE       => 0.0,         -- This were the only possible frequencies to cover most of the range (437.5 MHz)
+--            CLKOUT1_PHASE       => 60.0,        -- This were the only possible frequencies to cover most of the range (437.5 MHz)
+--            CLKOUT2_PHASE       => 120.0,       -- This were the only possible frequencies to cover most of the range (437.5 MHz)
+--            CLKOUT3_PHASE       => 0.0,         -- This were the only possible frequencies to cover most of the range (62.5 MHz)
+--            CLKOUT4_PHASE       => 60.0,        -- This were the only possible frequencies to cover most of the range (62.5 MHz)
+--            CLKOUT5_PHASE       => 120.0,       -- This were the only possible frequencies to cover most of the range (62.5 MHz)
+            
+            -- START Engineer2: Edgar Rincón Gil <edgar.rincon.g@gmail.com>
+            CLKOUT0_PHASE       => 45.0,         -- This were the only possible frequencies to cover most of the range (437.5 MHz)
+            CLKOUT1_PHASE       => 90.0,        -- This were the only possible frequencies to cover most of the range (437.5 MHz)
+            CLKOUT2_PHASE       => 135.0,       -- This were the only possible frequencies to cover most of the range (437.5 MHz)
+            CLKOUT3_PHASE       => 45.0,         -- This were the only possible frequencies to cover most of the range (62.5 MHz)
+            CLKOUT4_PHASE       => 90.0,        -- This were the only possible frequencies to cover most of the range (62.5 MHz)
+            CLKOUT5_PHASE       => 135.0,       -- This were the only possible frequencies to cover most of the range (62.5 MHz)
+            -- END Engineer2: Edgar Rincón Gil <edgar.rincon.g@gmail.com>
             DIVCLK_DIVIDE       => div_val,     -- Master division value, (1-56)
             REF_JITTER1         => 0.0,         -- Reference input jitter in UI, (0.000-0.999).
             STARTUP_WAIT        => "FALSE"      -- Delay DONE until PLL Locks, ("TRUE"/"FALSE")

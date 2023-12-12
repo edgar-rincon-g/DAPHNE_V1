@@ -144,7 +144,6 @@ read_vhdl -library xil_defaultlib {
   C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/Iserdese_Block.vhd
   C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/PLL_Module.vhd
   C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/ResetMemory_Module.vhd
-  C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/Self-trigger_VHDL.vhd
   C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/Synchronizer.vhd
   C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/daphne1_package.vhd
   C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/dsp_slice.vhd
@@ -155,6 +154,7 @@ read_vhdl -library xil_defaultlib {
   C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/rdFSM_Module.vhd
   C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/selfTrigger_Module.vhd
   C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/trigSaveReadFSM.vhd
+  C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/trigger_matching_filters.vhd
   C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/wrFSM_Module.vhd
   C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/daphne1.vhd
 }

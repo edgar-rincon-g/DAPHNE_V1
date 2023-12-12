@@ -3,8 +3,8 @@
 # SW Build 3865809 on Sun May  7 15:05:29 MDT 2023
 # IP Build 3864474 on Sun May  7 20:36:21 MDT 2023
 # SharedData Build 3865790 on Sun May 07 13:33:03 MDT 2023
-# Start of session at: Wed Dec  6 15:35:23 2023
-# Process ID: 15544
+# Start of session at: Tue Dec 12 08:44:37 2023
+# Process ID: 4240
 # Current directory: C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.runs/synth_1
 # Command line: vivado.exe -log daphne1.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source daphne1.tcl
 # Log file: C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.runs/synth_1/daphne1.vds
@@ -12,7 +12,7 @@
 # Running On: EDGARRINCON, OS: Windows, CPU Frequency: 2712 MHz, CPU Physical cores: 6, Host memory: 33942 MB
 #-----------------------------------------------------------
 source daphne1.tcl -notrace
-create_project: Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1460.441 ; gain = 160.160
+create_project: Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1460.227 ; gain = 159.070
 Command: read_checkpoint -auto_incremental -incremental C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/utils_1/imports/synth_1/daphne1.dcp
 INFO: [Vivado 12-5825] Read reference checkpoint from C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/utils_1/imports/synth_1/daphne1.dcp for incremental synthesis
 INFO: [Vivado 12-7989] Please ensure there are no constraint changes
@@ -25,7 +25,7 @@ INFO: [Designutils 20-5440] No compile time benefit to using incremental synthes
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 16872
+INFO: [Synth 8-7075] Helper process launched with PID 17856
 WARNING: [Synth 8-11065] parameter 'BYTE_LANES' becomes localparam in 'arp_eth_rx' with formal parameter declaration list [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/arp_eth_rx.v:89]
 WARNING: [Synth 8-11065] parameter 'HDR_SIZE' becomes localparam in 'arp_eth_rx' with formal parameter declaration list [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/arp_eth_rx.v:91]
 WARNING: [Synth 8-11065] parameter 'CYCLE_COUNT' becomes localparam in 'arp_eth_rx' with formal parameter declaration list [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/arp_eth_rx.v:93]
@@ -70,7 +70,7 @@ WARNING: [Synth 8-11065] parameter 'LEVELS' becomes localparam in 'priority_enco
 WARNING: [Synth 8-11065] parameter 'W' becomes localparam in 'priority_encoder' with formal parameter declaration list [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/priority_encoder.v:48]
 WARNING: [Synth 8-11065] parameter 'HEADER_FIFO_ADDR_WIDTH' becomes localparam in 'udp_checksum_gen' with formal parameter declaration list [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/udp_checksum_gen.v:143]
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 2343.930 ; gain = 410.586
+Starting RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2344.156 ; gain = 411.586
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-638] synthesizing module 'daphne1' [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/daphne1.vhd:107]
 INFO: [Synth 8-3491] module 'endpoint' declared at 'C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/endpoint.vhd:35' bound to instance 'SYS_TIMING_ENPT' of component 'endpoint' [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/daphne1.vhd:304]
@@ -138,13 +138,13 @@ INFO: [Synth 8-256] done synthesizing module 'Ibufds_Module' (0#1) [C:/Users/edg
 INFO: [Synth 8-3491] module 'Ibufds_Module' declared at 'C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/Ibufds_Module.vhd:34' bound to instance 'DIGITAL_IBUFDS' of component 'Ibufds_Module' [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/InputBuffers.vhd:75]
 INFO: [Synth 8-3491] module 'Ibufds_Module' declared at 'C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/Ibufds_Module.vhd:34' bound to instance 'DATA_IBUFDS' of component 'Ibufds_Module' [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/InputBuffers.vhd:85]
 INFO: [Synth 8-256] done synthesizing module 'InputBuffers' (0#1) [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/InputBuffers.vhd:50]
-INFO: [Synth 8-3491] module 'ClockManager' declared at 'C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/ClockManager.vhd:34' bound to instance 'CLK_COM' of component 'ClockManager' [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/AcquisitionManager.vhd:189]
-INFO: [Synth 8-638] synthesizing module 'ClockManager' [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/ClockManager.vhd:46]
+INFO: [Synth 8-3491] module 'ClockManager' declared at 'C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/ClockManager.vhd:35' bound to instance 'CLK_COM' of component 'ClockManager' [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/AcquisitionManager.vhd:189]
+INFO: [Synth 8-638] synthesizing module 'ClockManager' [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/ClockManager.vhd:47]
 	Parameter mult_val bound to: 3 - type: integer 
 	Parameter div_val bound to: 1 - type: integer 
 	Parameter o_div_val bound to: 21 - type: integer 
 	Parameter period bound to: 2.286000 - type: double 
-INFO: [Synth 8-3491] module 'PLL_Module' declared at 'C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/PLL_Module.vhd:36' bound to instance 'PLL_COM' of component 'PLL_Module' [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/ClockManager.vhd:108]
+INFO: [Synth 8-3491] module 'PLL_Module' declared at 'C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/PLL_Module.vhd:36' bound to instance 'PLL_COM' of component 'PLL_Module' [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/ClockManager.vhd:110]
 INFO: [Synth 8-638] synthesizing module 'PLL_Module' [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/PLL_Module.vhd:52]
 	Parameter mult_val bound to: 3 - type: integer 
 	Parameter div_val bound to: 1 - type: integer 
@@ -156,29 +156,29 @@ INFO: [Synth 8-638] synthesizing module 'PLL_Module' [C:/Users/edgar.rincon/Docu
 	Parameter CLKIN1_PERIOD bound to: 2.286000 - type: double 
 	Parameter CLKOUT0_DIVIDE bound to: 3 - type: integer 
 	Parameter CLKOUT0_DUTY_CYCLE bound to: 0.500000 - type: double 
-	Parameter CLKOUT0_PHASE bound to: 0.000000 - type: double 
+	Parameter CLKOUT0_PHASE bound to: 45.000000 - type: double 
 	Parameter CLKOUT1_DIVIDE bound to: 3 - type: integer 
 	Parameter CLKOUT1_DUTY_CYCLE bound to: 0.500000 - type: double 
-	Parameter CLKOUT1_PHASE bound to: 60.000000 - type: double 
+	Parameter CLKOUT1_PHASE bound to: 90.000000 - type: double 
 	Parameter CLKOUT2_DIVIDE bound to: 3 - type: integer 
 	Parameter CLKOUT2_DUTY_CYCLE bound to: 0.500000 - type: double 
-	Parameter CLKOUT2_PHASE bound to: 120.000000 - type: double 
+	Parameter CLKOUT2_PHASE bound to: 135.000000 - type: double 
 	Parameter CLKOUT3_DIVIDE bound to: 21 - type: integer 
 	Parameter CLKOUT3_DUTY_CYCLE bound to: 0.500000 - type: double 
-	Parameter CLKOUT3_PHASE bound to: 0.000000 - type: double 
+	Parameter CLKOUT3_PHASE bound to: 45.000000 - type: double 
 	Parameter CLKOUT4_DIVIDE bound to: 21 - type: integer 
 	Parameter CLKOUT4_DUTY_CYCLE bound to: 0.500000 - type: double 
-	Parameter CLKOUT4_PHASE bound to: 60.000000 - type: double 
+	Parameter CLKOUT4_PHASE bound to: 90.000000 - type: double 
 	Parameter CLKOUT5_DIVIDE bound to: 21 - type: integer 
 	Parameter CLKOUT5_DUTY_CYCLE bound to: 0.500000 - type: double 
-	Parameter CLKOUT5_PHASE bound to: 120.000000 - type: double 
+	Parameter CLKOUT5_PHASE bound to: 135.000000 - type: double 
 	Parameter DIVCLK_DIVIDE bound to: 1 - type: integer 
 	Parameter REF_JITTER1 bound to: 0.000000 - type: double 
 	Parameter STARTUP_WAIT bound to: FALSE - type: string 
 INFO: [Synth 8-113] binding component instance 'PLLE2_BASE_inst' to cell 'PLLE2_BASE' [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/PLL_Module.vhd:62]
-INFO: [Synth 8-113] binding component instance 'BUFG_inst' to cell 'BUFG' [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/PLL_Module.vhd:114]
+INFO: [Synth 8-113] binding component instance 'BUFG_inst' to cell 'BUFG' [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/PLL_Module.vhd:123]
 INFO: [Synth 8-256] done synthesizing module 'PLL_Module' (0#1) [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/PLL_Module.vhd:52]
-INFO: [Synth 8-3491] module 'ClockMUX' declared at 'C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/ClockMUX.vhd:34' bound to instance 'MUX_CLK_COM' of component 'ClockMUX' [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/ClockManager.vhd:125]
+INFO: [Synth 8-3491] module 'ClockMUX' declared at 'C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/ClockMUX.vhd:34' bound to instance 'MUX_CLK_COM' of component 'ClockMUX' [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/ClockManager.vhd:127]
 INFO: [Synth 8-638] synthesizing module 'ClockMUX' [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/ClockMUX.vhd:42]
 INFO: [Synth 8-3491] module 'Bufgmux_Module' declared at 'C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/Bufgmux_Module.vhd:34' bound to instance 'MUX_In' of component 'Bufgmux_Module' [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/ClockMUX.vhd:65]
 INFO: [Synth 8-638] synthesizing module 'Bufgmux_Module' [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/Bufgmux_Module.vhd:43]
@@ -186,8 +186,8 @@ INFO: [Synth 8-113] binding component instance 'BUFGMUX_CTRL_inst' to cell 'BUFG
 INFO: [Synth 8-256] done synthesizing module 'Bufgmux_Module' (0#1) [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/Bufgmux_Module.vhd:43]
 INFO: [Synth 8-3491] module 'Bufgmux_Module' declared at 'C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/Bufgmux_Module.vhd:34' bound to instance 'MUX_Out' of component 'Bufgmux_Module' [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/ClockMUX.vhd:76]
 INFO: [Synth 8-256] done synthesizing module 'ClockMUX' (0#1) [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/ClockMUX.vhd:42]
-INFO: [Synth 8-3491] module 'ClockMUX' declared at 'C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/ClockMUX.vhd:34' bound to instance 'MUX_CLK_DIV_COM' of component 'ClockMUX' [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/ClockManager.vhd:134]
-INFO: [Synth 8-256] done synthesizing module 'ClockManager' (0#1) [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/ClockManager.vhd:46]
+INFO: [Synth 8-3491] module 'ClockMUX' declared at 'C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/ClockMUX.vhd:34' bound to instance 'MUX_CLK_DIV_COM' of component 'ClockMUX' [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/ClockManager.vhd:136]
+INFO: [Synth 8-256] done synthesizing module 'ClockManager' (0#1) [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/ClockManager.vhd:47]
 	Parameter SYNC_STAGES bound to: 6 - type: integer 
 INFO: [Synth 8-3491] module 'Synchronizer' declared at 'C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/Synchronizer.vhd:35' bound to instance 'SYNCH_COM_0' of component 'Synchronizer' [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/AcquisitionManager.vhd:202]
 INFO: [Synth 8-638] synthesizing module 'Synchronizer' [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/Synchronizer.vhd:48]
@@ -261,8 +261,8 @@ INFO: [Synth 8-3491] module 'Iserdese_Block' declared at 'C:/Users/edgar.rincon/
 INFO: [Synth 8-256] done synthesizing module 'DataAcquisition' (0#1) [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/DataAcquisition.vhd:61]
 INFO: [Synth 8-256] done synthesizing module 'AcquisitionManager' (0#1) [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/AcquisitionManager.vhd:71]
 INFO: [Synth 8-3491] module 'selfTrigger_Module' declared at 'C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/selfTrigger_Module.vhd:38' bound to instance 'AFE0_ST_CH_0' of component 'selfTrigger_Module' [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/daphne1.vhd:366]
-INFO: [Synth 8-638] synthesizing module 'selfTrigger_Module' [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/selfTrigger_Module.vhd:76]
-INFO: [Synth 8-3491] module 'highPass_FirstOrder' declared at 'C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/highPass_FirstOrder.vhd:39' bound to instance 'HP_FILTER_COM' of component 'highPass_FirstOrder' [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/selfTrigger_Module.vhd:289]
+INFO: [Synth 8-638] synthesizing module 'selfTrigger_Module' [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/selfTrigger_Module.vhd:80]
+INFO: [Synth 8-3491] module 'highPass_FirstOrder' declared at 'C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/highPass_FirstOrder.vhd:39' bound to instance 'HP_FILTER_COM' of component 'highPass_FirstOrder' [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/selfTrigger_Module.vhd:329]
 INFO: [Synth 8-638] synthesizing module 'highPass_FirstOrder' [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/highPass_FirstOrder.vhd:57]
 	Parameter Data_Size bound to: 14 - type: integer 
 	Parameter Coefficient_Resolution bound to: 17 - type: integer 
@@ -396,7 +396,7 @@ INFO: [Synth 8-638] synthesizing module 'dsp_slice__parameterized1' [C:/Users/ed
 INFO: [Synth 8-113] binding component instance 'DSP48E1_inst' to cell 'DSP48E1' [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/dsp_slice.vhd:89]
 INFO: [Synth 8-256] done synthesizing module 'dsp_slice__parameterized1' (0#1) [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/dsp_slice.vhd:86]
 INFO: [Synth 8-256] done synthesizing module 'highPass_FirstOrder' (0#1) [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/highPass_FirstOrder.vhd:57]
-INFO: [Synth 8-3491] module 'lowPass_FirstOrder' declared at 'C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/lowPass_FirstOrder.vhd:42' bound to instance 'LP_FILTER_COM' of component 'lowPass_FirstOrder' [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/selfTrigger_Module.vhd:319]
+INFO: [Synth 8-3491] module 'lowPass_FirstOrder' declared at 'C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/lowPass_FirstOrder.vhd:42' bound to instance 'LP_FILTER_COM' of component 'lowPass_FirstOrder' [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/selfTrigger_Module.vhd:359]
 INFO: [Synth 8-638] synthesizing module 'lowPass_FirstOrder' [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/lowPass_FirstOrder.vhd:60]
 	Parameter Data_Size bound to: 14 - type: integer 
 	Parameter Coefficient_Resolution bound to: 17 - type: integer 
@@ -424,13 +424,13 @@ INFO: [Synth 8-3491] module 'dsp_slice' declared at 'C:/Users/edgar.rincon/Docum
 	Parameter OPModeReg bound to: 0 - type: integer 
 INFO: [Synth 8-3491] module 'dsp_slice' declared at 'C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/dsp_slice.vhd:35' bound to instance 'fir_feedback' of component 'dsp_slice' [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/lowPass_FirstOrder.vhd:226]
 INFO: [Synth 8-256] done synthesizing module 'lowPass_FirstOrder' (0#1) [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/lowPass_FirstOrder.vhd:60]
-INFO: [Synth 8-3491] module 'self_trigger' declared at 'C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/Self-trigger_VHDL.vhd:37' bound to instance 'SELF_TRIGGER_TOP_COM' of component 'self_trigger' [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/selfTrigger_Module.vhd:334]
-INFO: [Synth 8-638] synthesizing module 'self_trigger' [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/Self-trigger_VHDL.vhd:59]
+INFO: [Synth 8-3491] module 'trigger_matching_filters' declared at 'C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/trigger_matching_filters.vhd:37' bound to instance 'SELF_TRIGGER_ALGORITHM' of component 'trigger_matching_filters' [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/selfTrigger_Module.vhd:374]
+INFO: [Synth 8-638] synthesizing module 'trigger_matching_filters' [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/trigger_matching_filters.vhd:59]
 	Parameter g_INPUT_WIDTH bound to: 14 - type: integer 
 	Parameter g_SUM_WIDTH bound to: 14 - type: integer 
 	Parameter g_MULT_WIDTH bound to: 28 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'self_trigger' (0#1) [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/Self-trigger_VHDL.vhd:59]
-INFO: [Synth 8-3491] module 'trigSaveReadFSM' declared at 'C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/trigSaveReadFSM.vhd:37' bound to instance 'FSM_CTRL_COM' of component 'trigSaveReadFSM' [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/selfTrigger_Module.vhd:383]
+INFO: [Synth 8-256] done synthesizing module 'trigger_matching_filters' (0#1) [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/trigger_matching_filters.vhd:59]
+INFO: [Synth 8-3491] module 'trigSaveReadFSM' declared at 'C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/trigSaveReadFSM.vhd:37' bound to instance 'FSM_CTRL_COM' of component 'trigSaveReadFSM' [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/selfTrigger_Module.vhd:423]
 INFO: [Synth 8-638] synthesizing module 'trigSaveReadFSM' [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/trigSaveReadFSM.vhd:58]
 INFO: [Synth 8-226] default block is never used [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/trigSaveReadFSM.vhd:127]
 INFO: [Synth 8-226] default block is never used [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/trigSaveReadFSM.vhd:154]
@@ -440,7 +440,7 @@ INFO: [Synth 8-256] done synthesizing module 'trigSaveReadFSM' (0#1) [C:/Users/e
 	Parameter RD_CLK_FREQ bound to: 62.500000 - type: double 
 	Parameter AEMPTY_OFF bound to: 4'b0110 
 	Parameter AFULL_OFF bound to: 4'b1000 
-INFO: [Synth 8-3491] module 'AXI_FIFO_Adapter' declared at 'C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/AXI_FIFO_Adapter.vhd:36' bound to instance 'FIFO_INST_COM' of component 'AXI_FIFO_Adapter' [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/selfTrigger_Module.vhd:405]
+INFO: [Synth 8-3491] module 'AXI_FIFO_Adapter' declared at 'C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/AXI_FIFO_Adapter.vhd:36' bound to instance 'FIFO_INST_COM' of component 'AXI_FIFO_Adapter' [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/selfTrigger_Module.vhd:445]
 INFO: [Synth 8-638] synthesizing module 'AXI_FIFO_Adapter' [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/AXI_FIFO_Adapter.vhd:79]
 	Parameter WR_CLK_FREQ bound to: 62.500000 - type: double 
 	Parameter RD_CLK_FREQ bound to: 62.500000 - type: double 
@@ -525,7 +525,7 @@ INFO: [Synth 8-256] done synthesizing module 'FIFOManager' (0#1) [C:/Users/edgar
 INFO: [Synth 8-226] default block is never used [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/AXI_FIFO_Adapter.vhd:212]
 INFO: [Synth 8-226] default block is never used [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/AXI_FIFO_Adapter.vhd:245]
 INFO: [Synth 8-256] done synthesizing module 'AXI_FIFO_Adapter' (0#1) [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/AXI_FIFO_Adapter.vhd:79]
-INFO: [Synth 8-256] done synthesizing module 'selfTrigger_Module' (0#1) [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/selfTrigger_Module.vhd:76]
+INFO: [Synth 8-256] done synthesizing module 'selfTrigger_Module' (0#1) [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/selfTrigger_Module.vhd:80]
 INFO: [Synth 8-3491] module 'eth_core' declared at 'C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/eth_core.vhd:36' bound to instance 'ETH_MOD' of component 'eth_core' [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/daphne1.vhd:405]
 INFO: [Synth 8-638] synthesizing module 'eth_core' [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/eth_core.vhd:71]
 INFO: [Synth 8-113] binding component instance 'GTP_REFCLK_P_COM' to cell 'IBUF' [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/eth_core.vhd:215]
@@ -1423,11 +1423,11 @@ INFO: [Synth 8-6155] done synthesizing module 'eth_mac_stack' (0#1) [C:/Users/ed
 INFO: [Synth 8-256] done synthesizing module 'eth_core' (0#1) [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/eth_core.vhd:71]
 INFO: [Synth 8-256] done synthesizing module 'daphne1' (0#1) [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/daphne1.vhd:107]
 WARNING: [Synth 8-3848] Net ph_ovfl in module/entity DataAcquisition does not have driver. [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/DataAcquisition.vhd:52]
-WARNING: [Synth 8-6014] Unused sequential element r_hpf_data_15_reg was removed.  [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/Self-trigger_VHDL.vhd:319]
+WARNING: [Synth 8-6014] Unused sequential element r_hpf_data_15_reg was removed.  [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/trigger_matching_filters.vhd:319]
 WARNING: [Synth 8-3848] Net dip_pattern in module/entity unimacro_FIFO_DUALCLOCK_MACRO does not have driver. [C:/Xilinx/Vivado/2023.1/data/vhdl/src/unimacro/FIFO_DUALCLOCK_MACRO.vhd:590]
-WARNING: [Synth 8-3848] Net network_prediction in module/entity selfTrigger_Module does not have driver. [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/selfTrigger_Module.vhd:281]
-WARNING: [Synth 8-3848] Net network_agg in module/entity selfTrigger_Module does not have driver. [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/selfTrigger_Module.vhd:282]
-WARNING: [Synth 8-3848] Net neural_network_data_out_aux in module/entity selfTrigger_Module does not have driver. [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/selfTrigger_Module.vhd:280]
+WARNING: [Synth 8-3848] Net network_prediction in module/entity selfTrigger_Module does not have driver. [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/selfTrigger_Module.vhd:285]
+WARNING: [Synth 8-3848] Net network_agg in module/entity selfTrigger_Module does not have driver. [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/selfTrigger_Module.vhd:286]
+WARNING: [Synth 8-3848] Net neural_network_data_out_aux in module/entity selfTrigger_Module does not have driver. [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/selfTrigger_Module.vhd:284]
 WARNING: [Synth 8-6014] Unused sequential element pll0lock_prev_reg was removed.  [c:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.gen/sources_1/ip/gig_ethernet_pcs_pma_0/synth/transceiver/gig_ethernet_pcs_pma_0_tx_startup_fsm.vhd:346]
 WARNING: [Synth 8-6014] Unused sequential element pll1lock_prev_reg was removed.  [c:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.gen/sources_1/ip/gig_ethernet_pcs_pma_0/synth/transceiver/gig_ethernet_pcs_pma_0_tx_startup_fsm.vhd:347]
 WARNING: [Synth 8-6014] Unused sequential element pll0lock_ris_edge_reg was removed.  [c:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.gen/sources_1/ip/gig_ethernet_pcs_pma_0/synth/transceiver/gig_ethernet_pcs_pma_0_tx_startup_fsm.vhd:367]
@@ -1597,18 +1597,18 @@ WARNING: [Synth 8-7129] Port local_ip[2] in module ip is either unconnected or h
 WARNING: [Synth 8-7129] Port local_ip[1] in module ip is either unconnected or has no load
 INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:35 ; elapsed = 00:00:37 . Memory (MB): peak = 2811.062 ; gain = 877.719
+Finished RTL Elaboration : Time (s): cpu = 00:00:36 ; elapsed = 00:00:37 . Memory (MB): peak = 2813.086 ; gain = 880.516
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:36 ; elapsed = 00:00:38 . Memory (MB): peak = 2811.062 ; gain = 877.719
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:36 ; elapsed = 00:00:38 . Memory (MB): peak = 2813.086 ; gain = 880.516
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:36 ; elapsed = 00:00:38 . Memory (MB): peak = 2811.062 ; gain = 877.719
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:36 ; elapsed = 00:00:38 . Memory (MB): peak = 2813.086 ; gain = 880.516
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.346 . Memory (MB): peak = 2811.062 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.345 . Memory (MB): peak = 2813.086 ; gain = 0.000
 INFO: [Netlist 29-17] Analyzing 228 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
@@ -1649,7 +1649,7 @@ INFO: [Project 1-236] Implementation specific constraints were found while readi
 Resolution: To avoid this warning, move constraints listed in [.Xil/daphne1_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 2817.219 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 2813.086 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 209 instances were transformed.
   BUFGMUX => BUFGCTRL (inverted pins: CE0): 1 instance 
@@ -1660,18 +1660,18 @@ INFO: [Project 1-111] Unisim Transformation Summary:
   PLLE2_BASE => PLLE2_ADV: 1 instance 
   SRL16 => SRL16E: 2 instances
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.106 . Memory (MB): peak = 2817.219 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.088 . Memory (MB): peak = 2813.086 ; gain = 0.000
 INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:51 ; elapsed = 00:00:53 . Memory (MB): peak = 2817.219 ; gain = 883.875
+Finished Constraint Validation : Time (s): cpu = 00:00:51 ; elapsed = 00:00:52 . Memory (MB): peak = 2813.086 ; gain = 880.516
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a200tfbg676-2
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:51 ; elapsed = 00:00:53 . Memory (MB): peak = 2817.219 ; gain = 883.875
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:51 ; elapsed = 00:00:52 . Memory (MB): peak = 2813.086 ; gain = 880.516
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
@@ -1870,7 +1870,7 @@ Applied set_property ASYNC_REG = true for ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_
 Applied set_property KEEP_HIERARCHY = SOFT for ETH_MOD/ETH_PHY_COM/U0. (constraint file  C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.runs/synth_1/dont_touch.xdc, line 16).
 Applied set_property KEEP_HIERARCHY = SOFT for ETH_MOD/ETH_PHY_COM. (constraint file  auto generated constraint).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:52 ; elapsed = 00:00:54 . Memory (MB): peak = 2817.219 ; gain = 883.875
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:51 ; elapsed = 00:00:53 . Memory (MB): peak = 2813.086 ; gain = 880.516
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'AlignFSM'
 INFO: [Synth 8-802] inferred FSM for state register 'state_bitslip_reg' in module 'AlignFSM'
@@ -1896,13 +1896,12 @@ INFO: [Synth 8-802] inferred FSM for state register 'state_reg_reg' in module 'u
 ---------------------------------------------------------------------------------------------------
                    State |                     New Encoding |                Previous Encoding 
 ---------------------------------------------------------------------------------------------------
-             not_aligned |                          0000001 |                              000
-              bit_align0 |                          0000010 |                              001
-              bit_align1 |                          0000100 |                              010
-              bit_align2 |                          0001000 |                              011
-              bit_align3 |                          0010000 |                              100
-             frame_align |                          0100000 |                              101
-              align_done |                          1000000 |                              110
+             not_aligned |                           000001 |                              000
+              bit_align0 |                           000010 |                              001
+              bit_align1 |                           000100 |                              010
+              bit_align2 |                           001000 |                              011
+             frame_align |                           010000 |                              101
+              align_done |                           100000 |                              110
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'one-hot' in module 'AlignFSM'
 ---------------------------------------------------------------------------------------------------
@@ -2144,7 +2143,7 @@ STATE_WRITE_PAYLOAD_LAST |                               11 |                   
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'state_reg_reg' using encoding 'sequential' in module 'udp_ip_tx'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:59 ; elapsed = 00:01:02 . Memory (MB): peak = 2817.219 ; gain = 883.875
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:58 ; elapsed = 00:01:00 . Memory (MB): peak = 2813.086 ; gain = 880.516
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -2207,9 +2206,8 @@ Detailed RTL Component Info :
 	               48 Bit    Registers := 32    
 	               36 Bit    Registers := 1     
 	               32 Bit    Registers := 22    
-	               28 Bit    Registers := 1     
 	               16 Bit    Registers := 67    
-	               14 Bit    Registers := 113   
+	               14 Bit    Registers := 112   
 	               13 Bit    Registers := 7     
 	               12 Bit    Registers := 1     
 	               10 Bit    Registers := 15    
@@ -2219,8 +2217,8 @@ Detailed RTL Component Info :
 	                6 Bit    Registers := 12    
 	                5 Bit    Registers := 3     
 	                4 Bit    Registers := 21    
-	                3 Bit    Registers := 18    
-	                2 Bit    Registers := 56    
+	                3 Bit    Registers := 17    
+	                2 Bit    Registers := 57    
 	                1 Bit    Registers := 526   
 +---RAMs : 
 	              80K Bit	(8192 X 10 bit)          RAMs := 4     
@@ -2265,14 +2263,12 @@ Detailed RTL Component Info :
 	   8 Input    8 Bit        Muxes := 6     
 	   5 Input    8 Bit        Muxes := 2     
 	   3 Input    8 Bit        Muxes := 4     
-	   7 Input    7 Bit        Muxes := 1     
-	   2 Input    7 Bit        Muxes := 6     
 	   3 Input    7 Bit        Muxes := 1     
-	   2 Input    6 Bit        Muxes := 3     
+	   6 Input    6 Bit        Muxes := 2     
+	   2 Input    6 Bit        Muxes := 8     
 	   8 Input    6 Bit        Muxes := 1     
 	   5 Input    6 Bit        Muxes := 1     
 	   4 Input    6 Bit        Muxes := 1     
-	   6 Input    6 Bit        Muxes := 1     
 	   2 Input    5 Bit        Muxes := 4     
 	   4 Input    4 Bit        Muxes := 2     
 	   2 Input    4 Bit        Muxes := 27    
@@ -2280,29 +2276,30 @@ Detailed RTL Component Info :
 	  11 Input    4 Bit        Muxes := 1     
 	  21 Input    4 Bit        Muxes := 1     
 	   2 Input    3 Bit        Muxes := 14    
-	   7 Input    3 Bit        Muxes := 3     
+	   6 Input    3 Bit        Muxes := 3     
 	   3 Input    3 Bit        Muxes := 11    
 	   4 Input    3 Bit        Muxes := 6     
 	  21 Input    3 Bit        Muxes := 1     
 	   5 Input    3 Bit        Muxes := 1     
 	  38 Input    3 Bit        Muxes := 1     
-	   4 Input    2 Bit        Muxes := 12    
+	   7 Input    3 Bit        Muxes := 2     
+	   3 Input    2 Bit        Muxes := 8     
 	   2 Input    2 Bit        Muxes := 66    
-	   3 Input    2 Bit        Muxes := 7     
+	   4 Input    2 Bit        Muxes := 11    
 	  22 Input    2 Bit        Muxes := 1     
 	  10 Input    2 Bit        Muxes := 1     
 	   8 Input    2 Bit        Muxes := 3     
-	   7 Input    1 Bit        Muxes := 7     
-	   5 Input    1 Bit        Muxes := 37    
+	   8 Input    1 Bit        Muxes := 30    
+	   4 Input    1 Bit        Muxes := 63    
 	   3 Input    1 Bit        Muxes := 20    
 	   2 Input    1 Bit        Muxes := 476   
-	   4 Input    1 Bit        Muxes := 62    
 	  10 Input    1 Bit        Muxes := 18    
+	   5 Input    1 Bit        Muxes := 36    
 	  15 Input    1 Bit        Muxes := 2     
-	   8 Input    1 Bit        Muxes := 28    
 	   9 Input    1 Bit        Muxes := 5     
 	  11 Input    1 Bit        Muxes := 17    
 	  21 Input    1 Bit        Muxes := 25    
+	   7 Input    1 Bit        Muxes := 6     
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -2319,87 +2316,87 @@ Finished Part Resource Summary
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
-DSP Report: Generating DSP SELF_TRIGGER_TOP_COM/r_multdata_14_reg, operation Mode is: (A''*(B:0x3ffef))'.
-DSP Report: register SELF_TRIGGER_TOP_COM/r_hpf_data_13_reg is absorbed into DSP SELF_TRIGGER_TOP_COM/r_multdata_14_reg.
-DSP Report: register SELF_TRIGGER_TOP_COM/r_hpf_data_14_reg is absorbed into DSP SELF_TRIGGER_TOP_COM/r_multdata_14_reg.
-DSP Report: register SELF_TRIGGER_TOP_COM/r_multdata_14_reg is absorbed into DSP SELF_TRIGGER_TOP_COM/r_multdata_14_reg.
-DSP Report: operator SELF_TRIGGER_TOP_COM/r_multdata_140 is absorbed into DSP SELF_TRIGGER_TOP_COM/r_multdata_14_reg.
-DSP Report: Generating DSP SELF_TRIGGER_TOP_COM/r_sumamult30, operation Mode is: PCIN+(A''*(B:0x3ffb7))'.
-DSP Report: register SELF_TRIGGER_TOP_COM/r_hpf_data_7_reg is absorbed into DSP SELF_TRIGGER_TOP_COM/r_sumamult30.
-DSP Report: register SELF_TRIGGER_TOP_COM/r_hpf_data_8_reg is absorbed into DSP SELF_TRIGGER_TOP_COM/r_sumamult30.
-DSP Report: register SELF_TRIGGER_TOP_COM/r_multdata_8_reg is absorbed into DSP SELF_TRIGGER_TOP_COM/r_sumamult30.
-DSP Report: operator SELF_TRIGGER_TOP_COM/r_multdata_80 is absorbed into DSP SELF_TRIGGER_TOP_COM/r_sumamult30.
-DSP Report: operator SELF_TRIGGER_TOP_COM/r_sumamult30 is absorbed into DSP SELF_TRIGGER_TOP_COM/r_sumamult30.
-DSP Report: Generating DSP SELF_TRIGGER_TOP_COM/r_sumamult30, operation Mode is: PCIN+(A''*(B:0x3ffe0))'.
-DSP Report: register SELF_TRIGGER_TOP_COM/r_hpf_data_12_reg is absorbed into DSP SELF_TRIGGER_TOP_COM/r_sumamult30.
-DSP Report: register SELF_TRIGGER_TOP_COM/r_hpf_data_13_reg is absorbed into DSP SELF_TRIGGER_TOP_COM/r_sumamult30.
-DSP Report: register SELF_TRIGGER_TOP_COM/r_multdata_13_reg is absorbed into DSP SELF_TRIGGER_TOP_COM/r_sumamult30.
-DSP Report: operator SELF_TRIGGER_TOP_COM/r_multdata_130 is absorbed into DSP SELF_TRIGGER_TOP_COM/r_sumamult30.
-DSP Report: operator SELF_TRIGGER_TOP_COM/r_sumamult30 is absorbed into DSP SELF_TRIGGER_TOP_COM/r_sumamult30.
-DSP Report: Generating DSP SELF_TRIGGER_TOP_COM/r_sumamult30, operation Mode is: PCIN+(A''*(B:0x3ffd4))'.
-DSP Report: register SELF_TRIGGER_TOP_COM/r_hpf_data_11_reg is absorbed into DSP SELF_TRIGGER_TOP_COM/r_sumamult30.
-DSP Report: register SELF_TRIGGER_TOP_COM/r_hpf_data_12_reg is absorbed into DSP SELF_TRIGGER_TOP_COM/r_sumamult30.
-DSP Report: register SELF_TRIGGER_TOP_COM/r_multdata_12_reg is absorbed into DSP SELF_TRIGGER_TOP_COM/r_sumamult30.
-DSP Report: operator SELF_TRIGGER_TOP_COM/r_multdata_120 is absorbed into DSP SELF_TRIGGER_TOP_COM/r_sumamult30.
-DSP Report: operator SELF_TRIGGER_TOP_COM/r_sumamult30 is absorbed into DSP SELF_TRIGGER_TOP_COM/r_sumamult30.
-DSP Report: Generating DSP SELF_TRIGGER_TOP_COM/r_sumamult30, operation Mode is: PCIN+(ACIN*(B:0x3ffca))'.
-DSP Report: register SELF_TRIGGER_TOP_COM/r_multdata_11_reg is absorbed into DSP SELF_TRIGGER_TOP_COM/r_sumamult30.
-DSP Report: operator SELF_TRIGGER_TOP_COM/r_multdata_110 is absorbed into DSP SELF_TRIGGER_TOP_COM/r_sumamult30.
-DSP Report: operator SELF_TRIGGER_TOP_COM/r_sumamult30 is absorbed into DSP SELF_TRIGGER_TOP_COM/r_sumamult30.
-DSP Report: Generating DSP SELF_TRIGGER_TOP_COM/r_sumamult30, operation Mode is: PCIN+(A''*(B:0x3ffc2))'.
-DSP Report: register SELF_TRIGGER_TOP_COM/r_hpf_data_9_reg is absorbed into DSP SELF_TRIGGER_TOP_COM/r_sumamult30.
-DSP Report: register SELF_TRIGGER_TOP_COM/r_hpf_data_10_reg is absorbed into DSP SELF_TRIGGER_TOP_COM/r_sumamult30.
-DSP Report: register SELF_TRIGGER_TOP_COM/r_multdata_10_reg is absorbed into DSP SELF_TRIGGER_TOP_COM/r_sumamult30.
-DSP Report: operator SELF_TRIGGER_TOP_COM/r_multdata_100 is absorbed into DSP SELF_TRIGGER_TOP_COM/r_sumamult30.
-DSP Report: operator SELF_TRIGGER_TOP_COM/r_sumamult30 is absorbed into DSP SELF_TRIGGER_TOP_COM/r_sumamult30.
-DSP Report: Generating DSP SELF_TRIGGER_TOP_COM/r_sumamult30, operation Mode is: PCIN+(ACIN*(B:0x3ffbb))'.
-DSP Report: register SELF_TRIGGER_TOP_COM/r_multdata_9_reg is absorbed into DSP SELF_TRIGGER_TOP_COM/r_sumamult30.
-DSP Report: operator SELF_TRIGGER_TOP_COM/r_multdata_90 is absorbed into DSP SELF_TRIGGER_TOP_COM/r_sumamult30.
-DSP Report: operator SELF_TRIGGER_TOP_COM/r_sumamult30 is absorbed into DSP SELF_TRIGGER_TOP_COM/r_sumamult30.
-DSP Report: Generating DSP SELF_TRIGGER_TOP_COM/r_multdata_7_reg, operation Mode is: (A''*(B:0x3ffb4))'.
-DSP Report: register SELF_TRIGGER_TOP_COM/r_hpf_data_6_reg is absorbed into DSP SELF_TRIGGER_TOP_COM/r_multdata_7_reg.
-DSP Report: register SELF_TRIGGER_TOP_COM/r_hpf_data_7_reg is absorbed into DSP SELF_TRIGGER_TOP_COM/r_multdata_7_reg.
-DSP Report: register SELF_TRIGGER_TOP_COM/r_multdata_7_reg is absorbed into DSP SELF_TRIGGER_TOP_COM/r_multdata_7_reg.
-DSP Report: operator SELF_TRIGGER_TOP_COM/r_multdata_70 is absorbed into DSP SELF_TRIGGER_TOP_COM/r_multdata_7_reg.
-DSP Report: Generating DSP SELF_TRIGGER_TOP_COM/r_sumamult10, operation Mode is: PCIN+(A''*(B:0x3ffbe))'.
-DSP Report: register hp_filt_data_reg_reg is absorbed into DSP SELF_TRIGGER_TOP_COM/r_sumamult10.
-DSP Report: register SELF_TRIGGER_TOP_COM/r_hpf_data_0_reg is absorbed into DSP SELF_TRIGGER_TOP_COM/r_sumamult10.
-DSP Report: register SELF_TRIGGER_TOP_COM/r_multdata_0_reg is absorbed into DSP SELF_TRIGGER_TOP_COM/r_sumamult10.
-DSP Report: operator SELF_TRIGGER_TOP_COM/r_multdata_00 is absorbed into DSP SELF_TRIGGER_TOP_COM/r_sumamult10.
-DSP Report: operator SELF_TRIGGER_TOP_COM/r_sumamult10 is absorbed into DSP SELF_TRIGGER_TOP_COM/r_sumamult10.
-DSP Report: Generating DSP SELF_TRIGGER_TOP_COM/r_sumamult10, operation Mode is: PCIN+(A''*(B:0x3ffb2))'.
-DSP Report: register SELF_TRIGGER_TOP_COM/r_hpf_data_5_reg is absorbed into DSP SELF_TRIGGER_TOP_COM/r_sumamult10.
-DSP Report: register SELF_TRIGGER_TOP_COM/r_hpf_data_6_reg is absorbed into DSP SELF_TRIGGER_TOP_COM/r_sumamult10.
-DSP Report: register SELF_TRIGGER_TOP_COM/r_multdata_6_reg is absorbed into DSP SELF_TRIGGER_TOP_COM/r_sumamult10.
-DSP Report: operator SELF_TRIGGER_TOP_COM/r_multdata_60 is absorbed into DSP SELF_TRIGGER_TOP_COM/r_sumamult10.
-DSP Report: operator SELF_TRIGGER_TOP_COM/r_sumamult10 is absorbed into DSP SELF_TRIGGER_TOP_COM/r_sumamult10.
-DSP Report: Generating DSP SELF_TRIGGER_TOP_COM/r_sumamult10, operation Mode is: PCIN+(A''*(B:0x3ffb2))'.
-DSP Report: register SELF_TRIGGER_TOP_COM/r_hpf_data_4_reg is absorbed into DSP SELF_TRIGGER_TOP_COM/r_sumamult10.
-DSP Report: register SELF_TRIGGER_TOP_COM/r_hpf_data_5_reg is absorbed into DSP SELF_TRIGGER_TOP_COM/r_sumamult10.
-DSP Report: register SELF_TRIGGER_TOP_COM/r_multdata_5_reg is absorbed into DSP SELF_TRIGGER_TOP_COM/r_sumamult10.
-DSP Report: operator SELF_TRIGGER_TOP_COM/r_multdata_50 is absorbed into DSP SELF_TRIGGER_TOP_COM/r_sumamult10.
-DSP Report: operator SELF_TRIGGER_TOP_COM/r_sumamult10 is absorbed into DSP SELF_TRIGGER_TOP_COM/r_sumamult10.
-DSP Report: Generating DSP SELF_TRIGGER_TOP_COM/r_sumamult10, operation Mode is: PCIN+(ACIN*(B:0x3ffb3))'.
-DSP Report: register SELF_TRIGGER_TOP_COM/r_multdata_4_reg is absorbed into DSP SELF_TRIGGER_TOP_COM/r_sumamult10.
-DSP Report: operator SELF_TRIGGER_TOP_COM/r_multdata_40 is absorbed into DSP SELF_TRIGGER_TOP_COM/r_sumamult10.
-DSP Report: operator SELF_TRIGGER_TOP_COM/r_sumamult10 is absorbed into DSP SELF_TRIGGER_TOP_COM/r_sumamult10.
-DSP Report: Generating DSP SELF_TRIGGER_TOP_COM/r_sumamult10, operation Mode is: PCIN+(A''*(B:0x3ffb4))'.
-DSP Report: register SELF_TRIGGER_TOP_COM/r_hpf_data_2_reg is absorbed into DSP SELF_TRIGGER_TOP_COM/r_sumamult10.
-DSP Report: register SELF_TRIGGER_TOP_COM/r_hpf_data_3_reg is absorbed into DSP SELF_TRIGGER_TOP_COM/r_sumamult10.
-DSP Report: register SELF_TRIGGER_TOP_COM/r_multdata_3_reg is absorbed into DSP SELF_TRIGGER_TOP_COM/r_sumamult10.
-DSP Report: operator SELF_TRIGGER_TOP_COM/r_multdata_30 is absorbed into DSP SELF_TRIGGER_TOP_COM/r_sumamult10.
-DSP Report: operator SELF_TRIGGER_TOP_COM/r_sumamult10 is absorbed into DSP SELF_TRIGGER_TOP_COM/r_sumamult10.
-DSP Report: Generating DSP SELF_TRIGGER_TOP_COM/r_sumamult10, operation Mode is: PCIN+(ACIN*(B:0x3ffb7))'.
-DSP Report: register SELF_TRIGGER_TOP_COM/r_multdata_2_reg is absorbed into DSP SELF_TRIGGER_TOP_COM/r_sumamult10.
-DSP Report: operator SELF_TRIGGER_TOP_COM/r_multdata_20 is absorbed into DSP SELF_TRIGGER_TOP_COM/r_sumamult10.
-DSP Report: operator SELF_TRIGGER_TOP_COM/r_sumamult10 is absorbed into DSP SELF_TRIGGER_TOP_COM/r_sumamult10.
-DSP Report: Generating DSP SELF_TRIGGER_TOP_COM/r_sumamult1_reg, operation Mode is: (PCIN+(A''*(B:0x3ffba))')'.
-DSP Report: register SELF_TRIGGER_TOP_COM/r_hpf_data_0_reg is absorbed into DSP SELF_TRIGGER_TOP_COM/r_sumamult1_reg.
-DSP Report: register SELF_TRIGGER_TOP_COM/r_hpf_data_1_reg is absorbed into DSP SELF_TRIGGER_TOP_COM/r_sumamult1_reg.
-DSP Report: register SELF_TRIGGER_TOP_COM/r_sumamult1_reg is absorbed into DSP SELF_TRIGGER_TOP_COM/r_sumamult1_reg.
-DSP Report: register SELF_TRIGGER_TOP_COM/r_multdata_1_reg is absorbed into DSP SELF_TRIGGER_TOP_COM/r_sumamult1_reg.
-DSP Report: operator SELF_TRIGGER_TOP_COM/r_sumamult10 is absorbed into DSP SELF_TRIGGER_TOP_COM/r_sumamult1_reg.
-DSP Report: operator SELF_TRIGGER_TOP_COM/r_multdata_10 is absorbed into DSP SELF_TRIGGER_TOP_COM/r_sumamult1_reg.
+DSP Report: Generating DSP SELF_TRIGGER_ALGORITHM/r_multdata_14_reg, operation Mode is: (A''*(B:0x3ffef))'.
+DSP Report: register SELF_TRIGGER_ALGORITHM/r_hpf_data_13_reg is absorbed into DSP SELF_TRIGGER_ALGORITHM/r_multdata_14_reg.
+DSP Report: register SELF_TRIGGER_ALGORITHM/r_hpf_data_14_reg is absorbed into DSP SELF_TRIGGER_ALGORITHM/r_multdata_14_reg.
+DSP Report: register SELF_TRIGGER_ALGORITHM/r_multdata_14_reg is absorbed into DSP SELF_TRIGGER_ALGORITHM/r_multdata_14_reg.
+DSP Report: operator SELF_TRIGGER_ALGORITHM/r_multdata_140 is absorbed into DSP SELF_TRIGGER_ALGORITHM/r_multdata_14_reg.
+DSP Report: Generating DSP SELF_TRIGGER_ALGORITHM/r_sumamult30, operation Mode is: PCIN+(A''*(B:0x3ffb7))'.
+DSP Report: register SELF_TRIGGER_ALGORITHM/r_hpf_data_7_reg is absorbed into DSP SELF_TRIGGER_ALGORITHM/r_sumamult30.
+DSP Report: register SELF_TRIGGER_ALGORITHM/r_hpf_data_8_reg is absorbed into DSP SELF_TRIGGER_ALGORITHM/r_sumamult30.
+DSP Report: register SELF_TRIGGER_ALGORITHM/r_multdata_8_reg is absorbed into DSP SELF_TRIGGER_ALGORITHM/r_sumamult30.
+DSP Report: operator SELF_TRIGGER_ALGORITHM/r_multdata_80 is absorbed into DSP SELF_TRIGGER_ALGORITHM/r_sumamult30.
+DSP Report: operator SELF_TRIGGER_ALGORITHM/r_sumamult30 is absorbed into DSP SELF_TRIGGER_ALGORITHM/r_sumamult30.
+DSP Report: Generating DSP SELF_TRIGGER_ALGORITHM/r_sumamult30, operation Mode is: PCIN+(A''*(B:0x3ffe0))'.
+DSP Report: register SELF_TRIGGER_ALGORITHM/r_hpf_data_12_reg is absorbed into DSP SELF_TRIGGER_ALGORITHM/r_sumamult30.
+DSP Report: register SELF_TRIGGER_ALGORITHM/r_hpf_data_13_reg is absorbed into DSP SELF_TRIGGER_ALGORITHM/r_sumamult30.
+DSP Report: register SELF_TRIGGER_ALGORITHM/r_multdata_13_reg is absorbed into DSP SELF_TRIGGER_ALGORITHM/r_sumamult30.
+DSP Report: operator SELF_TRIGGER_ALGORITHM/r_multdata_130 is absorbed into DSP SELF_TRIGGER_ALGORITHM/r_sumamult30.
+DSP Report: operator SELF_TRIGGER_ALGORITHM/r_sumamult30 is absorbed into DSP SELF_TRIGGER_ALGORITHM/r_sumamult30.
+DSP Report: Generating DSP SELF_TRIGGER_ALGORITHM/r_sumamult30, operation Mode is: PCIN+(A''*(B:0x3ffd4))'.
+DSP Report: register SELF_TRIGGER_ALGORITHM/r_hpf_data_11_reg is absorbed into DSP SELF_TRIGGER_ALGORITHM/r_sumamult30.
+DSP Report: register SELF_TRIGGER_ALGORITHM/r_hpf_data_12_reg is absorbed into DSP SELF_TRIGGER_ALGORITHM/r_sumamult30.
+DSP Report: register SELF_TRIGGER_ALGORITHM/r_multdata_12_reg is absorbed into DSP SELF_TRIGGER_ALGORITHM/r_sumamult30.
+DSP Report: operator SELF_TRIGGER_ALGORITHM/r_multdata_120 is absorbed into DSP SELF_TRIGGER_ALGORITHM/r_sumamult30.
+DSP Report: operator SELF_TRIGGER_ALGORITHM/r_sumamult30 is absorbed into DSP SELF_TRIGGER_ALGORITHM/r_sumamult30.
+DSP Report: Generating DSP SELF_TRIGGER_ALGORITHM/r_sumamult30, operation Mode is: PCIN+(ACIN*(B:0x3ffca))'.
+DSP Report: register SELF_TRIGGER_ALGORITHM/r_multdata_11_reg is absorbed into DSP SELF_TRIGGER_ALGORITHM/r_sumamult30.
+DSP Report: operator SELF_TRIGGER_ALGORITHM/r_multdata_110 is absorbed into DSP SELF_TRIGGER_ALGORITHM/r_sumamult30.
+DSP Report: operator SELF_TRIGGER_ALGORITHM/r_sumamult30 is absorbed into DSP SELF_TRIGGER_ALGORITHM/r_sumamult30.
+DSP Report: Generating DSP SELF_TRIGGER_ALGORITHM/r_sumamult30, operation Mode is: PCIN+(A''*(B:0x3ffc2))'.
+DSP Report: register SELF_TRIGGER_ALGORITHM/r_hpf_data_9_reg is absorbed into DSP SELF_TRIGGER_ALGORITHM/r_sumamult30.
+DSP Report: register SELF_TRIGGER_ALGORITHM/r_hpf_data_10_reg is absorbed into DSP SELF_TRIGGER_ALGORITHM/r_sumamult30.
+DSP Report: register SELF_TRIGGER_ALGORITHM/r_multdata_10_reg is absorbed into DSP SELF_TRIGGER_ALGORITHM/r_sumamult30.
+DSP Report: operator SELF_TRIGGER_ALGORITHM/r_multdata_100 is absorbed into DSP SELF_TRIGGER_ALGORITHM/r_sumamult30.
+DSP Report: operator SELF_TRIGGER_ALGORITHM/r_sumamult30 is absorbed into DSP SELF_TRIGGER_ALGORITHM/r_sumamult30.
+DSP Report: Generating DSP SELF_TRIGGER_ALGORITHM/r_sumamult30, operation Mode is: PCIN+(ACIN*(B:0x3ffbb))'.
+DSP Report: register SELF_TRIGGER_ALGORITHM/r_multdata_9_reg is absorbed into DSP SELF_TRIGGER_ALGORITHM/r_sumamult30.
+DSP Report: operator SELF_TRIGGER_ALGORITHM/r_multdata_90 is absorbed into DSP SELF_TRIGGER_ALGORITHM/r_sumamult30.
+DSP Report: operator SELF_TRIGGER_ALGORITHM/r_sumamult30 is absorbed into DSP SELF_TRIGGER_ALGORITHM/r_sumamult30.
+DSP Report: Generating DSP SELF_TRIGGER_ALGORITHM/r_multdata_7_reg, operation Mode is: (A''*(B:0x3ffb4))'.
+DSP Report: register SELF_TRIGGER_ALGORITHM/r_hpf_data_6_reg is absorbed into DSP SELF_TRIGGER_ALGORITHM/r_multdata_7_reg.
+DSP Report: register SELF_TRIGGER_ALGORITHM/r_hpf_data_7_reg is absorbed into DSP SELF_TRIGGER_ALGORITHM/r_multdata_7_reg.
+DSP Report: register SELF_TRIGGER_ALGORITHM/r_multdata_7_reg is absorbed into DSP SELF_TRIGGER_ALGORITHM/r_multdata_7_reg.
+DSP Report: operator SELF_TRIGGER_ALGORITHM/r_multdata_70 is absorbed into DSP SELF_TRIGGER_ALGORITHM/r_multdata_7_reg.
+DSP Report: Generating DSP SELF_TRIGGER_ALGORITHM/r_sumamult10, operation Mode is: PCIN+(A''*(B:0x3ffbe))'.
+DSP Report: register hp_filt_data_reg_reg is absorbed into DSP SELF_TRIGGER_ALGORITHM/r_sumamult10.
+DSP Report: register SELF_TRIGGER_ALGORITHM/r_hpf_data_0_reg is absorbed into DSP SELF_TRIGGER_ALGORITHM/r_sumamult10.
+DSP Report: register SELF_TRIGGER_ALGORITHM/r_multdata_0_reg is absorbed into DSP SELF_TRIGGER_ALGORITHM/r_sumamult10.
+DSP Report: operator SELF_TRIGGER_ALGORITHM/r_multdata_00 is absorbed into DSP SELF_TRIGGER_ALGORITHM/r_sumamult10.
+DSP Report: operator SELF_TRIGGER_ALGORITHM/r_sumamult10 is absorbed into DSP SELF_TRIGGER_ALGORITHM/r_sumamult10.
+DSP Report: Generating DSP SELF_TRIGGER_ALGORITHM/r_sumamult10, operation Mode is: PCIN+(A''*(B:0x3ffb2))'.
+DSP Report: register SELF_TRIGGER_ALGORITHM/r_hpf_data_5_reg is absorbed into DSP SELF_TRIGGER_ALGORITHM/r_sumamult10.
+DSP Report: register SELF_TRIGGER_ALGORITHM/r_hpf_data_6_reg is absorbed into DSP SELF_TRIGGER_ALGORITHM/r_sumamult10.
+DSP Report: register SELF_TRIGGER_ALGORITHM/r_multdata_6_reg is absorbed into DSP SELF_TRIGGER_ALGORITHM/r_sumamult10.
+DSP Report: operator SELF_TRIGGER_ALGORITHM/r_multdata_60 is absorbed into DSP SELF_TRIGGER_ALGORITHM/r_sumamult10.
+DSP Report: operator SELF_TRIGGER_ALGORITHM/r_sumamult10 is absorbed into DSP SELF_TRIGGER_ALGORITHM/r_sumamult10.
+DSP Report: Generating DSP SELF_TRIGGER_ALGORITHM/r_sumamult10, operation Mode is: PCIN+(A''*(B:0x3ffb2))'.
+DSP Report: register SELF_TRIGGER_ALGORITHM/r_hpf_data_4_reg is absorbed into DSP SELF_TRIGGER_ALGORITHM/r_sumamult10.
+DSP Report: register SELF_TRIGGER_ALGORITHM/r_hpf_data_5_reg is absorbed into DSP SELF_TRIGGER_ALGORITHM/r_sumamult10.
+DSP Report: register SELF_TRIGGER_ALGORITHM/r_multdata_5_reg is absorbed into DSP SELF_TRIGGER_ALGORITHM/r_sumamult10.
+DSP Report: operator SELF_TRIGGER_ALGORITHM/r_multdata_50 is absorbed into DSP SELF_TRIGGER_ALGORITHM/r_sumamult10.
+DSP Report: operator SELF_TRIGGER_ALGORITHM/r_sumamult10 is absorbed into DSP SELF_TRIGGER_ALGORITHM/r_sumamult10.
+DSP Report: Generating DSP SELF_TRIGGER_ALGORITHM/r_sumamult10, operation Mode is: PCIN+(ACIN*(B:0x3ffb3))'.
+DSP Report: register SELF_TRIGGER_ALGORITHM/r_multdata_4_reg is absorbed into DSP SELF_TRIGGER_ALGORITHM/r_sumamult10.
+DSP Report: operator SELF_TRIGGER_ALGORITHM/r_multdata_40 is absorbed into DSP SELF_TRIGGER_ALGORITHM/r_sumamult10.
+DSP Report: operator SELF_TRIGGER_ALGORITHM/r_sumamult10 is absorbed into DSP SELF_TRIGGER_ALGORITHM/r_sumamult10.
+DSP Report: Generating DSP SELF_TRIGGER_ALGORITHM/r_sumamult10, operation Mode is: PCIN+(A''*(B:0x3ffb4))'.
+DSP Report: register SELF_TRIGGER_ALGORITHM/r_hpf_data_2_reg is absorbed into DSP SELF_TRIGGER_ALGORITHM/r_sumamult10.
+DSP Report: register SELF_TRIGGER_ALGORITHM/r_hpf_data_3_reg is absorbed into DSP SELF_TRIGGER_ALGORITHM/r_sumamult10.
+DSP Report: register SELF_TRIGGER_ALGORITHM/r_multdata_3_reg is absorbed into DSP SELF_TRIGGER_ALGORITHM/r_sumamult10.
+DSP Report: operator SELF_TRIGGER_ALGORITHM/r_multdata_30 is absorbed into DSP SELF_TRIGGER_ALGORITHM/r_sumamult10.
+DSP Report: operator SELF_TRIGGER_ALGORITHM/r_sumamult10 is absorbed into DSP SELF_TRIGGER_ALGORITHM/r_sumamult10.
+DSP Report: Generating DSP SELF_TRIGGER_ALGORITHM/r_sumamult10, operation Mode is: PCIN+(ACIN*(B:0x3ffb7))'.
+DSP Report: register SELF_TRIGGER_ALGORITHM/r_multdata_2_reg is absorbed into DSP SELF_TRIGGER_ALGORITHM/r_sumamult10.
+DSP Report: operator SELF_TRIGGER_ALGORITHM/r_multdata_20 is absorbed into DSP SELF_TRIGGER_ALGORITHM/r_sumamult10.
+DSP Report: operator SELF_TRIGGER_ALGORITHM/r_sumamult10 is absorbed into DSP SELF_TRIGGER_ALGORITHM/r_sumamult10.
+DSP Report: Generating DSP SELF_TRIGGER_ALGORITHM/r_sumamult1_reg, operation Mode is: (PCIN+(A''*(B:0x3ffba))')'.
+DSP Report: register SELF_TRIGGER_ALGORITHM/r_hpf_data_0_reg is absorbed into DSP SELF_TRIGGER_ALGORITHM/r_sumamult1_reg.
+DSP Report: register SELF_TRIGGER_ALGORITHM/r_hpf_data_1_reg is absorbed into DSP SELF_TRIGGER_ALGORITHM/r_sumamult1_reg.
+DSP Report: register SELF_TRIGGER_ALGORITHM/r_sumamult1_reg is absorbed into DSP SELF_TRIGGER_ALGORITHM/r_sumamult1_reg.
+DSP Report: register SELF_TRIGGER_ALGORITHM/r_multdata_1_reg is absorbed into DSP SELF_TRIGGER_ALGORITHM/r_sumamult1_reg.
+DSP Report: operator SELF_TRIGGER_ALGORITHM/r_sumamult10 is absorbed into DSP SELF_TRIGGER_ALGORITHM/r_sumamult1_reg.
+DSP Report: operator SELF_TRIGGER_ALGORITHM/r_multdata_10 is absorbed into DSP SELF_TRIGGER_ALGORITHM/r_sumamult1_reg.
 WARNING: [Synth 8-3917] design daphne1 has port daq0_sfp_tx_dis driven by constant 0
 WARNING: [Synth 8-3917] design daphne1 has port daq1_sfp_tx_dis driven by constant 0
 RAM Pipeline Warning: Read Address Register Found For RAM ip_addr_mem_reg. We will not be able to pipeline it. This may degrade performance. 
@@ -2476,7 +2473,7 @@ INFO: [Synth 8-3332] Sequential element (pcs_pma_block_i/sync_block_rx_reset_don
 INFO: [Synth 8-3332] Sequential element (pcs_pma_block_i/sync_block_rx_reset_done/data_sync_reg5) is unused and will be removed from module gig_ethernet_pcs_pma_0_support.
 INFO: [Synth 8-3332] Sequential element (pcs_pma_block_i/sync_block_rx_reset_done/data_sync_reg6) is unused and will be removed from module gig_ethernet_pcs_pma_0_support.
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:24 ; elapsed = 00:01:27 . Memory (MB): peak = 2817.219 ; gain = 883.875
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:24 ; elapsed = 00:01:26 . Memory (MB): peak = 2813.086 ; gain = 880.516
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -2522,25 +2519,25 @@ Distributed RAM: Preliminary Mapping Report (see note below)
 Note: The table above is a preliminary report that shows the Distributed RAMs at the current stage of the synthesis flow. Some Distributed RAMs may be reimplemented as non Distributed RAM primitives later in the synthesis flow. Multiple instantiated RAMs are reported only once.
 
 DSP: Preliminary Mapping Report (see note below. The ' indicates corresponding REG is set)
-+-------------------+----------------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
-|Module Name        | DSP Mapping                | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
-+-------------------+----------------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
-|self_trigger       | (A''*(B:0x3ffef))'         | 14     | 6      | -      | -      | 20     | 2    | 0    | -    | -    | -     | 1    | 0    | 
-|selfTrigger_Module | PCIN+(A''*(B:0x3ffb7))'    | 14     | 8      | -      | -      | 28     | 2    | 0    | -    | -    | -     | 1    | 0    | 
-|self_trigger       | PCIN+(A''*(B:0x3ffe0))'    | 14     | 6      | -      | -      | 28     | 2    | 0    | -    | -    | -     | 1    | 0    | 
-|self_trigger       | PCIN+(A''*(B:0x3ffd4))'    | 14     | 7      | -      | -      | 28     | 2    | 0    | -    | -    | -     | 1    | 0    | 
-|self_trigger       | PCIN+(ACIN*(B:0x3ffca))'   | 14     | 7      | -      | -      | 28     | 0    | 0    | -    | -    | -     | 1    | 0    | 
-|self_trigger       | PCIN+(A''*(B:0x3ffc2))'    | 14     | 7      | -      | -      | 28     | 2    | 0    | -    | -    | -     | 1    | 0    | 
-|self_trigger       | PCIN+(ACIN*(B:0x3ffbb))'   | 14     | 8      | -      | -      | 28     | 0    | 0    | -    | -    | -     | 1    | 0    | 
-|self_trigger       | (A''*(B:0x3ffb4))'         | 14     | 8      | -      | -      | 22     | 2    | 0    | -    | -    | -     | 1    | 0    | 
-|selfTrigger_Module | PCIN+(A''*(B:0x3ffbe))'    | 14     | 8      | -      | -      | 28     | 2    | 0    | -    | -    | -     | 1    | 0    | 
-|selfTrigger_Module | PCIN+(A''*(B:0x3ffb2))'    | 14     | 8      | -      | -      | 28     | 2    | 0    | -    | -    | -     | 1    | 0    | 
-|selfTrigger_Module | PCIN+(A''*(B:0x3ffb2))'    | 14     | 8      | -      | -      | 28     | 2    | 0    | -    | -    | -     | 1    | 0    | 
-|self_trigger       | PCIN+(ACIN*(B:0x3ffb3))'   | 14     | 8      | -      | -      | 28     | 0    | 0    | -    | -    | -     | 1    | 0    | 
-|selfTrigger_Module | PCIN+(A''*(B:0x3ffb4))'    | 14     | 8      | -      | -      | 28     | 2    | 0    | -    | -    | -     | 1    | 0    | 
-|self_trigger       | PCIN+(ACIN*(B:0x3ffb7))'   | 14     | 8      | -      | -      | 28     | 0    | 0    | -    | -    | -     | 1    | 0    | 
-|self_trigger       | (PCIN+(A''*(B:0x3ffba))')' | 14     | 8      | -      | -      | 28     | 2    | 0    | -    | -    | -     | 1    | 1    | 
-+-------------------+----------------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
++-------------------------+----------------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name              | DSP Mapping                | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++-------------------------+----------------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|trigger_matching_filters | (A''*(B:0x3ffef))'         | 14     | 6      | -      | -      | 20     | 2    | 0    | -    | -    | -     | 1    | 0    | 
+|selfTrigger_Module       | PCIN+(A''*(B:0x3ffb7))'    | 14     | 8      | -      | -      | 28     | 2    | 0    | -    | -    | -     | 1    | 0    | 
+|trigger_matching_filters | PCIN+(A''*(B:0x3ffe0))'    | 14     | 6      | -      | -      | 28     | 2    | 0    | -    | -    | -     | 1    | 0    | 
+|trigger_matching_filters | PCIN+(A''*(B:0x3ffd4))'    | 14     | 7      | -      | -      | 28     | 2    | 0    | -    | -    | -     | 1    | 0    | 
+|trigger_matching_filters | PCIN+(ACIN*(B:0x3ffca))'   | 14     | 7      | -      | -      | 28     | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|trigger_matching_filters | PCIN+(A''*(B:0x3ffc2))'    | 14     | 7      | -      | -      | 28     | 2    | 0    | -    | -    | -     | 1    | 0    | 
+|trigger_matching_filters | PCIN+(ACIN*(B:0x3ffbb))'   | 14     | 8      | -      | -      | 28     | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|trigger_matching_filters | (A''*(B:0x3ffb4))'         | 14     | 8      | -      | -      | 22     | 2    | 0    | -    | -    | -     | 1    | 0    | 
+|selfTrigger_Module       | PCIN+(A''*(B:0x3ffbe))'    | 14     | 8      | -      | -      | 28     | 2    | 0    | -    | -    | -     | 1    | 0    | 
+|selfTrigger_Module       | PCIN+(A''*(B:0x3ffb2))'    | 14     | 8      | -      | -      | 28     | 2    | 0    | -    | -    | -     | 1    | 0    | 
+|selfTrigger_Module       | PCIN+(A''*(B:0x3ffb2))'    | 14     | 8      | -      | -      | 28     | 2    | 0    | -    | -    | -     | 1    | 0    | 
+|trigger_matching_filters | PCIN+(ACIN*(B:0x3ffb3))'   | 14     | 8      | -      | -      | 28     | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|selfTrigger_Module       | PCIN+(A''*(B:0x3ffb4))'    | 14     | 8      | -      | -      | 28     | 2    | 0    | -    | -    | -     | 1    | 0    | 
+|trigger_matching_filters | PCIN+(ACIN*(B:0x3ffb7))'   | 14     | 8      | -      | -      | 28     | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|trigger_matching_filters | (PCIN+(A''*(B:0x3ffba))')' | 14     | 8      | -      | -      | 28     | 2    | 0    | -    | -    | -     | 1    | 1    | 
++-------------------------+----------------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
 
 Note: The table above is a preliminary report that shows the DSPs inferred at the current stage of the synthesis flow. Some DSP may be reimplemented as non DSP primitives later in the synthesis flow. Multiple instantiated DSPs are reported only once.
 ---------------------------------------------------------------------------------
@@ -2562,13 +2559,13 @@ WARNING: [Synth 8-3321] set_false_path : Empty through list for constraint at li
 WARNING: [Synth 8-3321] set_false_path : Empty to list for constraint at line 23 of C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/constrs_1/new/axis_async_fifo.tcl. [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/constrs_1/new/axis_async_fifo.tcl:23]
 WARNING: [Synth 8-3321] set_false_path : Empty to list for constraint at line 23 of C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/constrs_1/new/axis_async_fifo.tcl. [C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.srcs/constrs_1/new/axis_async_fifo.tcl:23]
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:36 ; elapsed = 00:01:40 . Memory (MB): peak = 2817.219 ; gain = 883.875
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:36 ; elapsed = 00:01:39 . Memory (MB): peak = 2813.086 ; gain = 880.516
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:01:39 ; elapsed = 00:01:42 . Memory (MB): peak = 2817.219 ; gain = 883.875
+Finished Timing Optimization : Time (s): cpu = 00:01:39 ; elapsed = 00:01:41 . Memory (MB): peak = 2813.086 ; gain = 880.516
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -2611,7 +2608,7 @@ Start Technology Mapping
 INFO: [Synth 8-7052] The timing for the instance ETH_MOD/ETH_MAC_UDP_STACK_COM/udp_complete_inst/ip_complete_inst/arp_inst/arp_cache_inst/ip_addr_mem_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
 INFO: [Synth 8-7052] The timing for the instance ETH_MOD/ETH_MAC_UDP_STACK_COM/udp_complete_inst/ip_complete_inst/arp_inst/arp_cache_inst/mac_addr_mem_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:01:43 ; elapsed = 00:01:46 . Memory (MB): peak = 2817.219 ; gain = 883.875
+Finished Technology Mapping : Time (s): cpu = 00:01:42 ; elapsed = 00:01:44 . Memory (MB): peak = 2813.086 ; gain = 880.516
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -2629,37 +2626,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:01:49 ; elapsed = 00:01:52 . Memory (MB): peak = 2817.219 ; gain = 883.875
+Finished IO Insertion : Time (s): cpu = 00:01:47 ; elapsed = 00:01:50 . Memory (MB): peak = 2813.086 ; gain = 880.516
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:01:49 ; elapsed = 00:01:52 . Memory (MB): peak = 2817.219 ; gain = 883.875
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:48 ; elapsed = 00:01:50 . Memory (MB): peak = 2813.086 ; gain = 880.516
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:50 ; elapsed = 00:01:54 . Memory (MB): peak = 2817.219 ; gain = 883.875
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:49 ; elapsed = 00:01:51 . Memory (MB): peak = 2813.086 ; gain = 880.516
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:01:50 ; elapsed = 00:01:54 . Memory (MB): peak = 2817.219 ; gain = 883.875
+Finished Renaming Generated Ports : Time (s): cpu = 00:01:49 ; elapsed = 00:01:51 . Memory (MB): peak = 2813.086 ; gain = 880.516
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:01:50 ; elapsed = 00:01:54 . Memory (MB): peak = 2817.219 ; gain = 883.875
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:49 ; elapsed = 00:01:51 . Memory (MB): peak = 2813.086 ; gain = 880.516
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:01:50 ; elapsed = 00:01:54 . Memory (MB): peak = 2817.219 ; gain = 883.875
+Finished Renaming Generated Nets : Time (s): cpu = 00:01:49 ; elapsed = 00:01:51 . Memory (MB): peak = 2813.086 ; gain = 880.516
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -2673,9 +2670,7 @@ Static Shift Register Report:
 |gig_ethernet_pcs_pma_0_support | core_gt_common_i/cpllpd_wait_reg[95]                                   | 96     | 1     | NO           | NO                 | YES               | 0      | 3       | 
 |gig_ethernet_pcs_pma_0_support | core_gt_common_i/cpllreset_wait_reg[127]                               | 128    | 1     | NO           | NO                 | YES               | 0      | 4       | 
 |daphne1                        | AFE0_CH_0/CLK_COM/rst_pll_reg                                          | 7      | 1     | NO           | NO                 | YES               | 1      | 0       | 
-|daphne1                        | AFE0_ST_CH_0/SELF_TRIGGER_TOP_COM/r_data_14_reg[13]                    | 5      | 14    | NO           | NO                 | NO                | 14     | 0       | 
-|daphne1                        | AFE0_ST_CH_0/SELF_TRIGGER_TOP_COM/r_data_9_reg[13]                     | 10     | 14    | YES          | NO                 | YES               | 14     | 0       | 
-|daphne1                        | AFE0_ST_CH_0/SELF_TRIGGER_TOP_COM/o_data_reg[13]                       | 50     | 14    | YES          | NO                 | YES               | 0      | 28      | 
+|daphne1                        | AFE0_ST_CH_0/DATA_DELAY_GEN[63].CHAIN_DEL_GEN.data_del_reg[63][13]     | 64     | 14    | YES          | NO                 | YES               | 0      | 28      | 
 +-------------------------------+------------------------------------------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
 
 ---------------------------------------------------------------------------------
@@ -2691,21 +2686,21 @@ DSP Final Report (the ' indicates corresponding REG is set)
 +--------------------------+-------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
 |dsp_slice__parameterized1 | A*B               | 30     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
 |dsp_slice                 | C'+((D'-A'')'*B)' | 14     | 17     | 48     | 14     | 48     | 2    | 0    | 0    | 0    | 1     | 1    | 0    | 
-|self_trigger              | (A''*B)'          | 30     | 18     | -      | -      | 0      | 2    | 0    | -    | -    | -     | 0    | 1    | 
+|trigger_matching_filters  | (A''*B)'          | 30     | 18     | -      | -      | 0      | 2    | 0    | -    | -    | -     | 0    | 1    | 
 |selfTrigger_Module        | PCIN+(A''*B)'     | 30     | 18     | -      | -      | 0      | 2    | 0    | -    | -    | -     | 1    | 0    | 
-|self_trigger              | PCIN+(A''*B)'     | 30     | 18     | -      | -      | 0      | 2    | 0    | -    | -    | -     | 1    | 0    | 
-|self_trigger              | PCIN+(A''*B)'     | 30     | 18     | -      | -      | 0      | 2    | 0    | -    | -    | -     | 1    | 0    | 
-|self_trigger              | PCIN+(A*B)'       | 0      | 18     | -      | -      | 0      | 0    | 0    | -    | -    | -     | 1    | 0    | 
-|self_trigger              | PCIN+(A''*B)'     | 30     | 18     | -      | -      | 0      | 2    | 0    | -    | -    | -     | 1    | 0    | 
-|self_trigger              | (PCIN+(A*B)')'    | 0      | 18     | -      | -      | 28     | 0    | 0    | -    | -    | -     | 1    | 1    | 
-|self_trigger              | (A''*B)'          | 30     | 18     | -      | -      | 0      | 2    | 0    | -    | -    | -     | 0    | 1    | 
+|trigger_matching_filters  | PCIN+(A''*B)'     | 30     | 18     | -      | -      | 0      | 2    | 0    | -    | -    | -     | 1    | 0    | 
+|trigger_matching_filters  | PCIN+(A''*B)'     | 30     | 18     | -      | -      | 0      | 2    | 0    | -    | -    | -     | 1    | 0    | 
+|trigger_matching_filters  | PCIN+(A*B)'       | 0      | 18     | -      | -      | 0      | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|trigger_matching_filters  | PCIN+(A''*B)'     | 30     | 18     | -      | -      | 0      | 2    | 0    | -    | -    | -     | 1    | 0    | 
+|trigger_matching_filters  | (PCIN+(A*B)')'    | 0      | 18     | -      | -      | 28     | 0    | 0    | -    | -    | -     | 1    | 1    | 
+|trigger_matching_filters  | (A''*B)'          | 30     | 18     | -      | -      | 0      | 2    | 0    | -    | -    | -     | 0    | 1    | 
 |selfTrigger_Module        | PCIN+(A''*B)'     | 30     | 18     | -      | -      | 0      | 2    | 0    | -    | -    | -     | 1    | 0    | 
 |selfTrigger_Module        | PCIN+(A''*B)'     | 30     | 18     | -      | -      | 0      | 2    | 0    | -    | -    | -     | 1    | 0    | 
 |selfTrigger_Module        | PCIN+(A''*B)'     | 30     | 0      | -      | -      | 0      | 2    | 0    | -    | -    | -     | 1    | 0    | 
-|self_trigger              | PCIN+(A*B)'       | 0      | 18     | -      | -      | 0      | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|trigger_matching_filters  | PCIN+(A*B)'       | 0      | 18     | -      | -      | 0      | 0    | 0    | -    | -    | -     | 1    | 0    | 
 |selfTrigger_Module        | PCIN+(A''*B)'     | 30     | 18     | -      | -      | 0      | 2    | 0    | -    | -    | -     | 1    | 0    | 
-|self_trigger              | PCIN+(A*B)'       | 0      | 18     | -      | -      | 0      | 0    | 0    | -    | -    | -     | 1    | 0    | 
-|self_trigger              | (PCIN+(A''*B)')'  | 30     | 18     | -      | -      | 28     | 2    | 0    | -    | -    | -     | 1    | 1    | 
+|trigger_matching_filters  | PCIN+(A*B)'       | 0      | 18     | -      | -      | 0      | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|trigger_matching_filters  | (PCIN+(A''*B)')'  | 30     | 18     | -      | -      | 28     | 2    | 0    | -    | -    | -     | 1    | 1    | 
 +--------------------------+-------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
 
 
@@ -2730,28 +2725,28 @@ Report Cell Usage:
 |17    |GTPE2_COMMON  |     1|
 |18    |IBUFDS_GTE2   |     1|
 |19    |ISERDESE2     |     4|
-|21    |LUT1          |   267|
-|22    |LUT2          |   510|
-|23    |LUT3          |   588|
-|24    |LUT4          |   355|
-|25    |LUT5          |   503|
-|26    |LUT6          |   775|
+|21    |LUT1          |   265|
+|22    |LUT2          |   494|
+|23    |LUT3          |   631|
+|24    |LUT4          |   360|
+|25    |LUT5          |   444|
+|26    |LUT6          |   759|
 |27    |MMCME2_ADV    |     2|
-|28    |MUXF7         |     6|
+|28    |MUXF7         |    11|
 |29    |ODDR          |     2|
 |31    |PLLE2_BASE    |     1|
 |32    |RAM128X1D     |     4|
-|33    |RAM32M        |    16|
+|33    |RAM32M        |    17|
 |34    |RAMB18E1      |     5|
 |37    |RAMB36E1      |    10|
-|41    |SRL16E        |    37|
+|41    |SRL16E        |     9|
 |42    |SRLC32E       |    35|
 |43    |FD            |    96|
-|44    |FDCE          |    58|
+|44    |FDCE          |    57|
 |45    |FDP           |    48|
 |46    |FDPE          |    21|
-|47    |FDRE          |  3523|
-|48    |FDSE          |   225|
+|47    |FDRE          |  3572|
+|48    |FDSE          |   174|
 |49    |IBUF          |     4|
 |50    |IBUFDS        |     4|
 |51    |IBUFGDS       |     1|
@@ -2760,22 +2755,22 @@ Report Cell Usage:
 |54    |OBUFT         |     7|
 +------+--------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:01:50 ; elapsed = 00:01:54 . Memory (MB): peak = 2817.219 ; gain = 883.875
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:49 ; elapsed = 00:01:51 . Memory (MB): peak = 2813.086 ; gain = 880.516
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 688 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:01:07 ; elapsed = 00:01:47 . Memory (MB): peak = 2817.219 ; gain = 877.719
-Synthesis Optimization Complete : Time (s): cpu = 00:01:51 ; elapsed = 00:01:54 . Memory (MB): peak = 2817.219 ; gain = 883.875
+Synthesis Optimization Runtime : Time (s): cpu = 00:01:05 ; elapsed = 00:01:45 . Memory (MB): peak = 2813.086 ; gain = 880.516
+Synthesis Optimization Complete : Time (s): cpu = 00:01:49 ; elapsed = 00:01:52 . Memory (MB): peak = 2813.086 ; gain = 880.516
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.173 . Memory (MB): peak = 2817.219 ; gain = 0.000
-INFO: [Netlist 29-17] Analyzing 536 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.167 . Memory (MB): peak = 2813.086 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 542 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-140] Inserted 2 IBUFs to IO ports without IO buffers.
 INFO: [Opt 31-141] Inserted 2 OBUFs to IO ports without IO buffers.
 INFO: [Opt 31-138] Pushed 1 inverter(s) to 4 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 2817.219 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 2813.086 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
-  A total of 171 instances were transformed.
+  A total of 172 instances were transformed.
   BUFGMUX => BUFGCTRL (inverted pins: CE0): 1 instance 
   BUFGMUX_CTRL => BUFGCTRL (inverted pins: S0): 4 instances
   FD => FDRE: 96 instances
@@ -2783,13 +2778,13 @@ INFO: [Project 1-111] Unisim Transformation Summary:
   IBUFGDS => IBUFDS: 1 instance 
   PLLE2_BASE => PLLE2_ADV: 1 instance 
   RAM128X1D => RAM128X1D (MUXF7(x2), RAMD64E(x4)): 4 instances
-  RAM32M => RAM32M (RAMD32(x6), RAMS32(x2)): 16 instances
+  RAM32M => RAM32M (RAMD32(x6), RAMS32(x2)): 17 instances
 
-Synth Design complete | Checksum: 33555adb
+Synth Design complete | Checksum: 1520bba8
 INFO: [Common 17-83] Releasing license: Synthesis
 485 Infos, 364 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:01:59 ; elapsed = 00:02:04 . Memory (MB): peak = 2817.219 ; gain = 1319.793
+synth_design: Time (s): cpu = 00:01:56 ; elapsed = 00:02:00 . Memory (MB): peak = 2813.086 ; gain = 1316.395
 INFO: [Common 17-1381] The checkpoint 'C:/Users/edgar.rincon/Documents/DUNE/Github/DAPHNE_V1/daphne_v1/daphne_v1.runs/synth_1/daphne1.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file daphne1_utilization_synth.rpt -pb daphne1_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Wed Dec  6 15:37:47 2023...
+INFO: [Common 17-206] Exiting Vivado at Tue Dec 12 08:46:55 2023...
