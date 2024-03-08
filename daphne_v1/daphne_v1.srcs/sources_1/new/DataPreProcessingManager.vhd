@@ -35,7 +35,7 @@ use IEEE.STD_LOGIC_SIGNED.ALL;
 library UNISIM;
 use UNISIM.VComponents.all;
 
-entity selfTrigger_Module is
+entity DataPreProcessingManager is
     Port ( 
         -- Module Inputs
     ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -51,29 +51,17 @@ entity selfTrigger_Module is
         
         -- Module Outputs
     ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        trig_ctrl           : out std_logic;                        -- Real Write Enable used for the FIFO Module
+        read_ctrl           : out std_logic;                        -- Real Read Enable used for the FIFO Module 
         filt_out            : out std_logic_vector(13 downto 0);    -- Output of the filter
         calc_value_out      : out std_logic_vector(47 downto 0);    -- Output of the Self Trigger Module (Calculated Correlation or Calculated Sigmoid Prediction)
         net_agg             : out std_logic_vector(47 downto 0);    -- Output of the Seff Trigger Neural Network (Aggregation of Output Neuron)
-        fifo_input_data     : out std_logic_vector(13 downto 0);    -- Output of the Self Trigger Correlation Module (Internally connected to the FIFO, 64 Registers Delayed AFE Data)
-        trigger             : out std_logic;                        -- Trigger Output
-        fifo_rd_out         : out std_logic;                        -- Real Read Enable used for the FIFO (Mapped Internally)
-        fifo_wr_out         : out std_logic;                        -- Real Write Enable used for the FIFO (Mapped Internally)
-        fifo_o              : out std_logic_vector(13 downto 0);    -- Output Data of the FIFO    
-        fifo_a_empty        : out std_logic;                        -- Almost Empty Flag of the FIFO
-        fifo_a_full         : out std_logic;                        -- Amost Full Flag of the FIFO (Interpreted as the real Full of the FIFO)
-        fifo_empty          : out std_logic;                        -- Empty Flag of the FIFO
-        fifo_full           : out std_logic;                        -- Full Flag of the FIFO
-        fifo_wr_err         : out std_logic;                        -- Write Error Flag of the FIFO (Internally Generated Not Real One)
-        fifo_rd_err         : out std_logic;                        -- Read Error Flag of the FIFO (Internally Generated Not Real One)
-        axi_data            : out std_logic_vector(7 downto 0);     -- Output Data of the FIFO in AXI Stream Interface
-        axi_valid           : out std_logic;                        -- AXI Stream Valid from the FIFO Read Process
-        axi_ready           : in std_logic;                         -- AXI Stream Ready for the FIFO Read Process
-        axi_last            : out std_logic;                        -- AXI Stream Last from the FIFO Read Process
-        axi_user            : out std_logic                         -- AXI Stream User from the FIFO Read Process (Always '1')
+        buff_data           : out std_logic_vector(13 downto 0);    -- Output of the Self Trigger Correlation Module (Internally connected to the FIFO, 64 Registers Delayed AFE Data)
+        trigger             : out std_logic                         -- Trigger Output
     );
-end selfTrigger_Module;
+end DataPreProcessingManager;
 
-architecture Behavioral of selfTrigger_Module is
+architecture datPreProc_arch of DataPreProcessingManager is
 
 -- High Pass Module Declaration
 --------------------------------------------------------------------------------------------------------------------------------------------------
@@ -212,51 +200,6 @@ component trigSaveReadFSM
         READ_OUT                : out std_logic         -- Output Read (Stable Signal For n Samples)
     );
 end component trigSaveReadFSM;
-
--- FIFO Memory With AXI Stream Output Module Declaration
---------------------------------------------------------------------------------------------------------------------------------------------------
-component AXI_FIFO_Adapter
-    Generic (
-        -- Frequency of the Write Clock (MHz)
-        WR_CLK_FREQ         : real          := 100.0;
-        -- Frequency of the Read Clock (MHz)
-        RD_CLK_FREQ         : real          := 100.0;
-        -- FIFO Important Parameters
-        data_width          : integer       := 14;
-        fifoPointersLength  : integer       := 11;
-        AEMPTY_OFF          : bit_vector    := X"0080";                                 -- Almost Empty Offset
-        AFULL_OFF           : bit_vector    := X"0080"                                  -- Almost Full Offset
-    );
-    Port (
-        -- Module Inputs
-    ----------------------------------------------------------------------------------------------------------------------------------
-        d_i                 : in std_logic_vector((data_width - 1) downto 0);           -- Parallel Data Input for the FIFO
-        dt_rdy              : in std_logic;                                             -- Data Ready Flag from Acquisition Module
-        wr_enable           : in std_logic;                                             -- Write Enable Control Signal for the FIFO
-        rd_enable           : in std_logic;                                             -- Read Enable Control Signal for the FIFO
-        wr_clk              : in std_logic;                                             -- Write Clock for the FIFO
-        rd_clk              : in std_logic;                                             -- Read Clock for the FIFO
-        m_axi_clk           : in std_logic;                                             -- AXI Stream Interface Clock
-        rst                 : in std_logic;                                             -- Async Reset
-    
-        -- Module Outputs
-    ----------------------------------------------------------------------------------------------------------------------------------    
-        a_empty             : out std_logic;                                            -- Almost Empty Flag of the FIFO
-        a_full              : out std_logic;                                            -- Almost Full Flag of the FIFO
-        empty               : out std_logic;                                            -- Empty Flag of the FIFO
-        full                : out std_logic;                                            -- Full Flag of the FIFO 
-        wr_err              : out std_logic;                                            -- Write Error Flag of the FIFO
-        rd_err              : out std_logic;                                            -- Read Error Flag of the FIFO
-        wr_count            : out std_logic_vector((fifoPointersLength - 1) downto 0);  -- Write Pointer of the FIFO
-        rd_count            : out std_logic_vector((fifoPointersLength - 1) downto 0);  -- Read Pointer of the FIFO
-        fifo_o              : out std_logic_vector(13 downto 0);                        -- Parallel Data Output of the FIFO
-        m_axi_fifo_tdata    : out std_logic_vector((data_width/2) downto 0);            -- AXI Stream Data from the FIFO
-        m_axi_fifo_tvalid   : out std_logic;                                            -- AXI Stream Valid Control Signal
-        m_axi_fifo_tready   : in std_logic;                                             -- AXI Stream Ready Control Signal
-        m_axi_fifo_tlast    : out std_logic;                                            -- AXI Stream Last Control Signal
-        m_axi_fifo_tuser    : out std_logic                                             -- AXI Stream User Control Signal (Errors in the data)
-    );
-end component AXI_FIFO_Adapter;
 
 -- Internal Connections and Auxiliary Signals
 --------------------------------------------------------------------------------------------------------------------------------------------------
@@ -400,62 +343,14 @@ begin
             READ_OUT        => fifo_rd 
         );
     
-    -- FIFO Component Instantiation
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    FIFO_INST_COM : AXI_FIFO_Adapter
-        generic map (
-            -- Frequency of the Write Clock (MHz)
-            WR_CLK_FREQ         => 62.5,
-            -- Frequency of the Read Clock (MHz)
-            RD_CLK_FREQ         => 62.5,
-            -- FIFO Important Parameters
-            AEMPTY_OFF          => X"6",
-            AFULL_OFF           => X"8"
-        )
-        port map (
-            -- Module Inputs
-        ----------------------------------------------------------------------------------------------------------------------------------
-            d_i                 => neural_network_data_out_aux,         -- Use xcorr_data_out_aux, for Cross Correlation Self Trigger, use neural_network_data_out_aux for Neural Network Self Trigger
-            dt_rdy              => dt_rdy,
-            wr_enable           => fifo_trig,
-            rd_enable           => fifo_rd,
-            wr_clk              => clk,
-            rd_clk              => rd_clk,
-            m_axi_clk           => sys_clk,
-            rst                 => rst,    
-            
-            -- Module Outputs
-        ----------------------------------------------------------------------------------------------------------------------------------    
-            a_empty             => afe_fifo_a_empty,
-            a_full              => afe_fifo_a_full,
-            empty               => afe_fifo_empty,
-            full                => afe_fifo_full,
-            wr_err              => afe_fifo_wr_err,
-            rd_err              => afe_fifo_rd_err,
-            wr_count            => open,
-            rd_count            => open,
-            fifo_o              => fifo_o,
-            m_axi_fifo_tdata    => axi_data,
-            m_axi_fifo_tvalid   => axi_valid,
-            m_axi_fifo_tready   => axi_ready,
-            m_axi_fifo_tlast    => axi_last,
-            m_axi_fifo_tuser    => axi_user
-        );
-    
     -- Outputs of the Module
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    fifo_rd_out             <= fifo_rd;
-    fifo_wr_out             <= fifo_trig;
+    trig_ctrl               <= fifo_trig;                               -- Controlled Trigger Output
+    read_ctrl               <= fifo_rd;                                 -- Controlled Read Output
     calc_value_out          <= std_logic_vector(network_prediction);    -- std_logic_vector(network_prediction) or could be related to the cross correlation calculated value xcorr_calc_out;
     net_agg                 <= std_logic_vector(network_agg);           -- Only used when the neural network is used/instantiated
     filt_out                <= lp_filt_data_reg;                        -- Output of the filter chain, may be only hp_filt_data_reg when the self trigger is based on the Cross Correlation
     trigger                 <= trigger_aux;                             -- used to be the write signal
-    fifo_input_data         <= neural_network_data_out_aux;             -- Use xcorr_data_out_aux; for Cross Correlation Self Trigger, use neural_network_data_out_aux for Neural Network Self Trigger
-    fifo_a_empty            <= afe_fifo_a_empty;
-    fifo_empty              <= afe_fifo_empty;
-    fifo_a_full             <= afe_fifo_a_full;
-    fifo_full               <= afe_fifo_full;
-    fifo_wr_err             <= afe_fifo_wr_err;
-    fifo_rd_err             <= afe_fifo_rd_err;
+    buff_data               <= neural_network_data_out_aux;             -- Use xcorr_data_out_aux; for Cross Correlation Self Trigger, use neural_network_data_out_aux for Neural Network Self Trigger
 
-end Behavioral;
+end datPreProc_arch;

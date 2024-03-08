@@ -108,47 +108,48 @@ architecture daphne1_arch of daphne1 is
 
 -- Main System Auxiliary Signals Declaration
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
-signal async_rst                                        : std_logic;
-signal sys_clk62_5, sys_clk100, sys_clk125, sys_clk200  : std_logic;
+signal async_rst                                            : std_logic;
+signal sys_clk62_5, sys_clk100, sys_clk125, sys_clk200      : std_logic;
 
 -- MMCM Timing Endpoint Auxiliary Signals Declaration
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
-signal mmcm0_locked                                     : std_logic;
+signal mmcm0_locked                                         : std_logic;
 
 -- AFE5808A Auxiliary Signals Declaration
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
-signal afe_data                                         : std_logic_vector(13 downto 0);
-signal afe_se_clk                                       : std_logic;
-signal data_dig_rdy, data_rdy, pll_afe_lck              : std_logic;
-signal align_ph_sel                                     : std_logic_vector(1 downto 0);
-signal align_ph_ovfl, align_bitslip_on                  : std_logic;
+signal afe_data                                             : std_logic_vector(13 downto 0);
+signal afe_se_clk                                           : std_logic;
+signal data_dig_rdy, data_rdy, pll_afe_lck                  : std_logic;
+signal align_ph_sel                                         : std_logic_vector(1 downto 0);
+signal align_ph_ovfl, align_bitslip_on                      : std_logic;
 
--- Self Trigger Auxiliary Signals Declaration
+-- Self Trigger & FIFO Auxiliary Signals Declaration
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
-signal filt_out, fifo_i, fifo_o                         : std_logic_vector(13 downto 0);
-signal st_calc_value_out                                : std_logic_vector(47 downto 0);
-signal trigger, fifo_rd_out, fifo_wr_out                : std_logic;
-signal fifo_a_empty, fifo_a_full, fifo_full, fifo_empty : std_logic;
-signal fifo_wr_err, fifo_rd_err                         : std_logic;
-signal st_axi_data                                      : std_logic_vector(7 downto 0);
-signal st_axi_valid, st_axi_ready                       : std_logic;
-signal st_axi_last, st_axi_user                         : std_logic;
+signal trigger                                              : std_logic;
+signal filt_out, fifo_i, fifo_o                             : std_logic_vector(13 downto 0);
+signal st_calc_value_out                                    : std_logic_vector(47 downto 0);
+signal dp_trig_ctrl, dp_rd_ctrl, fifo_rd_out, fifo_wr_out   : std_logic;
+signal fifo_a_empty, fifo_a_full, fifo_full, fifo_empty     : std_logic;
+signal fifo_wr_err, fifo_rd_err                             : std_logic;
+signal fifo_axi_data                                        : std_logic_vector(7 downto 0);
+signal fifo_axi_valid, fifo_axi_ready                       : std_logic;
+signal fifo_axi_last, fifo_axi_user                         : std_logic;
 
 -- Ethernet Module Auxiliary Signals Declaration
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
-signal eth_com_rx_axi_data                              : std_logic_vector(7 downto 0);
-signal eth_com_rx_axi_ready, eth_com_rx_axi_valid       : std_logic;
-signal eth_com_rx_axi_last, eth_com_rx_axi_user         : std_logic;
-signal eth_com_rx_payload                               : std_logic_vector(7 downto 0);   
+signal eth_com_rx_axi_data                                  : std_logic_vector(7 downto 0);
+signal eth_com_rx_axi_ready, eth_com_rx_axi_valid           : std_logic;
+signal eth_com_rx_axi_last, eth_com_rx_axi_user             : std_logic;
+signal eth_com_rx_payload                                   : std_logic_vector(7 downto 0);   
 
 -- External Commands From Ethernet Signals Declaration
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
-signal eth_com_rx_payload_reg                           : std_logic_vector(7 downto 0);     -- Payload Command Signal
-signal eth_new_comm_given                               : std_logic;                        -- New Command Received Signal
-signal eth_trig_reg, eth_read_reg                       : std_logic;                        -- External Trigger/Read Registers From Ethernet Signal Declaration
-signal ext_trig, ext_read                               : std_logic;                        -- External Trigger/Read From Ethernet Signal Declaration 
-signal eth_cust_train_reg, eth_deskew_train_reg         : std_logic;                        -- External Training Patterns Registers From Ethernet Signal Declaration
-signal ext_cust_train_active, ext_deskew_train_active   : std_logic := '0';                        -- External Training Patterns From Ethernet Signal Declaration
+signal eth_com_rx_payload_reg                               : std_logic_vector(7 downto 0);     -- Payload Command Signal
+signal eth_new_comm_given                                   : std_logic;                        -- New Command Received Signal
+signal eth_trig_reg, eth_read_reg                           : std_logic;                        -- External Trigger/Read Registers From Ethernet Signal Declaration
+signal ext_trig, ext_read                                   : std_logic;                        -- External Trigger/Read From Ethernet Signal Declaration 
+signal eth_cust_train_reg, eth_deskew_train_reg             : std_logic;                        -- External Training Patterns Registers From Ethernet Signal Declaration
+signal ext_cust_train_active, ext_deskew_train_active       : std_logic := '0';                        -- External Training Patterns From Ethernet Signal Declaration
 
 -- Components Declaration
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -178,7 +179,7 @@ component endpoint
         sys_clk125                  : out std_logic; 
         sys_clk200                  : out std_logic;
         sys_clk62_5                 : out std_logic;
-        afe_clk_p, afe_clk_n        : out std_logic         -- Copy of 62.5 MHz master clock sent to AFEs
+        afe_clk_p, afe_clk_n        : out std_logic             -- Copy of 62.5 MHz master clock sent to AFEs
     );
 end component endpoint;
 
@@ -216,9 +217,9 @@ component AcquisitionManager
     );
 end component AcquisitionManager;
 
--- Self Trigger to AXI Stream Module
+-- Data Pre Processing Module - Includes Self Trigger Core
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
-component selfTrigger_Module 
+component DataPreProcessingManager 
     Port ( 
         -- Module Inputs
     ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -234,45 +235,78 @@ component selfTrigger_Module
         
         -- Module Outputs
     ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        trig_ctrl           : out std_logic;                        -- Real Write Enable used for the FIFO Module
+        read_ctrl           : out std_logic;                        -- Real Read Enable used for the FIFO Module 
         filt_out            : out std_logic_vector(13 downto 0);    -- Output of the filter
         calc_value_out      : out std_logic_vector(47 downto 0);    -- Output of the Self Trigger Module (Calculated Correlation or Calculated Sigmoid Prediction)
         net_agg             : out std_logic_vector(47 downto 0);    -- Output of the Seff Trigger Neural Network (Aggregation of Output Neuron)
-        fifo_input_data     : out std_logic_vector(13 downto 0);    -- Output of the Self Trigger Correlation Module (Internally connected to the FIFO, 64 Registers Delayed AFE Data)
-        trigger             : out std_logic;                        -- Trigger Output
-        fifo_rd_out         : out std_logic;                        -- Real Read Enable used for the FIFO (Mapped Internally)
-        fifo_wr_out         : out std_logic;                        -- Real Write Enable used for the FIFO (Mapped Internally)
-        fifo_o              : out std_logic_vector(13 downto 0);    -- Output Data of the FIFO    
-        fifo_a_empty        : out std_logic;                        -- Almost Empty Flag of the FIFO
-        fifo_a_full         : out std_logic;                        -- Amost Full Flag of the FIFO (Interpreted as the real Full of the FIFO)
-        fifo_empty          : out std_logic;                        -- Empty Flag of the FIFO
-        fifo_full           : out std_logic;                        -- Full Flag of the FIFO
-        fifo_wr_err         : out std_logic;                        -- Write Error Flag of the FIFO (Internally Generated Not Real One)
-        fifo_rd_err         : out std_logic;                        -- Read Error Flag of the FIFO (Internally Generated Not Real One)
-        axi_data            : out std_logic_vector(7 downto 0);     -- Output Data of the FIFO in AXI Stream Interface
-        axi_valid           : out std_logic;                        -- AXI Stream Valid from the FIFO Read Process
-        axi_ready           : in std_logic;                         -- AXI Stream Ready for the FIFO Read Process
-        axi_last            : out std_logic;                        -- AXI Stream Last from the FIFO Read Process
-        axi_user            : out std_logic                         -- AXI Stream User from the FIFO Read Process (Always '1')
+        buff_data           : out std_logic_vector(13 downto 0);    -- Output of the Self Trigger Correlation Module (Internally connected to the FIFO, 64 Registers Delayed AFE Data)
+        trigger             : out std_logic                         -- Non Controlled Trigger Output
     );
-end component selfTrigger_Module;
+end component DataPreProcessingManager;
+
+-- FIFO Memory With AXI Stream Output Module 
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+component AXI_FIFO_Adapter
+    Generic (
+        -- Frequency of the Write Clock (MHz)
+        WR_CLK_FREQ         : real          := 100.0;
+        -- Frequency of the Read Clock (MHz)
+        RD_CLK_FREQ         : real          := 100.0;
+        -- FIFO Important Parameters
+        data_width          : integer       := 14;
+        fifoPointersLength  : integer       := 11;
+        AEMPTY_OFF          : bit_vector    := X"0080";                                 -- Almost Empty Offset
+        AFULL_OFF           : bit_vector    := X"0080"                                  -- Almost Full Offset
+    );
+    Port (
+        -- Module Inputs
+    ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        d_i                 : in std_logic_vector((data_width - 1) downto 0);           -- Parallel Data Input for the FIFO
+        dt_rdy              : in std_logic;                                             -- Data Ready Flag from Acquisition Module
+        wr_enable           : in std_logic;                                             -- Write Enable Control Signal for the FIFO
+        rd_enable           : in std_logic;                                             -- Read Enable Control Signal for the FIFO
+        wr_clk              : in std_logic;                                             -- Write Clock for the FIFO
+        rd_clk              : in std_logic;                                             -- Read Clock for the FIFO
+        m_axi_clk           : in std_logic;                                             -- AXI Stream Interface Clock
+        rst                 : in std_logic;                                             -- Async Reset
+    
+        -- Module Outputs
+    ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        a_empty             : out std_logic;                                            -- Almost Empty Flag of the FIFO
+        a_full              : out std_logic;                                            -- Almost Full Flag of the FIFO
+        empty               : out std_logic;                                            -- Empty Flag of the FIFO
+        full                : out std_logic;                                            -- Full Flag of the FIFO 
+        wr_err              : out std_logic;                                            -- Write Error Flag of the FIFO
+        rd_err              : out std_logic;                                            -- Read Error Flag of the FIFO
+        wr_count            : out std_logic_vector((fifoPointersLength - 1) downto 0);  -- Write Pointer of the FIFO
+        rd_count            : out std_logic_vector((fifoPointersLength - 1) downto 0);  -- Read Pointer of the FIFO
+        fifo_o              : out std_logic_vector(13 downto 0);                        -- Parallel Data Output of the FIFO
+        m_axi_fifo_tdata    : out std_logic_vector((data_width/2) downto 0);            -- AXI Stream Data from the FIFO
+        m_axi_fifo_tvalid   : out std_logic;                                            -- AXI Stream Valid Control Signal
+        m_axi_fifo_tready   : in std_logic;                                             -- AXI Stream Ready Control Signal
+        m_axi_fifo_tlast    : out std_logic;                                            -- AXI Stream Last Control Signal
+        m_axi_fifo_tuser    : out std_logic                                             -- AXI Stream User Control Signal (Errors in the data)
+    );
+end component AXI_FIFO_Adapter;
 
 -- Ethernet Streaming Module
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 component eth_core is
     Port (       
         -- GTP Inputs and Outputs
--------------------------------------------------------------------------------------------------------------------------------------------------------
+    -------------------------------------------------------------------------------------------------------------------------------------------------------
         gtp_refclk_p, gtp_refclk_n          : in std_logic;                         -- GTP Ref Clock Inputs (Direct to Top Level)        
         gtp_tx_p, gtp_tx_n                  : out std_logic;                        -- GTP Differential Tx Outputs (Direct to Top Level)
         gtp_rx_p, gtp_rx_n                  : in std_logic;                         -- GTP Differential Rx Inputs (Direct to Top Level)
         
         -- General Core System Inputs
--------------------------------------------------------------------------------------------------------------------------------------------------------
+    -------------------------------------------------------------------------------------------------------------------------------------------------------
         rst                                 : in std_logic;                         -- System Reset
         clk125, clk200                      : in std_logic;                         -- System Clocks
         
         -- AXI Stream Module Tx Input
--------------------------------------------------------------------------------------------------------------------------------------------------------
+    -------------------------------------------------------------------------------------------------------------------------------------------------------
         eth_tx_axis_tdata                   : in std_logic_vector(7 downto 0);
         eth_tx_axis_tvalid                  : in std_logic;
         eth_tx_axis_tready                  : out std_logic;
@@ -280,7 +314,7 @@ component eth_core is
         eth_tx_axis_tuser                   : in std_logic;
         
         -- AXI Stream Module Rx Output
--------------------------------------------------------------------------------------------------------------------------------------------------------
+    -------------------------------------------------------------------------------------------------------------------------------------------------------
         eth_rx_axis_tdata                   : out std_logic_vector(7 downto 0);
         eth_rx_axis_tvalid                  : out std_logic;
         eth_rx_axis_tready                  : in std_logic;
@@ -288,7 +322,7 @@ component eth_core is
         eth_rx_axis_tuser                   : out std_logic;
         
         -- Misc Core Outputs
--------------------------------------------------------------------------------------------------------------------------------------------------------
+    -------------------------------------------------------------------------------------------------------------------------------------------------------
         eth_payload                         : out std_logic_vector(7 downto 0)
     );
 end component eth_core;
@@ -361,14 +395,14 @@ begin
             data_output                 => afe_data                 -- Output of the Iserdese Modules
         );
         
-    -- AFE5808A #0, Self Trigger for the Channel 0 Instantiation 
+    -- AFE5808A #0, Data Pre Processing for the Channel 0 Instantiation 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------    
-    AFE0_ST_CH_0 : selfTrigger_Module 
+    AFE0_DPP_CH_0 : DataPreProcessingManager 
         port map ( 
             -- Module Inputs
         ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
             afe_data                    => afe_data,            -- Aligned Data to Save from AFE
-            dt_rdy                      => data_dig_rdy,            -- Data Aligned
+            dt_rdy                      => data_dig_rdy,        -- Data Aligned
             rst                         => async_rst,           -- Async Reset
             clk                         => afe_se_clk,          -- AFE Divided Clock Used by the High Pass Filter (62.5 MHz) And the Write Clock of the FIFO 
             rd_clk                      => sys_clk62_5,         -- Read Clock Used by the FIFO (62.5 MHz) Asynchronous to WR_CLK    
@@ -379,25 +413,52 @@ begin
             
             -- Module Outputs
         ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            buff_data                   => fifo_i,              -- Output Delayed Data of the Data Pre Processing Module (64 Registers Delayed AFE Data)
+            trigger                     => trigger,             -- Non Controlled Trigger Output
+            trig_ctrl                   => dp_trig_ctrl,        -- Data Pre Processing Trigger Signal to FIFO
+            read_ctrl                   => dp_rd_ctrl,          -- Data Pre Processing Read Signal to FIFO
             filt_out                    => filt_out,            -- Output of the filter            
             calc_value_out              => st_calc_value_out,   -- Output of the Self Trigger Module (Calculated Correlation or Calculated Sigmoid Prediction)
-            net_agg                     => open,                -- Output of the Seff Trigger Neural Network (Aggregation of Output Neuron) -- UNUSED!
-            fifo_input_data             => fifo_i,              -- Output of the Self Trigger Neural Network Module (Internally connected to the FIFO, 79 Registers Delayed AFE Data)
-            trigger                     => trigger,             -- Trigger Output
-            fifo_rd_out                 => fifo_rd_out,         -- Real Read Enable used for the FIFO (Mapped Internally)
-            fifo_wr_out                 => fifo_wr_out,         -- Real Write Enable used for the FIFO (Mapped Internally)
-            fifo_o                      => fifo_o,              -- Output Data of the FIFO    
-            fifo_a_empty                => fifo_a_empty,        -- Almost Empty Flag of the FIFO
-            fifo_a_full                 => fifo_a_full,         -- Amost Full Flag of the FIFO (Interpreted as the real Full of the FIFO)
-            fifo_empty                  => fifo_empty,          -- Empty Flag of the FIFO
-            fifo_full                   => fifo_full,           -- Full Flag of the FIFO
-            fifo_wr_err                 => fifo_wr_err,         -- Write Error Flag of the FIFO (Internally Generated Not Real One)
-            fifo_rd_err                 => fifo_rd_err,         -- Read Error Flag of the FIFO (Internally Generated Not Real One)
-            axi_data                    => st_axi_data,         -- Output Data of the FIFO in AXI Stream Interface
-            axi_valid                   => st_axi_valid,        -- AXI Stream Valid from the FIFO Read Process
-            axi_ready                   => st_axi_ready,        -- AXI Stream Ready for the FIFO Read Process
-            axi_last                    => st_axi_last,         -- AXI Stream Last from the FIFO Read Process
-            axi_user                    => st_axi_user          -- AXI Stream User from the FIFO Read Process (Always '1')
+            net_agg                     => open                 -- Output of the Seff Trigger Neural Network (Aggregation of Output Neuron) -- UNUSED!
+        );
+        
+    -- AFE5808A #0, FIFO Component for the Channel 0 Instantiation
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    AFE0_AXI_FIFO_CH_0 : AXI_FIFO_Adapter
+        generic map (
+            WR_CLK_FREQ                 => 62.5,                -- Frequency of the Write Clock (MHz)    
+            RD_CLK_FREQ                 => 62.5,                -- Frequency of the Read Clock (MHz)
+            AEMPTY_OFF                  => X"6",                -- FIFO Important Parameters
+            AFULL_OFF                   => X"8"                 -- FIFO Important Parameters
+        )
+        port map (
+            -- Module Inputs
+    -------------------------------------------------------------------------------------------------------------------------------------------------------
+            d_i                         => fifo_i,              -- Connect to Output of the Buffer From Data pre Processing Module
+            dt_rdy                      => data_dig_rdy,
+            wr_enable                   => dp_trig_ctrl,
+            rd_enable                   => dp_rd_ctrl,
+            wr_clk                      => afe_se_clk,
+            rd_clk                      => sys_clk62_5,
+            m_axi_clk                   => sys_clk125,
+            rst                         => async_rst,    
+            
+            -- Module Outputs
+    -------------------------------------------------------------------------------------------------------------------------------------------------------  
+            a_empty                     => fifo_a_empty,
+            a_full                      => fifo_a_full,
+            empty                       => fifo_empty,
+            full                        => fifo_full,
+            wr_err                      => fifo_wr_err,
+            rd_err                      => fifo_rd_err,
+            wr_count                    => open,
+            rd_count                    => open,
+            fifo_o                      => fifo_o,
+            m_axi_fifo_tdata            => fifo_axi_data,       -- Output Data of the FIFO in AXI Stream Interface
+            m_axi_fifo_tvalid           => fifo_axi_valid,      -- AXI Stream Valid from the FIFO Read Process
+            m_axi_fifo_tready           => fifo_axi_ready,      -- AXI Stream Ready for the FIFO Read Process
+            m_axi_fifo_tlast            => fifo_axi_last,       -- AXI Stream Last from the FIFO Read Process
+            m_axi_fifo_tuser            => fifo_axi_user        -- AXI Stream User from the FIFO Read Process (Always '1')
         );
         
     -- DAPHNE Ethernet Streaming Module
@@ -421,11 +482,11 @@ begin
             
             -- AXI Stream Module Tx Input
     -------------------------------------------------------------------------------------------------------------------------------------------------------
-            eth_tx_axis_tdata           => st_axi_data,         -- Connect to Self Trigger Module
-            eth_tx_axis_tvalid          => st_axi_valid,        -- Connect to Self Trigger Module
-            eth_tx_axis_tready          => st_axi_ready,        -- Connect to Self Trigger Module
-            eth_tx_axis_tlast           => st_axi_last,         -- Connect to Self Trigger Module
-            eth_tx_axis_tuser           => st_axi_user,         -- Connect to Self Trigger Module
+            eth_tx_axis_tdata           => fifo_axi_data,       -- Connect to Self Trigger Module
+            eth_tx_axis_tvalid          => fifo_axi_valid,      -- Connect to Self Trigger Module
+            eth_tx_axis_tready          => fifo_axi_ready,      -- Connect to Self Trigger Module
+            eth_tx_axis_tlast           => fifo_axi_last,       -- Connect to Self Trigger Module
+            eth_tx_axis_tuser           => fifo_axi_user,       -- Connect to Self Trigger Module
             
             -- AXI Stream Module Rx Output
     -------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -538,7 +599,7 @@ begin
     ext_trig                <= eth_trig_reg OR gpi;             -- External Triggers OR Gate Control                              
     ext_read                <= eth_read_reg;                    -- External Read Control
     ext_cust_train_active   <= eth_cust_train_reg;              -- External Input For the Custom Training Pattern Being Active
-    ext_deskew_train_active <= eth_deskew_train_reg;          -- External Input For the Deskew Training Pattern Being Active
+    ext_deskew_train_active <= eth_deskew_train_reg;            -- External Input For the Deskew Training Pattern Being Active
         
     -- Ethernet SFP Link Control Signals
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
