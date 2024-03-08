@@ -239,7 +239,7 @@ component DataPreProcessingManager
         read_ctrl           : out std_logic;                        -- Real Read Enable used for the FIFO Module 
         filt_out            : out std_logic_vector(13 downto 0);    -- Output of the filter
         calc_value_out      : out std_logic_vector(47 downto 0);    -- Output of the Self Trigger Module (Calculated Correlation or Calculated Sigmoid Prediction)
-        net_agg             : out std_logic_vector(47 downto 0);    -- Output of the Seff Trigger Neural Network (Aggregation of Output Neuron)
+        --net_agg             : out std_logic_vector(47 downto 0);    -- Output of the Seff Trigger Neural Network (Aggregation of Output Neuron)
         buff_data           : out std_logic_vector(13 downto 0);    -- Output of the Self Trigger Correlation Module (Internally connected to the FIFO, 64 Registers Delayed AFE Data)
         trigger             : out std_logic                         -- Non Controlled Trigger Output
     );
@@ -418,8 +418,8 @@ begin
             trig_ctrl                   => dp_trig_ctrl,        -- Data Pre Processing Trigger Signal to FIFO
             read_ctrl                   => dp_rd_ctrl,          -- Data Pre Processing Read Signal to FIFO
             filt_out                    => filt_out,            -- Output of the filter            
-            calc_value_out              => st_calc_value_out,   -- Output of the Self Trigger Module (Calculated Correlation or Calculated Sigmoid Prediction)
-            net_agg                     => open                 -- Output of the Seff Trigger Neural Network (Aggregation of Output Neuron) -- UNUSED!
+            calc_value_out              => st_calc_value_out   -- Output of the Self Trigger Module (Calculated Correlation or Calculated Sigmoid Prediction)
+            --net_agg                     => open                 -- Output of the Seff Trigger Neural Network (Aggregation of Output Neuron) -- UNUSED!
         );
         
     -- AFE5808A #0, FIFO Component for the Channel 0 Instantiation
