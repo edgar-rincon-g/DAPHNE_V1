@@ -1031,3 +1031,7 @@ expandTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 
 collapseTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-6014] Unused sequential element r_hpf_data_15_reg was removed.  [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/Self-trigger_VHDL.vhd:319]. ]", 9); // u.d
 // Elapsed time: 12 seconds
 selectCodeEditor("DataPreProcessingManager.vhd", 348, 165); // ad
+// HMemoryUtils.trashcanNow. Engine heap size: 2,195 MB. GUI used memory: 70 MB. Current time: 3/18/24, 3:08:35 PM COT
+// Elapsed time: 2087 seconds
+selectCodeEditor("DataPreProcessingManager.vhd", 25, 159); // ad
+// HMemoryUtils.trashcanNow. Engine heap size: 2,195 MB. GUI used memory: 69 MB. Current time: 3/18/24, 3:38:35 PM COT
