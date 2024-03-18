@@ -232,6 +232,8 @@ component DataPreProcessingManager
         rd_ctrl             : in std_logic;                         -- Read Control Input ('0' Don't read the FIFO after a save, '1' Read the FIFO as soon as it stops saving)
         wr_enable_signal    : in std_logic;                         -- Auxiliar External Write Enable for the FIFO
         rd_enable_signal    : in std_logic;                         -- Auxiliar External Read Enable for the FIFO
+        afe_fifo_a_full     : in std_logic;                         -- FIFO Almost Full Flag
+        afe_fifo_empty      : in std_logic;                         -- FIFO Empty Flag
         
         -- Module Outputs
     ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -410,6 +412,8 @@ begin
             rd_ctrl                     => '1',                 -- Read Control Input ('0' Don't read the FIFO after a save, '1' Read the FIFO as soon as it stops saving)
             wr_enable_signal            => ext_trig,            -- Auxiliar External Write Enable for the FIFO
             rd_enable_signal            => ext_read,            -- Auxiliar External Read Enable for the FIFO
+            afe_fifo_a_full             => fifo_a_full,         -- FIFO Almost Full Flag
+            afe_fifo_empty              => fifo_empty,          -- FIFO Empty Flag
             
             -- Module Outputs
         ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

@@ -47,7 +47,9 @@ entity DataPreProcessingManager is
         sys_clk             : in std_logic;                         -- This is AXI Stream Clock (125 MHz)
         rd_ctrl             : in std_logic;                         -- Read Control Input ('0' Don't read the FIFO after a save, '1' Read the FIFO as soon as it stops saving)
         wr_enable_signal    : in std_logic;                         -- Auxiliar External Write Enable for the FIFO
-        rd_enable_signal    : in std_logic;                         -- Auxiliar External Read Enable for the FIFO
+        rd_enable_signal    : in std_logic; 
+        afe_fifo_a_full     : in std_logic;                         -- FIFO Almost Full Flag
+        afe_fifo_empty      : in std_logic;                         -- FIFO Empty Flag
         
         -- Module Outputs
     ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -134,9 +136,9 @@ component self_trigger
     Port (
         -- Module Inputs
     --------------------------------------------------------------------------------------------------------------------------------------
-        clk                     : in  std_logic;                                        -- Clock for the Module
+        clk                     : in std_logic;                                        -- Clock for the Module
         rst                     : in std_logic;                                         -- Async Reset
-        i_data                  : in  std_logic_vector(g_INPUT_WIDTH - 1 downto 0);     -- Input Parallel Data from the Acquisition Module
+        i_data                  : in std_logic_vector(g_INPUT_WIDTH - 1 downto 0);     -- Input Parallel Data from the Acquisition Module
         data_hpf                : in std_logic_vector(g_INPUT_WIDTH - 1 downto 0);      -- Filtered Data from the High Pass Filter
         
         -- Module Outputs
@@ -233,12 +235,6 @@ signal trigger_in                   : std_logic;
 signal n_reg_afe_data               : std_logic_vector(13 downto 0);
 signal fifo_trig                    : std_logic;
 signal fifo_rd                      : std_logic; 
-signal afe_fifo_a_empty             : std_logic;
-signal afe_fifo_a_full              : std_logic;
-signal afe_fifo_empty               : std_logic;
-signal afe_fifo_full                : std_logic;
-signal afe_fifo_wr_err              : std_logic;
-signal afe_fifo_rd_err              : std_logic;
 signal xcorr_data_out_aux           : std_logic_vector(13 downto 0);
 signal xcorr_calc_out               : std_logic_vector(47 downto 0);
 signal neural_network_data_out_aux  : std_logic_vector(13 downto 0);
