@@ -24,13 +24,13 @@ create_generated_clock -name sclk200                [get_pins SYS_TIMING_ENPT/mm
 create_generated_clock -name sclk62_5               [get_pins SYS_TIMING_ENPT/mmcm0_inst/CLKOUT0]
 create_generated_clock -name mmcm0_clkfbout         [get_pins SYS_TIMING_ENPT/mmcm0_inst/CLKFBOUT]
 
-create_generated_clock -name afe0_pll_dig0          [get_pins AFE0_CH_0/CLK_COM/PLL_COM/PLLE2_BASE_inst/CLKOUT0]
-create_generated_clock -name afe0_pll_dig1          [get_pins AFE0_CH_0/CLK_COM/PLL_COM/PLLE2_BASE_inst/CLKOUT1]
-create_generated_clock -name afe0_pll_dig2          [get_pins AFE0_CH_0/CLK_COM/PLL_COM/PLLE2_BASE_inst/CLKOUT2]
-create_generated_clock -name afe0_pll_dig_div0      [get_pins AFE0_CH_0/CLK_COM/PLL_COM/PLLE2_BASE_inst/CLKOUT3]
-create_generated_clock -name afe0_pll_dig_div1      [get_pins AFE0_CH_0/CLK_COM/PLL_COM/PLLE2_BASE_inst/CLKOUT4]
-create_generated_clock -name afe0_pll_dig_div2      [get_pins AFE0_CH_0/CLK_COM/PLL_COM/PLLE2_BASE_inst/CLKOUT5]
-create_generated_clock -name afe0_pll_clkfbout      [get_pins AFE0_CH_0/CLK_COM/PLL_COM/PLLE2_BASE_inst/CLKFBOUT]
+create_generated_clock -name afe0_pll_dig0          [get_pins DAQ_MODULE_CH_0/CLK_COM/PLL_COM/PLLE2_BASE_inst/CLKOUT0]
+create_generated_clock -name afe0_pll_dig1          [get_pins DAQ_MODULE_CH_0/CLK_COM/PLL_COM/PLLE2_BASE_inst/CLKOUT1]
+create_generated_clock -name afe0_pll_dig2          [get_pins DAQ_MODULE_CH_0/CLK_COM/PLL_COM/PLLE2_BASE_inst/CLKOUT2]
+create_generated_clock -name afe0_pll_dig_div0      [get_pins DAQ_MODULE_CH_0/CLK_COM/PLL_COM/PLLE2_BASE_inst/CLKOUT3]
+create_generated_clock -name afe0_pll_dig_div1      [get_pins DAQ_MODULE_CH_0/CLK_COM/PLL_COM/PLLE2_BASE_inst/CLKOUT4]
+create_generated_clock -name afe0_pll_dig_div2      [get_pins DAQ_MODULE_CH_0/CLK_COM/PLL_COM/PLLE2_BASE_inst/CLKOUT5]
+create_generated_clock -name afe0_pll_clkfbout      [get_pins DAQ_MODULE_CH_0/CLK_COM/PLL_COM/PLLE2_BASE_inst/CLKFBOUT]
 
 create_generated_clock -name oeiclk                 [get_pins ETH_MOD/ETH_PHY_COM/U0/core_clocking_i/mmcm_adv_inst/CLKOUT0] 
 create_generated_clock -name oeihclk                [get_pins ETH_MOD/ETH_PHY_COM/U0/core_clocking_i/mmcm_adv_inst/CLKOUT1]
@@ -55,19 +55,19 @@ set_property LOC BUFGCTRL_X0Y2                      [get_cells ETH_MOD/ETH_PHY_C
 
 ###########################################################################################################################################
 # Creating False Paths So Timing Analysis Is Ignored (Refer to https://docs.xilinx.com/r/en-US/ug903-vivado-using-constraints/False-Paths)
-set_false_path -through                             [get_pins AFE0_CH_0/CLK_COM/MUX_CLK_COM/MUX_In/BUFGMUX_CTRL_inst/S0]
-set_false_path -through                             [get_pins AFE0_CH_0/CLK_COM/MUX_CLK_COM/MUX_In/BUFGMUX_CTRL_inst/S1]
-set_false_path -through                             [get_pins AFE0_CH_0/CLK_COM/MUX_CLK_COM/MUX_Out/BUFGMUX_CTRL_inst/S0]
-set_false_path -through                             [get_pins AFE0_CH_0/CLK_COM/MUX_CLK_COM/MUX_Out/BUFGMUX_CTRL_inst/S1]
+set_false_path -through                             [get_pins DAQ_MODULE_CH_0/CLK_COM/MUX_CLK_COM/MUX_In/BUFGMUX_CTRL_inst/S0]
+set_false_path -through                             [get_pins DAQ_MODULE_CH_0/CLK_COM/MUX_CLK_COM/MUX_In/BUFGMUX_CTRL_inst/S1]
+set_false_path -through                             [get_pins DAQ_MODULE_CH_0/CLK_COM/MUX_CLK_COM/MUX_Out/BUFGMUX_CTRL_inst/S0]
+set_false_path -through                             [get_pins DAQ_MODULE_CH_0/CLK_COM/MUX_CLK_COM/MUX_Out/BUFGMUX_CTRL_inst/S1]
 # Comment The Following Lines If There Are No Synchronizers Used
-set_false_path -through                             [get_pins AFE0_CH_0/CLK_COM/MUX_CLK_DIV_COM/MUX_In/BUFGMUX_CTRL_inst/S0]
-set_false_path -through                             [get_pins AFE0_CH_0/CLK_COM/MUX_CLK_DIV_COM/MUX_In/BUFGMUX_CTRL_inst/S1]
-set_false_path -through                             [get_pins AFE0_CH_0/CLK_COM/MUX_CLK_DIV_COM/MUX_Out/BUFGMUX_CTRL_inst/S0]
-set_false_path -through                             [get_pins AFE0_CH_0/CLK_COM/MUX_CLK_DIV_COM/MUX_Out/BUFGMUX_CTRL_inst/S1]
+set_false_path -through                             [get_pins DAQ_MODULE_CH_0/CLK_COM/MUX_CLK_DIV_COM/MUX_In/BUFGMUX_CTRL_inst/S0]
+set_false_path -through                             [get_pins DAQ_MODULE_CH_0/CLK_COM/MUX_CLK_DIV_COM/MUX_In/BUFGMUX_CTRL_inst/S1]
+set_false_path -through                             [get_pins DAQ_MODULE_CH_0/CLK_COM/MUX_CLK_DIV_COM/MUX_Out/BUFGMUX_CTRL_inst/S0]
+set_false_path -through                             [get_pins DAQ_MODULE_CH_0/CLK_COM/MUX_CLK_DIV_COM/MUX_Out/BUFGMUX_CTRL_inst/S1]
 # Synchronizers false paths 
 # Acquisition Module
-set_false_path -through                             [get_pins AFE0_CH_0/SYNCH_COM_0/FLIP_FLOP_CHAIN[0].FIRST_FF.FIRST_FLIP_FLOP/FDRE_inst/D]
-set_false_path -through                             [get_pins AFE0_CH_0/SYNCH_COM_1/FLIP_FLOP_CHAIN[0].FIRST_FF.FIRST_FLIP_FLOP/FDRE_inst/D]
+set_false_path -through                             [get_pins DAQ_MODULE_CH_0/SYNCH_COM_0/FLIP_FLOP_CHAIN[0].FIRST_FF.FIRST_FLIP_FLOP/FDRE_inst/D]
+set_false_path -through                             [get_pins DAQ_MODULE_CH_0/SYNCH_COM_1/FLIP_FLOP_CHAIN[0].FIRST_FF.FIRST_FLIP_FLOP/FDRE_inst/D]
 # Synchronizers for the Read and Write flags/operations on the FIFO (Only used when both WR_CLK & RD_CLK have different frequencies)
 # FIFO Memory
 #set_false_path -through                             [get_pins AFE0_ST_0/FIFO_INST_COM/MEMORY_CTRL_COM/RESET_COM/RST_GEN_RD.SYNCH_COM/FLIP_FLOP_CHAIN[0].FIRST_FF.FIRST_FLIP_FLOP/FDRE_inst/D]

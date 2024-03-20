@@ -219,7 +219,7 @@ end component AcquisitionManager;
 
 -- Data Pre Processing Module - Includes Self Trigger Core
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
-component DataPreProcessingManager 
+component DataPreProcessingModule 
     Port ( 
         -- Module Inputs
     ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -245,11 +245,11 @@ component DataPreProcessingManager
         buff_data           : out std_logic_vector(13 downto 0);    -- Output of the Self Trigger Correlation Module (Internally connected to the FIFO, 64 Registers Delayed AFE Data)
         trigger             : out std_logic                         -- Non Controlled Trigger Output
     );
-end component DataPreProcessingManager;
+end component DataPreProcessingModule;
 
 -- FIFO Memory With AXI Stream Output Module 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
-component AXI_FIFO_Adapter
+component AXIFIFOAdapterModule
     Generic (
         -- Frequency of the Write Clock (MHz)
         WR_CLK_FREQ         : real          := 100.0;
@@ -290,7 +290,7 @@ component AXI_FIFO_Adapter
         m_axi_fifo_tlast    : out std_logic;                                            -- AXI Stream Last Control Signal
         m_axi_fifo_tuser    : out std_logic                                             -- AXI Stream User Control Signal (Errors in the data)
     );
-end component AXI_FIFO_Adapter;
+end component AXIFIFOAdapterModule;
 
 -- Ethernet Streaming Module
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -366,7 +366,7 @@ begin
      
     -- AFE5808A - 0, Channel 0
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    AFE0_CH_0 : AcquisitionManager
+    DAQ_MODULE_CH_0 : AcquisitionManager
         generic map (
             n_ch                        => 1
         )
@@ -399,7 +399,7 @@ begin
         
     -- AFE5808A #0, Data Pre Processing for the Channel 0 Instantiation 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------    
-    AFE0_DPP_CH_0 : DataPreProcessingManager 
+    DPP_MODULE_CH_0 : DataPreProcessingModule 
         port map ( 
             -- Module Inputs
         ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -428,7 +428,7 @@ begin
         
     -- AFE5808A #0, FIFO Component for the Channel 0 Instantiation
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    AFE0_AXI_FIFO_CH_0 : AXI_FIFO_Adapter
+    AXI_FIFO_MODULE_CH_0 : AXIFIFOAdapterModule 
         generic map (
             WR_CLK_FREQ                 => 62.5,                -- Frequency of the Write Clock (MHz)    
             RD_CLK_FREQ                 => 62.5,                -- Frequency of the Read Clock (MHz)

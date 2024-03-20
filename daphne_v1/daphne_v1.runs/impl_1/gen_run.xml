@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="impl_1" LaunchPart="xc7a200tfbg676-2" LaunchTime="1710790777">
+<GenRun Id="impl_1" LaunchPart="xc7a200tfbg676-2" LaunchTime="1710966526">
   <File Type="ROUTE-PWR" Name="daphne1_power_routed.rpt"/>
   <File Type="PA-TCL" Name="daphne1.tcl"/>
   <File Type="ROUTE-PWR-SUM" Name="daphne1_power_summary_routed.pb"/>
@@ -359,7 +359,7 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/new/AXI_FIFO_Adapter.vhd">
+    <File Path="$PSRCDIR/sources_1/new/AXIFIFOAdapterModule.vhd">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
@@ -401,7 +401,7 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/new/DataPreProcessingManager.vhd">
+    <File Path="$PSRCDIR/sources_1/new/DataPreProcessingModule.vhd">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
@@ -413,7 +413,7 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/new/FIFOManager.vhd">
+    <File Path="$PSRCDIR/sources_1/new/FIFOManagerModule.vhd">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
@@ -426,6 +426,12 @@
       </FileInfo>
     </File>
     <File Path="$PSRCDIR/sources_1/new/FIFO_TO_AXI_Stream_Logic.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/FilterStage.vhd">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
@@ -455,7 +461,7 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/new/ResetMemory_Module.vhd">
+    <File Path="$PSRCDIR/sources_1/new/ResetFIFOModule.vhd">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
@@ -503,6 +509,12 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
+    <File Path="$PSRCDIR/sources_1/new/fifoControlFSM.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <File Path="$PSRCDIR/sources_1/new/frameFSM_Module.vhd">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -528,12 +540,6 @@
       </FileInfo>
     </File>
     <File Path="$PSRCDIR/sources_1/new/rdFSM_Module.vhd">
-      <FileInfo>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sources_1/new/trigSaveReadFSM.vhd">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>

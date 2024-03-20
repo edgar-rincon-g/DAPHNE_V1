@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.1 (win64) Build 3865809 Sun May  7 15:05:29 MDT 2023
-| Date         : Mon Mar 18 14:43:09 2024
+| Date         : Wed Mar 20 15:31:53 2024
 | Host         : danielA running 64-bit major release  (build 9200)
 | Command      : report_drc -file daphne1_drc_opted.rpt -pb daphne1_drc_opted.pb -rpx daphne1_drc_opted.rpx
 | Design       : daphne1
@@ -38,32 +38,32 @@ Table of Contents
 -----------------
 DPIP-1#1 Warning
 Input pipelining  
-DSP AFE0_DPP_CH_0/HP_FILTER_COM/fir_feedback/DSP48E1_inst input AFE0_DPP_CH_0/HP_FILTER_COM/fir_feedback/DSP48E1_inst/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+DSP DPP_MODULE_CH_0/FILTER_STAGE_COM/LP_FILTER_COM/fir_feedback/DSP48E1_inst input DPP_MODULE_CH_0/FILTER_STAGE_COM/LP_FILTER_COM/fir_feedback/DSP48E1_inst/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
 Related violations: <none>
 
 DPOP-1#1 Warning
 PREG Output pipelining  
-DSP AFE0_DPP_CH_0/HP_FILTER_COM/fir_feedback/DSP48E1_inst output AFE0_DPP_CH_0/HP_FILTER_COM/fir_feedback/DSP48E1_inst/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+DSP DPP_MODULE_CH_0/FILTER_STAGE_COM/LP_FILTER_COM/fir_feedback/DSP48E1_inst output DPP_MODULE_CH_0/FILTER_STAGE_COM/LP_FILTER_COM/fir_feedback/DSP48E1_inst/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
 Related violations: <none>
 
 DPOP-1#2 Warning
 PREG Output pipelining  
-DSP AFE0_DPP_CH_0/HP_FILTER_COM/fir_forward/DSP48E1_inst output AFE0_DPP_CH_0/HP_FILTER_COM/fir_forward/DSP48E1_inst/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+DSP DPP_MODULE_CH_0/FILTER_STAGE_COM/LP_FILTER_COM/fir_forward/DSP48E1_inst output DPP_MODULE_CH_0/FILTER_STAGE_COM/LP_FILTER_COM/fir_forward/DSP48E1_inst/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
 Related violations: <none>
 
 DPOP-2#1 Warning
 MREG Output pipelining  
-DSP AFE0_DPP_CH_0/HP_FILTER_COM/fir_feedback/DSP48E1_inst multiplier stage AFE0_DPP_CH_0/HP_FILTER_COM/fir_feedback/DSP48E1_inst/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+DSP DPP_MODULE_CH_0/FILTER_STAGE_COM/LP_FILTER_COM/fir_feedback/DSP48E1_inst multiplier stage DPP_MODULE_CH_0/FILTER_STAGE_COM/LP_FILTER_COM/fir_feedback/DSP48E1_inst/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
 Related violations: <none>
 
 REQP-1580#1 Warning
 Phase alignment  
-Unsupported clocking topology used for ISERDESE2 AFE0_CH_0/DATA_COM/DATA_ISER/ISERDESE2_M_inst. This can result in corrupted data. The AFE0_CH_0/DATA_COM/DATA_ISER/ISERDESE2_M_inst/CLK / AFE0_CH_0/DATA_COM/DATA_ISER/ISERDESE2_M_inst/CLKDIV pins should be driven by the same source through the same buffer type or by a BUFIO / BUFR combination in order to have a proper phase relationship. Please refer to the Select I/O User Guide for supported clocking topologies of the chosen INTERFACE_TYPE mode.
+Unsupported clocking topology used for ISERDESE2 DAQ_MODULE_CH_0/DATA_COM/DATA_ISER/ISERDESE2_M_inst. This can result in corrupted data. The DAQ_MODULE_CH_0/DATA_COM/DATA_ISER/ISERDESE2_M_inst/CLK / DAQ_MODULE_CH_0/DATA_COM/DATA_ISER/ISERDESE2_M_inst/CLKDIV pins should be driven by the same source through the same buffer type or by a BUFIO / BUFR combination in order to have a proper phase relationship. Please refer to the Select I/O User Guide for supported clocking topologies of the chosen INTERFACE_TYPE mode.
 Related violations: <none>
 
 REQP-1580#2 Warning
 Phase alignment  
-Unsupported clocking topology used for ISERDESE2 AFE0_CH_0/DATA_COM/DATA_ISER/ISERDESE2_S_inst. This can result in corrupted data. The AFE0_CH_0/DATA_COM/DATA_ISER/ISERDESE2_S_inst/CLK / AFE0_CH_0/DATA_COM/DATA_ISER/ISERDESE2_S_inst/CLKDIV pins should be driven by the same source through the same buffer type or by a BUFIO / BUFR combination in order to have a proper phase relationship. Please refer to the Select I/O User Guide for supported clocking topologies of the chosen INTERFACE_TYPE mode.
+Unsupported clocking topology used for ISERDESE2 DAQ_MODULE_CH_0/DATA_COM/DATA_ISER/ISERDESE2_S_inst. This can result in corrupted data. The DAQ_MODULE_CH_0/DATA_COM/DATA_ISER/ISERDESE2_S_inst/CLK / DAQ_MODULE_CH_0/DATA_COM/DATA_ISER/ISERDESE2_S_inst/CLKDIV pins should be driven by the same source through the same buffer type or by a BUFIO / BUFR combination in order to have a proper phase relationship. Please refer to the Select I/O User Guide for supported clocking topologies of the chosen INTERFACE_TYPE mode.
 Related violations: <none>
 
 

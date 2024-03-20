@@ -12,7 +12,7 @@
     ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 
 source daphne1.tcl -notrace
-create_project: Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1453.797 ; gain = 152.555
+create_project: Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1460.160 ; gain = 159.773
 Command: read_checkpoint -auto_incremental -incremental C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/utils_1/imports/synth_1/daphne1.dcp
 INFO: [Vivado 12-5825] Read reference checkpoint from C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/utils_1/imports/synth_1/daphne1.dcp for incremental synthesis
 INFO: [Vivado 12-7989] Please ensure there are no constraint changes
@@ -25,7 +25,7 @@ INFO: [Designutils 20-5440] No compile time benefit to using incremental synthes
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 13092
+INFO: [Synth 8-7075] Helper process launched with PID 5476
 WARNING: [Synth 8-11065] parameter 'BYTE_LANES' becomes localparam in 'arp_eth_rx' with formal parameter declaration list [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/arp_eth_rx.v:89]
 WARNING: [Synth 8-11065] parameter 'HDR_SIZE' becomes localparam in 'arp_eth_rx' with formal parameter declaration list [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/arp_eth_rx.v:91]
 WARNING: [Synth 8-11065] parameter 'CYCLE_COUNT' becomes localparam in 'arp_eth_rx' with formal parameter declaration list [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/arp_eth_rx.v:93]
@@ -70,7 +70,7 @@ WARNING: [Synth 8-11065] parameter 'LEVELS' becomes localparam in 'priority_enco
 WARNING: [Synth 8-11065] parameter 'W' becomes localparam in 'priority_encoder' with formal parameter declaration list [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/priority_encoder.v:48]
 WARNING: [Synth 8-11065] parameter 'HEADER_FIFO_ADDR_WIDTH' becomes localparam in 'udp_checksum_gen' with formal parameter declaration list [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/udp_checksum_gen.v:143]
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 2336.504 ; gain = 410.691
+Starting RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 2343.398 ; gain = 411.160
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-638] synthesizing module 'daphne1' [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/daphne1.vhd:107]
 INFO: [Synth 8-3491] module 'endpoint' declared at 'C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/endpoint.vhd:35' bound to instance 'SYS_TIMING_ENPT' of component 'endpoint' [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/daphne1.vhd:340]
@@ -121,7 +121,7 @@ INFO: [Synth 8-113] binding component instance 'oddr_inst' to cell 'ODDR' [C:/Us
 INFO: [Synth 8-113] binding component instance 'afe_obufds_inst' to cell 'OBUFDS' [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/endpoint.vhd:249]
 INFO: [Synth 8-256] done synthesizing module 'endpoint' (0#1) [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/endpoint.vhd:62]
 	Parameter n_ch bound to: 1 - type: integer 
-INFO: [Synth 8-3491] module 'AcquisitionManager' declared at 'C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/AcquisitionManager.vhd:39' bound to instance 'AFE0_CH_0' of component 'AcquisitionManager' [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/daphne1.vhd:369]
+INFO: [Synth 8-3491] module 'AcquisitionManager' declared at 'C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/AcquisitionManager.vhd:39' bound to instance 'DAQ_MODULE_CH_0' of component 'AcquisitionManager' [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/daphne1.vhd:369]
 INFO: [Synth 8-638] synthesizing module 'AcquisitionManager' [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/AcquisitionManager.vhd:71]
 	Parameter n_ch bound to: 1 - type: integer 
 	Parameter n_ch bound to: 1 - type: integer 
@@ -267,9 +267,17 @@ INFO: [Synth 8-256] done synthesizing module 'Iserdese_Block' (0#1) [C:/Users/da
 INFO: [Synth 8-3491] module 'Iserdese_Block' declared at 'C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/Iserdese_Block.vhd:34' bound to instance 'DATA_ISER' of component 'Iserdese_Block' [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/DataAcquisition.vhd:162]
 INFO: [Synth 8-256] done synthesizing module 'DataAcquisition' (0#1) [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/DataAcquisition.vhd:61]
 INFO: [Synth 8-256] done synthesizing module 'AcquisitionManager' (0#1) [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/AcquisitionManager.vhd:71]
-INFO: [Synth 8-3491] module 'DataPreProcessingManager' declared at 'C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/DataPreProcessingManager.vhd:38' bound to instance 'AFE0_DPP_CH_0' of component 'DataPreProcessingManager' [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/daphne1.vhd:402]
-INFO: [Synth 8-638] synthesizing module 'DataPreProcessingManager' [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/DataPreProcessingManager.vhd:66]
-INFO: [Synth 8-3491] module 'highPass_FirstOrder' declared at 'C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/highPass_FirstOrder.vhd:39' bound to instance 'HP_FILTER_COM' of component 'highPass_FirstOrder' [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/DataPreProcessingManager.vhd:249]
+INFO: [Synth 8-3491] module 'DataPreProcessingModule' declared at 'C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/DataPreProcessingModule.vhd:38' bound to instance 'DPP_MODULE_CH_0' of component 'DataPreProcessingModule' [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/daphne1.vhd:402]
+INFO: [Synth 8-638] synthesizing module 'DataPreProcessingModule' [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/DataPreProcessingModule.vhd:66]
+	Parameter DATA_SIZE bound to: 14 - type: integer 
+	Parameter HP_COEFF_RESOLUTION bound to: 17 - type: integer 
+	Parameter LP_COEFF_RESOLUTION bound to: 17 - type: integer 
+INFO: [Synth 8-3491] module 'FilterStage' declared at 'C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/FilterStage.vhd:35' bound to instance 'FILTER_STAGE_COM' of component 'FilterStage' [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/DataPreProcessingModule.vhd:230]
+INFO: [Synth 8-638] synthesizing module 'FilterStage' [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/FilterStage.vhd:57]
+	Parameter DATA_SIZE bound to: 14 - type: integer 
+	Parameter HP_COEFF_RESOLUTION bound to: 17 - type: integer 
+	Parameter LP_COEFF_RESOLUTION bound to: 17 - type: integer 
+INFO: [Synth 8-3491] module 'highPass_FirstOrder' declared at 'C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/highPass_FirstOrder.vhd:39' bound to instance 'HP_FILTER_COM' of component 'highPass_FirstOrder' [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/FilterStage.vhd:120]
 INFO: [Synth 8-638] synthesizing module 'highPass_FirstOrder' [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/highPass_FirstOrder.vhd:57]
 	Parameter Data_Size bound to: 14 - type: integer 
 	Parameter Coefficient_Resolution bound to: 17 - type: integer 
@@ -403,7 +411,7 @@ INFO: [Synth 8-638] synthesizing module 'dsp_slice__parameterized1' [C:/Users/da
 INFO: [Synth 8-113] binding component instance 'DSP48E1_inst' to cell 'DSP48E1' [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/dsp_slice.vhd:89]
 INFO: [Synth 8-256] done synthesizing module 'dsp_slice__parameterized1' (0#1) [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/dsp_slice.vhd:86]
 INFO: [Synth 8-256] done synthesizing module 'highPass_FirstOrder' (0#1) [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/highPass_FirstOrder.vhd:57]
-INFO: [Synth 8-3491] module 'lowPass_FirstOrder' declared at 'C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/lowPass_FirstOrder.vhd:42' bound to instance 'LP_FILTER_COM' of component 'lowPass_FirstOrder' [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/DataPreProcessingManager.vhd:279]
+INFO: [Synth 8-3491] module 'lowPass_FirstOrder' declared at 'C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/lowPass_FirstOrder.vhd:42' bound to instance 'LP_FILTER_COM' of component 'lowPass_FirstOrder' [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/FilterStage.vhd:135]
 INFO: [Synth 8-638] synthesizing module 'lowPass_FirstOrder' [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/lowPass_FirstOrder.vhd:60]
 	Parameter Data_Size bound to: 14 - type: integer 
 	Parameter Coefficient_Resolution bound to: 17 - type: integer 
@@ -431,30 +439,31 @@ INFO: [Synth 8-3491] module 'dsp_slice' declared at 'C:/Users/daniel.avila.EIA/D
 	Parameter OPModeReg bound to: 0 - type: integer 
 INFO: [Synth 8-3491] module 'dsp_slice' declared at 'C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/dsp_slice.vhd:35' bound to instance 'fir_feedback' of component 'dsp_slice' [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/lowPass_FirstOrder.vhd:226]
 INFO: [Synth 8-256] done synthesizing module 'lowPass_FirstOrder' (0#1) [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/lowPass_FirstOrder.vhd:60]
-INFO: [Synth 8-3491] module 'n_regDataBuffer' declared at 'C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/n_regDataBuffer.vhd:35' bound to instance 'N_REG_BUFF_COM' of component 'n_regDataBuffer' [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/DataPreProcessingManager.vhd:294]
+INFO: [Synth 8-256] done synthesizing module 'FilterStage' (0#1) [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/FilterStage.vhd:57]
+INFO: [Synth 8-3491] module 'n_regDataBuffer' declared at 'C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/n_regDataBuffer.vhd:35' bound to instance 'N_REG_DATA_BUFF_COM' of component 'n_regDataBuffer' [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/DataPreProcessingModule.vhd:253]
 INFO: [Synth 8-638] synthesizing module 'n_regDataBuffer' [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/n_regDataBuffer.vhd:53]
 	Parameter INPUT_WIDTH bound to: 14 - type: integer 
 	Parameter N_REG bound to: 66 - type: integer 
 INFO: [Synth 8-256] done synthesizing module 'n_regDataBuffer' (0#1) [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/n_regDataBuffer.vhd:53]
-INFO: [Synth 8-3491] module 'self_trigger' declared at 'C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/Self-trigger_VHDL.vhd:37' bound to instance 'SELF_TRIGGER_TOP_COM' of component 'self_trigger' [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/DataPreProcessingManager.vhd:309]
+INFO: [Synth 8-3491] module 'self_trigger' declared at 'C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/Self-trigger_VHDL.vhd:37' bound to instance 'SELF_TRIGGER_TOP_COM' of component 'self_trigger' [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/DataPreProcessingModule.vhd:268]
 INFO: [Synth 8-638] synthesizing module 'self_trigger' [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/Self-trigger_VHDL.vhd:59]
 	Parameter g_INPUT_WIDTH bound to: 14 - type: integer 
 	Parameter g_SUM_WIDTH bound to: 14 - type: integer 
 	Parameter g_MULT_WIDTH bound to: 28 - type: integer 
 INFO: [Synth 8-256] done synthesizing module 'self_trigger' (0#1) [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/Self-trigger_VHDL.vhd:59]
-INFO: [Synth 8-3491] module 'trigSaveReadFSM' declared at 'C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/trigSaveReadFSM.vhd:37' bound to instance 'FSM_CTRL_COM' of component 'trigSaveReadFSM' [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/DataPreProcessingManager.vhd:358]
-INFO: [Synth 8-638] synthesizing module 'trigSaveReadFSM' [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/trigSaveReadFSM.vhd:58]
-INFO: [Synth 8-226] default block is never used [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/trigSaveReadFSM.vhd:127]
-INFO: [Synth 8-226] default block is never used [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/trigSaveReadFSM.vhd:154]
-INFO: [Synth 8-226] default block is never used [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/trigSaveReadFSM.vhd:241]
-INFO: [Synth 8-256] done synthesizing module 'trigSaveReadFSM' (0#1) [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/trigSaveReadFSM.vhd:58]
-INFO: [Synth 8-256] done synthesizing module 'DataPreProcessingManager' (0#1) [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/DataPreProcessingManager.vhd:66]
+INFO: [Synth 8-3491] module 'fifoControlFSM' declared at 'C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/fifoControlFSM.vhd:37' bound to instance 'FIFO_CTRL_FSM_COM' of component 'fifoControlFSM' [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/DataPreProcessingModule.vhd:317]
+INFO: [Synth 8-638] synthesizing module 'fifoControlFSM' [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/fifoControlFSM.vhd:58]
+INFO: [Synth 8-226] default block is never used [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/fifoControlFSM.vhd:127]
+INFO: [Synth 8-226] default block is never used [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/fifoControlFSM.vhd:154]
+INFO: [Synth 8-226] default block is never used [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/fifoControlFSM.vhd:241]
+INFO: [Synth 8-256] done synthesizing module 'fifoControlFSM' (0#1) [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/fifoControlFSM.vhd:58]
+INFO: [Synth 8-256] done synthesizing module 'DataPreProcessingModule' (0#1) [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/DataPreProcessingModule.vhd:66]
 	Parameter WR_CLK_FREQ bound to: 62.500000 - type: double 
 	Parameter RD_CLK_FREQ bound to: 62.500000 - type: double 
 	Parameter AEMPTY_OFF bound to: 4'b0110 
 	Parameter AFULL_OFF bound to: 4'b1000 
-INFO: [Synth 8-3491] module 'AXI_FIFO_Adapter' declared at 'C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/AXI_FIFO_Adapter.vhd:36' bound to instance 'AFE0_AXI_FIFO_CH_0' of component 'AXI_FIFO_Adapter' [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/daphne1.vhd:431]
-INFO: [Synth 8-638] synthesizing module 'AXI_FIFO_Adapter' [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/AXI_FIFO_Adapter.vhd:81]
+INFO: [Synth 8-3491] module 'AXIFIFOAdapterModule' declared at 'C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/AXIFIFOAdapterModule.vhd:36' bound to instance 'AXI_FIFO_MODULE_CH_0' of component 'AXIFIFOAdapterModule' [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/daphne1.vhd:431]
+INFO: [Synth 8-638] synthesizing module 'AXIFIFOAdapterModule' [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/AXIFIFOAdapterModule.vhd:81]
 	Parameter WR_CLK_FREQ bound to: 62.500000 - type: double 
 	Parameter RD_CLK_FREQ bound to: 62.500000 - type: double 
 	Parameter data_width bound to: 14 - type: integer 
@@ -467,8 +476,8 @@ INFO: [Synth 8-638] synthesizing module 'AXI_FIFO_Adapter' [C:/Users/daniel.avil
 	Parameter fifoPointersLength bound to: 11 - type: integer 
 	Parameter AEMPTY_OFF bound to: 4'b0110 
 	Parameter AFULL_OFF bound to: 4'b1000 
-INFO: [Synth 8-3491] module 'FIFOManager' declared at 'C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/FIFOManager.vhd:35' bound to instance 'MEMORY_CTRL_COM' of component 'FIFOManager' [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/AXI_FIFO_Adapter.vhd:167]
-INFO: [Synth 8-638] synthesizing module 'FIFOManager' [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/FIFOManager.vhd:73]
+INFO: [Synth 8-3491] module 'FIFOManagerModule' declared at 'C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/FIFOManagerModule.vhd:35' bound to instance 'FIFO_MANAGER_COM' of component 'FIFOManagerModule' [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/AXIFIFOAdapterModule.vhd:167]
+INFO: [Synth 8-638] synthesizing module 'FIFOManagerModule' [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/FIFOManagerModule.vhd:73]
 	Parameter WR_CLK_FREQ bound to: 62.500000 - type: double 
 	Parameter RD_CLK_FREQ bound to: 62.500000 - type: double 
 	Parameter data_width bound to: 14 - type: integer 
@@ -477,17 +486,17 @@ INFO: [Synth 8-638] synthesizing module 'FIFOManager' [C:/Users/daniel.avila.EIA
 	Parameter AFULL_OFF bound to: 4'b1000 
 	Parameter WR_CLK_FREQ bound to: 62.500000 - type: double 
 	Parameter RD_CLK_FREQ bound to: 62.500000 - type: double 
-INFO: [Synth 8-3491] module 'ResetMemory_Module' declared at 'C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/ResetMemory_Module.vhd:43' bound to instance 'RESET_COM' of component 'ResetMemory_Module' [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/FIFOManager.vhd:195]
-INFO: [Synth 8-638] synthesizing module 'ResetMemory_Module' [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/ResetMemory_Module.vhd:65]
+INFO: [Synth 8-3491] module 'ResetFIFOModule' declared at 'C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/ResetFIFOModule.vhd:43' bound to instance 'RESET_COM' of component 'ResetFIFOModule' [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/FIFOManagerModule.vhd:195]
+INFO: [Synth 8-638] synthesizing module 'ResetFIFOModule' [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/ResetFIFOModule.vhd:65]
 	Parameter WR_CLK_FREQ bound to: 62.500000 - type: double 
 	Parameter RD_CLK_FREQ bound to: 62.500000 - type: double 
-INFO: [Synth 8-256] done synthesizing module 'ResetMemory_Module' (0#1) [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/ResetMemory_Module.vhd:65]
+INFO: [Synth 8-256] done synthesizing module 'ResetFIFOModule' (0#1) [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/ResetFIFOModule.vhd:65]
 	Parameter dt_width bound to: 14 - type: integer 
 	Parameter pointersLength bound to: 11 - type: integer 
 	Parameter fwft bound to: 0 - type: bool 
 	Parameter aEmpty_Off bound to: 4'b0110 
 	Parameter aFull_Off bound to: 4'b1000 
-INFO: [Synth 8-3491] module 'FIFO_Module' declared at 'C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/FIFO_Module.vhd:37' bound to instance 'FIFO_MEM' of component 'FIFO_Module' [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/FIFOManager.vhd:223]
+INFO: [Synth 8-3491] module 'FIFO_Module' declared at 'C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/FIFO_Module.vhd:37' bound to instance 'FIFO_MEM' of component 'FIFO_Module' [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/FIFOManagerModule.vhd:223]
 INFO: [Synth 8-638] synthesizing module 'FIFO_Module' [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/FIFO_Module.vhd:69]
 	Parameter dt_width bound to: 14 - type: integer 
 	Parameter pointersLength bound to: 11 - type: integer 
@@ -524,27 +533,27 @@ INFO: [Synth 8-638] synthesizing module 'unimacro_FIFO_DUALCLOCK_MACRO' [C:/Xili
 INFO: [Synth 8-113] binding component instance 'fifo_36_bl' to cell 'FIFO36E1' [C:/Xilinx/Vivado/2023.1/data/vhdl/src/unimacro/FIFO_DUALCLOCK_MACRO.vhd:843]
 INFO: [Synth 8-256] done synthesizing module 'unimacro_FIFO_DUALCLOCK_MACRO' (0#1) [C:/Xilinx/Vivado/2023.1/data/vhdl/src/unimacro/FIFO_DUALCLOCK_MACRO.vhd:70]
 INFO: [Synth 8-256] done synthesizing module 'FIFO_Module' (0#1) [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/FIFO_Module.vhd:69]
-INFO: [Synth 8-3491] module 'wrFSM_Module' declared at 'C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/wrFSM_Module.vhd:34' bound to instance 'WRITE_FSM' of component 'wrFSM_Module' [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/FIFOManager.vhd:256]
+INFO: [Synth 8-3491] module 'wrFSM_Module' declared at 'C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/wrFSM_Module.vhd:34' bound to instance 'WRITE_FSM' of component 'wrFSM_Module' [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/FIFOManagerModule.vhd:256]
 INFO: [Synth 8-638] synthesizing module 'wrFSM_Module' [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/wrFSM_Module.vhd:52]
 INFO: [Synth 8-226] default block is never used [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/wrFSM_Module.vhd:82]
 INFO: [Synth 8-226] default block is never used [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/wrFSM_Module.vhd:117]
 INFO: [Synth 8-256] done synthesizing module 'wrFSM_Module' (0#1) [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/wrFSM_Module.vhd:52]
-INFO: [Synth 8-3491] module 'rdFSM_Module' declared at 'C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/rdFSM_Module.vhd:34' bound to instance 'READ_FSM' of component 'rdFSM_Module' [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/FIFOManager.vhd:275]
+INFO: [Synth 8-3491] module 'rdFSM_Module' declared at 'C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/rdFSM_Module.vhd:34' bound to instance 'READ_FSM' of component 'rdFSM_Module' [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/FIFOManagerModule.vhd:275]
 INFO: [Synth 8-638] synthesizing module 'rdFSM_Module' [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/rdFSM_Module.vhd:51]
 INFO: [Synth 8-226] default block is never used [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/rdFSM_Module.vhd:81]
 INFO: [Synth 8-226] default block is never used [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/rdFSM_Module.vhd:116]
 INFO: [Synth 8-256] done synthesizing module 'rdFSM_Module' (0#1) [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/rdFSM_Module.vhd:51]
-INFO: [Synth 8-256] done synthesizing module 'FIFOManager' (0#1) [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/FIFOManager.vhd:73]
+INFO: [Synth 8-256] done synthesizing module 'FIFOManagerModule' (0#1) [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/FIFOManagerModule.vhd:73]
 	Parameter AXI_STREAM_DATA_WIDTH bound to: 8 - type: integer 
 	Parameter DATA_WIDTH bound to: 14 - type: integer 
-INFO: [Synth 8-3491] module 'FIFO_TO_AXI_Stream_Logic' declared at 'C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/FIFO_TO_AXI_Stream_Logic.vhd:35' bound to instance 'DATA_TO_AXI_STREAM_COM' of component 'FIFO_TO_AXI_Stream_Logic' [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/AXI_FIFO_Adapter.vhd:203]
+INFO: [Synth 8-3491] module 'FIFO_TO_AXI_Stream_Logic' declared at 'C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/FIFO_TO_AXI_Stream_Logic.vhd:35' bound to instance 'FIFO_TO_AXI_STREAM_COM' of component 'FIFO_TO_AXI_Stream_Logic' [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/AXIFIFOAdapterModule.vhd:203]
 INFO: [Synth 8-638] synthesizing module 'FIFO_TO_AXI_Stream_Logic' [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/FIFO_TO_AXI_Stream_Logic.vhd:60]
 	Parameter AXI_STREAM_DATA_WIDTH bound to: 8 - type: integer 
 	Parameter DATA_WIDTH bound to: 14 - type: integer 
 INFO: [Synth 8-226] default block is never used [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/FIFO_TO_AXI_Stream_Logic.vhd:118]
 INFO: [Synth 8-226] default block is never used [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/FIFO_TO_AXI_Stream_Logic.vhd:152]
 INFO: [Synth 8-256] done synthesizing module 'FIFO_TO_AXI_Stream_Logic' (0#1) [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/FIFO_TO_AXI_Stream_Logic.vhd:60]
-INFO: [Synth 8-256] done synthesizing module 'AXI_FIFO_Adapter' (0#1) [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/AXI_FIFO_Adapter.vhd:81]
+INFO: [Synth 8-256] done synthesizing module 'AXIFIFOAdapterModule' (0#1) [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/AXIFIFOAdapterModule.vhd:81]
 INFO: [Synth 8-3491] module 'eth_core' declared at 'C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/eth_core.vhd:36' bound to instance 'ETH_MOD' of component 'eth_core' [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/daphne1.vhd:470]
 INFO: [Synth 8-638] synthesizing module 'eth_core' [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/eth_core.vhd:71]
 INFO: [Synth 8-113] binding component instance 'GTP_REFCLK_P_COM' to cell 'IBUF' [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/eth_core.vhd:215]
@@ -1442,7 +1451,6 @@ INFO: [Synth 8-6155] done synthesizing module 'eth_mac_stack' (0#1) [C:/Users/da
 INFO: [Synth 8-256] done synthesizing module 'eth_core' (0#1) [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/eth_core.vhd:71]
 INFO: [Synth 8-256] done synthesizing module 'daphne1' (0#1) [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/daphne1.vhd:107]
 WARNING: [Synth 8-6014] Unused sequential element r_hpf_data_15_reg was removed.  [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/Self-trigger_VHDL.vhd:319]
-WARNING: [Synth 8-6014] Unused sequential element lp_filt_data_reg_reg was removed.  [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/DataPreProcessingManager.vhd:269]
 WARNING: [Synth 8-3848] Net dip_pattern in module/entity unimacro_FIFO_DUALCLOCK_MACRO does not have driver. [C:/Xilinx/Vivado/2023.1/data/vhdl/src/unimacro/FIFO_DUALCLOCK_MACRO.vhd:590]
 WARNING: [Synth 8-6014] Unused sequential element pll0lock_prev_reg was removed.  [c:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.gen/sources_1/ip/gig_ethernet_pcs_pma_0/synth/transceiver/gig_ethernet_pcs_pma_0_tx_startup_fsm.vhd:346]
 WARNING: [Synth 8-6014] Unused sequential element pll1lock_prev_reg was removed.  [c:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.gen/sources_1/ip/gig_ethernet_pcs_pma_0/synth/transceiver/gig_ethernet_pcs_pma_0_tx_startup_fsm.vhd:347]
@@ -1613,18 +1621,18 @@ WARNING: [Synth 8-7129] Port local_ip[2] in module ip is either unconnected or h
 WARNING: [Synth 8-7129] Port local_ip[1] in module ip is either unconnected or has no load
 INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:37 ; elapsed = 00:00:38 . Memory (MB): peak = 2807.188 ; gain = 881.375
+Finished RTL Elaboration : Time (s): cpu = 00:00:32 ; elapsed = 00:00:33 . Memory (MB): peak = 2814.805 ; gain = 882.566
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:37 ; elapsed = 00:00:38 . Memory (MB): peak = 2807.188 ; gain = 881.375
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:33 ; elapsed = 00:00:34 . Memory (MB): peak = 2814.805 ; gain = 882.566
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:37 ; elapsed = 00:00:38 . Memory (MB): peak = 2807.188 ; gain = 881.375
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:33 ; elapsed = 00:00:34 . Memory (MB): peak = 2814.805 ; gain = 882.566
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.391 . Memory (MB): peak = 2807.188 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.350 . Memory (MB): peak = 2814.805 ; gain = 0.000
 INFO: [Netlist 29-17] Analyzing 228 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
@@ -1665,7 +1673,7 @@ INFO: [Project 1-236] Implementation specific constraints were found while readi
 Resolution: To avoid this warning, move constraints listed in [.Xil/daphne1_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 2807.188 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 2814.805 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 209 instances were transformed.
   BUFGMUX => BUFGCTRL (inverted pins: CE0): 1 instance 
@@ -1676,18 +1684,18 @@ INFO: [Project 1-111] Unisim Transformation Summary:
   PLLE2_BASE => PLLE2_ADV: 1 instance 
   SRL16 => SRL16E: 2 instances
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.103 . Memory (MB): peak = 2807.188 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.088 . Memory (MB): peak = 2814.805 ; gain = 0.000
 INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:53 ; elapsed = 00:00:54 . Memory (MB): peak = 2807.188 ; gain = 881.375
+Finished Constraint Validation : Time (s): cpu = 00:00:46 ; elapsed = 00:00:47 . Memory (MB): peak = 2814.805 ; gain = 882.566
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a200tfbg676-2
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:53 ; elapsed = 00:00:54 . Memory (MB): peak = 2807.188 ; gain = 881.375
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:46 ; elapsed = 00:00:47 . Memory (MB): peak = 2814.805 ; gain = 882.566
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
@@ -1886,12 +1894,12 @@ Applied set_property ASYNC_REG = true for ETH_MOD/ETH_MAC_UDP_STACK_COM/eth_mac_
 Applied set_property KEEP_HIERARCHY = SOFT for ETH_MOD/ETH_PHY_COM/U0. (constraint file  C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.runs/synth_1/dont_touch.xdc, line 16).
 Applied set_property KEEP_HIERARCHY = SOFT for ETH_MOD/ETH_PHY_COM. (constraint file  auto generated constraint).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:54 ; elapsed = 00:00:55 . Memory (MB): peak = 2807.188 ; gain = 881.375
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:47 ; elapsed = 00:00:48 . Memory (MB): peak = 2814.805 ; gain = 882.566
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-802] inferred FSM for state register 'State_reg' in module 'bitFSM_Module'
 INFO: [Synth 8-802] inferred FSM for state register 'State_reg' in module 'frameFSM_Module'
-INFO: [Synth 8-802] inferred FSM for state register 'State_WR_reg' in module 'trigSaveReadFSM'
-INFO: [Synth 8-802] inferred FSM for state register 'State_RD_reg' in module 'trigSaveReadFSM'
+INFO: [Synth 8-802] inferred FSM for state register 'State_WR_reg' in module 'fifoControlFSM'
+INFO: [Synth 8-802] inferred FSM for state register 'State_RD_reg' in module 'fifoControlFSM'
 INFO: [Synth 8-802] inferred FSM for state register 'State_reg' in module 'wrFSM_Module'
 INFO: [Synth 8-802] inferred FSM for state register 'State_reg' in module 'rdFSM_Module'
 INFO: [Synth 8-802] inferred FSM for state register 'State_reg' in module 'FIFO_TO_AXI_Stream_Logic'
@@ -1938,7 +1946,7 @@ INFO: [Synth 8-3354] encoded FSM with state register 'State_reg' using encoding 
                save_data |                               10 |                               10
          read_data_after |                               11 |                               11
 ---------------------------------------------------------------------------------------------------
-INFO: [Synth 8-3354] encoded FSM with state register 'State_WR_reg' using encoding 'sequential' in module 'trigSaveReadFSM'
+INFO: [Synth 8-3354] encoded FSM with state register 'State_WR_reg' using encoding 'sequential' in module 'fifoControlFSM'
 ---------------------------------------------------------------------------------------------------
                    State |                     New Encoding |                Previous Encoding 
 ---------------------------------------------------------------------------------------------------
@@ -1947,7 +1955,7 @@ INFO: [Synth 8-3354] encoded FSM with state register 'State_WR_reg' using encodi
                read_data |                               10 |                               10
              hold_stream |                               11 |                               11
 ---------------------------------------------------------------------------------------------------
-INFO: [Synth 8-3354] encoded FSM with state register 'State_RD_reg' using encoding 'sequential' in module 'trigSaveReadFSM'
+INFO: [Synth 8-3354] encoded FSM with state register 'State_RD_reg' using encoding 'sequential' in module 'fifoControlFSM'
 ---------------------------------------------------------------------------------------------------
                    State |                     New Encoding |                Previous Encoding 
 ---------------------------------------------------------------------------------------------------
@@ -2161,7 +2169,7 @@ STATE_WRITE_PAYLOAD_LAST |                               11 |                   
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'state_reg_reg' using encoding 'sequential' in module 'udp_ip_tx'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:01:02 ; elapsed = 00:01:03 . Memory (MB): peak = 2807.188 ; gain = 881.375
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:53 ; elapsed = 00:00:55 . Memory (MB): peak = 2814.805 ; gain = 882.566
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -2226,7 +2234,7 @@ Detailed RTL Component Info :
 	               32 Bit    Registers := 22    
 	               28 Bit    Registers := 1     
 	               16 Bit    Registers := 67    
-	               14 Bit    Registers := 178   
+	               14 Bit    Registers := 179   
 	               13 Bit    Registers := 7     
 	               12 Bit    Registers := 1     
 	               10 Bit    Registers := 15    
@@ -2270,7 +2278,7 @@ Detailed RTL Component Info :
 	   4 Input   16 Bit        Muxes := 3     
 	   7 Input   16 Bit        Muxes := 3     
 	  15 Input   15 Bit        Muxes := 2     
-	   2 Input   14 Bit        Muxes := 26    
+	   2 Input   14 Bit        Muxes := 27    
 	   4 Input   14 Bit        Muxes := 2     
 	  13 Input   13 Bit        Muxes := 1     
 	   2 Input   13 Bit        Muxes := 19    
@@ -2379,7 +2387,7 @@ DSP Report: register SELF_TRIGGER_TOP_COM/r_hpf_data_7_reg is absorbed into DSP 
 DSP Report: register SELF_TRIGGER_TOP_COM/r_multdata_7_reg is absorbed into DSP SELF_TRIGGER_TOP_COM/r_multdata_7_reg.
 DSP Report: operator SELF_TRIGGER_TOP_COM/r_multdata_70 is absorbed into DSP SELF_TRIGGER_TOP_COM/r_multdata_7_reg.
 DSP Report: Generating DSP SELF_TRIGGER_TOP_COM/r_sumamult10, operation Mode is: PCIN+(A''*(B:0x3ffbe))'.
-DSP Report: register hp_filt_data_reg_reg is absorbed into DSP SELF_TRIGGER_TOP_COM/r_sumamult10.
+DSP Report: register FILTER_STAGE_COM/lp_filt_data_reg_reg is absorbed into DSP SELF_TRIGGER_TOP_COM/r_sumamult10.
 DSP Report: register SELF_TRIGGER_TOP_COM/r_hpf_data_0_reg is absorbed into DSP SELF_TRIGGER_TOP_COM/r_sumamult10.
 DSP Report: register SELF_TRIGGER_TOP_COM/r_multdata_0_reg is absorbed into DSP SELF_TRIGGER_TOP_COM/r_sumamult10.
 DSP Report: operator SELF_TRIGGER_TOP_COM/r_multdata_00 is absorbed into DSP SELF_TRIGGER_TOP_COM/r_sumamult10.
@@ -2423,8 +2431,8 @@ RAM Pipeline Warning: Read Address Register Found For RAM ip_addr_mem_reg. We wi
 RAM Pipeline Warning: Read Address Register Found For RAM ip_addr_mem_reg. We will not be able to pipeline it. This may degrade performance. 
 WARNING: [Synth 8-6430] The Block RAM "\ETH_MOD/ETH_MAC_UDP_STACK_COM/udp_complete_inst /ip_complete_inst/\arp_inst/arp_cache_inst/ip_addr_mem_reg " may get memory collision error if read and write address collide. Use attribute (* rw_addr_collision= "yes" *) to avoid collision 
 RAM Pipeline Warning: Read Address Register Found For RAM ip_addr_mem_reg. We will not be able to pipeline it. This may degrade performance. 
-WARNING: [Synth 8-3332] Sequential element (AFE0_DPP_CH_0/FSM_CTRL_COM/FSM_sequential_State_RD_reg[1]) is unused and will be removed from module daphne1.
-WARNING: [Synth 8-3332] Sequential element (AFE0_DPP_CH_0/FSM_CTRL_COM/FSM_sequential_State_RD_reg[0]) is unused and will be removed from module daphne1.
+WARNING: [Synth 8-3332] Sequential element (DPP_MODULE_CH_0/FIFO_CTRL_FSM_COM/FSM_sequential_State_RD_reg[1]) is unused and will be removed from module daphne1.
+WARNING: [Synth 8-3332] Sequential element (DPP_MODULE_CH_0/FIFO_CTRL_FSM_COM/FSM_sequential_State_RD_reg[0]) is unused and will be removed from module daphne1.
 INFO: [Synth 8-3332] Sequential element (gpcs_pma_inst/FSM_onehot_USE_ROCKET_IO.RX_RST_SM_TXOUTCLK.RX_RST_SM_reg[14]) is unused and will be removed from module gig_ethernet_pcs_pma_v16_2_12.
 INFO: [Synth 8-3332] Sequential element (gpcs_pma_inst/FSM_onehot_USE_ROCKET_IO.TX_RST_SM_reg[14]) is unused and will be removed from module gig_ethernet_pcs_pma_v16_2_12.
 INFO: [Synth 8-3332] Sequential element (pcs_pma_block_i/transceiver_inst/gtwizard_inst/U0/gtwizard_i/gt0_GTWIZARD_i/rxpmarst_seq_i/sync_RXPMARESETDONE/data_sync_reg1) is unused and will be removed from module gig_ethernet_pcs_pma_0_support.
@@ -2493,7 +2501,7 @@ INFO: [Synth 8-3332] Sequential element (pcs_pma_block_i/sync_block_rx_reset_don
 INFO: [Synth 8-3332] Sequential element (pcs_pma_block_i/sync_block_rx_reset_done/data_sync_reg5) is unused and will be removed from module gig_ethernet_pcs_pma_0_support.
 INFO: [Synth 8-3332] Sequential element (pcs_pma_block_i/sync_block_rx_reset_done/data_sync_reg6) is unused and will be removed from module gig_ethernet_pcs_pma_0_support.
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:28 ; elapsed = 00:01:30 . Memory (MB): peak = 2807.188 ; gain = 881.375
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:15 ; elapsed = 00:01:17 . Memory (MB): peak = 2814.805 ; gain = 882.566
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -2539,25 +2547,25 @@ Distributed RAM: Preliminary Mapping Report (see note below)
 Note: The table above is a preliminary report that shows the Distributed RAMs at the current stage of the synthesis flow. Some Distributed RAMs may be reimplemented as non Distributed RAM primitives later in the synthesis flow. Multiple instantiated RAMs are reported only once.
 
 DSP: Preliminary Mapping Report (see note below. The ' indicates corresponding REG is set)
-+-------------------------+----------------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
-|Module Name              | DSP Mapping                | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
-+-------------------------+----------------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
-|self_trigger             | (A''*(B:0x3ffef))'         | 14     | 6      | -      | -      | 20     | 2    | 0    | -    | -    | -     | 1    | 0    | 
-|DataPreProcessingManager | PCIN+(A''*(B:0x3ffb7))'    | 14     | 8      | -      | -      | 28     | 2    | 0    | -    | -    | -     | 1    | 0    | 
-|self_trigger             | PCIN+(A''*(B:0x3ffe0))'    | 14     | 6      | -      | -      | 28     | 2    | 0    | -    | -    | -     | 1    | 0    | 
-|self_trigger             | PCIN+(A''*(B:0x3ffd4))'    | 14     | 7      | -      | -      | 28     | 2    | 0    | -    | -    | -     | 1    | 0    | 
-|self_trigger             | PCIN+(ACIN*(B:0x3ffca))'   | 14     | 7      | -      | -      | 28     | 0    | 0    | -    | -    | -     | 1    | 0    | 
-|self_trigger             | PCIN+(A''*(B:0x3ffc2))'    | 14     | 7      | -      | -      | 28     | 2    | 0    | -    | -    | -     | 1    | 0    | 
-|self_trigger             | PCIN+(ACIN*(B:0x3ffbb))'   | 14     | 8      | -      | -      | 28     | 0    | 0    | -    | -    | -     | 1    | 0    | 
-|self_trigger             | (A''*(B:0x3ffb4))'         | 14     | 8      | -      | -      | 22     | 2    | 0    | -    | -    | -     | 1    | 0    | 
-|DataPreProcessingManager | PCIN+(A''*(B:0x3ffbe))'    | 14     | 8      | -      | -      | 28     | 2    | 0    | -    | -    | -     | 1    | 0    | 
-|DataPreProcessingManager | PCIN+(A''*(B:0x3ffb2))'    | 14     | 8      | -      | -      | 28     | 2    | 0    | -    | -    | -     | 1    | 0    | 
-|DataPreProcessingManager | PCIN+(A''*(B:0x3ffb2))'    | 14     | 8      | -      | -      | 28     | 2    | 0    | -    | -    | -     | 1    | 0    | 
-|self_trigger             | PCIN+(ACIN*(B:0x3ffb3))'   | 14     | 8      | -      | -      | 28     | 0    | 0    | -    | -    | -     | 1    | 0    | 
-|DataPreProcessingManager | PCIN+(A''*(B:0x3ffb4))'    | 14     | 8      | -      | -      | 28     | 2    | 0    | -    | -    | -     | 1    | 0    | 
-|self_trigger             | PCIN+(ACIN*(B:0x3ffb7))'   | 14     | 8      | -      | -      | 28     | 0    | 0    | -    | -    | -     | 1    | 0    | 
-|self_trigger             | (PCIN+(A''*(B:0x3ffba))')' | 14     | 8      | -      | -      | 28     | 2    | 0    | -    | -    | -     | 1    | 1    | 
-+-------------------------+----------------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
++------------------------+----------------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name             | DSP Mapping                | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++------------------------+----------------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|self_trigger            | (A''*(B:0x3ffef))'         | 14     | 6      | -      | -      | 20     | 2    | 0    | -    | -    | -     | 1    | 0    | 
+|DataPreProcessingModule | PCIN+(A''*(B:0x3ffb7))'    | 14     | 8      | -      | -      | 28     | 2    | 0    | -    | -    | -     | 1    | 0    | 
+|self_trigger            | PCIN+(A''*(B:0x3ffe0))'    | 14     | 6      | -      | -      | 28     | 2    | 0    | -    | -    | -     | 1    | 0    | 
+|self_trigger            | PCIN+(A''*(B:0x3ffd4))'    | 14     | 7      | -      | -      | 28     | 2    | 0    | -    | -    | -     | 1    | 0    | 
+|self_trigger            | PCIN+(ACIN*(B:0x3ffca))'   | 14     | 7      | -      | -      | 28     | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|self_trigger            | PCIN+(A''*(B:0x3ffc2))'    | 14     | 7      | -      | -      | 28     | 2    | 0    | -    | -    | -     | 1    | 0    | 
+|self_trigger            | PCIN+(ACIN*(B:0x3ffbb))'   | 14     | 8      | -      | -      | 28     | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|self_trigger            | (A''*(B:0x3ffb4))'         | 14     | 8      | -      | -      | 22     | 2    | 0    | -    | -    | -     | 1    | 0    | 
+|DataPreProcessingModule | PCIN+(A''*(B:0x3ffbe))'    | 14     | 8      | -      | -      | 28     | 2    | 0    | -    | -    | -     | 1    | 0    | 
+|DataPreProcessingModule | PCIN+(A''*(B:0x3ffb2))'    | 14     | 8      | -      | -      | 28     | 2    | 0    | -    | -    | -     | 1    | 0    | 
+|DataPreProcessingModule | PCIN+(A''*(B:0x3ffb2))'    | 14     | 8      | -      | -      | 28     | 2    | 0    | -    | -    | -     | 1    | 0    | 
+|self_trigger            | PCIN+(ACIN*(B:0x3ffb3))'   | 14     | 8      | -      | -      | 28     | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|DataPreProcessingModule | PCIN+(A''*(B:0x3ffb4))'    | 14     | 8      | -      | -      | 28     | 2    | 0    | -    | -    | -     | 1    | 0    | 
+|self_trigger            | PCIN+(ACIN*(B:0x3ffb7))'   | 14     | 8      | -      | -      | 28     | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|self_trigger            | (PCIN+(A''*(B:0x3ffba))')' | 14     | 8      | -      | -      | 28     | 2    | 0    | -    | -    | -     | 1    | 1    | 
++------------------------+----------------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
 
 Note: The table above is a preliminary report that shows the DSPs inferred at the current stage of the synthesis flow. Some DSP may be reimplemented as non DSP primitives later in the synthesis flow. Multiple instantiated DSPs are reported only once.
 ---------------------------------------------------------------------------------
@@ -2579,13 +2587,13 @@ WARNING: [Synth 8-3321] set_false_path : Empty through list for constraint at li
 WARNING: [Synth 8-3321] set_false_path : Empty to list for constraint at line 23 of C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/constrs_1/new/axis_async_fifo.tcl. [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/constrs_1/new/axis_async_fifo.tcl:23]
 WARNING: [Synth 8-3321] set_false_path : Empty to list for constraint at line 23 of C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/constrs_1/new/axis_async_fifo.tcl. [C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/constrs_1/new/axis_async_fifo.tcl:23]
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:41 ; elapsed = 00:01:43 . Memory (MB): peak = 2807.188 ; gain = 881.375
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:26 ; elapsed = 00:01:28 . Memory (MB): peak = 2814.805 ; gain = 882.566
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:01:46 ; elapsed = 00:01:47 . Memory (MB): peak = 2807.188 ; gain = 881.375
+Finished Timing Optimization : Time (s): cpu = 00:01:30 ; elapsed = 00:01:32 . Memory (MB): peak = 2814.805 ; gain = 882.566
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -2628,7 +2636,7 @@ Start Technology Mapping
 INFO: [Synth 8-7052] The timing for the instance ETH_MOD/ETH_MAC_UDP_STACK_COM/udp_complete_inst/ip_complete_inst/arp_inst/arp_cache_inst/ip_addr_mem_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
 INFO: [Synth 8-7052] The timing for the instance ETH_MOD/ETH_MAC_UDP_STACK_COM/udp_complete_inst/ip_complete_inst/arp_inst/arp_cache_inst/mac_addr_mem_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:01:50 ; elapsed = 00:01:51 . Memory (MB): peak = 2807.188 ; gain = 881.375
+Finished Technology Mapping : Time (s): cpu = 00:01:33 ; elapsed = 00:01:35 . Memory (MB): peak = 2814.805 ; gain = 882.566
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -2646,52 +2654,52 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:01:56 ; elapsed = 00:01:58 . Memory (MB): peak = 2807.188 ; gain = 881.375
+Finished IO Insertion : Time (s): cpu = 00:01:38 ; elapsed = 00:01:40 . Memory (MB): peak = 2814.805 ; gain = 882.566
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:01:56 ; elapsed = 00:01:58 . Memory (MB): peak = 2807.188 ; gain = 881.375
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:38 ; elapsed = 00:01:40 . Memory (MB): peak = 2814.805 ; gain = 882.566
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:57 ; elapsed = 00:01:59 . Memory (MB): peak = 2807.188 ; gain = 881.375
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:39 ; elapsed = 00:01:41 . Memory (MB): peak = 2814.805 ; gain = 882.566
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:01:57 ; elapsed = 00:01:59 . Memory (MB): peak = 2807.188 ; gain = 881.375
+Finished Renaming Generated Ports : Time (s): cpu = 00:01:39 ; elapsed = 00:01:41 . Memory (MB): peak = 2814.805 ; gain = 882.566
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:01:57 ; elapsed = 00:01:59 . Memory (MB): peak = 2807.188 ; gain = 881.375
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:40 ; elapsed = 00:01:41 . Memory (MB): peak = 2814.805 ; gain = 882.566
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:01:57 ; elapsed = 00:01:59 . Memory (MB): peak = 2807.188 ; gain = 881.375
+Finished Renaming Generated Nets : Time (s): cpu = 00:01:40 ; elapsed = 00:01:41 . Memory (MB): peak = 2814.805 ; gain = 882.566
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
 ---------------------------------------------------------------------------------
 
 Static Shift Register Report:
-+-------------------------------+-----------------------------------------------------------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
-|Module Name                    | RTL Name                                                                                | Length | Width | Reset Signal | Pull out first Reg | Pull out last Reg | SRL16E | SRLC32E | 
-+-------------------------------+-----------------------------------------------------------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
-|gig_ethernet_pcs_pma_v16_2_12  | gpcs_pma_inst/RX_GMII_AT_TXOUTCLK.RECEIVER_TXOUTCLK/RXDATA_REG5_reg[7]                  | 5      | 8     | NO           | NO                 | NO                | 8      | 0       | 
-|gig_ethernet_pcs_pma_0_support | core_gt_common_i/cpllpd_wait_reg[95]                                                    | 96     | 1     | NO           | NO                 | YES               | 0      | 3       | 
-|gig_ethernet_pcs_pma_0_support | core_gt_common_i/cpllreset_wait_reg[127]                                                | 128    | 1     | NO           | NO                 | YES               | 0      | 4       | 
-|daphne1                        | AFE0_CH_0/CLK_COM/rst_pll_reg                                                           | 7      | 1     | NO           | NO                 | YES               | 1      | 0       | 
-|daphne1                        | AFE0_DPP_CH_0/N_REG_BUFF_COM/DATA_BUFF_GEN[65].CHAIN_DATA_BUFF_GEN.reg_data_reg[65][13] | 66     | 14    | YES          | NO                 | YES               | 0      | 28      | 
-+-------------------------------+-----------------------------------------------------------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
++-------------------------------+------------------------------------------------------------------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
+|Module Name                    | RTL Name                                                                                       | Length | Width | Reset Signal | Pull out first Reg | Pull out last Reg | SRL16E | SRLC32E | 
++-------------------------------+------------------------------------------------------------------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
+|gig_ethernet_pcs_pma_v16_2_12  | gpcs_pma_inst/RX_GMII_AT_TXOUTCLK.RECEIVER_TXOUTCLK/RXDATA_REG5_reg[7]                         | 5      | 8     | NO           | NO                 | NO                | 8      | 0       | 
+|gig_ethernet_pcs_pma_0_support | core_gt_common_i/cpllpd_wait_reg[95]                                                           | 96     | 1     | NO           | NO                 | YES               | 0      | 3       | 
+|gig_ethernet_pcs_pma_0_support | core_gt_common_i/cpllreset_wait_reg[127]                                                       | 128    | 1     | NO           | NO                 | YES               | 0      | 4       | 
+|daphne1                        | DAQ_MODULE_CH_0/CLK_COM/rst_pll_reg                                                            | 7      | 1     | NO           | NO                 | YES               | 1      | 0       | 
+|daphne1                        | DPP_MODULE_CH_0/N_REG_DATA_BUFF_COM/DATA_BUFF_GEN[65].CHAIN_DATA_BUFF_GEN.reg_data_reg[65][13] | 66     | 14    | YES          | NO                 | YES               | 0      | 28      | 
++-------------------------------+------------------------------------------------------------------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
 
 ---------------------------------------------------------------------------------
 Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -2705,20 +2713,20 @@ DSP Final Report (the ' indicates corresponding REG is set)
 |Module Name               | DSP Mapping       | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
 +--------------------------+-------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
 |dsp_slice__parameterized1 | A*B               | 30     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dsp_slice                 | C'+((D'-A'')'*B)' | 14     | 17     | 48     | 14     | 48     | 2    | 0    | 0    | 0    | 1     | 1    | 0    | 
+|dsp_slice                 | C'+((D'+A'')'*B)' | 0      | 12     | 48     | 0      | 48     | 2    | 0    | 0    | 0    | 1     | 1    | 0    | 
 |self_trigger              | (A''*B)'          | 30     | 18     | -      | -      | 0      | 2    | 0    | -    | -    | -     | 0    | 1    | 
-|DataPreProcessingManager  | PCIN+(A''*B)'     | 30     | 18     | -      | -      | 0      | 2    | 0    | -    | -    | -     | 1    | 0    | 
+|DataPreProcessingModule   | PCIN+(A''*B)'     | 30     | 18     | -      | -      | 0      | 2    | 0    | -    | -    | -     | 1    | 0    | 
 |self_trigger              | PCIN+(A''*B)'     | 30     | 18     | -      | -      | 0      | 2    | 0    | -    | -    | -     | 1    | 0    | 
 |self_trigger              | PCIN+(A''*B)'     | 30     | 18     | -      | -      | 0      | 2    | 0    | -    | -    | -     | 1    | 0    | 
 |self_trigger              | PCIN+(A*B)'       | 0      | 18     | -      | -      | 0      | 0    | 0    | -    | -    | -     | 1    | 0    | 
 |self_trigger              | PCIN+(A''*B)'     | 30     | 18     | -      | -      | 0      | 2    | 0    | -    | -    | -     | 1    | 0    | 
 |self_trigger              | (PCIN+(A*B)')'    | 0      | 18     | -      | -      | 28     | 0    | 0    | -    | -    | -     | 1    | 1    | 
 |self_trigger              | (A''*B)'          | 30     | 18     | -      | -      | 0      | 2    | 0    | -    | -    | -     | 0    | 1    | 
-|DataPreProcessingManager  | PCIN+(A''*B)'     | 30     | 18     | -      | -      | 0      | 2    | 0    | -    | -    | -     | 1    | 0    | 
-|DataPreProcessingManager  | PCIN+(A''*B)'     | 30     | 18     | -      | -      | 0      | 2    | 0    | -    | -    | -     | 1    | 0    | 
-|DataPreProcessingManager  | PCIN+(A''*B)'     | 30     | 0      | -      | -      | 0      | 2    | 0    | -    | -    | -     | 1    | 0    | 
+|DataPreProcessingModule   | PCIN+(A''*B)'     | 30     | 18     | -      | -      | 0      | 2    | 0    | -    | -    | -     | 1    | 0    | 
+|DataPreProcessingModule   | PCIN+(A''*B)'     | 30     | 18     | -      | -      | 0      | 2    | 0    | -    | -    | -     | 1    | 0    | 
+|DataPreProcessingModule   | PCIN+(A''*B)'     | 30     | 0      | -      | -      | 0      | 2    | 0    | -    | -    | -     | 1    | 0    | 
 |self_trigger              | PCIN+(A*B)'       | 0      | 18     | -      | -      | 0      | 0    | 0    | -    | -    | -     | 1    | 0    | 
-|DataPreProcessingManager  | PCIN+(A''*B)'     | 30     | 18     | -      | -      | 0      | 2    | 0    | -    | -    | -     | 1    | 0    | 
+|DataPreProcessingModule   | PCIN+(A''*B)'     | 30     | 18     | -      | -      | 0      | 2    | 0    | -    | -    | -     | 1    | 0    | 
 |self_trigger              | PCIN+(A*B)'       | 0      | 18     | -      | -      | 0      | 0    | 0    | -    | -    | -     | 1    | 0    | 
 |self_trigger              | (PCIN+(A''*B)')'  | 30     | 18     | -      | -      | 28     | 2    | 0    | -    | -    | -     | 1    | 1    | 
 +--------------------------+-------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
@@ -2775,20 +2783,20 @@ Report Cell Usage:
 |54    |OBUFT         |     7|
 +------+--------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:01:58 ; elapsed = 00:01:59 . Memory (MB): peak = 2807.188 ; gain = 881.375
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:40 ; elapsed = 00:01:41 . Memory (MB): peak = 2814.805 ; gain = 882.566
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 576 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:01:13 ; elapsed = 00:01:52 . Memory (MB): peak = 2807.188 ; gain = 881.375
-Synthesis Optimization Complete : Time (s): cpu = 00:01:58 ; elapsed = 00:02:00 . Memory (MB): peak = 2807.188 ; gain = 881.375
+Synthesis Optimization Runtime : Time (s): cpu = 00:01:00 ; elapsed = 00:01:35 . Memory (MB): peak = 2814.805 ; gain = 882.566
+Synthesis Optimization Complete : Time (s): cpu = 00:01:40 ; elapsed = 00:01:41 . Memory (MB): peak = 2814.805 ; gain = 882.566
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.165 . Memory (MB): peak = 2807.188 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.165 . Memory (MB): peak = 2814.805 ; gain = 0.000
 INFO: [Netlist 29-17] Analyzing 537 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-140] Inserted 2 IBUFs to IO ports without IO buffers.
 INFO: [Opt 31-141] Inserted 2 OBUFs to IO ports without IO buffers.
 INFO: [Opt 31-138] Pushed 1 inverter(s) to 4 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 2807.188 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 2814.805 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 171 instances were transformed.
   BUFGMUX => BUFGCTRL (inverted pins: CE0): 1 instance 
@@ -2800,11 +2808,11 @@ INFO: [Project 1-111] Unisim Transformation Summary:
   RAM128X1D => RAM128X1D (MUXF7(x2), RAMD64E(x4)): 4 instances
   RAM32M => RAM32M (RAMD32(x6), RAMS32(x2)): 16 instances
 
-Synth Design complete | Checksum: a3dd895f
+Synth Design complete | Checksum: f4584f48
 INFO: [Common 17-83] Releasing license: Synthesis
-498 Infos, 361 Warnings, 0 Critical Warnings and 0 Errors encountered.
+501 Infos, 360 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:02:05 ; elapsed = 00:02:08 . Memory (MB): peak = 2807.188 ; gain = 1317.812
+synth_design: Time (s): cpu = 00:01:47 ; elapsed = 00:01:49 . Memory (MB): peak = 2814.805 ; gain = 1319.043
 INFO: [Common 17-1381] The checkpoint 'C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.runs/synth_1/daphne1.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file daphne1_utilization_synth.rpt -pb daphne1_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Mon Mar 18 14:42:08 2024...
+INFO: [Common 17-206] Exiting Vivado at Wed Mar 20 15:30:55 2024...

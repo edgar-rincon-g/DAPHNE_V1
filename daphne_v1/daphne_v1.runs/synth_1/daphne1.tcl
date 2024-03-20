@@ -70,7 +70,6 @@ proc create_report { reportName command } {
   }
 }
 OPTRACE "synth_1" START { ROLLUP_AUTO }
-set_param chipscope.maxJobs 3
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7a200tfbg676-2
 
@@ -128,23 +127,24 @@ read_verilog -library xil_defaultlib {
   C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/udp_ip_tx.v
 }
 read_vhdl -library xil_defaultlib {
-  C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/AXI_FIFO_Adapter.vhd
+  C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/AXIFIFOAdapterModule.vhd
   C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/AcquisitionManager.vhd
   C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/AlignFSM.vhd
   C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/Bufgmux_Module.vhd
   C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/ClockMUX.vhd
   C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/ClockManager.vhd
   C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/DataAcquisition.vhd
-  C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/DataPreProcessingManager.vhd
+  C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/DataPreProcessingModule.vhd
   C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/FDRE_Module.vhd
-  C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/FIFOManager.vhd
+  C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/FIFOManagerModule.vhd
   C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/FIFO_Module.vhd
   C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/FIFO_TO_AXI_Stream_Logic.vhd
+  C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/FilterStage.vhd
   C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/Ibufds_Module.vhd
   C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/InputBuffers.vhd
   C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/Iserdese_Block.vhd
   C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/PLL_Module.vhd
-  C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/ResetMemory_Module.vhd
+  C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/ResetFIFOModule.vhd
   C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/Self-trigger_VHDL.vhd
   C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/Synchronizer.vhd
   C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/bitFSM_Module.vhd
@@ -152,12 +152,12 @@ read_vhdl -library xil_defaultlib {
   C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/dsp_slice.vhd
   C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/endpoint.vhd
   C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/eth_core.vhd
+  C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/fifoControlFSM.vhd
   C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/frameFSM_Module.vhd
   C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/highPass_FirstOrder.vhd
   C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/lowPass_FirstOrder.vhd
   C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/n_regDataBuffer.vhd
   C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/rdFSM_Module.vhd
-  C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/trigSaveReadFSM.vhd
   C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/wrFSM_Module.vhd
   C:/Users/daniel.avila.EIA/Documents/GitHub/DAPHNE_V1/daphne_v1/daphne_v1.srcs/sources_1/new/daphne1.vhd
 }
