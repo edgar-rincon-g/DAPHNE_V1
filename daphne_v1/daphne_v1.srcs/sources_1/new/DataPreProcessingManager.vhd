@@ -65,45 +65,29 @@ end DataPreProcessingManager;
 
 architecture datPreProc_arch of DataPreProcessingManager is
 
--- High Pass Module Declaration
+-- Filter Stage Module Declaration
 --------------------------------------------------------------------------------------------------------------------------------------------------
-component highPass_FirstOrder 
+component FilterStage is
     Generic (
-        Data_Size               : integer   := 14;
-        Coefficient_Resolution  : integer   := 17                                   -- One more than decimal desired
+        DATA_SIZE               : integer   := 14;
+        HP_COEFF_RESOLUTION     : integer   := 17;
+        LP_COEFF_RESOLUTION     : integer   := 17
     );
-    Port (
+    Port ( 
         -- Module Inputs
-    ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
-        rst                     : in std_logic;                                     -- Reset for the filter
-        clk                     : in std_logic;                                     -- Clock for the filter
-        x_in                    : in std_logic_vector((Data_Size - 1) downto 0);    -- Input vector from AFEs
+    ---------------------------------------------------------------------------------------------------------------------------------------------------------------------  
+        rst                     : in std_logic;
+        clk                     : in std_logic;
+        x_in_hp                 : in std_logic_vector((DATA_SIZE - 1) downto 0);
+        x_in_lp                 : in std_logic_vector((DATA_SIZE - 1) downto 0);    
+        neuNet_used             : in std_logic;                                         -- Defines if a Neural Network Self Trigger is Used ('1' Yes, '0' No)                                                                                          
         
-        -- Module Output
+        -- Module Outputs
     ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
-        y_out                   : out std_logic_vector((Data_Size - 1) downto 0)    -- Output vector from Filter
+        y_out_hp                : out std_logic_vector((DATA_SIZE - 1) downto 0);
+        y_out_lp                : out std_logic_vector((DATA_SIZE - 1) downto 0)
     );
-end component highPass_FirstOrder;
-
--- Low Pass Module Declaration
---------------------------------------------------------------------------------------------------------------------------------------------------
-component lowPass_FirstOrder 
-    Generic (
-        Data_Size               : integer   := 14;
-        Coefficient_Resolution  : integer   := 17                                   -- One more than decimal desired
-    );
-    Port (
-        -- Module Inputs
-    ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
-        rst                     : in std_logic;                                     -- Reset for the filter
-        clk                     : in std_logic;                                     -- Clock for the filter
-        x_in                    : in std_logic_vector((Data_Size - 1) downto 0);    -- Input vector from AFEs
-        
-        -- Module Output
-    ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
-        y_out                   : out std_logic_vector((Data_Size - 1) downto 0)    -- Output vector from Filter
-    );
-end component;
+end component FilterStage;
 
 -- n Registers - Data Buffer Module Declaration
 --------------------------------------------------------------------------------------------------------------------------------------------------
@@ -225,10 +209,6 @@ end component trigSaveReadFSM;
 
 -- Internal Connections and Auxiliary Signals
 --------------------------------------------------------------------------------------------------------------------------------------------------
-signal hp_filt_data                 : std_logic_vector(13 downto 0);
-signal hp_filt_data_reg             : std_logic_vector(13 downto 0);
-signal lp_filt_data                 : std_logic_vector(13 downto 0);
-signal lp_filt_data_reg             : std_logic_vector(13 downto 0);
 signal trigger_aux                  : std_logic;
 signal read                         : std_logic;
 signal trigger_in                   : std_logic;
@@ -241,52 +221,31 @@ signal neural_network_data_out_aux  : std_logic_vector(13 downto 0);
 signal network_prediction           : signed(47 downto 0);
 signal network_agg                  : signed(47 downto 0);
 signal normalized_data              : signed(14 downto 0);
+signal filter_stage_o               : std_logic_vector(13 downto 0);
 
 begin
     
-    -- High Pass First Order Filter Component Instantiation
+    -- Filter Stage Component Instantiation
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    HP_FILTER_COM : highPass_FirstOrder     
-        port map (
+    FILTER_STAGE_COM : FilterStage 
+        generic map (
+            DATA_SIZE               => 14,
+            HP_COEFF_RESOLUTION     => 17,
+            LP_COEFF_RESOLUTION     => 17
+        )
+        port map ( 
             -- Module Inputs
-        ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
-            rst             => rst,
-            clk             => clk,
-            x_in            => afe_data,                                -- Use lp_filt_data if low pass is implemented but has no enable controlled. Use afe_data if no low pass is used or low pass has enable input
+        ---------------------------------------------------------------------------------------------------------------------------------------------------------------------  
+            rst                     => rst,
+            clk                     => clk,
+            x_in_hp                 => afe_data,
+            x_in_lp                 => std_logic_vector(to_unsigned(0,14)),    
+            neuNet_used             => '1',                                        -- Defines if a Neural Network Self Trigger is Used ('1' Yes, '0' No)                                                                                          
             
             -- Module Outputs
-        --------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
-            y_out           => hp_filt_data 
-        );
-        
-    -- Filters Outputs Pipelining Instantiation
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    REG_FILT_IN : process(clk, rst)
-        begin
-            if rising_edge(clk) then
-                if (rst = '1') then
-                    hp_filt_data_reg <= (others => '0');
-                    lp_filt_data_reg <= (others => '0');
-                else
-                    hp_filt_data_reg <= hp_filt_data;
-                    lp_filt_data_reg <= lp_filt_data;
-                end if;
-            end if;
-    end process REG_FILT_IN;
-    
-    -- Low Pass First Order Filter Component Instantiation
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    LP_FILTER_COM : lowPass_FirstOrder     
-        port map (
-            -- Module Inputs
         ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
-            rst             => rst,
-            clk             => clk,
-            x_in            => hp_filt_data_reg,                        -- Use afe_data if low pass enabler is not implemented/used, use hp_filt_data with low pass enable controlled or if no low pass filter is implemented at all 
-            
-            -- Module Outputs
-        --------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
-            y_out           => lp_filt_data 
+            y_out_hp                => open,
+            y_out_lp                => filter_stage_o
         );
 
     -- n Registers Data Buffer Component Instantiation        
@@ -313,7 +272,7 @@ begin
         clk                 => clk,
         rst                 => rst,
         i_data              => afe_data,
-        data_hpf            => hp_filt_data_reg,
+        data_hpf            => filter_stage_o,
         
         -- Module Outputs
     --------------------------------------------------------------------------------------------------------------------------------------
@@ -381,7 +340,7 @@ begin
     read_ctrl               <= fifo_rd;                                 -- Controlled Read Output
     calc_value_out          <= xcorr_calc_out;    -- std_logic_vector(network_prediction) or could be related to the cross correlation calculated value xcorr_calc_out;
     --net_agg                 <= std_logic_vector(network_agg);           -- Only used when the neural network is used/instantiated
-    filt_out                <= hp_filt_data_reg;                        -- Output of the filter chain, may be only hp_filt_data_reg when the self trigger is based on the Cross Correlation
+    filt_out                <= filter_stage_o;                          -- Output of the filter chain, may be only hp_filt_data_reg when the self trigger is based on the Cross Correlation
     trigger                 <= trigger_aux;                             -- used to be the write signal
     buff_data               <= n_reg_afe_data;                          -- used to be neural_network_data_out_aux (Modified when data buffer got out of the self trigger module);             -- Use xcorr_data_out_aux; for Cross Correlation Self Trigger, use neural_network_data_out_aux for Neural Network Self Trigger
 
